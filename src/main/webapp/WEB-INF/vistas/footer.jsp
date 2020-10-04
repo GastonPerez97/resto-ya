@@ -1,6 +1,16 @@
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		</main>
+		
+		<footer class="container-footer bg-dark footer mt-5">
+        	<div class="container d-flex justify-content-between align-items-center">
+        		<span class="text-light">Copyright © 2020, Capa 8. Todos los derechos reservados.</span>
+        		<a href="#" class="btn btn-light float-right">Ir arriba</a>
+     		</div>
+   		</footer>
+		
+	 	<!-- Optional JavaScript -->
+    	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	</body>
 </html>
