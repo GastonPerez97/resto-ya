@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -71,5 +73,28 @@ public class ControladorLogin {
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping(path = "/usuario/listado", method = RequestMethod.GET)
+	public ModelAndView listarUsuarios() {
+		ModelMap modelo = new ModelMap();
+		List<Usuario> listadoDeUsuarios = servicioLogin.buscarUsuarios();
+		modelo.put("usuarios", listadoDeUsuarios);
+		modelo.put("usuario", new Usuario());
+		return new ModelAndView("usuario/listado", modelo);
+	}
+		
+	@RequestMapping(path = "/usuario/borrarUsuario", method = RequestMethod.POST)
+	public ModelAndView borrarUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+
+		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
+		if (usuarioBuscado != null) {
+			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			return new ModelAndView("redirect:/home");
+		} else {
+			model.put("error", "Usuario o clave incorrecta");
+		}
+		return new ModelAndView("login", model);
 	}
 }
