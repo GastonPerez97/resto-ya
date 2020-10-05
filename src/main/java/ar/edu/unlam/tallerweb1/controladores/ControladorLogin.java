@@ -33,6 +33,7 @@ public class ControladorLogin {
 
 		ModelMap modelo = new ModelMap();
 		// 123456
+		// lkajsdlkasjdklsajdlkasjdkls
 		// al model attribute del form que esta definido en la vista 'login'
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
