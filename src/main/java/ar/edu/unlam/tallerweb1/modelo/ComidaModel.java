@@ -16,6 +16,8 @@ public class ComidaModel {
     
     @Column(name = "descripcion")
     private String descripcion;
+    
+	private String tipo;
 
     public ComidaModel() {
     	
@@ -44,4 +46,13 @@ public class ComidaModel {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
 }

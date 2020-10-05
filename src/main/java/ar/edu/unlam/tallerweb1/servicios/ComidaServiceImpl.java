@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import javax.inject.Inject;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,5 +24,11 @@ public class ComidaServiceImpl implements ComidaService {
 		return comida ;
 	}
 	
-
+	
+	@Override
+	public ArrayList<ComidaModel> buscarComida() {
+		return comidaRepository.buscarComida();
+	}
+	
+	
 }
