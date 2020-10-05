@@ -7,7 +7,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -35,6 +39,17 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
+	}
+	
+	@Override
+	public List<Usuario> buscarUsuarios() {
+		return sessionFactory.getCurrentSession().createCriteria(Usuario.class).list();
+		
+		/*CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+	    CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
+	    criteria.from(Usuario.class);
+	    List<Usuario> data = sessionFactory.createQuery(criteria).getResultList();
+	    return data;*/
 	}
 
 }

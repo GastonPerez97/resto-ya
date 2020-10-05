@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +21,20 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 @Transactional
 public class ServicioLoginImpl implements ServicioLogin {
 
-	private RepositorioUsuario servicioLoginDao;
+	private RepositorioUsuario usuarioRepository;
 
 	@Autowired
 	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao){
-		this.servicioLoginDao = servicioLoginDao;
+		this.usuarioRepository = servicioLoginDao;
 	}
 
 	@Override
 	public Usuario consultarUsuario (Usuario usuario) {
-		return servicioLoginDao.consultarUsuario(usuario);
+		return usuarioRepository.consultarUsuario(usuario);
 	}
 
+	@Override
+	public List<Usuario> buscarUsuarios() {
+		return usuarioRepository.buscarUsuarios();
+	}
 }

@@ -32,7 +32,7 @@ public class ControladorLogin {
 	public ModelAndView irALogin() {
 
 		ModelMap modelo = new ModelMap();
-		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
+		// lkajsdlkasjdklsajdlkasjdkls
 		// al model attribute del form que esta definido en la vista 'login'
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
