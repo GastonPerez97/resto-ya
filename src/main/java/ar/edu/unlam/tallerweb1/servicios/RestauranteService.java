@@ -12,4 +12,8 @@ public interface RestauranteService {
 	
 	public RestauranteModel buscarRestaurantePorId(Long id);
 	
+	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
+	
 }
+
+

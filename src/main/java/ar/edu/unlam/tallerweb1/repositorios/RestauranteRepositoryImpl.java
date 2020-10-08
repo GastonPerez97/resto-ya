@@ -28,4 +28,10 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 		return session.get(RestauranteModel.class, id);
 	}
 	
+	@Override
+	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (ArrayList<RestauranteModel>) session.createCriteria(RestauranteModel.class).list();
+	}
+	
 }
