@@ -30,12 +30,13 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre) {
 		ArrayList<RestauranteModel> listaReturn = new ArrayList<>();
 		ArrayList<RestauranteModel> listadoDb = repositorioRestaurante.buscarRestaurantePorNombre(nombre);
+		
 		for (RestauranteModel list : listadoDb) {
 			if (list.getNombre().equals(nombre)) {
 				listaReturn.add(list);
 			}
-
 		}
+		
 		return listaReturn;
 	}
 }

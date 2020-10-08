@@ -16,12 +16,11 @@ public class RestauranteController {
 	
 	@RequestMapping("/restaurantes")
 	public ModelAndView restaurantes() {
-				ModelMap modelo = new ModelMap();
+		ModelMap modelo = new ModelMap();
 		
 		modelo.put("titulo", "Lista de Restaurantes");
 		modelo.put("RESTAURANTES", servRestaurante.buscarRestaurantes());
 		
 		return new ModelAndView("restaurantes", modelo);
 	}
-	
 }
