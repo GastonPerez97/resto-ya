@@ -61,5 +61,10 @@ public class RestauranteModel {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
+	public RestauranteModel buscarRestaurantePorId(Long codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

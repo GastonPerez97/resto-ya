@@ -11,4 +11,6 @@ public interface RestauranteRepository {
 	
 	public RestauranteModel buscarRestaurantePorId(Long id);
 	
+	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
+	
 }
