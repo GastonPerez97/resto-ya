@@ -75,7 +75,11 @@ public class ComidaController {
 		
 	}
 	
-	   
+	@RequestMapping(path="/pagar", method=RequestMethod.POST)
+	public ModelAndView pagarPedido() {
+
+		return new ModelAndView("pagoRealizado");
+	}
 
 	@RequestMapping("/restaurante/menu")
 	public ModelAndView verMenu(@RequestParam("id") Long id) {
@@ -104,7 +108,7 @@ public class ComidaController {
 	public ModelAndView buscarComidaPost(@ModelAttribute("busqueda") ComidaModel comidaBuscada) {
 		
 		ModelMap modelo = new ModelMap();
-		modelo.put("resultadoBusqueda", servComida.buscarComidaDeseada(comidaBuscada.getNombre()));
+		modelo.put("resultadoBusqueda", comidaService.buscarComidaDeseada(comidaBuscada.getNombre()));
 		modelo.put("busqueda", new ComidaModel());
 
 		return new ModelAndView("resultadoBusquedaComida", modelo);

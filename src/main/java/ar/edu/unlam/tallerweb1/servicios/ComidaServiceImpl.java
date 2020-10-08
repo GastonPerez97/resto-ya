@@ -35,7 +35,7 @@ public class ComidaServiceImpl implements ComidaService {
 	public List<ComidaModel> buscarComidaDeseada(String nombre) {
 		
 		List<ComidaModel> comidasBuscadas = new ArrayList<ComidaModel>();
-		List<ComidaModel> comidasDB = repositorioComida.buscarComida();
+		List<ComidaModel> comidasDB = comidaRepository.buscarComida();
 		
 		for (ComidaModel comidaModel : comidasDB) {
 			if (comidaModel.getNombre().toLowerCase().contains(nombre.toLowerCase()))

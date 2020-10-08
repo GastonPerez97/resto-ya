@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="header.jsp" %>
 
 <h3 class="pedido-titulo">Mi pedido:</h3>
@@ -9,7 +10,9 @@
 					width="300" height="200"></div>
 		</article><br>
 	</c:forEach>
-	<input type="submit" value="Pagar" class="btn btn-primary btn-block" />
+	<form:form action="pagar" method="post" class="comidas-pedido mx-auto">
+		<input type="submit" value="Pagar" class="btn btn-primary btn-block" />
+	</form:form>
 </section>
 
 <%@ include file="footer.jsp" %>
