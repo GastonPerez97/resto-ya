@@ -1,33 +1,41 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import javax.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.repositorios.ComidaRepository;
 
+
 @Service("comidaService")
 @Transactional
 public class ComidaServiceImpl implements ComidaService {
+	
+	@Inject
+	private ComidaRepository comidaRepository;
 
-	@Autowired
-	private ComidaRepository repositorioComida;
+	@Override
+	public ComidaModel mostrarComidaModel(Long id) {
+		ComidaModel comida = comidaRepository.consultarComidaPorId(id);
+		return comida ;
+	}
 	
 	
 	@Override
 	public ArrayList<ComidaModel> buscarComida() {
-		return repositorioComida.buscarComida();
+		return comidaRepository.buscarComida();
 	}
 	
 	@Override
 	public List<ComidaModel> buscarComidaDeseada(String nombre) {
 		
 		List<ComidaModel> comidasBuscadas = new ArrayList<ComidaModel>();
-		List<ComidaModel> comidasDB = repositorioComida.buscarComida();
+		List<ComidaModel> comidasDB = comidaRepository.buscarComida();
 		
 		for (ComidaModel comidaModel : comidasDB) {
 			if (comidaModel.getNombre().toLowerCase().contains(nombre.toLowerCase()))

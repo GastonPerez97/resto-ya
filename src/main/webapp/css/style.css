@@ -47,9 +47,43 @@ header nav {
 	justify-content: space-between;
 }
 
+
+.comidas-pedido {
+	width: 90%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
 .comida {
 	width: 32%;
 	margin-bottom: 2em;
+}
+
+.pedido{
+	width: 90%;
+}
+
+.pedido-titulo{
+	text-align: center;
+	font-weight: bold;
+}
+
+.pedido-detalle{
+	margin-top: 5px;
+	margin-left: 5%;
+	font-weight: bold;
+	
+}
+
+.pedido-flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border-width: 2px;
+	border-style: solid;
+	border-color: darkgray;
 }
 
 .footer {

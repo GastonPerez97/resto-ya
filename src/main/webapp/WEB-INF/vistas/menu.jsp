@@ -13,6 +13,8 @@
 			</div>
 		</article>
 	</c:forEach>
+	<a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Procesar Pedido</a>
 </section>
+
 
 <%@ include file="footer.jsp" %>
