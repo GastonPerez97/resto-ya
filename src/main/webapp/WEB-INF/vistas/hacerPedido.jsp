@@ -6,7 +6,6 @@
 	<form:form action="procesarPedido" method="post" class="comidas-pedido mx-auto">
 		<c:forEach items="${COMIDAS}" var="comida" varStatus="status">
 			<article class="comida mx-auto" >
-
 				<div>
 				  <div class="card h-100">
 					<img class="card-img-top" src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg" alt="">

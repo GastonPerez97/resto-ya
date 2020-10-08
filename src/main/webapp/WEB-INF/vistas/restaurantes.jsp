@@ -3,7 +3,6 @@
 <h1 class="text-center h1 display-3 bebas mb-4">Listado de restaurantes:</h1>
 
 <section class="restaurantes">
-	
 	<c:forEach items="${RESTAURANTES}" var="REST">
 		<div class="card mb-3 restaurante mx-auto shadow">
 		  <div class="row no-gutters">
