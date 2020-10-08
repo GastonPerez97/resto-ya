@@ -34,6 +34,9 @@
 		      <li class="nav-item">
 		        <a class="nav-link text-light" href="/proyecto-limpio-spring-master/restaurantes">Restaurantes</a>
 		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link text-light" href="/proyecto-limpio-spring-master/busqueda">Buscar Comida</a>
+		      </li>
 		    </ul>
 		  </div>
 		</nav>
