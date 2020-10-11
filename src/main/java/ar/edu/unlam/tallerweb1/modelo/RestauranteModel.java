@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +22,7 @@ public class RestauranteModel {
 	private String telefono;
 
     public RestauranteModel() {
-    	
+
     }
     
 	public Long getIdRestaurante() {
@@ -60,11 +63,6 @@ public class RestauranteModel {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public RestauranteModel buscarRestaurantePorId(Long codigo) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

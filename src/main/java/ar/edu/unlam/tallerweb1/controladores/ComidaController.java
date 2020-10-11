@@ -38,7 +38,7 @@ public class ComidaController {
 		
 		modelo.put("titulo", "Menu de " + restaurante.getNombre());
 		modelo.put("restaurante", restaurante);
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestauranteId(id));
 		
 		return new ModelAndView("menu", modelo);
 	}

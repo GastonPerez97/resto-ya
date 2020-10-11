@@ -18,6 +18,9 @@ public class ComidaModel {
     private String descripcion;
     
 	private String tipo;
+	
+	@ManyToOne
+	private RestauranteModel restaurante;
 
     public ComidaModel() {
     	
