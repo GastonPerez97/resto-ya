@@ -8,10 +8,10 @@
 		  <div class="row no-gutters">
 		    <div class="col-md-4 text-center my-auto">
 		      <c:if test="${not empty REST.imageName}">
-			  	<img src="img/${REST.imageName}" class="card-img img-restaurante">
+			  	<img src="img/restaurantes/${REST.imageName}" class="card-img img-restaurante">
 		      </c:if>
 		      <c:if test="${empty REST.imageName}">
-		      	<img src="img/defaultRestaurante.jpg" class="card-img">
+		      	<img src="img/restaurantes/defaultRestaurante.jpg" class="card-img">
 		      </c:if>
 		    </div>
 		    <div class="col-md-8">
