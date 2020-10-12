@@ -92,6 +92,11 @@ header nav {
 	align-items: center;
 }
 
+.img-restaurante {
+	max-height: 300px;
+	width: auto;
+}
+
 @media screen and (max-width: 1510px) {
 	.comida {
 		width: 48%;

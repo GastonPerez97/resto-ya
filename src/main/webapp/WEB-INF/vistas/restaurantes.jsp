@@ -6,8 +6,13 @@
 	<c:forEach items="${RESTAURANTES}" var="REST">
 		<div class="card mb-3 restaurante mx-auto shadow">
 		  <div class="row no-gutters">
-		    <div class="col-md-4">
-		      <img src="https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store.jpg" class="card-img">
+		    <div class="col-md-4 text-center my-auto">
+		      <c:if test="${not empty REST.imageName}">
+			  	<img src="img/${REST.imageName}" class="card-img img-restaurante">
+		      </c:if>
+		      <c:if test="${empty REST.imageName}">
+		      	<img src="img/defaultRestaurante.jpg" class="card-img">
+		      </c:if>
 		    </div>
 		    <div class="col-md-8">
 		      <div class="card-body">

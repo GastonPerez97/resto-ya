@@ -17,6 +17,7 @@ public class RestauranteModel {
 	private String direccion;
 	private String horario;
 	private String telefono;
+	private String imageName;
 
     public RestauranteModel() {
     	
@@ -62,9 +63,17 @@ public class RestauranteModel {
 		this.telefono = telefono;
 	}
 
-	public RestauranteModel buscarRestaurantePorId(Long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+//	public RestauranteModel buscarRestaurantePorId(Long codigo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}                                  ?????????????????
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imagen) {
+		this.imageName = imagen;
 	}
 	
 }

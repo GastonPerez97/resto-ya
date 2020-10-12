@@ -15,5 +15,3 @@ public interface RestauranteService {
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
 	
 }
-
-
