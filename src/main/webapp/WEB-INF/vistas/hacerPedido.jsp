@@ -8,7 +8,12 @@
 			<article class="comida mx-auto" >
 				<div>
 				  <div class="card h-100">
-					<img class="card-img-top" src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg" alt="">
+					<c:if test="${not empty comida.imageName}">
+						<img src="img/comidas/${comida.imageName}" class="card-img-top img-comida">
+				    </c:if>
+				    <c:if test="${empty comida.imageName}">
+				    	<img src="img/comidas/defaultComida.jpg" class="card-img-top img-comida">
+				    </c:if>
 					<div class="card-body">
 					  <h4 class="card-title">
 						<a href="#">${comida.nombre}</a>

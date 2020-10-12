@@ -6,8 +6,14 @@
 	<c:forEach items="${Comidas}" var="comida" varStatus="status">
 		<article class="pedido-flex">
 			<div class="pedido-detalle">${comida.nombre}</div> 
-			<div><img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg" alt="comida"
-					width="300" height="200"></div>
+			<div>
+				<c:if test="${not empty comida.imageName}">
+					<img src="img/comidas/${comida.imageName}" width="300" height="200">
+			    </c:if>
+			    <c:if test="${empty comida.imageName}">
+			    	<img src="img/comidas/defaultComida.jpg" width="300" height="200">
+			    </c:if>
+			</div>
 		</article><br>
 	</c:forEach>
 	<form:form action="pagar" method="post" class="comidas-pedido mx-auto">
