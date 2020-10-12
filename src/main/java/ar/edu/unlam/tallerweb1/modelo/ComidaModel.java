@@ -18,6 +18,7 @@ public class ComidaModel {
     private String descripcion;
     
 	private String tipo;
+	private String imageName;
 
     public ComidaModel() {
     	
@@ -53,6 +54,14 @@ public class ComidaModel {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 	
 }
