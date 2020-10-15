@@ -2,6 +2,10 @@
 
 <h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> Men&uacute de "${restaurante.nombre}"</h1>
 
+<div class="mb-4 volver-btn">
+	<a href="../restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
+</div>
+
 <section class="comidas mx-auto">
 	<c:forEach items="${COMIDAS}" var="COMIDA">
 		<article class="card comida shadow">
