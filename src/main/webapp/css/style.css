@@ -92,6 +92,10 @@ header nav {
 	align-items: center;
 }
 
+.no-disponible {
+	opacity: 0.6;
+}
+
 @media screen and (max-width: 1510px) {
 	.comida {
 		width: 48%;

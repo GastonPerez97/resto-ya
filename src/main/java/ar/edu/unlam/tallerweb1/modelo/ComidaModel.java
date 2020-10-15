@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "comida")
 public class ComidaModel {
@@ -18,6 +20,9 @@ public class ComidaModel {
     private String descripcion;
     
 	private String tipo;
+
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean disponible;
 
     public ComidaModel() {
     	
@@ -53,6 +58,14 @@ public class ComidaModel {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
 	}
 	
 }

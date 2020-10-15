@@ -2,6 +2,9 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "restaurante")
 public class RestauranteModel {
@@ -17,6 +20,9 @@ public class RestauranteModel {
 	private String direccion;
 	private String horario;
 	private String telefono;
+	
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean disponible;
 
     public RestauranteModel() {
     	
@@ -65,6 +71,14 @@ public class RestauranteModel {
 	public RestauranteModel buscarRestaurantePorId(Long codigo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
 	}
 	
 }
