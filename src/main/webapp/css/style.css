@@ -44,7 +44,7 @@ header nav {
 	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: flex-start;
 }
 
 
@@ -58,6 +58,7 @@ header nav {
 .comida {
 	width: 32%;
 	margin-bottom: 2em;
+	margin-right: 1.3%;
 }
 
 .pedido{
