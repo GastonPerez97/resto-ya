@@ -50,7 +50,7 @@ public class ComidaController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("restaurante", restaurante);
 		modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestauranteId(id));
 		return new ModelAndView("hacerPedido", modelo);
 		
 	}
