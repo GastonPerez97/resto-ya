@@ -43,7 +43,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 	
 	@Override
-	public List<ComidaModel> buscarMenuPorRestauranteId(Long id){
-		return repositorioRestaurante.buscarMenuPorRestauranteId(id);
+	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante){
+		return repositorioRestaurante.buscarMenuPorRestaurante(restaurante);
 	}
 }

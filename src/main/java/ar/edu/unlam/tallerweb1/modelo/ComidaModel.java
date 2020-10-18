@@ -20,6 +20,7 @@ public class ComidaModel {
 	private String tipo;
 	
 	@ManyToOne
+	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
 
     public ComidaModel() {
@@ -56,6 +57,14 @@ public class ComidaModel {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public RestauranteModel getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(RestauranteModel restaurante) {
+		this.restaurante = restaurante;
 	}
 	
 }

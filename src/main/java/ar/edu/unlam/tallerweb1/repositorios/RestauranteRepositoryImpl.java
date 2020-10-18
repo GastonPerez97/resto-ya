@@ -38,11 +38,10 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	}
 	
 	@Override
-	public List<ComidaModel> buscarMenuPorRestauranteId(Long id) {
+	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante) {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(ComidaModel.class)
-					.createAlias("restaurante", "restauranteBuscado")
-					.add(Restrictions.eq("restauranteBuscado.idRestaurante", id))
+					.add(Restrictions.eq("restaurante", restaurante))
 					.list();
 	}
 	

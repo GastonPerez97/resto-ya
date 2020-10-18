@@ -15,5 +15,5 @@ public interface RestauranteRepository {
 	
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
 	
-	public List<ComidaModel> buscarMenuPorRestauranteId(Long id);
+	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante);
 }

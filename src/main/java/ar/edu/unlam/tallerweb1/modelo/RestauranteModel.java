@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.LinkedList;
 import java.util.List;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +21,9 @@ public class RestauranteModel {
 	private String direccion;
 	private String horario;
 	private String telefono;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
+	private List<ComidaModel> menu = new LinkedList<ComidaModel>();
 
     public RestauranteModel() {
 
@@ -63,6 +67,14 @@ public class RestauranteModel {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public List<ComidaModel> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(List<ComidaModel> menu) {
+		this.menu = menu;
 	}
 	
 }
