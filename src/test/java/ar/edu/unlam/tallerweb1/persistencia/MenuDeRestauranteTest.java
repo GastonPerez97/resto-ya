@@ -3,9 +3,7 @@ package ar.edu.unlam.tallerweb1.persistencia;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RestauranteRepository;
-import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
