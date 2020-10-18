@@ -29,6 +29,12 @@ public class RestauranteModel {
 
     }
     
+//  Constructor para tests
+    public RestauranteModel(String nombre, Long id) {
+    	this.nombre = nombre;
+    	this.idRestaurante = idRestaurante;
+    }
+    
 	public Long getIdRestaurante() {
 		return idRestaurante;
 	}

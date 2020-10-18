@@ -27,6 +27,12 @@ public class ComidaModel {
     	
     }
     
+//  Constructor para tests
+    public ComidaModel(String nombre, Long id) {
+    	this.nombre = nombre;
+    	this.idComida = idComida;
+    }
+    
 	public Long getIdComida() {
 		return idComida;
 	}
