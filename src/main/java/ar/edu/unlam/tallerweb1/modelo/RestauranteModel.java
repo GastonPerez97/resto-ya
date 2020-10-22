@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "restaurante")
 public class RestauranteModel {
@@ -28,6 +31,9 @@ public class RestauranteModel {
     
     @Column(name = "telefono")
 	private String telefono;
+	
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean disponible;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<ComidaModel> menu = new LinkedList<ComidaModel>();
@@ -108,6 +114,14 @@ public class RestauranteModel {
 
 	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
 		return restauranteHorarioList;
+	}
+
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
 	}
 	
 }

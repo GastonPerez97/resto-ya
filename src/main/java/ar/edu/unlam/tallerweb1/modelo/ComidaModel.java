@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "comida")
 public class ComidaModel {
@@ -33,6 +35,9 @@ public class ComidaModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comidaModel", cascade = CascadeType.ALL)
 	private List<PedidoComidaModel> listaComidasPedidos;
 	
+
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean disponible;
 
 	public ComidaModel() {
 		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
@@ -76,6 +81,14 @@ public class ComidaModel {
 		this.tipo = tipo;
 	}
 
+	public Boolean getDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
+	}
+	
 	public RestauranteModel getRestaurante() {
 		return restaurante;
 	}
