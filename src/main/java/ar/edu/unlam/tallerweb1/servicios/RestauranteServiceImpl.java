@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,13 +32,13 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre) {
 		ArrayList<RestauranteModel> listaReturn = new ArrayList<>();
 		ArrayList<RestauranteModel> listadoDb = repositorioRestaurante.buscarRestaurantePorNombre(nombre);
-		
+
 		for (RestauranteModel list : listadoDb) {
-			if (list.getNombre().equals(nombre)) {
+			if (list.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
 				listaReturn.add(list);
 			}
 		}
-		
+
 		return listaReturn;
 	}
 	

@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,14 +20,22 @@ public class ComidaModel {
     @Column(name = "descripcion")
     private String descripcion;
     
+    @Column(name = "tipo")
 	private String tipo;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
+    
+    @Column(name = "precio")
+	private Double precio;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comidaModel", cascade = CascadeType.ALL)
+	private List<PedidoComidaModel> listaComidasPedidos;
+	
 
-    public ComidaModel() {
-    	
+	public ComidaModel() {
+		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
     }
     
 //  Constructor para tests
@@ -72,5 +83,17 @@ public class ComidaModel {
 	public void setRestaurante(RestauranteModel restaurante) {
 		this.restaurante = restaurante;
 	}
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+	
+
+	
+	
+	
 	
 }

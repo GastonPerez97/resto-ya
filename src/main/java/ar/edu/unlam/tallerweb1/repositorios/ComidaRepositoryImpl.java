@@ -26,5 +26,10 @@ public class ComidaRepositoryImpl implements ComidaRepository {
 		final Session session = sessionFactory.getCurrentSession();
 		return (ArrayList<ComidaModel>) session.createCriteria(ComidaModel.class).list();
 	}
+
+
+
+
+
 	
 }

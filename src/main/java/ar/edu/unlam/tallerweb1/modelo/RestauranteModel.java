@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+import java.util.ArrayList;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,21 +20,33 @@ public class RestauranteModel {
     @Column(name = "nombre")
     private String nombre;
     
+    @Column(name = "direccion")
 	private String direccion;
+    
+    @Column(name = "horario")
 	private String horario;
+    
+    @Column(name = "telefono")
 	private String telefono;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<ComidaModel> menu = new LinkedList<ComidaModel>();
 
-    public RestauranteModel() {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
+	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
+    private List<RestauranteHorarioModel> restauranteHorarioList;
     
 //  Constructor para tests
     public RestauranteModel(String nombre, Long id) {
     	this.nombre = nombre;
-    	this.idRestaurante = idRestaurante;
+		this.idRestaurante = idRestaurante;
+	}
+
+
+    public RestauranteModel() {
+    	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
     }
     
 	public Long getIdRestaurante() {
@@ -74,6 +88,15 @@ public class RestauranteModel {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
+	
+	public List<PedidoModel> getPedido() {
+		return pedidos;
+	}
+
+	public void setPedido(List<PedidoModel> pedido) {
+		this.pedidos = pedido;
+	}
 
 	public List<ComidaModel> getMenu() {
 		return menu;
@@ -81,6 +104,10 @@ public class RestauranteModel {
 
 	public void setMenu(List<ComidaModel> menu) {
 		this.menu = menu;
+	}
+
+	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
+		return restauranteHorarioList;
 	}
 	
 }
