@@ -12,4 +12,6 @@ public interface ComidaService {
 
 	public List<ComidaModel> buscarComidaDeseada(String nombre);
 
+	public ArrayList<ComidaModel> mostrarComidaPedida(ArrayList<Long> id);
+
 }

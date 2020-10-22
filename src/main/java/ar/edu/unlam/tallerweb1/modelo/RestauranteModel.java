@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,18 @@ public class RestauranteModel {
     @Column(name = "nombre")
     private String nombre;
     
+    @Column(name = "direccion")
 	private String direccion;
+    
+    @Column(name = "horario")
 	private String horario;
+    
+    @Column(name = "telefono")
 	private String telefono;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
+	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
     private List<RestauranteHorarioModel> restauranteHorarioList;
 
@@ -68,6 +77,15 @@ public class RestauranteModel {
 		this.telefono = telefono;
 	}
 	
+	
+	public List<PedidoModel> getPedido() {
+		return pedidos;
+	}
+
+	public void setPedido(List<PedidoModel> pedido) {
+		this.pedidos = pedido;
+	}
+
 	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
 		return restauranteHorarioList;
 	}
