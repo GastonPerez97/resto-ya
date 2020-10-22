@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,9 +20,12 @@ public class RestauranteModel {
 	private String direccion;
 	private String horario;
 	private String telefono;
+	
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
+    private List<RestauranteHorarioModel> restauranteHorarioList;
 
     public RestauranteModel() {
-    	
+    	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
     }
     
 	public Long getIdRestaurante() {
@@ -61,10 +67,9 @@ public class RestauranteModel {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
-	public RestauranteModel buscarRestaurantePorId(Long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
+		return restauranteHorarioList;
 	}
 	
 }
