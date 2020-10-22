@@ -5,6 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.repositorios.RestauranteRepository;
 
@@ -37,5 +40,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 		}
 
 		return listaReturn;
+	}
+	
+	@Override
+	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante){
+		return repositorioRestaurante.buscarMenuPorRestaurante(restaurante);
 	}
 }

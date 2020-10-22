@@ -22,6 +22,10 @@ public class ComidaModel {
     
     @Column(name = "tipo")
 	private String tipo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_restaurante")
+	private RestauranteModel restaurante;
     
     @Column(name = "precio")
 	private Double precio;
@@ -32,6 +36,12 @@ public class ComidaModel {
 
 	public ComidaModel() {
 		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
+    }
+    
+//  Constructor para tests
+    public ComidaModel(String nombre, Long id) {
+    	this.nombre = nombre;
+    	this.idComida = idComida;
     }
     
 	public Long getIdComida() {
@@ -66,6 +76,13 @@ public class ComidaModel {
 		this.tipo = tipo;
 	}
 
+	public RestauranteModel getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(RestauranteModel restaurante) {
+		this.restaurante = restaurante;
+	}
 	public Double getPrecio() {
 		return precio;
 	}

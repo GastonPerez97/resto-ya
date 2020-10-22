@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
-import java.util.ArrayList;
 import java.util.List;
+
+
+import java.util.ArrayList;
 
 import javax.persistence.*;
 
@@ -28,10 +30,20 @@ public class RestauranteModel {
 	private String telefono;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
+	private List<ComidaModel> menu = new LinkedList<ComidaModel>();
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
     private List<RestauranteHorarioModel> restauranteHorarioList;
+    
+//  Constructor para tests
+    public RestauranteModel(String nombre, Long id) {
+    	this.nombre = nombre;
+		this.idRestaurante = idRestaurante;
+	}
+
 
     public RestauranteModel() {
     	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
@@ -84,6 +96,14 @@ public class RestauranteModel {
 
 	public void setPedido(List<PedidoModel> pedido) {
 		this.pedidos = pedido;
+	}
+
+	public List<ComidaModel> getMenu() {
+		return menu;
+	}
+
+	public void setMenu(List<ComidaModel> menu) {
+		this.menu = menu;
 	}
 
 	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
