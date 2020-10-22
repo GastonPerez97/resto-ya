@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.repositorios.ComidaRepository;
 
-
 @Service("comidaService")
 @Transactional
 public class ComidaServiceImpl implements ComidaService {
@@ -36,7 +35,7 @@ public class ComidaServiceImpl implements ComidaService {
 		
 		List<ComidaModel> comidasBuscadas = new ArrayList<ComidaModel>();
 		List<ComidaModel> comidasDB = comidaRepository.buscarComida();
-		
+		/* System.out.println(nombre); */
 		for (ComidaModel comidaModel : comidasDB) {
 			if (comidaModel.getNombre().toLowerCase().contains(nombre.toLowerCase()))
 				comidasBuscadas.add(comidaModel);

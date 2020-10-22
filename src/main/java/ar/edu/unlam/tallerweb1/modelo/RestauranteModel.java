@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -29,10 +30,11 @@ public class RestauranteModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
-	
-	
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
+    private List<RestauranteHorarioModel> restauranteHorarioList;
+
     public RestauranteModel() {
-    	
+    	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
     }
     
 	public Long getIdRestaurante() {
@@ -84,12 +86,8 @@ public class RestauranteModel {
 		this.pedidos = pedido;
 	}
 
-	
-	
-	
-	public RestauranteModel buscarRestaurantePorId(Long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RestauranteHorarioModel> getRestauranteHorarioList() {
+		return restauranteHorarioList;
 	}
 	
 }

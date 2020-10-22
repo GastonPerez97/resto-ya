@@ -54,21 +54,22 @@ public class ComidaController {
 	
 	
 
-	@RequestMapping("/busqueda")
-	public ModelAndView buscarComida() {
-		
-		ModelMap modelo = new ModelMap();
-		modelo.put("busqueda", new ComidaModel());
-		
-		return new ModelAndView("buscadorDeComidas", modelo);
-	}
+	/*
+	 * @RequestMapping("/busqueda") public ModelAndView buscarComida() {
+	 * 
+	 * ModelMap modelo = new ModelMap(); modelo.put("busqueda", new ComidaModel());
+	 * 
+	 * return new ModelAndView("buscadorDeComidas", modelo); }
+	 */
 	
-	@RequestMapping(path = "/busqueda", method = RequestMethod.POST)
-	public ModelAndView buscarComidaPost(@ModelAttribute("busqueda") ComidaModel comidaBuscada) {
-		
-		ModelMap modelo = new ModelMap();
-		modelo.put("resultadoBusqueda", comidaService.buscarComidaDeseada(comidaBuscada.getNombre()));
-
-		return new ModelAndView("resultadoBusquedaComida", modelo);
-	}
+	/*
+	 * @RequestMapping(path = "/busqueda", method = RequestMethod.POST) public
+	 * ModelAndView buscarComidaPost(@ModelAttribute("busqueda") ComidaModel
+	 * comidaBuscada) {
+	 * 
+	 * ModelMap modelo = new ModelMap(); modelo.put("resultadoBusqueda",
+	 * comidaService.buscarComidaDeseada(comidaBuscada.getNombre()));
+	 * 
+	 * return new ModelAndView("resultadoBusquedaComida", modelo); }
+	 */
 }
