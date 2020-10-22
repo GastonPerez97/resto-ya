@@ -44,4 +44,22 @@ public class ComidaServiceImpl implements ComidaService {
 		
 		return comidasBuscadas;
 	}
+
+
+	@Override
+	public ArrayList<ComidaModel> mostrarComidaPedida(ArrayList<Long> id){
+		
+		ArrayList<ComidaModel> comidas = new ArrayList<ComidaModel>();
+		
+		for(Long idComida : id) {
+			comidas.add(mostrarComidaModel(idComida));
+		}
+		
+		return comidas;
+	}
+
+
+
+	
+	
 }

@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,10 +17,20 @@ public class RestauranteModel {
     @Column(name = "nombre")
     private String nombre;
     
+    @Column(name = "direccion")
 	private String direccion;
+    
+    @Column(name = "horario")
 	private String horario;
+    
+    @Column(name = "telefono")
 	private String telefono;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
+	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
+	
+	
     public RestauranteModel() {
     	
     }
@@ -61,7 +74,19 @@ public class RestauranteModel {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
+	
+	public List<PedidoModel> getPedido() {
+		return pedidos;
+	}
 
+	public void setPedido(List<PedidoModel> pedido) {
+		this.pedidos = pedido;
+	}
+
+	
+	
+	
 	public RestauranteModel buscarRestaurantePorId(Long codigo) {
 		// TODO Auto-generated method stub
 		return null;
