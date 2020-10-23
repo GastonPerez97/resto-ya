@@ -1,10 +1,10 @@
 <%@ include file="header.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">Resultado de la búsqueda:</h1>
+<h1 class="text-center h1 display-3 bebas mb-4">Restaurantes Encontrados:</h1>
 
 <section class="comidas mx-auto">
-	<c:forEach items="${restaurantes}" var="RESTO">
+	<c:forEach items="${resultadoBusqueda.listaRestaurantes}" var="RESTO">
 		<article class="card comida shadow">
 			<div class="card-body">
 				<c:if test="${not empty RESTO.imageName}">
@@ -21,7 +21,7 @@
 		</article>
 	</c:forEach>
 
-	<form:form action="buscarRestaurantes" method="get">
+	<form:form action="home" method="get">
 		<button class="float-right btn btn-dark" type="submit">Volver</button>
 	</form:form>
 </section>

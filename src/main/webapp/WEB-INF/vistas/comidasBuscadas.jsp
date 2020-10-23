@@ -1,9 +1,9 @@
 <%@ include file="header.jsp" %>
 
-<h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> Resultados de tu búsqueda </h1>
+<h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> Listado de comidas</h1>
 
 <section class="comidas mx-auto">
-	<c:forEach items="${resultadoBusqueda}" var="resultado">
+	<c:forEach items="${resultadoBusqueda.listaComidas}" var="resultado">
 		<article class="card comida shadow">
 	  		<c:if test="${not empty resultado.imageName}">
 				<img src="img/comidas/${resultado.imageName}" class="card-img img-restaurante">
@@ -18,7 +18,7 @@
 			</div>
 		</article>
 	</c:forEach>
-	<a class="nav-link" href="/proyecto-limpio-spring-master/busqueda">Volver a buscar</a>
+	<a class="nav-link" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
 </section>
 
 <%@ include file="footer.jsp" %>
