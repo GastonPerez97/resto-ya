@@ -25,6 +25,8 @@ public class ComidaModel {
     @Column(name = "tipo")
 	private String tipo;
 	
+	private String imageName;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
@@ -81,6 +83,13 @@ public class ComidaModel {
 		this.tipo = tipo;
 	}
 
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 	public Boolean getDisponible() {
 		return disponible;
 	}

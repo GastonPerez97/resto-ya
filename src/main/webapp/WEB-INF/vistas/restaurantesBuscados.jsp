@@ -7,6 +7,12 @@
 	<c:forEach items="${resultadoBusqueda.listaRestaurantes}" var="RESTO">
 		<article class="card comida shadow">
 			<div class="card-body">
+				<c:if test="${not empty RESTO.imageName}">
+			  		<img src="img/restaurantes/${RESTO.imageName}" class="card-img img-restaurante">
+		        </c:if>
+		        <c:if test="${empty RESTO.imageName}">
+		      		<img src="img/restaurantes/defaultRestaurante.jpg" class="card-img">
+		        </c:if>
 				<h2 class="card-title bebas">${RESTO.nombre}</h2>
 				<p class="card-text"><span class="h4">Direcci&oacuten: </span>${RESTO.direccion}</p>
 		        <p class="card-text"><span class="h4">Horario: </span>${RESTO.horario}</p>

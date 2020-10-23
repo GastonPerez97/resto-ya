@@ -5,7 +5,12 @@
 <section class="comidas mx-auto">
 	<c:forEach items="${resultadoBusqueda.listaComidas}" var="resultado">
 		<article class="card comida shadow">
-	  		<img src="https://sevilla.abc.es/gurme/wp-content/uploads/sites/24/2012/01/comida-rapida-casera.jpg" class="card-img-top" alt="IMAGEN DE DB">
+	  		<c:if test="${not empty resultado.imageName}">
+				<img src="img/comidas/${resultado.imageName}" class="card-img img-restaurante">
+		    </c:if>
+		    <c:if test="${empty resultado.imageName}">
+		    	<img src="img/comidas/defaultComida.jpg" class="card-img">
+		    </c:if>
 	  		<div class="card-body">
 	  		    <h3 class="card-title bebas">${resultado.nombre}</h3>
 	  		    <h5>${resultado.tipo}</h5>

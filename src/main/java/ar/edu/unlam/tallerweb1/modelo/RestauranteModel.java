@@ -31,6 +31,7 @@ public class RestauranteModel {
     
     @Column(name = "telefono")
 	private String telefono;
+	private String imageName;
 	
 	@Type(type = "org.hibernate.type.TrueFalseType")
 	private Boolean disponible;
@@ -120,6 +121,14 @@ public class RestauranteModel {
 		return disponible;
 	}
 
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imagen) {
+		this.imageName = imagen;
+	}
+	
 	public void setDisponible(Boolean disponible) {
 		this.disponible = disponible;
 	}

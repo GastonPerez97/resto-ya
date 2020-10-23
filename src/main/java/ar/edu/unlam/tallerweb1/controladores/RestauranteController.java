@@ -23,4 +23,5 @@ public class RestauranteController {
 		
 		return new ModelAndView("restaurantes", modelo);
 	}
+		
 }
