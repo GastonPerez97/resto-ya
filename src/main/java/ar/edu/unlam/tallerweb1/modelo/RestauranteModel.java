@@ -34,7 +34,7 @@ public class RestauranteModel {
 	private String imageName;
 	
 	@Type(type = "org.hibernate.type.TrueFalseType")
-	private Boolean disponible;
+	private boolean disponible;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<ComidaModel> menu = new LinkedList<ComidaModel>();
@@ -117,7 +117,7 @@ public class RestauranteModel {
 		return restauranteHorarioList;
 	}
 
-	public Boolean getDisponible() {
+	public boolean getDisponible() {
 		return disponible;
 	}
 
@@ -129,7 +129,7 @@ public class RestauranteModel {
 		this.imageName = imagen;
 	}
 	
-	public void setDisponible(Boolean disponible) {
+	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
 	

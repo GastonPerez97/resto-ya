@@ -20,6 +20,8 @@
 		        <p class="card-text"><span class="h4">Direcci&oacuten: </span>${REST.direccion}</p>
 		        <p class="card-text"><span class="h4">Horario: </span>${REST.horario}</p>
 		        <p class="card-text"><span class="h4">Telefono: </span>${REST.telefono}</p>
+		        <a href="reservar?idRestaurante=${REST.idRestaurante}" class="float-right btn btn-dark
+		        <c:if test="${REST.disponible == false}">disabled</c:if>">Hacer reserva</a>
 		        <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-dark
 		        <c:if test="${REST.disponible == false}">disabled</c:if>">Ver Men&uacute</a>
 		        <c:if test="${REST.disponible == false}"><h2>NO DISPONIBLE</h2></c:if>
