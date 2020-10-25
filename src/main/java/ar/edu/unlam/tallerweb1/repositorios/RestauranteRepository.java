@@ -19,5 +19,5 @@ public interface RestauranteRepository {
 	
 	public RestauranteModel buscarRestaurantePorDireccion(String direccion);
 	
-	public Boolean guardarRestaurante(RestauranteModel restaurante);
+	public void guardarRestaurante(RestauranteModel restaurante);
 }

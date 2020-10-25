@@ -64,8 +64,8 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Boolean guardarRestaurante(RestauranteModel restaurante) {
-		return repositorioRestaurante.guardarRestaurante(restaurante);
+	public void guardarRestaurante(RestauranteModel restaurante) {
+		repositorioRestaurante.guardarRestaurante(restaurante);
 	}
 
 }

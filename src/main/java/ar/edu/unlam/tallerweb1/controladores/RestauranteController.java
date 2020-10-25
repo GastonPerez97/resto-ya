@@ -1,11 +1,18 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
@@ -17,6 +24,9 @@ public class RestauranteController {
 
 	@Autowired
 	private RestauranteService servRestaurante;
+	
+	@Autowired
+    ServletContext servletContext;
 	
 	@RequestMapping("/restaurantes")
 	public ModelAndView restaurantes() {
@@ -41,21 +51,36 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(path = "/validar-nuevoRestaurante", method = RequestMethod.POST)
-	public ModelAndView validarNuevoRestaurante(@ModelAttribute("restaurante") RestauranteModel restaurante) {
-		ModelMap modelo = new ModelMap();
+	public ModelAndView validarNuevoRestaurante(
+			@ModelAttribute("restaurante") RestauranteModel restaurante,
+			@RequestParam("file") MultipartFile file) {
 		
+		ModelMap modelo = new ModelMap();
+
 		modelo.put("titulo", "Lista de Restaurantes");
 		
 		if (servRestaurante.validarNuevoRestaurante(restaurante)) {
-			if (servRestaurante.guardarRestaurante(restaurante)) {
-				return new ModelAndView("redirect:/restaurantes");
-			} else {
-				modelo.put("errorDB", "Ocurrio un error al insertar el restaurante "
-						   + "en la base de datos, intente nuevamente");
+			
+			restaurante.setImageName(file.getOriginalFilename());
+			servRestaurante.guardarRestaurante(restaurante);
+			
+			if (file != null || !file.isEmpty()) {
+				String fileName = servletContext.getRealPath("/") +
+					   "\\img\\restaurantes\\" +
+					   file.getOriginalFilename();
+				 
+				try {
+					file.transferTo(new File(fileName));
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
 			}
+
+			return new ModelAndView("redirect:/restaurantes");
+			
 		} else {
-			modelo.put("errorValidacion", "La direccion del restaurante ya se encuentra"
-						+ " en la base de datos, contacte al administrador");
+			modelo.put("errorValidacion", "La direccion del restaurante ya se encuentra "
+						+ "en la base de datos, contacte al administrador");
 		}
 		
 		return new ModelAndView("agregarRestaurante", modelo);

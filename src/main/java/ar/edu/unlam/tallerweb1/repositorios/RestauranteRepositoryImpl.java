@@ -55,15 +55,9 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	}
 
 	@Override
-	public Boolean guardarRestaurante(RestauranteModel restaurante) {
+	public void guardarRestaurante(RestauranteModel restaurante) {
 		final Session session = sessionFactory.getCurrentSession();
-		Boolean guardado = false;
-		
-		if (session.save(restaurante) != null) {
-			guardado = true;
-		}
-		
-		return guardado;
+		session.save(restaurante);
 	}
 	
 }

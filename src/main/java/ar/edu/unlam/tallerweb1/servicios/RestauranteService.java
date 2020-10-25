@@ -22,7 +22,7 @@ public interface RestauranteService {
 	
 	public Boolean validarNuevoRestaurante(RestauranteModel restaurante);
 	
-	public Boolean guardarRestaurante(RestauranteModel restaurante);
+	public void guardarRestaurante(RestauranteModel restaurante);
 }
 
 
