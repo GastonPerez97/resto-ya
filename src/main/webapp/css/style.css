@@ -110,6 +110,11 @@ header nav {
     opacity: 0.6;
 }
 
+.restaurante-btn {
+	font-size: 50px;
+	color: #343a40;
+}
+
 @media screen and (max-width: 1510px) {
     .comida {
         width: 48%;
