@@ -45,4 +45,25 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 					.list();
 	}
 	
+	@Override
+	public RestauranteModel buscarRestaurantePorDireccion(String direccion) {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		return (RestauranteModel) session.createCriteria(RestauranteModel.class)
+			   .add(Restrictions.eq("direccion", direccion))
+			   .uniqueResult();
+	}
+
+	@Override
+	public Boolean guardarRestaurante(RestauranteModel restaurante) {
+		final Session session = sessionFactory.getCurrentSession();
+		Boolean guardado = false;
+		
+		if (session.save(restaurante) != null) {
+			guardado = true;
+		}
+		
+		return guardado;
+	}
+	
 }

@@ -17,6 +17,12 @@ public interface RestauranteService {
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
 	
 	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante);
+	
+	public RestauranteModel buscarRestaurantePorDireccion(String direccion);
+	
+	public Boolean validarNuevoRestaurante(RestauranteModel restaurante);
+	
+	public Boolean guardarRestaurante(RestauranteModel restaurante);
 }
 
 

@@ -16,4 +16,8 @@ public interface RestauranteRepository {
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre);
 	
 	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante);
+	
+	public RestauranteModel buscarRestaurantePorDireccion(String direccion);
+	
+	public Boolean guardarRestaurante(RestauranteModel restaurante);
 }

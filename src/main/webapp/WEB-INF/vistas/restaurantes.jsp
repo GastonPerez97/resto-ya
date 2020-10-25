@@ -3,6 +3,12 @@
 <h1 class="text-center h1 display-3 bebas mb-4">Listado de restaurantes:</h1>
 
 <section class="restaurantes">
+	<div class="mx-auto mb-4" style="width: 80%;">
+		<form action="agregarRestaurante" method="POST">
+			<input type="submit" class="float-right btn btn-dark" value="Agregar Restaurante">
+		</form>
+	</div>
+	
 	<c:forEach items="${RESTAURANTES}" var="REST">
 		<div class="card mb-3 restaurante mx-auto shadow <c:if test="${REST.disponible == false}">no-disponible</c:if>">
 		  <div class="row no-gutters">

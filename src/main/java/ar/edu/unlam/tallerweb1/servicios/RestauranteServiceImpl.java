@@ -45,4 +45,27 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante){
 		return repositorioRestaurante.buscarMenuPorRestaurante(restaurante);
 	}
+	
+	@Override
+	public RestauranteModel buscarRestaurantePorDireccion(String direccion) {
+		String direccionToLower = direccion.toLowerCase();
+		return repositorioRestaurante.buscarRestaurantePorDireccion(direccionToLower);
+	}
+
+	@Override
+	public Boolean validarNuevoRestaurante(RestauranteModel restaurante) {
+		Boolean valido = false;
+		
+		if (repositorioRestaurante.buscarRestaurantePorDireccion(restaurante.getDireccion()) == null) {
+			valido = true;
+		}
+		
+		return valido;
+	}
+
+	@Override
+	public Boolean guardarRestaurante(RestauranteModel restaurante) {
+		return repositorioRestaurante.guardarRestaurante(restaurante);
+	}
+
 }
