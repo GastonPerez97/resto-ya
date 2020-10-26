@@ -29,6 +29,8 @@ public interface RestauranteService {
 	public void editarRestaurante(RestauranteModel restaurante);
 	
 	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen);
+	
+	public void eliminarRestaurante(RestauranteModel restaurante);
 }
 
 

@@ -22,4 +22,6 @@ public interface RestauranteRepository {
 	public void guardarRestaurante(RestauranteModel restaurante);
 	
 	public void editarRestaurante(RestauranteModel restaurante);
+	
+	public void eliminarRestaurante(RestauranteModel restaurante);
 }

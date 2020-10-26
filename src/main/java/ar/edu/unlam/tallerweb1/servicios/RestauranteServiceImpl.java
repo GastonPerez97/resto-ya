@@ -94,4 +94,11 @@ public class RestauranteServiceImpl implements RestauranteService {
 		}
 	}
 
+	@Override
+	public void eliminarRestaurante(RestauranteModel restaurante) {
+		repositorioRestaurante.eliminarRestaurante(restaurante);
+		
+		// Agregar aca la eliminacion de la foto en la carpeta img
+	}
+
 }

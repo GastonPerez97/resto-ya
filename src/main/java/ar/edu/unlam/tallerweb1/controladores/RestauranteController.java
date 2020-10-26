@@ -103,4 +103,12 @@ public class RestauranteController {
 		return new ModelAndView("redirect:/restaurantes");
 	}
 	
+	@RequestMapping("/eliminarRestaurante")
+	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) {
+		
+//		servRestaurante.eliminar
+		
+		return new ModelAndView("redirect:/restaurantes");
+	}
+	
 }

@@ -65,5 +65,11 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 		final Session session = sessionFactory.getCurrentSession();
 		session.update(restaurante);
 	}
+
+	@Override
+	public void eliminarRestaurante(RestauranteModel restaurante) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.delete(restaurante);		
+	}
 	
 }
