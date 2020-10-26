@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
@@ -25,6 +27,8 @@ public interface RestauranteService {
 	public void guardarRestaurante(RestauranteModel restaurante);
 	
 	public void editarRestaurante(RestauranteModel restaurante);
+	
+	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen);
 }
 
 

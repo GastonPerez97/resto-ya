@@ -25,9 +25,6 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteService servRestaurante;
 	
-	@Autowired
-    ServletContext servletContext;
-	
 	@RequestMapping("/restaurantes")
 	public ModelAndView restaurantes() {
 		ModelMap modelo = new ModelMap();
@@ -60,21 +57,13 @@ public class RestauranteController {
 		modelo.put("titulo", "Lista de Restaurantes");
 		
 		if (servRestaurante.validarRestaurante(restaurante)) {
-			
-			restaurante.setImageName(file.getOriginalFilename());
-			servRestaurante.guardarRestaurante(restaurante);
-			
-			if (file != null || !file.isEmpty()) {
-				String fileName = servletContext.getRealPath("/") +
-					   "\\img\\restaurantes\\" +
-					   file.getOriginalFilename();
-				 
-				try {
-					file.transferTo(new File(fileName));
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				}
+
+			if (!file.isEmpty()) {
+				servRestaurante.subirImagenRestaurante(restaurante, file);
+				restaurante.setImageName(file.getOriginalFilename());
 			}
+			
+			servRestaurante.guardarRestaurante(restaurante);
 
 			return new ModelAndView("redirect:/restaurantes");
 			
@@ -105,17 +94,8 @@ public class RestauranteController {
 			@RequestParam("file") MultipartFile file) {
 		
 		if (!file.isEmpty()) {
+			servRestaurante.subirImagenRestaurante(restaurante, file);
 			restaurante.setImageName(file.getOriginalFilename());
-			
-			String fileName = servletContext.getRealPath("/") +
-				   "\\img\\restaurantes\\" +
-				   file.getOriginalFilename();
-			 
-			try {
-				file.transferTo(new File(fileName));
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
 		}
 
 		servRestaurante.editarRestaurante(restaurante);
