@@ -53,7 +53,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public Boolean validarNuevoRestaurante(RestauranteModel restaurante) {
+	public Boolean validarRestaurante(RestauranteModel restaurante) {
 		Boolean valido = false;
 		
 		if (repositorioRestaurante.buscarRestaurantePorDireccion(restaurante.getDireccion()) == null) {
@@ -66,6 +66,11 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public void guardarRestaurante(RestauranteModel restaurante) {
 		repositorioRestaurante.guardarRestaurante(restaurante);
+	}
+
+	@Override
+	public void editarRestaurante(RestauranteModel restaurante) {
+		repositorioRestaurante.editarRestaurante(restaurante);
 	}
 
 }

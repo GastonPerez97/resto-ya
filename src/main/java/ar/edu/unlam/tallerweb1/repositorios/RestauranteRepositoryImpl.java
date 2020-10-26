@@ -60,4 +60,10 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 		session.save(restaurante);
 	}
 	
+	@Override
+	public void editarRestaurante(RestauranteModel restaurante) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(restaurante);
+	}
+	
 }

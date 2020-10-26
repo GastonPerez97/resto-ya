@@ -20,4 +20,6 @@ public interface RestauranteRepository {
 	public RestauranteModel buscarRestaurantePorDireccion(String direccion);
 	
 	public void guardarRestaurante(RestauranteModel restaurante);
+	
+	public void editarRestaurante(RestauranteModel restaurante);
 }

@@ -59,7 +59,7 @@ public class RestauranteController {
 
 		modelo.put("titulo", "Lista de Restaurantes");
 		
-		if (servRestaurante.validarNuevoRestaurante(restaurante)) {
+		if (servRestaurante.validarRestaurante(restaurante)) {
 			
 			restaurante.setImageName(file.getOriginalFilename());
 			servRestaurante.guardarRestaurante(restaurante);
@@ -84,6 +84,43 @@ public class RestauranteController {
 		}
 		
 		return new ModelAndView("agregarRestaurante", modelo);
+	}
+	
+	@RequestMapping("/editarRestaurante")
+	public ModelAndView editarRestaurante(@RequestParam("id") Long id) {
+		
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+		
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("titulo", "Editar " + restaurante.getNombre());
+		modelo.put("restaurante", restaurante);
+		
+		return new ModelAndView("editarRestaurante", modelo);
+	}
+	
+	@RequestMapping(path = "/validar-editarRestaurante", method = RequestMethod.POST)
+	public ModelAndView validarEdicionRestaurante(
+			@ModelAttribute("restaurante") RestauranteModel restaurante,
+			@RequestParam("file") MultipartFile file) {
+		
+		if (!file.isEmpty()) {
+			restaurante.setImageName(file.getOriginalFilename());
+			
+			String fileName = servletContext.getRealPath("/") +
+				   "\\img\\restaurantes\\" +
+				   file.getOriginalFilename();
+			 
+			try {
+				file.transferTo(new File(fileName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		servRestaurante.editarRestaurante(restaurante);
+		
+		return new ModelAndView("redirect:/restaurantes");
 	}
 	
 }

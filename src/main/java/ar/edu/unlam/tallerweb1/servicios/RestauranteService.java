@@ -20,9 +20,11 @@ public interface RestauranteService {
 	
 	public RestauranteModel buscarRestaurantePorDireccion(String direccion);
 	
-	public Boolean validarNuevoRestaurante(RestauranteModel restaurante);
+	public Boolean validarRestaurante(RestauranteModel restaurante);
 	
 	public void guardarRestaurante(RestauranteModel restaurante);
+	
+	public void editarRestaurante(RestauranteModel restaurante);
 }
 
 
