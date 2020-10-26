@@ -40,7 +40,7 @@
 			<div class="d-flex flex-column ml-3">
 				<a href="agregarComida?id=${REST.idRestaurante}"><i class="far fa-plus-square restaurante-btn my-3"></i></a>
 				<a href="editarRestaurante?id=${REST.idRestaurante}"><i class="far fa-edit restaurante-btn my-3"></i></a>
-				<a href="eliminarRestaurante?id=${REST.idRestaurante}"><i class="far fa-trash-alt restaurante-btn my-3"></i></a>
+				<a href="eliminarRestaurante?id=${REST.idRestaurante}" class="delete-btn"><i class="far fa-trash-alt restaurante-btn my-3"></i></a>
 			</div>
 		</div>
 
