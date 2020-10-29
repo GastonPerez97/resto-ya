@@ -14,7 +14,7 @@ import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.repositorios.RestauranteRepository;
 
 public class ABMRestaurantePersistenciaTest extends SpringTest {
-
+	
 	@Inject
 	private RestauranteRepository repositorioRestaurante;
 	
@@ -29,9 +29,9 @@ public class ABMRestaurantePersistenciaTest extends SpringTest {
 //    public void testQueGuardaRestaurante() {
 //        RestauranteModel restaurante = new RestauranteModel("restaurante1");
 //        System.out.println(session().save(restaurante).getClass().getName());
-////        String idGuardado = repositorioRestaurante.guardarRestaurante(restaurante);
-////
-////
-////        assertEquals(menuEsperado, menuActual);
+//        String idGuardado = repositorioRestaurante.guardarRestaurante(restaurante);
+//
+//
+//        assertEquals(menuEsperado, menuActual);
 //    }
 }
