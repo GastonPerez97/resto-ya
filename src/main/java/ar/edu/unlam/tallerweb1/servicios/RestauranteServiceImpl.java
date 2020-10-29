@@ -97,8 +97,19 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public void eliminarRestaurante(RestauranteModel restaurante) {
 		repositorioRestaurante.eliminarRestaurante(restaurante);
-		
-		// Agregar aca la eliminacion de la foto en la carpeta img
+	}
+
+	@Override
+	public void eliminarImagenRestauranteSiExiste(RestauranteModel restaurante) {
+		if (!restaurante.getImageName().isEmpty()) {
+			String fileName = servletContext.getRealPath("/") +
+					   "\\img\\restaurantes\\" +
+					   restaurante.getImageName();
+
+			File imagen = new File(fileName);
+			
+			imagen.delete();
+		}
 	}
 
 }

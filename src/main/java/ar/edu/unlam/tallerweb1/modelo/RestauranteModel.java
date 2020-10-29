@@ -45,7 +45,11 @@ public class RestauranteModel {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
     private List<RestauranteHorarioModel> restauranteHorarioList;
     
-//  Constructor para tests
+//  Constructores para tests
+    public RestauranteModel(String nombre) {
+    	this.nombre = nombre;
+	}
+    
     public RestauranteModel(String nombre, Long id) {
     	this.nombre = nombre;
 		this.idRestaurante = idRestaurante;

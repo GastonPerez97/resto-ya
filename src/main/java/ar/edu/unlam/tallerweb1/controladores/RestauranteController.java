@@ -94,6 +94,7 @@ public class RestauranteController {
 			@RequestParam("file") MultipartFile file) {
 		
 		if (!file.isEmpty()) {
+			servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
 			servRestaurante.subirImagenRestaurante(restaurante, file);
 			restaurante.setImageName(file.getOriginalFilename());
 		}
@@ -104,9 +105,12 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping("/eliminarRestaurante")
-	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) {
+	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
 		
-//		servRestaurante.eliminar
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+		
+		servRestaurante.eliminarRestaurante(restaurante);
+		servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
 		
 		return new ModelAndView("redirect:/restaurantes");
 	}
