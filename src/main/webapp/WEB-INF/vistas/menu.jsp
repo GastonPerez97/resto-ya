@@ -28,7 +28,7 @@
 
                 <div class="d-flex justify-content-around">
 					<a href="editarComida?id=${COMIDA.idComida}"><i class="far fa-edit restaurante-btn mb-3"></i></a>
-					<a href="eliminarComida?id=${COMIDA.idComida}" class="delete-btn"><i class="far fa-trash-alt restaurante-btn mb-3"></i></a>
+					<a href="eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i class="far fa-trash-alt restaurante-btn mb-3"></i></a>
 				</div>
             </article>
         </c:forEach>
