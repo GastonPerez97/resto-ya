@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
@@ -46,7 +47,7 @@ public class ComidaController {
 	}
 	
 	@RequestMapping("/editarComida")
-	public ModelAndView editarRestaurante(@RequestParam("id") Long id) {
+	public ModelAndView editarComida(@RequestParam("id") Long id) {
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -58,21 +59,21 @@ public class ComidaController {
 		return new ModelAndView("editarComida", modelo);
 	}
 	
-//	@RequestMapping(path = "/validar-editarRestaurante", method = RequestMethod.POST)
-//	public ModelAndView validarEdicionRestaurante(
-//			@ModelAttribute("restaurante") RestauranteModel restaurante,
-//			@RequestParam("file") MultipartFile file) {
-//		
+	@RequestMapping(path = "/validar-editarComida", method = RequestMethod.POST)
+	public ModelAndView validarEdicionComida(
+			@ModelAttribute("comida") ComidaModel comida,
+			@RequestParam("file") MultipartFile file) {
+		
 //		if (!file.isEmpty()) {
-//			servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
-//			servRestaurante.subirImagenRestaurante(restaurante, file);
-//			restaurante.setImageName(file.getOriginalFilename());
+//			comidaService.eliminarImagenComidaSiExiste(comida);
+//			comidaService.subirImagenComida(comida, file);
+//			comida.setImageName(file.getOriginalFilename());
 //		}
 //
-//		servRestaurante.editarRestaurante(restaurante);
-//		
-//		return new ModelAndView("redirect:/restaurantes");
-//	}
+//		comidaService.editarComida(comida);
+		
+		return new ModelAndView("redirect:/restaurantes/menu?id=" + comida.getRestaurante().getIdRestaurante());
+	}
 //	
 //	@RequestMapping("/eliminarRestaurante")
 //	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
