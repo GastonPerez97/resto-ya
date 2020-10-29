@@ -22,7 +22,6 @@ public class ComidaController {
 	@Inject
 	private ComidaService comidaService;
 	
-	
 	@Autowired
 	private RestauranteService servRestaurante;
 	
@@ -40,14 +39,50 @@ public class ComidaController {
 		return new ModelAndView("menu", modelo);
 	}
 	
-	
-	
-
-	
 	@RequestMapping(path="/pagar", method=RequestMethod.POST)
 	public ModelAndView pagarPedido() {
 
 		return new ModelAndView("pagoRealizado");
 	}
+	
+	@RequestMapping("/editarComida")
+	public ModelAndView editarRestaurante(@RequestParam("id") Long id) {
+		
+		ComidaModel comida = comidaService.consultarComidaPorId(id);
+		
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("titulo", "Editar " + comida.getNombre());
+		modelo.put("comida", comida);
+		
+		return new ModelAndView("editarComida", modelo);
+	}
+	
+//	@RequestMapping(path = "/validar-editarRestaurante", method = RequestMethod.POST)
+//	public ModelAndView validarEdicionRestaurante(
+//			@ModelAttribute("restaurante") RestauranteModel restaurante,
+//			@RequestParam("file") MultipartFile file) {
+//		
+//		if (!file.isEmpty()) {
+//			servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
+//			servRestaurante.subirImagenRestaurante(restaurante, file);
+//			restaurante.setImageName(file.getOriginalFilename());
+//		}
+//
+//		servRestaurante.editarRestaurante(restaurante);
+//		
+//		return new ModelAndView("redirect:/restaurantes");
+//	}
+//	
+//	@RequestMapping("/eliminarRestaurante")
+//	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
+//		
+//		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+//		
+//		servRestaurante.eliminarRestaurante(restaurante);
+//		servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
+//		
+//		return new ModelAndView("redirect:/restaurantes");
+//	}
 	
 }

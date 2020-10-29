@@ -58,6 +58,12 @@ public class ComidaServiceImpl implements ComidaService {
 	}
 
 
+	@Override
+	public ComidaModel consultarComidaPorId(Long id) {
+		return comidaRepository.consultarComidaPorId(id);
+	}
+
+
 
 	
 	
