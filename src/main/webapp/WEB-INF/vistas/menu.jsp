@@ -23,6 +23,11 @@
                         <h3>NO DISPONIBLE</h3>
                     </c:if>
                 </div>
+                
+                <div class="d-flex flex-column ml-3">
+					<a href="editarComida?id=${COMIDA.idComida}"><i class="far fa-edit restaurante-btn my-3"></i></a>
+					<a href="eliminarComida?id=${COMIDA.idComida}" class="delete-btn"><i class="far fa-trash-alt restaurante-btn my-3"></i></a>
+				</div>
             </article>
         </c:forEach>
         <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Procesar Pedido</a>
