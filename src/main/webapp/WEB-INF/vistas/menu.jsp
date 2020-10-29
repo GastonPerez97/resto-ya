@@ -8,7 +8,7 @@
 
     <section class="comidas mx-auto">
         <c:forEach items="${COMIDAS}" var="COMIDA">
-            <article class="card comida shadow">
+            <article class="card comida shadow d-flex flex-column justify-content-between">
             	<div class="<c:if test="${COMIDA.disponible == false}">no-disponible</c:if>">
 	                <c:if test="${not empty COMIDA.imageName}">
 	                    <img src="../img/comidas/${COMIDA.imageName}" class="card-img-top img-comida">
