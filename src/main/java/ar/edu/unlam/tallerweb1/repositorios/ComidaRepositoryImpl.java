@@ -26,5 +26,12 @@ public class ComidaRepositoryImpl implements ComidaRepository {
 		final Session session = sessionFactory.getCurrentSession();
 		return (ArrayList<ComidaModel>) session.createCriteria(ComidaModel.class).list();
 	}
+
+
+	@Override
+	public void editarComida(ComidaModel comida) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(comida);
+	}
 	
 }

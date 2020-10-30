@@ -7,4 +7,6 @@ public interface ComidaRepository {
 	ComidaModel consultarComidaPorId(Long id);
 	
 	public ArrayList<ComidaModel> buscarComida();
+	
+	public void editarComida(ComidaModel comida);
 }

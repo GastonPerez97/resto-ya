@@ -12,6 +12,7 @@
 		<form:form action="validar-editarComida" method="POST" modelAttribute="comida" enctype="multipart/form-data">
 			<form:hidden path="idComida" values="comida.idComida"/>
 			<form:hidden path="imageName" values="comida.imageName"/>
+			<form:hidden path="restaurante.idRestaurante" values="comida.restaurante.idRestaurante"/>
 			
 			<div class="form-group">
 				<label for="nombre">Nombre:</label>
