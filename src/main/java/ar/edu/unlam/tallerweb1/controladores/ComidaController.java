@@ -64,19 +64,11 @@ public class ComidaController {
 			@ModelAttribute("comida") ComidaModel comida,
 			@RequestParam("file") MultipartFile file) {
 		
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
-		comida.setRestaurante(restaurante);
-		
-		if (!file.isEmpty()) {
-			comidaService.eliminarImagenComidaSiExiste(comida);
-			comidaService.subirImagenComida(comida, file);
-			comida.setImageName(file.getOriginalFilename());
-		}
-
-		comidaService.editarComida(comida);
+		comidaService.procesarEdicionComida(comida, file);
 		
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
+	
 //	
 //	@RequestMapping("/eliminarRestaurante")
 //	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
@@ -88,5 +80,7 @@ public class ComidaController {
 //		
 //		return new ModelAndView("redirect:/restaurantes");
 //	}
+
+
 	
 }

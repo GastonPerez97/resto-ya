@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.repositorios.ComidaRepository;
 
 @Service("comidaService")
@@ -21,6 +22,9 @@ public class ComidaServiceImpl implements ComidaService {
 	
 	@Inject
 	private ComidaRepository comidaRepository;
+	
+	@Inject
+	private RestauranteService restauranteService;
 	
 	@Inject
     ServletContext servletContext;
@@ -33,7 +37,7 @@ public class ComidaServiceImpl implements ComidaService {
 	
 	
 	@Override
-	public ArrayList<ComidaModel> buscarComida() {
+	public List<ComidaModel> buscarComida() {
 		return comidaRepository.buscarComida();
 	}
 	
@@ -91,15 +95,33 @@ public class ComidaServiceImpl implements ComidaService {
 
 	@Override
 	public void eliminarImagenComidaSiExiste(ComidaModel comida) {
-		if (!comida.getImageName().isEmpty()) {
-			String fileName = servletContext.getRealPath("/") +
-					   "\\img\\comidas\\" +
-					   comida.getImageName();
+		try {
+			if (!comida.getImageName().isEmpty()) {
+				String fileName = servletContext.getRealPath("/") +
+						   "\\img\\comidas\\" +
+						   comida.getImageName();
 
-			File imagen = new File(fileName);
-			
-			imagen.delete();
+				File imagen = new File(fileName);
+				
+				imagen.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void procesarEdicionComida(ComidaModel comida, MultipartFile imagen) {
+		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
+		comida.setRestaurante(restaurante);
+		
+		if (!imagen.isEmpty()) {
+			this.eliminarImagenComidaSiExiste(comida);
+			this.subirImagenComida(comida, imagen);
+			comida.setImageName(imagen.getOriginalFilename());
+		}
+
+		this.editarComida(comida);
 	}
 
 }
