@@ -52,8 +52,8 @@ public class UsuarioController {
 		if (usuarioService.existeUsuarioPorNombre(usuario.getNombre())) {
 			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
 			return new ModelAndView("agregarUsuario", modelo);
-		} else {
-			usuarioService.guardarUsuario(usuario);
+		} else { 
+			usuarioService.modificarUsuario(usuario);
 			return new ModelAndView("redirect:/usuarios");
 		}
 	}
@@ -79,13 +79,9 @@ public class UsuarioController {
 
 		modelo.put("titulo", "Editar Usuario");
 		
-		if (usuarioService.existeUsuarioPorNombre(usuario.getNombre())) {
-			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
-			return new ModelAndView("editarUsuario", modelo);
-		} else { 
 			usuarioService.modificarUsuario(usuario);
 			return new ModelAndView("redirect:/usuarios");
-		}
+		
 	}
 	
 	

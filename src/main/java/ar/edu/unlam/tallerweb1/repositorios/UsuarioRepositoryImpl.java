@@ -56,7 +56,8 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.get(UsuarioModel.class,id);
 	}
-	
+
+
 	
 
 }

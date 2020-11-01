@@ -6,21 +6,13 @@
 
 <section class="mx-auto col-lg-6">
 
-	<c:if test="${not empty errorValidacion}">
-		<h4>
-			<span>${errorValidacion}</span>
-		</h4>
-		<br>
-	</c:if>
-
 	<article>
 		<form:form action="validarEditarUsuario" method="POST"
 			modelAttribute="usuario">
 
 			<div class="form-group">
-				<label for="nombre bold">Id:</label>
-				<form:input path="id" id="id" class="form-control"
-					required="true" />
+				<label for="id">Id:</label>
+				<form:input path="id" id="id" class="form-control" required="true" readonly="true" />
 			</div>
 
 			<div class="form-group">
@@ -30,12 +22,12 @@
 			</div>
 
 			<div class="form-group">
-				<label for="direccion">Email:</label>
+				<label for="email">Email:</label>
 				<form:input path="email" type="text" id="email" class="form-control"
 					required="true" />
 			</div>
 			<div class="form-group">
-				<label for="horario">Clave:</label>
+				<label for="clave">Clave:</label>
 				<form:input path="clave" type="password" id="clave"
 					class="form-control" required="true" />
 			</div>

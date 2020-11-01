@@ -18,18 +18,18 @@
 			modelAttribute="usuario">
 
 			<div class="form-group">
-				<label for="nombre">Nombre:</label>
+				<label for="nombre">Nombre:*</label>
 				<form:input path="nombre" id="nombre" class="form-control"
 					required="true" />
 			</div>
 
 			<div class="form-group">
-				<label for="direccion">Email:</label>
+				<label for="email">Email:*</label>
 				<form:input path="email" type="text" id="email" class="form-control"
 					required="true" />
 			</div>
 			<div class="form-group">
-				<label for="horario">Clave:</label>
+				<label for="clave">Clave:*</label>
 				<form:input path="clave" type="password" id="clave"
 					class="form-control" required="true" />
 			</div>

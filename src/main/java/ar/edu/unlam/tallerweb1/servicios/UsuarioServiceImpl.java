@@ -49,10 +49,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 		
 		return existe;
 	}
-
+	
+	
 	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) {
 		return usuarioRepository.buscarUsuarioPorId(id);
 	} 
 
+	
+	
 }
