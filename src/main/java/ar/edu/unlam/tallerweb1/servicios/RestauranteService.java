@@ -46,6 +46,8 @@ public interface RestauranteService {
 	public void procesarEdicionRestaurante(RestauranteModel restaurante, MultipartFile imagen);
 	
 	public void procesarEliminacionRestaurante(RestauranteModel restaurante);
+	
+	public Boolean verificarExtensionDeImagen(MultipartFile imagen);
 }
 
 

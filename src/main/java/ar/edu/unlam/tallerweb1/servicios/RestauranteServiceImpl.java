@@ -83,11 +83,11 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 
 	@Override
-	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen) {		
+	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
 		String fileName = servletContext.getRealPath("/") +
-			   "\\img\\restaurantes\\" +
-			   imagen.getOriginalFilename();
-		 
+				   "\\img\\restaurantes\\" +
+				   imagen.getOriginalFilename();
+			 
 		try {
 			imagen.transferTo(new File(fileName));
 		} catch (IllegalStateException | IOException e) {
@@ -120,8 +120,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public void subirImagenSiNoEstaVacia(RestauranteModel restaurante, MultipartFile imagen) {
 		if (!imagen.isEmpty()) {
-			this.subirImagenRestaurante(restaurante, imagen);
-			restaurante.setImageName(imagen.getOriginalFilename());
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.subirImagenRestaurante(restaurante, imagen);
+				restaurante.setImageName(imagen.getOriginalFilename());
+			}
 		}
 	}
 	
@@ -129,12 +131,15 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public void reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(RestauranteModel restaurante,
 			MultipartFile imagen) {
 		if (!imagen.isEmpty()) {
-			this.eliminarImagenRestauranteSiExiste(restaurante);
-			this.subirImagenRestaurante(restaurante, imagen);
-			restaurante.setImageName(imagen.getOriginalFilename());
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.eliminarImagenRestauranteSiExiste(restaurante);
+				this.subirImagenRestaurante(restaurante, imagen);
+				restaurante.setImageName(imagen.getOriginalFilename());
+			}
 		}
 	}
 
+	@Override
 	public ModelAndView procesarNuevoRestaurante(RestauranteModel restaurante, MultipartFile imagen, ModelMap modelo) {
 		if (this.validarRestaurante(restaurante)) {
 
@@ -151,14 +156,24 @@ public class RestauranteServiceImpl implements RestauranteService {
 		return new ModelAndView("agregarRestaurante", modelo);
 	}
 	
+	@Override
 	public void procesarEdicionRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
 		this.reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(restaurante, imagen);
 		this.editarRestaurante(restaurante);
 	}
 	
+	@Override
 	public void procesarEliminacionRestaurante(RestauranteModel restaurante) {
 		this.eliminarRestaurante(restaurante);
 		this.eliminarImagenRestauranteSiExiste(restaurante);
+	}
+	
+	@Override
+	public Boolean verificarExtensionDeImagen(MultipartFile imagen) {
+		if (imagen.getContentType().equals("image/png") || imagen.getContentType().equals("image/jpeg"))
+			return true;
+		
+		return false;
 	}
 	
 }
