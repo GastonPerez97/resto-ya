@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 
 public interface UsuarioRepository {
@@ -13,7 +12,7 @@ public interface UsuarioRepository {
 	
 	public void eliminarUsuario (Long id);
 
-	public ArrayList<UsuarioModel> buscarUsuarios();
+	public List<UsuarioModel> buscarUsuarios();
 
 	public UsuarioModel existeUsuarioPorNombre(String nombre);
 

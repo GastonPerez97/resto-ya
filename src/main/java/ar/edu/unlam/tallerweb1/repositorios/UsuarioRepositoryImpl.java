@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import javax.inject.Inject;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -37,9 +35,9 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 	}
 
 	@Override
-	public ArrayList<UsuarioModel> buscarUsuarios() {
+	public List<UsuarioModel> buscarUsuarios() {
 		final Session session = sessionFactory.getCurrentSession();
-		return (ArrayList<UsuarioModel>) session.createCriteria(UsuarioModel.class).list();
+		return (List<UsuarioModel>) session.createCriteria(UsuarioModel.class).list();
 	}
 
 	@Override

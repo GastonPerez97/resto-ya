@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,8 @@ public class UsuarioRolModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id_usuario_rol")
+	private Long idUsuarioRol;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")

@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,8 @@ public class RolModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id_rol")
+	private Long idRol;
 	
 	private String nombre;
 	private String descripcion;
@@ -35,10 +37,10 @@ public class RolModel {
 	
 	
 	public Long getId() {
-		return id;
+		return idRol;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.idRol = id;
 	}
 	public String getNombre() {
 		return nombre;

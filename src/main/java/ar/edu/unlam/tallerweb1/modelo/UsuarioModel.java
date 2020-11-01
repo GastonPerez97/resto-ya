@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,10 @@ public class UsuarioModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id_usuario")
+	private Long idUsuario;
 	
-	private String nombre;
+	private String nombreDeUsuario;
 	private String email;
 	private String clave;
 	
@@ -38,16 +40,16 @@ public class UsuarioModel {
 	
 	
 	public Long getId() {
-		return id;
+		return idUsuario;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.idUsuario = id;
 	}
 	public String getNombre() {
-		return nombre;
+		return nombreDeUsuario;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreDeUsuario = nombre;
 	}
 	public String getEmail() {
 		return email;
