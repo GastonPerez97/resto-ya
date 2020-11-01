@@ -9,7 +9,9 @@ import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
@@ -64,9 +66,8 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public Boolean validarRestaurante(RestauranteModel restaurante) {
 		Boolean valido = false;
 		
-		if (repositorioRestaurante.buscarRestaurantePorDireccion(restaurante.getDireccion()) == null) {
+		if (repositorioRestaurante.buscarRestaurantePorDireccion(restaurante.getDireccion()) == null)
 			valido = true;
-		}
 		
 		return valido;
 	}
@@ -101,15 +102,63 @@ public class RestauranteServiceImpl implements RestauranteService {
 
 	@Override
 	public void eliminarImagenRestauranteSiExiste(RestauranteModel restaurante) {
-		if (!restaurante.getImageName().isEmpty()) {
-			String fileName = servletContext.getRealPath("/") +
-					   "\\img\\restaurantes\\" +
-					   restaurante.getImageName();
+		try {
+			if (!restaurante.getImageName().isEmpty()) {
+				String fileName = servletContext.getRealPath("/") +
+						   "\\img\\restaurantes\\" +
+						   restaurante.getImageName();
 
-			File imagen = new File(fileName);
-			
-			imagen.delete();
+				File imagen = new File(fileName);
+				
+				imagen.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void subirImagenSiNoEstaVacia(RestauranteModel restaurante, MultipartFile imagen) {
+		if (!imagen.isEmpty()) {
+			this.subirImagenRestaurante(restaurante, imagen);
+			restaurante.setImageName(imagen.getOriginalFilename());
+		}
+	}
+	
+	@Override
+	public void reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(RestauranteModel restaurante,
+			MultipartFile imagen) {
+		if (!imagen.isEmpty()) {
+			this.eliminarImagenRestauranteSiExiste(restaurante);
+			this.subirImagenRestaurante(restaurante, imagen);
+			restaurante.setImageName(imagen.getOriginalFilename());
 		}
 	}
 
+	public ModelAndView procesarNuevoRestaurante(RestauranteModel restaurante, MultipartFile imagen, ModelMap modelo) {
+		if (this.validarRestaurante(restaurante)) {
+
+			this.subirImagenSiNoEstaVacia(restaurante, imagen);
+			this.guardarRestaurante(restaurante);
+
+			return new ModelAndView("redirect:/restaurantes");
+			
+		} else {
+			modelo.put("errorValidacion", "La direccion del restaurante ya se encuentra "
+						+ "en la base de datos, contacte al administrador");
+		}
+		
+		return new ModelAndView("agregarRestaurante", modelo);
+	}
+	
+	public void procesarEdicionRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
+		this.reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(restaurante, imagen);
+		this.editarRestaurante(restaurante);
+	}
+	
+	public void procesarEliminacionRestaurante(RestauranteModel restaurante) {
+		this.eliminarRestaurante(restaurante);
+		this.eliminarImagenRestauranteSiExiste(restaurante);
+	}
+	
 }

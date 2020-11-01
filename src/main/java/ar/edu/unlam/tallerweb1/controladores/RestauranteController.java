@@ -1,10 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 
 @Controller
@@ -56,23 +50,7 @@ public class RestauranteController {
 
 		modelo.put("titulo", "Lista de Restaurantes");
 		
-		if (servRestaurante.validarRestaurante(restaurante)) {
-
-			if (!file.isEmpty()) {
-				servRestaurante.subirImagenRestaurante(restaurante, file);
-				restaurante.setImageName(file.getOriginalFilename());
-			}
-			
-			servRestaurante.guardarRestaurante(restaurante);
-
-			return new ModelAndView("redirect:/restaurantes");
-			
-		} else {
-			modelo.put("errorValidacion", "La direccion del restaurante ya se encuentra "
-						+ "en la base de datos, contacte al administrador");
-		}
-		
-		return new ModelAndView("agregarRestaurante", modelo);
+		return servRestaurante.procesarNuevoRestaurante(restaurante, file, modelo);
 	}
 	
 	@RequestMapping("/editarRestaurante")
@@ -93,13 +71,7 @@ public class RestauranteController {
 			@ModelAttribute("restaurante") RestauranteModel restaurante,
 			@RequestParam("file") MultipartFile file) {
 		
-		if (!file.isEmpty()) {
-			servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
-			servRestaurante.subirImagenRestaurante(restaurante, file);
-			restaurante.setImageName(file.getOriginalFilename());
-		}
-
-		servRestaurante.editarRestaurante(restaurante);
+		servRestaurante.procesarEdicionRestaurante(restaurante, file);
 		
 		return new ModelAndView("redirect:/restaurantes");
 	}
@@ -109,8 +81,7 @@ public class RestauranteController {
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 		
-		servRestaurante.eliminarRestaurante(restaurante);
-		servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
+		servRestaurante.procesarEliminacionRestaurante(restaurante);
 		
 		return new ModelAndView("redirect:/restaurantes");
 	}
