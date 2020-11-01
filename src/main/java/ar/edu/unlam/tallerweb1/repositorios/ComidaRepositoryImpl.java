@@ -37,5 +37,10 @@ public class ComidaRepositoryImpl implements ComidaRepository {
 	public void eliminarComida(ComidaModel comida) {
 		sessionFactory.getCurrentSession().delete(comida);
 	}
+
+	@Override
+	public void guardarComidaEnDB(ComidaModel comida) {
+		sessionFactory.getCurrentSession().save(comida);
+	}
 	
 }

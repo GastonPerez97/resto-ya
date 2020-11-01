@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,18 +70,32 @@ public class ComidaController {
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
 	
+	@RequestMapping(path = "restaurante/{idRestaurante}/agregarComida")
+	public ModelAndView agregarComida(@PathVariable Long idRestaurante) {
+		ModelMap modelo = new ModelMap();
+		
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
+		ComidaModel comida = new ComidaModel();
+		comida.setRestaurante(restaurante);
+		
+		modelo.put("titulo", "Agregar Comida");
+		modelo.put("comida", comida);
+		
+		return new ModelAndView("agregarComida", modelo);
+	}
 	
-	
-//	ALTA DE COMIDAS
-	
-	
-	
-	
-	
-	
+	@RequestMapping(path = "/validar-nuevaComida", method = RequestMethod.POST)
+	public ModelAndView validarNuevaComida(
+			@ModelAttribute("comida") ComidaModel comida,
+			@RequestParam("file") MultipartFile file) {
+		
+		comidaService.procesarNuevaComida(comida, file);
+		
+		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
+	}
 	
 	@RequestMapping("/eliminarComida")
-	public ModelAndView eliminarComida(@RequestParam("id") Long id) throws Exception {
+	public ModelAndView eliminarComida(@RequestParam("id") Long id) {
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -88,7 +103,5 @@ public class ComidaController {
 		
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
-
-
 	
 }

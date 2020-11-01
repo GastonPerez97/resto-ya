@@ -77,17 +77,15 @@ public class ComidaServiceImpl implements ComidaService {
 	}
 
 	@Override
-	public void subirImagenComida(ComidaModel comida, MultipartFile imagen) {
-		if (this.verificarExtensionDeImagen(imagen)) {
-			String fileName = servletContext.getRealPath("/") +
-					   "\\img\\comidas\\" +
-					   imagen.getOriginalFilename();
-				 
-			try {
-				imagen.transferTo(new File(fileName));
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
+	public void subirImagenComida(MultipartFile imagen) {
+		String fileName = servletContext.getRealPath("/") +
+				   "\\img\\comidas\\" +
+				   imagen.getOriginalFilename();
+			 
+		try {
+			imagen.transferTo(new File(fileName));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -114,9 +112,11 @@ public class ComidaServiceImpl implements ComidaService {
 		comida.setRestaurante(restaurante);
 		
 		if (!imagen.isEmpty()) {
-			this.eliminarImagenComidaSiExiste(comida);
-			this.subirImagenComida(comida, imagen);
-			comida.setImageName(imagen.getOriginalFilename());
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.eliminarImagenComidaSiExiste(comida);
+				this.subirImagenComida(imagen);
+				comida.setImageName(imagen.getOriginalFilename());
+			}
 		}
 
 		this.editarComida(comida);
@@ -140,4 +140,25 @@ public class ComidaServiceImpl implements ComidaService {
 	public void eliminarComida(ComidaModel comida) {
 		comidaRepository.eliminarComida(comida);
 	}
+
+	@Override
+	public void procesarNuevaComida(ComidaModel comida, MultipartFile imagen) {
+		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
+		comida.setRestaurante(restaurante);
+		
+		if (!imagen.isEmpty()) {
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.subirImagenComida(imagen);
+				comida.setImageName(imagen.getOriginalFilename());
+			}
+		}
+		
+		this.guardarComidaEnDB(comida);
+	}
+
+	@Override
+	public void guardarComidaEnDB(ComidaModel comida) {
+		comidaRepository.guardarComidaEnDB(comida);
+	}
+		
 }

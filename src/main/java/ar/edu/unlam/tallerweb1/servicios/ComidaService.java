@@ -3,7 +3,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 
@@ -21,7 +23,7 @@ public interface ComidaService {
 	
 	public void editarComida(ComidaModel comida);
 	
-	public void subirImagenComida(ComidaModel comida, MultipartFile imagen);
+	public void subirImagenComida(MultipartFile imagen);
 	
 	public void eliminarImagenComidaSiExiste(ComidaModel comida);
 	
@@ -32,4 +34,8 @@ public interface ComidaService {
 	public void procesarEliminacionComida(ComidaModel comida);
 	
 	public void eliminarComida(ComidaModel comida);
+	
+	public void procesarNuevaComida(ComidaModel comida, MultipartFile imagen);
+	
+	public void guardarComidaEnDB(ComidaModel comida);
 }

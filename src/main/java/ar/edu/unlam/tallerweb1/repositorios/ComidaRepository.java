@@ -11,4 +11,6 @@ public interface ComidaRepository {
 	public void editarComida(ComidaModel comida);
 	
 	public void eliminarComida(ComidaModel comida);
+	
+	public void guardarComidaEnDB(ComidaModel comida);
 }
