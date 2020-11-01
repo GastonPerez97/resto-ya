@@ -35,7 +35,6 @@ public class ComidaServiceImpl implements ComidaService {
 		return comida ;
 	}
 	
-	
 	@Override
 	public List<ComidaModel> buscarComida() {
 		return comidaRepository.buscarComida();
@@ -55,7 +54,6 @@ public class ComidaServiceImpl implements ComidaService {
 		return comidasBuscadas;
 	}
 
-
 	@Override
 	public ArrayList<ComidaModel> mostrarComidaPedida(ArrayList<Long> id){
 		
@@ -67,7 +65,6 @@ public class ComidaServiceImpl implements ComidaService {
 		
 		return comidas;
 	}
-
 
 	@Override
 	public ComidaModel consultarComidaPorId(Long id) {
@@ -81,17 +78,18 @@ public class ComidaServiceImpl implements ComidaService {
 
 	@Override
 	public void subirImagenComida(ComidaModel comida, MultipartFile imagen) {
-		String fileName = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
-				   imagen.getOriginalFilename();
-			 
+		if (this.verificarExtensionDeImagen(imagen)) {
+			String fileName = servletContext.getRealPath("/") +
+					   "\\img\\comidas\\" +
+					   imagen.getOriginalFilename();
+				 
 			try {
 				imagen.transferTo(new File(fileName));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
+		}
 	}
-
 
 	@Override
 	public void eliminarImagenComidaSiExiste(ComidaModel comida) {
@@ -122,6 +120,14 @@ public class ComidaServiceImpl implements ComidaService {
 		}
 
 		this.editarComida(comida);
+	}
+
+	@Override
+	public Boolean verificarExtensionDeImagen(MultipartFile imagen) {
+		if (imagen.getContentType().equals("image/png") || imagen.getContentType().equals("image/jpeg"))
+			return true;
+		
+		return false;
 	}
 
 }

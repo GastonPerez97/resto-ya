@@ -26,4 +26,6 @@ public interface ComidaService {
 	public void eliminarImagenComidaSiExiste(ComidaModel comida);
 	
 	public void procesarEdicionComida(ComidaModel comida, MultipartFile imagen);
+	
+	public Boolean verificarExtensionDeImagen(MultipartFile imagen);
 }
