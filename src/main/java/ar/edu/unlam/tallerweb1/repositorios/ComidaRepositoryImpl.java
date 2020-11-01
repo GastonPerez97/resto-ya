@@ -21,17 +21,21 @@ public class ComidaRepositoryImpl implements ComidaRepository {
 		return sessionFactory.getCurrentSession().get(ComidaModel.class, id);
 	}
 	
-	
 	@Override
 	public List<ComidaModel> buscarComida() {
 		return (ArrayList<ComidaModel>) sessionFactory.getCurrentSession()
 				.createCriteria(ComidaModel.class).list();
 	}
 
-
 	@Override
 	public void editarComida(ComidaModel comida) {
 		sessionFactory.getCurrentSession().update(comida);
+	}
+
+
+	@Override
+	public void eliminarComida(ComidaModel comida) {
+		sessionFactory.getCurrentSession().delete(comida);
 	}
 	
 }

@@ -69,17 +69,25 @@ public class ComidaController {
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
 	
-//	
-//	@RequestMapping("/eliminarRestaurante")
-//	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
-//		
-//		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
-//		
-//		servRestaurante.eliminarRestaurante(restaurante);
-//		servRestaurante.eliminarImagenRestauranteSiExiste(restaurante);
-//		
-//		return new ModelAndView("redirect:/restaurantes");
-//	}
+	
+	
+//	ALTA DE COMIDAS
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/eliminarComida")
+	public ModelAndView eliminarComida(@RequestParam("id") Long id) throws Exception {
+		
+		ComidaModel comida = comidaService.consultarComidaPorId(id);
+		
+		comidaService.procesarEliminacionComida(comida);
+		
+		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
+	}
 
 
 	

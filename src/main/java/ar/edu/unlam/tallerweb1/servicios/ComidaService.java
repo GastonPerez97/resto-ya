@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 public interface ComidaService {
+	
 	ComidaModel mostrarComidaModel(Long id);
 
 	public List<ComidaModel> buscarComida();
@@ -28,4 +28,8 @@ public interface ComidaService {
 	public void procesarEdicionComida(ComidaModel comida, MultipartFile imagen);
 	
 	public Boolean verificarExtensionDeImagen(MultipartFile imagen);
+	
+	public void procesarEliminacionComida(ComidaModel comida);
+	
+	public void eliminarComida(ComidaModel comida);
 }

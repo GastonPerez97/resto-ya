@@ -45,7 +45,7 @@ public class ComidaServiceImpl implements ComidaService {
 		
 		List<ComidaModel> comidasBuscadas = new ArrayList<ComidaModel>();
 		List<ComidaModel> comidasDB = comidaRepository.buscarComida();
-		/* System.out.println(nombre); */
+
 		for (ComidaModel comidaModel : comidasDB) {
 			if (comidaModel.getNombre().toLowerCase().contains(nombre.toLowerCase()))
 				comidasBuscadas.add(comidaModel);
@@ -130,4 +130,14 @@ public class ComidaServiceImpl implements ComidaService {
 		return false;
 	}
 
+	@Override
+	public void procesarEliminacionComida(ComidaModel comida) {
+		this.eliminarComida(comida);
+		this.eliminarImagenComidaSiExiste(comida);
+	}
+
+	@Override
+	public void eliminarComida(ComidaModel comida) {
+		comidaRepository.eliminarComida(comida);
+	}
 }
