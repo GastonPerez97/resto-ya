@@ -16,6 +16,8 @@ public interface UsuarioService {
 
 	public Boolean existeUsuarioPorNombre(String nombre);
 	
+	public Boolean existeUsuarioPorId(Long id);
+	
 	public UsuarioModel buscarUsuarioPorId(Long id);
 
 

@@ -14,6 +14,8 @@
 		<h4>
 			<span>${estadoEliminar}</span>
 		</h4>
+		<a href="./usuarios"><button type="button"
+						class="btn btn-secondary">Volver</button></a>
 		<br>
 	</c:if>
 

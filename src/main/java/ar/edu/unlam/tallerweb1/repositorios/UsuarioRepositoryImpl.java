@@ -44,9 +44,18 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 	}
 
 	@Override
+	public UsuarioModel existeUsuarioPorId(Long id) {
+		return (UsuarioModel) sessionFactory.getCurrentSession().createCriteria(UsuarioModel.class)
+				   .add(Restrictions.eq("idUsuario", id))
+				   .uniqueResult();
+	}
+	
+	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) {
 		return sessionFactory.getCurrentSession().get(UsuarioModel.class,id);
 	}
+
+
 
 
 	

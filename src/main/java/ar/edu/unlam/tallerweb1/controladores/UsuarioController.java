@@ -82,9 +82,22 @@ public class UsuarioController {
 	@RequestMapping("/validarEliminarUsuario")
 	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id) {
 
-		usuarioService.eliminarUsuario(id);
+		ModelMap modelo = new ModelMap();
+		
+		if (usuarioService.existeUsuarioPorId(id)) {
+			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
+			usuarioService.eliminarUsuario(id);
+			return new ModelAndView("usuarios", modelo);
+		} else {
+			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
+			return new ModelAndView("usuarios", modelo);
+		}
+		
+		
+		
+	//	usuarioService.eliminarUsuario(id);
 
-		return new ModelAndView("redirect:/usuarios");
+		//return new ModelAndView("redirect:/usuarios");
 	}
 
 }

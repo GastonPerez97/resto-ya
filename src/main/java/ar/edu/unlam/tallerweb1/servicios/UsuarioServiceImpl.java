@@ -45,10 +45,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 			existe = true;
 		return existe;
 	}
+	
+	@Override
+	public Boolean existeUsuarioPorId(Long id) {
+		Boolean existe = false;
+
+		if (usuarioRepository.existeUsuarioPorId(id) != null)
+			existe = true;
+		return existe;
+	}
 
 	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) {
 		return usuarioRepository.buscarUsuarioPorId(id);
 	}
+
+
 
 }
