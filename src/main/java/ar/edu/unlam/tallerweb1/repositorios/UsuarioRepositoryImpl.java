@@ -21,7 +21,6 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 		sessionFactory.getCurrentSession().save(usuario);
 	}
 
-	@Override
 	public void modificarUsuario(UsuarioModel usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
 		
@@ -29,30 +28,24 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
 	@Override
 	public void eliminarUsuario(Long id) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.delete(session.get(UsuarioModel.class, id));
-		
+		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(UsuarioModel.class, id));
 	}
 
 	@Override
 	public List<UsuarioModel> buscarUsuarios() {
-		final Session session = sessionFactory.getCurrentSession();
-		return (List<UsuarioModel>) session.createCriteria(UsuarioModel.class).list();
+		return (List<UsuarioModel>) sessionFactory.getCurrentSession().createCriteria(UsuarioModel.class).list();
 	}
 
 	@Override
 	public UsuarioModel existeUsuarioPorNombre(String nombre) {
-		final Session session = sessionFactory.getCurrentSession();
-		
-		return (UsuarioModel) session.createCriteria(UsuarioModel.class)
-			   .add(Restrictions.eq("nombre", nombre))
+		return (UsuarioModel) sessionFactory.getCurrentSession().createCriteria(UsuarioModel.class)
+			   .add(Restrictions.eq("nombreDeUsuario", nombre))
 			   .uniqueResult();
 	}
 
 	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.get(UsuarioModel.class,id);
+		return sessionFactory.getCurrentSession().get(UsuarioModel.class,id);
 	}
 
 

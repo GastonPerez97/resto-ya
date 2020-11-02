@@ -18,9 +18,9 @@
 			modelAttribute="usuario">
 
 			<div class="form-group">
-				<label for="nombre">Nombre:*</label>
-				<form:input path="nombre" id="nombre" class="form-control"
-					required="true" />
+				<label for="nombreDeUsuario">Nombre:*</label>
+				<form:input path="nombreDeUsuario" id="nombreDeUsuario"
+					class="form-control" required="true" />
 			</div>
 
 			<div class="form-group">

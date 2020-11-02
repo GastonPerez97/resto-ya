@@ -12,92 +12,79 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 
-@Controller 
+@Controller
 public class UsuarioController {
-	
+
 	@Inject
 	private UsuarioService usuarioService;
-	
-	
+
 	@RequestMapping("/usuarios")
 	public ModelAndView usuarios() {
 		ModelMap modelo = new ModelMap();
-		
+
 		modelo.put("titulo", "Lista de Usuarios");
-		modelo.put("USUARIOS", usuarioService.buscarUsuarios());
-		
+		modelo.put("usuarios", usuarioService.buscarUsuarios());
+
 		return new ModelAndView("usuarios", modelo);
 	}
-	
+
 	@RequestMapping(path = "/agregarUsuario", method = RequestMethod.POST)
 	public ModelAndView agregarUsuario() {
 		ModelMap modelo = new ModelMap();
-		
+
 		UsuarioModel usuario = new UsuarioModel();
-		
+
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("usuario", usuario);
-		
+
 		return new ModelAndView("agregarUsuario", modelo);
 	}
-	
-	
+
 	@RequestMapping(path = "/validarUsuario", method = RequestMethod.POST)
-	public ModelAndView validarUsuario(
-			@ModelAttribute("usuario") UsuarioModel usuario) {
+	public ModelAndView validarUsuario(@ModelAttribute("usuario") UsuarioModel usuario) {
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Agregar Usuario");
-		
-		if (usuarioService.existeUsuarioPorNombre(usuario.getNombre())) {
+
+		if (usuarioService.existeUsuarioPorNombre(usuario.getNombreDeUsuario())) {
 			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
 			return new ModelAndView("agregarUsuario", modelo);
-		} else { 
-			usuarioService.modificarUsuario(usuario);
+		} else {
+			usuarioService.guardarUsuario(usuario);
 			return new ModelAndView("redirect:/usuarios");
 		}
 	}
-	
-	
+
 	@RequestMapping("/editarUsuario")
-	public ModelAndView editarUsuario(@RequestParam("id") Long id) {
-		
-		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
-		
+	public ModelAndView editarUsuario(@RequestParam("idUsuario") Long idUsuario) {
+
+		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(idUsuario);
+
 		ModelMap modelo = new ModelMap();
-		
-		modelo.put("titulo", "Editar " + usuario.getNombre());
+
+		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario);
-		
+
 		return new ModelAndView("editarUsuario", modelo);
 	}
-	
+
 	@RequestMapping(path = "/validarEditarUsuario", method = RequestMethod.POST)
-	public ModelAndView validarEditarUsuario(
-			@ModelAttribute("usuario") UsuarioModel usuario) {
+	public ModelAndView validarEditarUsuario(@ModelAttribute("usuario") UsuarioModel usuario) {
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Editar Usuario");
-		
-			usuarioService.modificarUsuario(usuario);
-			return new ModelAndView("redirect:/usuarios");
-		
+
+		usuarioService.modificarUsuario(usuario);
+		return new ModelAndView("redirect:/usuarios");
+
 	}
-	
-	
-	
-	
-	@RequestMapping("/eliminarUsuario")
-	public ModelAndView eliminarUsuario(@RequestParam("id") Long id) {
-		
+
+	@RequestMapping("/validarEliminarUsuario")
+	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id) {
+
 		usuarioService.eliminarUsuario(id);
-		
+
 		return new ModelAndView("redirect:/usuarios");
 	}
-	
-
-
-	
-	
 
 }

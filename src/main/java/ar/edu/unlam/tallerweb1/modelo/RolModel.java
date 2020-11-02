@@ -15,47 +15,53 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "rol")
 public class RolModel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_rol")
 	private Long idRol;
-	
+
 	private String nombre;
 	private String descripcion;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rolModel", cascade = CascadeType.ALL)
 	private List<UsuarioRolModel> listaRolesUsuario;
-	
-	
-	
+
 	public RolModel() {
 		listaRolesUsuario = new ArrayList<UsuarioRolModel>();
 	}
 	
-	
-	
-	
-	public Long getId() {
+
+	public Long getIdRol() {
 		return idRol;
 	}
-	public void setId(Long id) {
-		this.idRol = id;
+
+	public void setIdRol(Long idRol) {
+		this.idRol = idRol;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
-	
+
+	public List<UsuarioRolModel> getListaRolesUsuario() {
+		return listaRolesUsuario;
+	}
+
+	public void setListaRolesUsuario(List<UsuarioRolModel> listaRolesUsuario) {
+		this.listaRolesUsuario = listaRolesUsuario;
+	}
 
 }

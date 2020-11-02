@@ -16,57 +16,64 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 public class UsuarioModel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Long idUsuario;
-	
+
+	@Column(name = "nombre_usuario")
 	private String nombreDeUsuario;
 	private String email;
 	private String clave;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioModel", cascade = CascadeType.ALL)
 	private List<UsuarioRolModel> listaUsuarioRoles;
-	
-	
-	
+
 	public UsuarioModel() {
 		listaUsuarioRoles = new ArrayList<UsuarioRolModel>();
 	}
+
 	
 	
-	
-	
-	
-	public Long getId() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
-	public void setId(Long id) {
-		this.idUsuario = id;
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
-	public String getNombre() {
+
+	public String getNombreDeUsuario() {
 		return nombreDeUsuario;
 	}
-	public void setNombre(String nombre) {
-		this.nombreDeUsuario = nombre;
+
+	public void setNombreDeUsuario(String nombreDeUsuario) {
+		this.nombreDeUsuario = nombreDeUsuario;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getClave() {
 		return clave;
 	}
+
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	
-	
-	
-	
-	
+
+	public List<UsuarioRolModel> getListaUsuarioRoles() {
+		return listaUsuarioRoles;
+	}
+
+	public void setListaUsuarioRoles(List<UsuarioRolModel> listaUsuarioRoles) {
+		this.listaUsuarioRoles = listaUsuarioRoles;
+	}
 
 }

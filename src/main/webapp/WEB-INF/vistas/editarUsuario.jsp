@@ -11,13 +11,13 @@
 			modelAttribute="usuario">
 
 			<div class="form-group">
-				<label for="id">Id:</label>
-				<form:input path="id" id="id" class="form-control" required="true" readonly="true" />
+				<label for="idUsuario">Id:</label>
+				<form:input path="idUsuario" id="idUsuario" class="form-control" required="true" readonly="true" />
 			</div>
 
 			<div class="form-group">
-				<label for="nombre">Nombre:</label>
-				<form:input path="nombre" id="nombre" class="form-control"
+				<label for="nombreDeUsuario">Nombre:</label>
+				<form:input path="nombreDeUsuario" id="nombreDeUsuario" class="form-control"
 					required="true" />
 			</div>
 
