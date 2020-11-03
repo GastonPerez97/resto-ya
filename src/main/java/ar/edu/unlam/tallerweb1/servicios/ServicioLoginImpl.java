@@ -31,4 +31,10 @@ public class ServicioLoginImpl implements ServicioLogin {
 		return servicioLoginDao.consultarUsuario(usuario);
 	}
 
+	@Override
+	public void agregarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
