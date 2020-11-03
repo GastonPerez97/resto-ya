@@ -35,7 +35,16 @@ public class UsuarioModel {
 	}
 
 	
-	
+	//Constructor test	
+	public UsuarioModel(String nombreDeUsuario, String email, String clave) {
+		super();
+		this.nombreDeUsuario = nombreDeUsuario;
+		this.email = email;
+		this.clave = clave;
+	}
+
+
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}

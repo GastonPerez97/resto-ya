@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 import javax.inject.Inject;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -23,16 +22,15 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
 	public void modificarUsuario(UsuarioModel usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
-		
 	}
 
 	@Override
-	public void eliminarUsuario(Long id) {
+	public void eliminarUsuarioPorId(Long id) {
 		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().get(UsuarioModel.class, id));
 	}
 
 	@Override
-	public List<UsuarioModel> buscarUsuarios() {
+	public List<UsuarioModel> listarUsuarios() {
 		return (List<UsuarioModel>) sessionFactory.getCurrentSession().createCriteria(UsuarioModel.class).list();
 	}
 

@@ -10,9 +10,9 @@ public interface UsuarioRepository {
 	
 	public void modificarUsuario (UsuarioModel usuario);
 	
-	public void eliminarUsuario (Long id);
+	public void eliminarUsuarioPorId (Long id);
 
-	public List<UsuarioModel> buscarUsuarios();
+	public List<UsuarioModel> listarUsuarios();
 
 	public UsuarioModel existeUsuarioPorNombre(String nombre);
 	

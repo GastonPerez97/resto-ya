@@ -23,7 +23,7 @@ public class UsuarioController {
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Usuarios");
-		modelo.put("usuarios", usuarioService.buscarUsuarios());
+		modelo.put("usuarios", usuarioService.listarUsuarios());
 
 		return new ModelAndView("usuarios", modelo);
 	}
@@ -42,23 +42,13 @@ public class UsuarioController {
 
 	@RequestMapping(path = "/validarUsuario", method = RequestMethod.POST)
 	public ModelAndView validarUsuario(@ModelAttribute("usuario") UsuarioModel usuario) {
-		ModelMap modelo = new ModelMap();
-
-		modelo.put("titulo", "Agregar Usuario");
-
-		if (usuarioService.existeUsuarioPorNombre(usuario.getNombreDeUsuario())) {
-			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
-			return new ModelAndView("agregarUsuario", modelo);
-		} else {
-			usuarioService.guardarUsuario(usuario);
-			return new ModelAndView("redirect:/usuarios");
-		}
+		return usuarioService.validarUsuario(usuario);
 	}
 
 	@RequestMapping("/editarUsuario")
-	public ModelAndView editarUsuario(@RequestParam("idUsuario") Long idUsuario) {
+	public ModelAndView editarUsuario(@RequestParam("id") Long id) {
 
-		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(idUsuario);
+		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
 
 		ModelMap modelo = new ModelMap();
 
@@ -82,22 +72,7 @@ public class UsuarioController {
 	@RequestMapping("/validarEliminarUsuario")
 	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id) {
 
-		ModelMap modelo = new ModelMap();
-		
-		if (usuarioService.existeUsuarioPorId(id)) {
-			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
-			usuarioService.eliminarUsuario(id);
-			return new ModelAndView("usuarios", modelo);
-		} else {
-			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
-			return new ModelAndView("usuarios", modelo);
-		}
-		
-		
-		
-	//	usuarioService.eliminarUsuario(id);
-
-		//return new ModelAndView("redirect:/usuarios");
+		return usuarioService.validarEliminarUsuario(id);
 	}
 
 }

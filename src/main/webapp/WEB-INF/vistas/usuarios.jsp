@@ -35,7 +35,7 @@
 							<p class="card-text">
 								<span class="h4">Roles: ${usr.nombreDeUsuario} </span>
 							</p>
-							<a href="editarUsuario?idUsuario=${usr.idUsuario}"><i
+							<a href="editarUsuario?id=${usr.idUsuario}"><i
 								class="far fa-edit restaurante-btn my-3 mr-4"></i></a> <a
 								href="validarEliminarUsuario?id=${usr.idUsuario}" class="delete-btn"><i
 								class="far fa-trash-alt restaurante-btn my-3"></i></a>

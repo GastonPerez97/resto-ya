@@ -4,6 +4,9 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.ModelAndView;
+
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRepository;
 
@@ -13,6 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
+	
 
 	@Override
 	public void guardarUsuario(UsuarioModel usuario) {
@@ -27,14 +31,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public void eliminarUsuario(Long id) {
-		usuarioRepository.eliminarUsuario(id);
+	public void eliminarUsuarioPorId(Long id) {
+		usuarioRepository.eliminarUsuarioPorId(id);
 
 	}
 
 	@Override
-	public List<UsuarioModel> buscarUsuarios() {
-		return usuarioRepository.buscarUsuarios();
+	public List<UsuarioModel> listarUsuarios() {
+		return usuarioRepository.listarUsuarios();
 	}
 
 	@Override
@@ -60,6 +64,34 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.buscarUsuarioPorId(id);
 	}
 
+	@Override
+	public ModelAndView validarUsuario(UsuarioModel usuario) {
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("titulo", "Agregar Usuario");
+
+		if (existeUsuarioPorNombre(usuario.getNombreDeUsuario())) {
+			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
+			return new ModelAndView("agregarUsuario", modelo);
+		} else {
+			guardarUsuario(usuario);
+			return new ModelAndView("redirect:/usuarios");
+		}
+	}
+	
+	@Override
+	public ModelAndView validarEliminarUsuario(Long id) {
+		ModelMap modelo = new ModelMap();
+		
+		if (existeUsuarioPorId(id)) {
+			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
+			eliminarUsuarioPorId(id);
+			return new ModelAndView("usuarios", modelo);
+		} else {
+			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
+			return new ModelAndView("usuarios", modelo);
+		}
+	}
 
 
 }
