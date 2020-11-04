@@ -27,8 +27,9 @@ public class ComidaServiceImpl implements ComidaService {
 	private RestauranteService restauranteService;
 	
 	@Inject
-    ServletContext servletContext;
-
+    private ServletContext servletContext;
+	
+	
 	@Override
 	public ComidaModel mostrarComidaModel(Long id) {
 		ComidaModel comida = comidaRepository.consultarComidaPorId(id);
@@ -78,11 +79,11 @@ public class ComidaServiceImpl implements ComidaService {
 
 	@Override
 	public void subirImagenComida(MultipartFile imagen) {
-		String fileName = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
-				   imagen.getOriginalFilename();
-			 
 		try {
+			String fileName = servletContext.getRealPath("/") +
+					   "img\\comidas\\" +
+					   imagen.getOriginalFilename();
+			 
 			imagen.transferTo(new File(fileName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -94,7 +95,7 @@ public class ComidaServiceImpl implements ComidaService {
 		try {
 			if (!comida.getImageName().isEmpty()) {
 				String fileName = servletContext.getRealPath("/") +
-						   "\\img\\comidas\\" +
+						   "img\\comidas\\" +
 						   comida.getImageName();
 
 				File imagen = new File(fileName);
