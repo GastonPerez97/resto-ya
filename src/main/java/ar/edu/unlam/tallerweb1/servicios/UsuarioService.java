@@ -20,6 +20,8 @@ public interface UsuarioService {
 	
 	public Boolean existeUsuarioPorId(Long id);
 	
+	public Boolean existeUsuarioPorEmail(String email);
+	
 	public UsuarioModel buscarUsuarioPorId(Long id);
 	
 	public ModelAndView validarUsuario(UsuarioModel usuario);

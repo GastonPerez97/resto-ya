@@ -17,6 +17,8 @@ public interface UsuarioRepository {
 	public UsuarioModel existeUsuarioPorNombre(String nombre);
 	
 	public UsuarioModel existeUsuarioPorId(Long id);
+	
+	public UsuarioModel existeUsuarioPorEmail(String email);
 
 	public UsuarioModel buscarUsuarioPorId(Long id);
 

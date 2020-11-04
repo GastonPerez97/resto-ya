@@ -58,6 +58,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 			existe = true;
 		return existe;
 	}
+	
+	@Override
+	public Boolean existeUsuarioPorEmail(String email) {
+		Boolean existe = false;
+
+		if (usuarioRepository.existeUsuarioPorEmail(email) != null)
+			existe = true;
+		return existe;
+	}
 
 	@Override
 	public UsuarioModel buscarUsuarioPorId(Long id) {
@@ -70,8 +79,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		modelo.put("titulo", "Agregar Usuario");
 
-		if (existeUsuarioPorNombre(usuario.getNombreDeUsuario())) {
-			modelo.put("errorValidacion", "El nombre de usuario ya existe, contacte al administrador");
+		if (existeUsuarioPorNombre(usuario.getNombreDeUsuario()) || existeUsuarioPorEmail(usuario.getEmail()) )  {
+			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
 			return new ModelAndView("agregarUsuario", modelo);
 		} else {
 			guardarUsuario(usuario);
