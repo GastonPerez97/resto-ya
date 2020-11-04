@@ -1,17 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="header.jsp"%>
-<h1 class="text-center h1 display-3 bebas mb-4">Registrarse</h1>
+<h1 class="text-center h1 display-3 bebas mb-4">Iniciar Sesión</h1>
 
 <section class="mx-auto col-lg-6">
 	<article>
-		<form:form action="guardarRegistro" method="POST"
+		<form:form action="validarLogin" method="POST"
 			modelAttribute="usuario" enctype="multipart/form-data">
-			<div class="form-group">
-				<label for="nombre">Nombre:</label>
-				<form:input path="nombre" type="text" id="nombre"
-					class="form-control" />
-			</div>
-
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="precio">Email:</label>
@@ -20,11 +14,9 @@
 					<label for="precio">Contraseña:</label>
 					<form:input path="password" type="password" id="password"
 						class="form-control" />
-						<br> 
+					<br>
 						<input type="submit" class="float-right btn btn-dark"
-						value="Registrarse" /> 
-						<br><br> <a class="nav-link"
-						href="/proyecto-limpio-spring-master/login">Iniciar Sesión</a>
+							value="Ingresar" />
 				</div>
 
 			</div>

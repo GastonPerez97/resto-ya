@@ -46,4 +46,8 @@ public class RegistrarClienteController {
 		return new ModelAndView("redirect:/registrarCliente");
 	}
 
+	
+	
+	
+	
 }
