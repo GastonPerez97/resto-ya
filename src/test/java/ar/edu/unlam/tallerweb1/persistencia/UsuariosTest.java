@@ -23,15 +23,27 @@ public class UsuariosTest extends SpringTest{
 	UsuarioService usuarioService;
 	
 	private UsuarioModel usuario1 = new UsuarioModel("lucas","prueba@mail.com","1234");
-	private UsuarioModel usuario2 = new UsuarioModel("juan","prueba@mail.com","5678");
-	private UsuarioModel usuario3 = new UsuarioModel("pedro","prueba@mail.com","9013");
+	private UsuarioModel usuario2 = new UsuarioModel("juan","prueba2@mail.com","5678");
+	private UsuarioModel usuario3 = new UsuarioModel("pedro","prueba3@mail.com","9013");
 	
 	@Test
     @Transactional @Rollback
     public void pruebaConexion(){
         assertThat(session().isConnected()).isTrue();
     }
-
+	
+	
+	@Test
+    @Transactional @Rollback
+    public void testQueGuardaUnUsuario(){
+        usuarioService.guardarUsuario(usuario1);
+        
+        UsuarioModel usuarioEsperado = usuario1;
+        UsuarioModel usuarioObtenido = usuarioService.buscarUsuarioPorId(usuario1.getIdUsuario());
+        
+        assertEquals(usuarioEsperado, usuarioObtenido);	
+    }
+	
 	
 	@Test
     @Transactional @Rollback
@@ -75,6 +87,8 @@ public class UsuariosTest extends SpringTest{
     @Transactional @Rollback
 	public void testQueValideLaExistenciaDeUnUsuarioPorId(){
 		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
 		
 		Boolean valorEsperado = true;
 		Boolean valorObtenido = usuarioService.existeUsuarioPorId(usuario1.getIdUsuario());
@@ -86,9 +100,14 @@ public class UsuariosTest extends SpringTest{
 	@Test
     @Transactional @Rollback
 	public void testQueValideQueNoExistaUnUsuarioPorId(){
+		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
+		Long idBuscado = 5L;
+		
 		
 		Boolean valorEsperado = false;
-		Boolean valorObtenido = usuarioService.existeUsuarioPorId(usuario1.getIdUsuario());
+		Boolean valorObtenido = usuarioService.existeUsuarioPorId(idBuscado);
 		
 		assertEquals(valorEsperado, valorObtenido);
 	}
@@ -98,6 +117,8 @@ public class UsuariosTest extends SpringTest{
     @Transactional @Rollback
 	public void testQueValideLaExistenciaDeUnUsuarioPorNombre(){
 		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
 		
 		Boolean valorEsperado = true;
 		Boolean valorObtenido = usuarioService.existeUsuarioPorNombre(usuario1.getNombreDeUsuario());
@@ -109,9 +130,42 @@ public class UsuariosTest extends SpringTest{
 	@Test
     @Transactional @Rollback
 	public void testQueValideQueNoExistaUnUsuarioPorNombre(){
+		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
+		String nombreBuscado = "pepe";
 
 		Boolean valorEsperado = false;
-		Boolean valorObtenido = usuarioService.existeUsuarioPorNombre(usuario1.getNombreDeUsuario());
+		Boolean valorObtenido = usuarioService.existeUsuarioPorNombre(nombreBuscado);
+		
+		assertEquals(valorEsperado, valorObtenido);
+	}
+	
+	
+	@Test
+    @Transactional @Rollback
+	public void testQueValideQueExistaUnUsuarioPorEmail(){
+		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
+
+		Boolean valorEsperado = true;
+		Boolean valorObtenido = usuarioService.existeUsuarioPorEmail(usuario1.getEmail());
+		
+		assertEquals(valorEsperado, valorObtenido);
+	}
+	
+	
+	@Test
+    @Transactional @Rollback
+	public void testQueValideQueNoExistaUnUsuarioPorEmail(){
+		session().save(usuario1);
+		session().save(usuario2);
+		session().save(usuario3);
+		String emailBuscado = "mail@mail.com";
+
+		Boolean valorEsperado = false;
+		Boolean valorObtenido = usuarioService.existeUsuarioPorEmail(emailBuscado);
 		
 		assertEquals(valorEsperado, valorObtenido);
 	}

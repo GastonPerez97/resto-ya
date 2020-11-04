@@ -24,6 +24,7 @@ public class UsuarioController {
 
 		modelo.put("titulo", "Lista de Usuarios");
 		modelo.put("usuarios", usuarioService.listarUsuarios());
+		modelo.put("rol1", "Administrador");
 
 		return new ModelAndView("usuarios", modelo);
 	}

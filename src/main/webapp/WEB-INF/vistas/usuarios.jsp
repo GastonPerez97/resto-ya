@@ -33,7 +33,7 @@
 								<span class="h4">Email: ${usr.email} </span>
 							</p>
 							<p class="card-text">
-								<span class="h4">Roles: ${usr.nombreDeUsuario} </span>
+								<span class="h4">Rol: ${rol1} </span>
 							</p>
 							<a href="editarUsuario?id=${usr.idUsuario}"><i
 								class="far fa-edit restaurante-btn my-3 mr-4"></i></a> <a
