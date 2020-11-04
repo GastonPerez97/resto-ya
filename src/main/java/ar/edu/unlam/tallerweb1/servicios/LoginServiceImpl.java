@@ -17,12 +17,12 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 // en hibernateCOntext.xml. De esta manera todos los metodos de cualquier dao invocados dentro de un servicio se ejecutan en la misma transaccion
 @Service("servicioLogin")
 @Transactional
-public class ServicioLoginImpl implements ServicioLogin {
+public class LoginServiceImpl implements LoginService {
 
 	private RepositorioUsuario servicioLoginDao;
 
 	@Autowired
-	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao){
+	public LoginServiceImpl(RepositorioUsuario servicioLoginDao){
 		this.servicioLoginDao = servicioLoginDao;
 	}
 
@@ -32,8 +32,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
-	public void agregarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
+	public void guardarUsuario(Usuario usuario) {
+		
+	
 		
 	}
 
