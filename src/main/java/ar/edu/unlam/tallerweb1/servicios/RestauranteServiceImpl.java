@@ -117,7 +117,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	}
 	
 	@Override
-	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
+	public void subirImagenRestaurante(MultipartFile imagen) {
 		String fileName = servletContext.getRealPath("/") +
 				   "\\img\\restaurantes\\" +
 				   imagen.getOriginalFilename();
@@ -133,7 +133,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public void subirImagenSiNoEstaVacia(RestauranteModel restaurante, MultipartFile imagen) {
 		if (!imagen.isEmpty()) {
 			if (this.verificarExtensionDeImagen(imagen)) {
-				this.subirImagenRestaurante(restaurante, imagen);
+				this.subirImagenRestaurante(imagen);
 				restaurante.setImageName(imagen.getOriginalFilename());
 			}
 		}
@@ -162,7 +162,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 		if (!imagen.isEmpty()) {
 			if (this.verificarExtensionDeImagen(imagen)) {
 				this.eliminarImagenRestauranteSiExiste(restaurante);
-				this.subirImagenRestaurante(restaurante, imagen);
+				this.subirImagenRestaurante(imagen);
 				restaurante.setImageName(imagen.getOriginalFilename());
 			}
 		}

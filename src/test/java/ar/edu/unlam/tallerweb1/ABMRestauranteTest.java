@@ -6,8 +6,6 @@ import static org.junit.Assert.*;
 import javax.inject.Inject;
 
 import org.junit.Test;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.Rollback;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -59,50 +57,5 @@ public class ABMRestauranteTest extends SpringTest {
         
         assertFalse(validacion);
     }
-    
-    @Test
-	@Transactional @Rollback
-	public void testQueValidaCorrectamenteExtensionDeImagenJPG() {
-	    MockMultipartFile imagenJpg = new MockMultipartFile(
-	    		"test", 
-	    		"test.jpg",
-	    		MediaType.IMAGE_JPEG_VALUE, 
-	    		"Hola Mundo".getBytes()
-	    	);
-	    
-	    Boolean verificacion = servicioRestaurante.verificarExtensionDeImagen(imagenJpg);
-	    
-	    assertTrue(verificacion);
-	}
-    
-    @Test
-	@Transactional @Rollback
-	public void testQueValidaCorrectamenteExtensionDeImagenPNG() {
-	    MockMultipartFile imagenJpg = new MockMultipartFile(
-	    		"test", 
-	    		"test.png",
-	    		MediaType.IMAGE_PNG_VALUE, 
-	    		"Hola Mundo".getBytes()
-	    	);
-	    
-	    Boolean verificacion = servicioRestaurante.verificarExtensionDeImagen(imagenJpg);
-	    
-	    assertTrue(verificacion);
-	}
-    
-    @Test
-	@Transactional @Rollback
-	public void testQueValidaIncorrectamenteExtensionDeImagen() {
-	    MockMultipartFile imagenJpg = new MockMultipartFile(
-	    		"test", 
-	    		"test.txt",
-	    		MediaType.TEXT_PLAIN_VALUE, 
-	    		"Hola Mundo".getBytes()
-	    	);
-	    
-	    Boolean verificacion = servicioRestaurante.verificarExtensionDeImagen(imagenJpg);
-	    
-	    assertFalse(verificacion);
-	}
 
 }
