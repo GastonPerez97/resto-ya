@@ -1,0 +1,251 @@
+[33mcommit aa52c0d4c0e4097cce239faacf7b49b19578997f[m[33m ([m[1;36mHEAD -> [m[1;32mABM-usuarios[m[33m)[m
+Author: ldinubila <lucas.dinubila@gmail.com>
+Date:   Sun Nov 1 19:01:32 2020 -0300
+
+    AMB-usuario v3
+
+[33mcommit 9132ccb6fea27ac04c5c8ed36a7b284e6205c762[m[33m ([m[1;31morigin/ABM-usuarios[m[33m)[m
+Author: ldinubila <lucas.dinubila@gmail.com>
+Date:   Sun Nov 1 03:32:44 2020 -0300
+
+    ABM-usuario v2
+
+[33mcommit bf98fb14f3503e759d619378e422a4546f5ee5d7[m
+Author: ldinubila <lucas.dinubila@gmail.com>
+Date:   Sun Nov 1 02:10:27 2020 -0300
+
+    ABM-usuarios v1
+
+[33mcommit 421090fc6218e27849364deb13ad6402b526abd2[m
+Author: ldinubila <lucas.dinubila@gmail.com>
+Date:   Sat Oct 24 17:02:23 2020 -0300
+
+    Prueba
+
+[33mcommit fb8cf4e958c24eb5fd04b3f1540d9877e313f68e[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: e005d55 d43a407
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 21:58:51 2020 -0300
+
+    Merge pull request #12 from DigruttolaGabriel/fixes-sprint-2
+    
+    Fixes sprint 2
+
+[33mcommit d43a407ef82da9252bd096f73ca1c1311c7f4bfb[m
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 21:58:19 2020 -0300
+
+    fex
+
+[33mcommit cd78832053d8fe03c9dc5748b26c420a57eb6275[m
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 21:56:49 2020 -0300
+
+    fex
+
+[33mcommit e005d5550b970d1a2eb4da2f546304e1aced15cb[m
+Merge: 0260ce3 5f91b79
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 21:06:45 2020 -0300
+
+    Merge pull request #11 from DigruttolaGabriel/img-comida-restaurante
+    
+    Img comida restaurante
+
+[33mcommit 5f91b790a268835f634040377506d96343147549[m
+Merge: 6e91d27 0260ce3
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 21:05:45 2020 -0300
+
+    merge master
+
+[33mcommit 0260ce3724f534113a7eca4022cdbc3ebbe5a158[m
+Merge: a1072e7 fea1b81
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 20:57:43 2020 -0300
+
+    Merge pull request #10 from DigruttolaGabriel/disponibilidad-comidas-restaurantes
+    
+    Disponibilidad comidas restaurantes
+
+[33mcommit fea1b81ccd0a5631f3da45b384bdf5583cd57635[m
+Merge: 2f76c4c a1072e7
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 20:57:02 2020 -0300
+
+    merge master
+
+[33mcommit a1072e77bc63dfc99f059b4d2d76ff357fb72371[m
+Merge: e7b73ec 5f514e9
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 20:54:57 2020 -0300
+
+    Merge pull request #9 from DigruttolaGabriel/menus-de-restaurantes
+    
+    Menus de restaurantes
+
+[33mcommit 5f514e90ac15aa823509999a483c2f787da3f95a[m
+Merge: ab0d7b9 e7b73ec
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 20:53:45 2020 -0300
+
+    pull master
+
+[33mcommit e7b73ecabb84b38e5d8a051f2d393aa08d35a69e[m
+Merge: 670dd50 87163cc
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 20:46:53 2020 -0300
+
+    Merge pull request #8 from DigruttolaGabriel/lucas-sprint-2
+    
+    Generación de pedidos 2.0
+
+[33mcommit 87163cc719061c415a62c35bfbc64b4fef5738d4[m
+Merge: d11c733 670dd50
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 20:38:00 2020 -0300
+
+    merge master
+
+[33mcommit 670dd504b50d520495cdd8f7abaa8e3db6b2e7fb[m
+Merge: b80f165 6b121a9
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 20:23:36 2020 -0300
+
+    Merge pull request #7 from DigruttolaGabriel/Perla-sprint-2
+    
+    Unificación de búsquedas
+
+[33mcommit 6b121a926f2b8d45c111dab6c7b4e6580d330876[m
+Merge: adaccfa b80f165
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 20:21:04 2020 -0300
+
+    pull master
+
+[33mcommit d11c7334973b24d045147eeb97d0cb5e1ab67e92[m[33m ([m[1;31morigin/lucas-sprint-2[m[33m, [m[1;32mlucas-sprint-2[m[33m)[m
+Author: ldinubila <lucas.dinubila@gmail.com>
+Date:   Thu Oct 22 19:56:11 2020 -0300
+
+    Spring-3
+
+[33mcommit adaccfaf8ea7a8ef8c96bfd1022d64f37657b425[m
+Author: perlamoly <pengate@gmail.com>
+Date:   Thu Oct 22 19:11:46 2020 -0300
+
+    buscadorUnificado
+
+[33mcommit b80f165e672acf877aa60f87639fdb81ba917506[m
+Merge: 016ad1a 4d0a2bb
+Author: Gabriel Digruttola <digruttolagabriel@gmail.com>
+Date:   Thu Oct 22 17:20:04 2020 -0300
+
+    Merge pull request #6 from DigruttolaGabriel/gabriel-sprint-2
+    
+    Generación de reservas
+
+[33mcommit 4d0a2bb36d65333b84698480ab1aacb6a295bdf1[m
+Author: DigruttolaGabriel <DigruttolaGabriel@gmail.com>
+Date:   Thu Oct 22 17:14:49 2020 -0300
+
+    generación de reservas
+
+[33mcommit ab0d7b95c14cb729facda2e01d6fb3dda06c4a4a[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 18 17:16:04 2020 -0300
+
+    2da mejora de codigo MenuDeRestauranteTest
+
+[33mcommit ac1b52f93a328c5cf3ca97f0ae0e9d984e52ed25[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 18 17:15:02 2020 -0300
+
+    mejora de codigo en MenuDeRestauranteTest
+
+[33mcommit 1b451087b04be8c3fa0e1ae177ec7d5de05ba248[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 18 17:04:08 2020 -0300
+
+    modificado test-appContext, agregado constructores en modelo comida y restaurante para usar en los tests, creado test de menuDeRestaurante
+
+[33mcommit bd7904fb67578dcac50eaee27e12f60113c2d4cf[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 18 16:12:46 2020 -0300
+
+    modificaciones para que la relacion comida-restaurante sea bidireccional
+
+[33mcommit 2f76c4cb3b78bfbc17a01431597603ec3d1d67eb[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 18:49:27 2020 -0300
+
+    modificada vista hacerPedido por disponibilidad de comidas
+
+[33mcommit a1d4239a21ef40aa58b8c6fcb82012b7c6ab05e4[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 17:36:31 2020 -0300
+
+    agregada disponibilidad en rest y comidas, agregado a las vistas
+
+[33mcommit 2eb38685125a47521dbb4380d57440f54a3ba613[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 15:29:11 2020 -0300
+
+    cambio a java 11
+
+[33mcommit af0b7425e5d1e468524267c586e2bbe04375bf4d[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 15:07:41 2020 -0300
+
+    modificado /hacerPedido para que traiga solo las comidas del restaurante
+
+[33mcommit 8d21e8f1213e28e3a51660941429ccdc8fde8e0e[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 15:05:05 2020 -0300
+
+    corregido css para que muestre bien las comidas en las vistas
+
+[33mcommit 6e91d2703a1241101aacb118de7f14045f0a8acb[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Thu Oct 15 14:34:19 2020 -0300
+
+    agregado boton volver en vista menu
+
+[33mcommit b4306f1d2618f9c23e14d65e6860367a4265c857[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 22:38:35 2020 -0300
+
+    modificado vista listadoRestaurantes para que muestre img de cada restaurante
+
+[33mcommit 5242ddfb73e43f4f74cd00c9834a4d6598e0a017[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 22:28:58 2020 -0300
+
+    modificado vista resultadoBusquedaComida para mostrar las imgs correctas de cada comida
+
+[33mcommit 50908291cd40b492e8d353639307c29bcc232d22[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 22:21:12 2020 -0300
+
+    modificado vistas hacerPedido y procesarPedido para que muestren las imagenes correctas de cada comida
+
+[33mcommit c40c91d71499e02d1e08b18c79279c52c6d0e046[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 21:58:23 2020 -0300
+
+    agregada imagen a cada comida y modificada la vista
+
+[33mcommit 847239e78580d1aa2ddd075df13fb5f61d088ff1[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 21:22:13 2020 -0300
+
+    modificada ubicacion de imgs de restaurantes
+
+[33mcommit 04f549d94e4f0abb36b0ecf906e60f44c1b6a5e4[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   Sun Oct 11 21:15:44 2020 -0300
+
+    cambiado a java 11
+
+[33mcommit beaa372adae62a2c394045aa900b3281e5d52410[m
+Author: Gaston Perez <gastonperez-97@hotmail.com>
+Date:   S

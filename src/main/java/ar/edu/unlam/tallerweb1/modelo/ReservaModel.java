@@ -7,18 +7,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "reserva")
 public class ReservaModel {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_reserva")
-	private Long idReserva;
+	@Column(name = "numero_reserva")
+	private Long numeroDeReserva;
 	
-	@Column(name = "fecha_reserva")
+	@Column(name = "fecha_reserva", nullable = false)
 	private Date fechaReserva;
 	
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_restaurante_horario", nullable = false)
     private RestauranteHorarioModel restauranteHorarioModel;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_mesa", nullable = true)
+    private MesaModel mesaModel;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", nullable = true)
@@ -31,14 +35,18 @@ public class ReservaModel {
     public ReservaModel() {
     	
     }
-
-	public Long getIdReserva() {
-		return idReserva;
+    
+    public void setNumeroDeReserva(Long numeroDeReserva) {
+		this.numeroDeReserva = numeroDeReserva;
 	}
-
-	public void setIdReserva(Long idReserva) {
-		this.idReserva = idReserva;
+    
+    public Long getNumeroDeReserva() {
+		return numeroDeReserva;
 	}
+    
+    public ReservaModel(Date fechaReserva) {
+    	this.fechaReserva = fechaReserva;
+    }
 
 	public Date getFechaReserva() {
 		return fechaReserva;
@@ -54,6 +62,14 @@ public class ReservaModel {
 
 	public void setRestauranteHorarioModel(RestauranteHorarioModel restauranteHorarioModel) {
 		this.restauranteHorarioModel = restauranteHorarioModel;
+	}
+	
+	public void setMesaModel(MesaModel mesaModel) {
+		this.mesaModel = mesaModel;
+	}
+	
+	public MesaModel getMesaModel() {
+		return mesaModel;
 	}
 
 	public ClienteModel getClienteModel() {

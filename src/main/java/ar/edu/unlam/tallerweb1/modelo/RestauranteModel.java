@@ -42,8 +42,11 @@ public class RestauranteModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante")
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
-    private List<RestauranteHorarioModel> restauranteHorarioList;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
+    private List<RestauranteHorarioModel> restauranteHorarioList = new LinkedList<RestauranteHorarioModel>();
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.ALL)
+    private List<MesaModel> mesas = new LinkedList<MesaModel>();
     
 //  Constructores para tests
     public RestauranteModel(String nombre) {
@@ -55,9 +58,13 @@ public class RestauranteModel {
 		this.idRestaurante = idRestaurante;
 	}
 
-
     public RestauranteModel() {
-    	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
+    	//restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
+    	//mesas = new ArrayList<MesaModel>();
+    }
+    
+    public RestauranteModel(Long idRestaurante) {
+    	this.idRestaurante = idRestaurante;
     }
     
 	public Long getIdRestaurante() {
@@ -136,5 +143,12 @@ public class RestauranteModel {
 	public void setDisponible(Boolean disponible) {
 		this.disponible = disponible;
 	}
-	
+
+	public List<MesaModel> getMesas() {
+		return mesas;
+	}
+
+	public void setMesas(List<MesaModel> mesas) {
+		this.mesas = mesas;
+	}
 }
