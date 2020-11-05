@@ -21,28 +21,49 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
 	
 	@Override
 	public ArrayList<RestauranteModel> buscarRestaurantes() {
-		final Session session = sessionFactory.getCurrentSession();
-		return (ArrayList<RestauranteModel>) session.createCriteria(RestauranteModel.class).list();
+		return (ArrayList<RestauranteModel>) sessionFactory.getCurrentSession()
+				.createCriteria(RestauranteModel.class).list();
 	}
 
 	@Override
 	public RestauranteModel buscarRestaurantePorId(Long id) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.get(RestauranteModel.class, id);
+		return sessionFactory.getCurrentSession().get(RestauranteModel.class, id);
 	}
 	
 	@Override
 	public ArrayList<RestauranteModel> buscarRestaurantePorNombre(String nombre) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (ArrayList<RestauranteModel>) session.createCriteria(RestauranteModel.class).list();
+		return (ArrayList<RestauranteModel>) sessionFactory.getCurrentSession()
+				.createCriteria(RestauranteModel.class).list();
 	}
 	
 	@Override
 	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(ComidaModel.class)
+		return sessionFactory.getCurrentSession().createCriteria(ComidaModel.class)
 					.add(Restrictions.eq("restaurante", restaurante))
 					.list();
+	}
+	
+	@Override
+	public RestauranteModel buscarRestaurantePorDireccion(String direccion) {
+		return (RestauranteModel) sessionFactory.getCurrentSession()
+			   .createCriteria(RestauranteModel.class)
+			   .add(Restrictions.eq("direccion", direccion))
+			   .uniqueResult();
+	}
+
+	@Override
+	public void guardarRestaurante(RestauranteModel restaurante) {
+		sessionFactory.getCurrentSession().save(restaurante);
+	}
+	
+	@Override
+	public void editarRestaurante(RestauranteModel restaurante) {
+		sessionFactory.getCurrentSession().update(restaurante);
+	}
+
+	@Override
+	public void eliminarRestaurante(RestauranteModel restaurante) {
+		sessionFactory.getCurrentSession().delete(restaurante);		
 	}
 	
 }

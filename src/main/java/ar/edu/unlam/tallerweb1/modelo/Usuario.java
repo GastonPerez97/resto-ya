@@ -1,3 +1,4 @@
+/*
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
@@ -48,3 +49,4 @@ public class Usuario {
 		this.rol = rol;
 	}
 }
+*/

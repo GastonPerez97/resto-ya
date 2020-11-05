@@ -3,15 +3,16 @@ package ar.edu.unlam.tallerweb1.modelo;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "restaurante_horario")
+@Table(name = "restaurante_horario",
+	uniqueConstraints = { @UniqueConstraint(columnNames = { "id_restaurante", "id_horario" }) })
 public class RestauranteHorarioModel {
-    
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_restaurante_horario")
 	private Long idRestauranteHorario;
 	
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_restaurante", nullable = false)
     private RestauranteModel restauranteModel;
 	
@@ -22,13 +23,13 @@ public class RestauranteHorarioModel {
     public RestauranteHorarioModel() {
     	
     }
-
-	public Long getIdRestauranteHorario() {
+    
+    public RestauranteHorarioModel(Long id) {
+    	this.idRestauranteHorario = id;
+    }
+    
+    public Long getIdRestauranteHorario() {
 		return idRestauranteHorario;
-	}
-
-	public void setIdRestauranteHorario(Long idRestauranteHorario) {
-		this.idRestauranteHorario = idRestauranteHorario;
 	}
 
 	public RestauranteModel getRestauranteModel() {
