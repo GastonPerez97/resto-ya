@@ -24,6 +24,11 @@ public class HorarioModel {
     public HorarioModel() {
     	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
     }
+    
+    public HorarioModel(Long idHorario) {
+    	restauranteHorarioList = new ArrayList<RestauranteHorarioModel>();
+    	this.idHorario = idHorario;
+    }
 
 	public Long getIdHorario() {
 		return idHorario;

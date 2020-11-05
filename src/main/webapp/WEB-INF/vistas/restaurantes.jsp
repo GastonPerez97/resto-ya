@@ -20,11 +20,30 @@
 		        <p class="card-text"><span class="h4">Direcci&oacuten: </span>${REST.direccion}</p>
 		        <p class="card-text"><span class="h4">Horario: </span>${REST.horario}</p>
 		        <p class="card-text"><span class="h4">Telefono: </span>${REST.telefono}</p>
-		        <a href="reservar?idRestaurante=${REST.idRestaurante}" class="float-right btn btn-dark
-		        <c:if test="${REST.disponible == false}">disabled</c:if>">Hacer reserva</a>
-		        <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-dark
-		        <c:if test="${REST.disponible == false}">disabled</c:if>">Ver Men&uacute</a>
-		        <c:if test="${REST.disponible == false}"><h2>NO DISPONIBLE</h2></c:if>
+		        <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-left btn btn-dark">Ver Men&uacute</a>
+		      </div>
+     		  <div class="card-body">
+		        <form action="reservar" class="form-inline" method="post">
+		        	<input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input"/>
+		        	<div class="form-group">
+		        		<input type="date" name="fechaReserva" id="fecha-reserva-input" class="col-8 form-control" <c:if test="${REST.disponible == false}">disabled</c:if>/>
+		        		<input type="submit" id="reserva-submit" value="Reservar" class="float-right btn btn-dark" <c:if test="${REST.disponible == false}">disabled</c:if>/>
+		        	</div>
+		        </form>
+		      </div>
+		      <div class="card-body">
+		        <form action="nueva-mesa" class="form-inline" method="post">
+		        	<input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input"/>
+		        	<div class="form-group">
+		        		<input type="submit" id="reserva-submit" value="Agregar mesa" class="float-right btn btn-dark"/>
+		        	</div>
+		        </form>
+		        <form action="nuevo-horario" class="form-inline" method="post">
+		        	<input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input"/>
+		        	<div class="form-group">
+		        		<input type="submit" id="reserva-submit" value="Agregar horario" class="float-right btn btn-dark"/>
+		        	</div>
+		        </form>
 		      </div>
 		    </div>
 		  </div>
