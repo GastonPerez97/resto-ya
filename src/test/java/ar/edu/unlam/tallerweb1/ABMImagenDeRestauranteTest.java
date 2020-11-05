@@ -89,7 +89,7 @@ public class ABMImagenDeRestauranteTest extends SpringTest {
 	    servicioRestaurante.subirImagenRestaurante(imagen);
 	    
 	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
+				   "\\img\\restaurantes\\" +
 				   imagen.getOriginalFilename();
 	    
 	    File imagenSubida = new File(pathDeImagenSubida);
@@ -108,7 +108,7 @@ public class ABMImagenDeRestauranteTest extends SpringTest {
 	    servicioRestaurante.subirImagenRestaurante(imagen);
 	    
 	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
+				   "\\img\\restaurantes\\" +
 				   imagen.getOriginalFilename();
 	    
 	    File imagenSubida = new File(pathDeImagenSubida);
@@ -140,19 +140,19 @@ public class ABMImagenDeRestauranteTest extends SpringTest {
 	
 	public MultipartFile getImagenPngMultipartParaTest() throws Exception {
 			
-			String imagenPath = servletContext.getRealPath("/") + "\\img\\test\\test2.png";
-			File imagenJpg = new File(imagenPath);
-			
-			FileInputStream input = new FileInputStream(imagenJpg);
-			
-			MultipartFile imagenMultipart = new MockMultipartFile(
-					"file",
-					imagenJpg.getName(),
-					"text/plain",
-					IOUtils.toByteArray(input)
-				);
-			
-			return imagenMultipart;
-		}
+		String imagenPath = servletContext.getRealPath("/") + "\\img\\test\\test2.png";
+		File imagenJpg = new File(imagenPath);
+		
+		FileInputStream input = new FileInputStream(imagenJpg);
+		
+		MultipartFile imagenMultipart = new MockMultipartFile(
+				"file",
+				imagenJpg.getName(),
+				"text/plain",
+				IOUtils.toByteArray(input)
+			);
+		
+		return imagenMultipart;
+	}
 	
 }
