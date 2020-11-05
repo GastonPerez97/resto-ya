@@ -6,6 +6,29 @@
         <a href="#" class="btn btn-light float-right">Ir arriba</a>
     </div>
 </footer>
+
+<script>
+    $('.delete-btn-comida').on('click', function(e) {
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            title: 'Eliminar Comida',
+            text: "�Est�s seguro de querer eliminar esta comida?",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Eliminar Comida'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+            }
+        })
+    });
+</script>
+
 <script>
     $('.delete-btn').on('click', function(e) {
         e.preventDefault();
