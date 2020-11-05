@@ -1,9 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <%@ include file="header.jsp" %>
 
-        <h3 class="pedido-titulo">Su Nï¿½mero Identificador de Pedido es: ${idPedido} </h3> <br>
+        <h3 class="pedido-titulo">Su Número Identificador de Pedido es: ${idPedido} </h3> <br>
         <section class="pedido mx-auto">
-            <c:forEach items="${Comidas}" var="comida" varStatus="status">
+            <c:forEach items="${pedidoComidaList}" var="pedidoComida" varStatus="status">
                 <article class="pedido-flex">
                     <div class="pedido-detalle">
                         <p style="text-decoration-line: underline;">${pedidoComida.comidaModel.tipo}</p>
