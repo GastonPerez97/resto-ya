@@ -73,10 +73,58 @@ public class ComidaServiceImpl implements ComidaService {
 	}
 	
 	@Override
+	public void guardarComidaEnDB(ComidaModel comida) {
+		comidaRepository.guardarComidaEnDB(comida);
+	}
+	
+	@Override
 	public void editarComida(ComidaModel comida) {
 		comidaRepository.editarComida(comida);
 	}
 
+	@Override
+	public void eliminarComida(ComidaModel comida) {
+		comidaRepository.eliminarComida(comida);
+	}
+	
+	@Override
+	public void procesarNuevaComida(ComidaModel comida, MultipartFile imagen) {
+		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
+		comida.setRestaurante(restaurante);
+		
+		if (!imagen.isEmpty()) {
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.subirImagenComida(imagen);
+				comida.setImageName(imagen.getOriginalFilename());
+			}
+		}
+		
+		this.guardarComidaEnDB(comida);
+	}
+	
+	@Override
+	public void procesarEdicionComida(ComidaModel comida, MultipartFile imagen) {
+		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
+		comida.setRestaurante(restaurante);
+		
+		if (!imagen.isEmpty()) {
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.eliminarImagenComidaSiExiste(comida);
+				this.subirImagenComida(imagen);
+				comida.setImageName(imagen.getOriginalFilename());
+			}
+		}
+
+		this.editarComida(comida);
+	}
+	
+	@Override
+	public void procesarEliminacionComida(ComidaModel comida) {
+		this.eliminarComida(comida);
+		this.eliminarImagenComidaSiExiste(comida);
+	}
+
+	
 	@Override
 	public void subirImagenComida(MultipartFile imagen) {
 		try {
@@ -106,22 +154,6 @@ public class ComidaServiceImpl implements ComidaService {
 			e.printStackTrace();
 		}
 	}
-	
-	@Override
-	public void procesarEdicionComida(ComidaModel comida, MultipartFile imagen) {
-		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
-		comida.setRestaurante(restaurante);
-		
-		if (!imagen.isEmpty()) {
-			if (this.verificarExtensionDeImagen(imagen)) {
-				this.eliminarImagenComidaSiExiste(comida);
-				this.subirImagenComida(imagen);
-				comida.setImageName(imagen.getOriginalFilename());
-			}
-		}
-
-		this.editarComida(comida);
-	}
 
 	@Override
 	public Boolean verificarExtensionDeImagen(MultipartFile imagen) {
@@ -129,37 +161,6 @@ public class ComidaServiceImpl implements ComidaService {
 			return true;
 		
 		return false;
-	}
-
-	@Override
-	public void procesarEliminacionComida(ComidaModel comida) {
-		this.eliminarComida(comida);
-		this.eliminarImagenComidaSiExiste(comida);
-	}
-
-	@Override
-	public void eliminarComida(ComidaModel comida) {
-		comidaRepository.eliminarComida(comida);
-	}
-
-	@Override
-	public void procesarNuevaComida(ComidaModel comida, MultipartFile imagen) {
-		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(comida.getRestaurante().getIdRestaurante());
-		comida.setRestaurante(restaurante);
-		
-		if (!imagen.isEmpty()) {
-			if (this.verificarExtensionDeImagen(imagen)) {
-				this.subirImagenComida(imagen);
-				comida.setImageName(imagen.getOriginalFilename());
-			}
-		}
-		
-		this.guardarComidaEnDB(comida);
-	}
-
-	@Override
-	public void guardarComidaEnDB(ComidaModel comida) {
-		comidaRepository.guardarComidaEnDB(comida);
 	}
 		
 }
