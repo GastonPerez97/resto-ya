@@ -129,7 +129,7 @@ public class ComidaServiceImpl implements ComidaService {
 	public void subirImagenComida(MultipartFile imagen) {
 		try {
 			String fileName = servletContext.getRealPath("/") +
-					   "img\\comidas\\" +
+					   "\\img\\comidas\\" +
 					   imagen.getOriginalFilename();
 			 
 			imagen.transferTo(new File(fileName));
@@ -143,7 +143,7 @@ public class ComidaServiceImpl implements ComidaService {
 		try {
 			if (!comida.getImageName().isEmpty()) {
 				String fileName = servletContext.getRealPath("/") +
-						   "img\\comidas\\" +
+						   "\\img\\comidas\\" +
 						   comida.getImageName();
 
 				File imagen = new File(fileName);
