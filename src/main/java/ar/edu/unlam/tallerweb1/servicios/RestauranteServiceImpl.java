@@ -81,62 +81,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public void editarRestaurante(RestauranteModel restaurante) {
 		repositorioRestaurante.editarRestaurante(restaurante);
 	}
-
-	@Override
-	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
-		String fileName = servletContext.getRealPath("/") +
-				   "\\img\\restaurantes\\" +
-				   imagen.getOriginalFilename();
-			 
-		try {
-			imagen.transferTo(new File(fileName));
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	@Override
 	public void eliminarRestaurante(RestauranteModel restaurante) {
 		repositorioRestaurante.eliminarRestaurante(restaurante);
-	}
-
-	@Override
-	public void eliminarImagenRestauranteSiExiste(RestauranteModel restaurante) {
-		try {
-			if (!restaurante.getImageName().isEmpty()) {
-				String fileName = servletContext.getRealPath("/") +
-						   "\\img\\restaurantes\\" +
-						   restaurante.getImageName();
-
-				File imagen = new File(fileName);
-				
-				imagen.delete();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Override
-	public void subirImagenSiNoEstaVacia(RestauranteModel restaurante, MultipartFile imagen) {
-		if (!imagen.isEmpty()) {
-			if (this.verificarExtensionDeImagen(imagen)) {
-				this.subirImagenRestaurante(restaurante, imagen);
-				restaurante.setImageName(imagen.getOriginalFilename());
-			}
-		}
-	}
-	
-	@Override
-	public void reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(RestauranteModel restaurante,
-			MultipartFile imagen) {
-		if (!imagen.isEmpty()) {
-			if (this.verificarExtensionDeImagen(imagen)) {
-				this.eliminarImagenRestauranteSiExiste(restaurante);
-				this.subirImagenRestaurante(restaurante, imagen);
-				restaurante.setImageName(imagen.getOriginalFilename());
-			}
-		}
 	}
 
 	@Override
@@ -166,6 +114,58 @@ public class RestauranteServiceImpl implements RestauranteService {
 	public void procesarEliminacionRestaurante(RestauranteModel restaurante) {
 		this.eliminarRestaurante(restaurante);
 		this.eliminarImagenRestauranteSiExiste(restaurante);
+	}
+	
+	@Override
+	public void subirImagenRestaurante(RestauranteModel restaurante, MultipartFile imagen) {
+		String fileName = servletContext.getRealPath("/") +
+				   "\\img\\restaurantes\\" +
+				   imagen.getOriginalFilename();
+			 
+		try {
+			imagen.transferTo(new File(fileName));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void subirImagenSiNoEstaVacia(RestauranteModel restaurante, MultipartFile imagen) {
+		if (!imagen.isEmpty()) {
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.subirImagenRestaurante(restaurante, imagen);
+				restaurante.setImageName(imagen.getOriginalFilename());
+			}
+		}
+	}
+
+	@Override
+	public void eliminarImagenRestauranteSiExiste(RestauranteModel restaurante) {
+		try {
+			if (!restaurante.getImageName().isEmpty()) {
+				String fileName = servletContext.getRealPath("/") +
+						   "\\img\\restaurantes\\" +
+						   restaurante.getImageName();
+
+				File imagen = new File(fileName);
+				
+				imagen.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void reemplazarImagenRestauranteSiNuevaImagenNoEstaVacia(RestauranteModel restaurante,
+			MultipartFile imagen) {
+		if (!imagen.isEmpty()) {
+			if (this.verificarExtensionDeImagen(imagen)) {
+				this.eliminarImagenRestauranteSiExiste(restaurante);
+				this.subirImagenRestaurante(restaurante, imagen);
+				restaurante.setImageName(imagen.getOriginalFilename());
+			}
+		}
 	}
 	
 	@Override

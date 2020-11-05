@@ -24,14 +24,42 @@ public class ABMRestaurantePersistenciaTest extends SpringTest {
         assertThat(session().isConnected()).isTrue();
     }
 
-//    @Test
-//    @Transactional @Rollback
-//    public void testQueGuardaRestaurante() {
-//        RestauranteModel restaurante = new RestauranteModel("restaurante1");
-//        System.out.println(session().save(restaurante).getClass().getName());
-//        String idGuardado = repositorioRestaurante.guardarRestaurante(restaurante);
-//
-//
-//        assertEquals(menuEsperado, menuActual);
-//    }
+    @Test
+    @Transactional @Rollback
+    public void testQueGuardaRestaurante() {
+        RestauranteModel restaurante = new RestauranteModel("restaurante");
+
+        repositorioRestaurante.guardarRestaurante(restaurante);
+
+        assertThat(restaurante.getIdRestaurante()).isNotNull();
+    }
+    
+    @Test
+    @Transactional @Rollback
+    public void testQueEditaRestaurante() {
+        RestauranteModel restaurante = new RestauranteModel("restaurante");
+        restaurante.setDireccion("Florencio Varela 123");
+        
+        String direccionModificada = "Rivadavia 123";
+
+        repositorioRestaurante.guardarRestaurante(restaurante);
+        
+        restaurante.setDireccion(direccionModificada);
+        
+        repositorioRestaurante.editarRestaurante(restaurante);
+
+        assertThat(session().get(RestauranteModel.class, restaurante.getIdRestaurante())
+				        		.getDireccion()).isEqualTo(direccionModificada);
+    }
+    
+    @Test
+    @Transactional @Rollback
+    public void testQueEliminaRestaurante() {
+        RestauranteModel restaurante = new RestauranteModel("restaurante");
+
+        repositorioRestaurante.guardarRestaurante(restaurante);
+        repositorioRestaurante.eliminarRestaurante(restaurante);
+
+        assertThat(session().get(RestauranteModel.class, restaurante.getIdRestaurante())).isNull();
+    }
 }
