@@ -4,7 +4,7 @@
 
     <div class="mb-4 volver-btn d-flex justify-content-between">
         <a href="../restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
-        <a href="./${restaurante.idRestaurante}/agregarComida">
+        <a href="../agregarComida?idRestaurante=${restaurante.idRestaurante}">
 	       	<button type="button" class="btn btn-dark mr-3">
 	       		<i class="far fa-plus-square mr-3"></i>Agregar Comida
 	       	</button>

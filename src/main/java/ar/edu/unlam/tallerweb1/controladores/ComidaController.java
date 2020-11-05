@@ -70,8 +70,8 @@ public class ComidaController {
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
 	
-	@RequestMapping(path = "restaurante/{idRestaurante}/agregarComida")
-	public ModelAndView agregarComida(@PathVariable Long idRestaurante) {
+	@RequestMapping(path = "/agregarComida")
+	public ModelAndView agregarComida(@RequestParam Long idRestaurante) {
 		ModelMap modelo = new ModelMap();
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);

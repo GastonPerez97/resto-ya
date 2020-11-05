@@ -9,7 +9,7 @@
 
 <section class="mx-auto col-lg-6">
 	<article>
-		<form:form action="../../validar-nuevaComida" method="POST" modelAttribute="comida" enctype="multipart/form-data">
+		<form:form action="validar-nuevaComida" method="POST" modelAttribute="comida" enctype="multipart/form-data">
 			<form:hidden path="restaurante.idRestaurante" values="comida.restaurante.idRestaurante"/>
 			
 			<div class="form-group">
