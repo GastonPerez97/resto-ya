@@ -48,7 +48,11 @@ public class RestauranteModel {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.ALL)
     private List<MesaModel> mesas = new LinkedList<MesaModel>();
     
-//  Constructor para tests
+//  Constructores para tests
+    public RestauranteModel(String nombre) {
+    	this.nombre = nombre;
+	}
+    
     public RestauranteModel(String nombre, Long id) {
     	this.nombre = nombre;
 		this.idRestaurante = idRestaurante;

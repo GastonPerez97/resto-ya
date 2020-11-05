@@ -91,7 +91,7 @@ header nav {
 }
 
 .img-restaurante {
-    max-height: 300px;
+    max-height: 230px;
     width: auto;
 }
 
@@ -108,6 +108,15 @@ header nav {
 
 .no-disponible {
     opacity: 0.6;
+}
+
+.restaurante-btn {
+	font-size: 50px;
+	color: #343a40;
+}
+
+.restaurante-btn:hover {
+	color: #000000;
 }
 
 @media screen and (max-width: 1510px) {
