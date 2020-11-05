@@ -42,4 +42,9 @@ public class LoginServiceImpl implements LoginService {
 		return repositorioUsuario.consultarUsuario(registro.getDatoBuscado());
 	}
 
+	@Override
+	public Usuario consultarUsuario2(Usuario usuario) {
+		return repositorioUsuario.consultarUsuario(usuario);
+	}
+
 }

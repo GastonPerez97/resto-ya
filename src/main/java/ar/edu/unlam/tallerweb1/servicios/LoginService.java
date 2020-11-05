@@ -7,8 +7,12 @@ import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
 // Interface que define los metodos del Servicio de Usuarios.
 public interface LoginService {
 
-	Usuario consultarUsuario(FormularioRegistro registro);
+
 
 	void guardarUsuario(Usuario usuario);
+
+	Usuario consultarUsuario(FormularioRegistro usuario);
+	
+	Usuario consultarUsuario2(Usuario usuario);
 
 }

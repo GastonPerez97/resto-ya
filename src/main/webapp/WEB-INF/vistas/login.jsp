@@ -4,12 +4,11 @@
 
 <section class="mx-auto col-lg-6">
 	<article>
-		<form:form action="validarLogin" method="POST"
-			modelAttribute="usuario">
+		<form:form action="validarLogin" method="POST" 	modelAttribute="usuario">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="precio">Email:</label>
-					<form:input path="email" type="email" id="email"
+					<label for="email">Email:</label>
+					<form:input path="email" id="text"
 						class="form-control" />
 					<label for="contraseña">Contraseña:</label>
 					<form:input path="password" type="password" id="password"

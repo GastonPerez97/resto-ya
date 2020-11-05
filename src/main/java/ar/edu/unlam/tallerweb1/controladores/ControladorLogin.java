@@ -57,7 +57,7 @@ public class ControladorLogin {
 	// form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
 	@RequestMapping(path = "/validarLogin", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("usuario") FormularioRegistro usuario,
+	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario,
 			HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		model.put("titulo", "Contacto");
@@ -65,7 +65,7 @@ public class ControladorLogin {
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL
 		// /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a través de la URL correspondiente a ésta
-		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
+		Usuario usuarioBuscado = servicioLogin.consultarUsuario2(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			return new ModelAndView("redirect:/home");
