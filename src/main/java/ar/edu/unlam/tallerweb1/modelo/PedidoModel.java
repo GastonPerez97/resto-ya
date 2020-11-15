@@ -28,8 +28,28 @@ public class PedidoModel {
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
 	
+	public List<PedidoComidaModel> getListaPedidosComidas() {
+		return listaPedidosComidas;
+	}
+
+	public void setListaPedidosComidas(List<PedidoComidaModel> listaPedidosComidas) {
+		this.listaPedidosComidas = listaPedidosComidas;
+	}
+
+	public ClienteModel getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteModel cliente) {
+		this.cliente = cliente;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidoModel", cascade = CascadeType.ALL)
 	private List<PedidoComidaModel> listaPedidosComidas;
+	
+	@ManyToOne
+	@JoinColumn(name="id_cliente")
+	private ClienteModel cliente;
 	
 	public PedidoModel() {
 		listaPedidosComidas = new ArrayList<PedidoComidaModel>();

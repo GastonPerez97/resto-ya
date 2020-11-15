@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,10 +27,16 @@ public class ClienteModel {
 	private String telefono;
 
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
-	public Usuario getUsuario() {
+	/*
+	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade =
+	 * CascadeType.ALL) private List<PedidoModel> pedidos = new
+	 * LinkedList<PedidoModel>();
+	 */
+	
+	 	public Usuario getUsuario() {
 		return usuario;
 	}
 
