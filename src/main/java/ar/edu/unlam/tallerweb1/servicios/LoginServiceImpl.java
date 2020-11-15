@@ -1,4 +1,3 @@
-/*
 package ar.edu.unlam.tallerweb1.servicios;
 
 import javax.inject.Inject;
@@ -9,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
+import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
 
 // Implelemtacion del Servicio de usuarios, la anotacion @Service indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.servicios
@@ -18,20 +19,32 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 // en hibernateCOntext.xml. De esta manera todos los metodos de cualquier dao invocados dentro de un servicio se ejecutan en la misma transaccion
 @Service("servicioLogin")
 @Transactional
-public class ServicioLoginImpl implements ServicioLogin {
+public class LoginServiceImpl implements LoginService {
 
 	private RepositorioUsuario servicioLoginDao;
 
 	@Autowired
-	public ServicioLoginImpl(RepositorioUsuario servicioLoginDao){
+	public LoginServiceImpl(RepositorioUsuario servicioLoginDao) {
 		this.servicioLoginDao = servicioLoginDao;
 	}
 
+	@Autowired
+	private RepositorioUsuario repositorioUsuario;
+
 	@Override
-	public Usuario consultarUsuario (Usuario usuario) {
-		return servicioLoginDao.consultarUsuario(usuario);
+	public void guardarUsuario(Usuario usuario) {
+		repositorioUsuario.guardarUsuario(usuario);
+
+	}
+
+	@Override
+	public Usuario consultarUsuario(FormularioRegistro registro) {
+		return repositorioUsuario.consultarUsuario(registro.getDatoBuscado());
+	}
+
+	@Override
+	public Usuario consultarUsuario2(Usuario usuario) {
+		return repositorioUsuario.consultarUsuario(usuario);
 	}
 
 }
-
-*/
