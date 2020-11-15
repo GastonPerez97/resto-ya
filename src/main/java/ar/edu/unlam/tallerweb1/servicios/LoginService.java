@@ -9,9 +9,9 @@ public interface LoginService {
 
 
 
-	void guardarUsuario(Usuario usuario);
+	void guardarUsuarioRegistrado(Usuario usuario);
 
-	Usuario consultarUsuario(FormularioRegistro registro);
+	Usuario consultarUsuarioRegistrado(FormularioRegistro registro);
 	
 	Usuario consultarUsuario2(Usuario usuario);
 

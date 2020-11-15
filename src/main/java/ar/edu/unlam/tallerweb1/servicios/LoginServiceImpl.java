@@ -32,19 +32,19 @@ public class LoginServiceImpl implements LoginService {
 	private RepositorioUsuario repositorioUsuario;
 
 	@Override
-	public void guardarUsuario(Usuario usuario) {
-		repositorioUsuario.guardarUsuario(usuario);
+	public void guardarUsuarioRegistrado(Usuario usuario) {
+		repositorioUsuario.guardarUsuarioRegistrado(usuario);
 
 	}
 
 	@Override
-	public Usuario consultarUsuario(FormularioRegistro registro) {
-		return repositorioUsuario.consultarUsuario(registro.getDatoBuscado());
+	public Usuario consultarUsuarioRegistrado(FormularioRegistro registro) {
+		return repositorioUsuario.consultarUsuarioRegistrado(registro.getDatoBuscado());
 	}
 
 	@Override
 	public Usuario consultarUsuario2(Usuario usuario) {
-		return repositorioUsuario.consultarUsuario(usuario);
+		return repositorioUsuario.consultarUsuarioRegistrado(usuario);
 	}
 
 }

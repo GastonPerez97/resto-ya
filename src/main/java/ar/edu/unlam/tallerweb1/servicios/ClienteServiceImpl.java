@@ -1,15 +1,10 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.repositorios.ClienteRepository;
-import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.enums.TipoUsuario;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
 
@@ -21,14 +16,14 @@ public class ClienteServiceImpl implements ClienteService {
 	private ClienteRepository clienteRepository;
 
 	@Override
-	public void guardarCliente(FormularioRegistro registro) {
+	public void guardarClienteRegistrado(FormularioRegistro registro) {
 		registro.getClienteBuscado().setUsuario(registro.getDatoBuscado());
 		clienteRepository.guardarCliente(registro.getClienteBuscado());
 
 	}
 
 	@Override
-	public ResultadoRegistro consultarCliente(FormularioRegistro registro) {
+	public ResultadoRegistro consultarClienteRegistrado(FormularioRegistro registro) {
 		// TODO Auto-generated method stub
 		return null;
 	}

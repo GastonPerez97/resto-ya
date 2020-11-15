@@ -1,7 +1,10 @@
-/*
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -16,28 +19,31 @@ import javax.inject.Inject;
 @Repository("repositorioUsuario")
 public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
-	// Como todo repositorio maneja acciones de persistencia, normalmente estará inyectado el session factory de hibernate
+	// Como todo repositorio maneja acciones de persistencia, normalmente estará
+	// inyectado el session factory de hibernate
 	// el mismo está difinido en el archivo hibernateContext.xml
-	private SessionFactory sessionFactory;
 
-    @Autowired
-	public RepositorioUsuarioImpl(SessionFactory sessionFactory){
+	@Inject
+	public RepositorioUsuarioImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
-	public Usuario consultarUsuario(Usuario usuario) {
+	private SessionFactory sessionFactory;
 
-		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
-		// de busqueda de Usuario donde el email y password sean iguales a los del objeto recibido como parametro
-		// uniqueResult da error si se encuentran más de un resultado en la busqueda.
+	@Override
+	public void guardarUsuarioRegistrado(Usuario usuario) {
+		sessionFactory.getCurrentSession().save(usuario);
+		Usuario user = new Usuario();
+		ClienteModel cliente = new ClienteModel();
+		cliente.setNombre(user.getNombre());
+
+	}
+
+	@Override
+	public Usuario consultarUsuarioRegistrado(Usuario usuario) {
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", usuario.getEmail()))
-				.add(Restrictions.eq("password", usuario.getPassword()))
+		return (Usuario) session.createCriteria(Usuario.class).add(Restrictions.eq("email", usuario.getEmail()))
 				.uniqueResult();
 	}
 
 }
-
-*/
