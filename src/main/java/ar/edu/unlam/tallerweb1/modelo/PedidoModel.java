@@ -37,11 +37,11 @@ public class PedidoModel {
 	}
 
 	public ClienteModel getCliente() {
-		return cliente;
+		return clienteModel;
 	}
 
 	public void setCliente(ClienteModel cliente) {
-		this.cliente = cliente;
+		this.clienteModel = cliente;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidoModel", cascade = CascadeType.ALL)
@@ -49,7 +49,7 @@ public class PedidoModel {
 	
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
-	private ClienteModel cliente;
+	private ClienteModel clienteModel;
 	
 	public PedidoModel() {
 		listaPedidosComidas = new ArrayList<PedidoComidaModel>();
