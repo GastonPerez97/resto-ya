@@ -33,7 +33,15 @@
 				<form:input path="clave" type="password" id="clave"
 					class="form-control" required="true" />
 			</div>
+<%--
 
+					<form:select id="rol-select" path="idRol" required="required">
+						<option value="0">---</option>
+						<c:forEach items="${roles}" var="rol">
+					    	<form:option value="${rol.idRol}">${rol.nombre}</form:option>
+						</c:forEach>
+					</form:select>
+	--%>
 
 			<div class="form-group mt-5 text-center">
 				<button type="submit" class="btn btn-primary mx-auto">Agregar</button>

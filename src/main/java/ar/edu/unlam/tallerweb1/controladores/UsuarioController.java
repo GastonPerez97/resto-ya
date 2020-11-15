@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 
@@ -24,7 +25,6 @@ public class UsuarioController {
 
 		modelo.put("titulo", "Lista de Usuarios");
 		modelo.put("usuarios", usuarioService.listarUsuarios());
-		modelo.put("rol1", "Administrador");
 
 		return new ModelAndView("usuarios", modelo);
 	}
@@ -37,6 +37,7 @@ public class UsuarioController {
 
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("usuario", usuario);
+		
 
 		return new ModelAndView("agregarUsuario", modelo);
 	}
@@ -50,7 +51,7 @@ public class UsuarioController {
 	public ModelAndView editarUsuario(@RequestParam("id") Long id) {
 
 		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
-
+		
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());

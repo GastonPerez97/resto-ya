@@ -26,5 +26,36 @@ public class UsuarioRolModel {
 	@ManyToOne
 	@JoinColumn(name = "id_rol")
 	private RolModel rolModel;
+	
+	
 
+	public Long getIdUsuarioRol() {
+		return idUsuarioRol;
+	}
+
+	public void setIdUsuarioRol(Long idUsuarioRol) {
+		this.idUsuarioRol = idUsuarioRol;
+	}
+
+	public UsuarioModel getUsuarioModel() {
+		return usuarioModel;
+	}
+
+	public void setUsuarioModel(UsuarioModel usuarioModel) {
+		this.usuarioModel = usuarioModel;
+	}
+
+	public RolModel getRolModel() {
+		return rolModel;
+	}
+
+	public void setRolModel(RolModel rolModel) {
+		this.rolModel = rolModel;
+	}
+
+	
+	
+	
+	
+	
 }

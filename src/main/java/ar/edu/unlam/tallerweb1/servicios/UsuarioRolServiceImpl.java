@@ -10,7 +10,7 @@ import ar.edu.unlam.tallerweb1.repositorios.UsuarioRolRepository;
 @Transactional
 public class UsuarioRolServiceImpl implements UsuarioRolService {
 	
-	@Inject
+/*	@Inject
 	private UsuarioRolRepository usuarioRolRepository;
 
 	@Override
@@ -18,7 +18,7 @@ public class UsuarioRolServiceImpl implements UsuarioRolService {
 		return usuarioRolRepository.buscarUsuarioRolPorId(id);
 	}
 	
-	
+	*/
 	
 
 }

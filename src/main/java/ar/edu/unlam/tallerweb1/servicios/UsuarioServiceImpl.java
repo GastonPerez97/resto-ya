@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -7,8 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.RolModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioRolModel;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRepository;
+import ar.edu.unlam.tallerweb1.repositorios.UsuarioRolRepository;
 
 @Service("usuarioService")
 @Transactional
@@ -16,6 +23,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
+	
+	@Inject
+	private UsuarioRolRepository usuarioRolRepository;
+	
+	@Inject
+	private RolService rolService;
 	
 
 	@Override
@@ -38,7 +51,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public List<UsuarioModel> listarUsuarios() {
-		return usuarioRepository.listarUsuarios();
+		List<UsuarioModel> usuarios = usuarioRepository.listarUsuarios();
+		
+		for (UsuarioModel usuarioModel : usuarios) {
+			List<UsuarioRolModel> listaUsuarioRol = usuarioRolRepository.buscarRolesPorUsuario(usuarioModel.getIdUsuario());
+			usuarioModel.setListaUsuarioRoles(listaUsuarioRol);
+		}
+		return usuarios;
 	}
 
 	@Override
@@ -102,5 +121,24 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 	}
 
+	
+	@Override
+	public UsuarioModel cargarUsuarioRol() {
+		
+		List<RolModel> roles = rolService.listarRolUsuario();	
+		UsuarioModel usuario = new UsuarioModel();
+		
+		for (RolModel rol : roles) {
+			UsuarioRolModel usuarioRol = new UsuarioRolModel();
+			usuarioRol.setRolModel(rol);
+			usuarioRol.setUsuarioModel(usuario);
+			usuario.getListaUsuarioRoles().add(usuarioRol);
+		}
+	
+		return usuario;
+	}
+	
+	
+	
 
 }

@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
-
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 
 public interface UsuarioService {
@@ -27,6 +25,8 @@ public interface UsuarioService {
 	public ModelAndView validarUsuario(UsuarioModel usuario);
 
 	public ModelAndView validarEliminarUsuario(Long id);
+	
+	public UsuarioModel cargarUsuarioRol();
 	
 
 }
