@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,8 +15,14 @@ public class ClienteModel {
 	
     @Column(name = "nombre")
     private String nombre;
-
-    public ClienteModel() {
+    
+	/*
+	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade =
+	 * CascadeType.ALL)
+	 * 
+	 * @Column(name = "id_pedido") private PedidoModel idPedido;
+	 */
+	public ClienteModel() {
     	
     }
 
