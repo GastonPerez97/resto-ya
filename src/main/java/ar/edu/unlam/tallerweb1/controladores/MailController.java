@@ -14,8 +14,12 @@ import ar.edu.unlam.tallerweb1.servicios.MailService;
 @Controller
 public class MailController {
 	
-	@Inject
 	private MailService mailService;
+	
+	@Inject
+	public MailController(MailService mailService) {
+		this.mailService = mailService;
+	}
 	
 	@RequestMapping("/mail")
 	public ModelAndView irAMail() {
@@ -27,7 +31,6 @@ public class MailController {
 		ModelMap modelo = new ModelMap();
 		
 		if (mailService.enviarMail(destinatario)) {
-//			CAMBIAR REDIRECCIONAMIENTO, AGREGAR DATA EN UN MODELO
 			modelo.put("resultadoMail", "El mail fue enviado exitosamente");
 		} else {
 			modelo.put("resultadoMail", "Ocurrio un error al enviar el mail. Intente nuevamente.");
