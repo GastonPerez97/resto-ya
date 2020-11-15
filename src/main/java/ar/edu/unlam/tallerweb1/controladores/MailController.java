@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,11 +24,15 @@ public class MailController {
 	
 	@RequestMapping(path = "/enviarMail", method = RequestMethod.POST)
 	public ModelAndView enviarMail(@RequestParam("email") String destinatario) {
+		ModelMap modelo = new ModelMap();
+		
 		if (mailService.enviarMail(destinatario)) {
-			return new ModelAndView("redirect:/restaurantes");	
+//			CAMBIAR REDIRECCIONAMIENTO, AGREGAR DATA EN UN MODELO
+			modelo.put("resultadoMail", "El mail fue enviado exitosamente");
 		} else {
-			return new ModelAndView("redirect:/mail");	
+			modelo.put("resultadoMail", "Ocurrio un error al enviar el mail. Intente nuevamente.");
 		}
-			
+		
+		return new ModelAndView("resultadoMail", modelo);
 	}
 }
