@@ -36,10 +36,11 @@ public class BusquedaController {
 	}
 
 	@RequestMapping(path = "/buscar", method = RequestMethod.POST)
-	public ModelAndView buscarPost(@ModelAttribute("formularioBusqueda") FormularioBusqueda busqueda) {
+	public ModelAndView buscarPost(@ModelAttribute("formularioBusqueda") FormularioBusqueda busqueda, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		ResultadoBusqueda resultadoBusqueda = busquedaService.buscar(busqueda);  
 		modelo.put("resultadoBusqueda", resultadoBusqueda);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		if (busqueda.getTipoBusquedaSeleccionada().equals(TipoBusqueda.COMIDA.ordinal()))
 			return new ModelAndView("comidasBuscadas", modelo);

@@ -48,7 +48,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(path = "/agregarUsuario", method = RequestMethod.POST)
-	public ModelAndView agregarUsuario() {
+	public ModelAndView agregarUsuario(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		FormularioAgregarUsuario formulario = new FormularioAgregarUsuario();
@@ -57,19 +57,21 @@ public class UsuarioController {
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("formularioAgregarUsuario", formulario);
 		modelo.put("listaDeRoles", listDeRoles);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		return new ModelAndView("agregarUsuario", modelo);
 	}
 
 	@RequestMapping(path = "/validarRegistroUsuario", method = RequestMethod.POST)
 	public ModelAndView validarRegistroUsuario(
-			@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario) {
+			@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
 		List<RolModel> listDeRoles = rolService.listarRolUsuario();
 
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("listaDeRoles", listDeRoles);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		if (usuarioService.validarRegistroUsuario(formularioAgregarUsuario) == false) {
 			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
@@ -83,22 +85,24 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/editarUsuario")
-	public ModelAndView editarUsuario(@RequestParam("id") Long id) {
+	public ModelAndView editarUsuario(@RequestParam("id") Long id, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
 
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		return new ModelAndView("editarUsuario", modelo);
 	}
 
 	@RequestMapping(path = "/validarEditarUsuario", method = RequestMethod.POST)
-	public ModelAndView validarEditarUsuario(@ModelAttribute("usuario") UsuarioModel usuario) {
+	public ModelAndView validarEditarUsuario(@ModelAttribute("usuario") UsuarioModel usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Editar Usuario");
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		usuarioService.modificarUsuario(usuario);
 		return new ModelAndView("redirect:/usuarios");
@@ -106,9 +110,11 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/validarEliminarUsuario")
-	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id) {
+	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		
 		if (usuarioService.validarEliminarUsuario(id) == true) {
 			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
 			usuarioService.eliminarUsuarioPorId(id);
