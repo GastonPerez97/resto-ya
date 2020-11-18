@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
-import ar.edu.unlam.tallerweb1.modelo.MesaModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioNuevaMesa;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
 import ar.edu.unlam.tallerweb1.servicios.HorarioService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteHorarioService;

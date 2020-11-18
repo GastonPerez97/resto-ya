@@ -64,6 +64,7 @@ public class ClienteController {
 	}
 
 	@RequestMapping(path = "/historicoPedidos")
+	
 	public ModelAndView irAHistorico() {
 
 		ModelMap model = new ModelMap();

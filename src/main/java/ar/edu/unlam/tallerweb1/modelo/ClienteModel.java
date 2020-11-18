@@ -30,12 +30,10 @@ public class ClienteModel {
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL) 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL)
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
-			 
-	
-	  public List<PedidoModel> getPedidos() {
+
+	public List<PedidoModel> getPedidos() {
 		return pedidos;
 	}
 
@@ -43,10 +41,8 @@ public class ClienteModel {
 		this.pedidos = pedidos;
 	}
 
-
-	
 	public Usuario getUsuario() {
-	return usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
@@ -86,8 +82,6 @@ public class ClienteModel {
 	}
 
 	public ClienteModel() {
-		
-		
 
 	}
 

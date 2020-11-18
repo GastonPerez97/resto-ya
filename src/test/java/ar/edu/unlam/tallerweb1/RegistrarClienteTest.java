@@ -3,39 +3,74 @@ package ar.edu.unlam.tallerweb1;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.Rollback;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
-import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 
 public class RegistrarClienteTest extends SpringTest {
-	
+
 	@Inject
-	
+
 	private ClienteService servicioCliente;
-	
+
 	@Inject
 	private ServletContext servletContext;
-	
-    @Test
-    @Transactional @Rollback
-    public void pruebaConexion(){
-        assertThat(session().isConnected()).isTrue();
-    }
-    
+
+	@Test
+	@Transactional
+	@Rollback
+	public void pruebaConexion() {
+		assertThat(session().isConnected()).isTrue();
+	}
+
+	@Test
+	@Transactional
+	@Rollback
+	public void queElApellidoDelClienteSeGuardeCorrectamente() {
+		ClienteModel cliente = new ClienteModel();
+		cliente.setApellido("Apellido");
+		assertEquals("Apellido", cliente.getApellido());
+
+	}
+
+	@Test
+	@Transactional
+	@Rollback
+	public void queElClienteSeGuardeCorrectamente() {
+		ClienteModel cliente = new ClienteModel();
+
+		cliente.setApellido("Apellido");
+		cliente.setDni("111111");
+		cliente.setNombre("Nombre");
+		cliente.setTelefono("0303456");
+
+		FormularioRegistro registro = new FormularioRegistro();
+		registro.setClienteBuscado(cliente);
+
+		servicioCliente.guardarClienteRegistrado(registro);
+
+		assertEquals("Apellido", registro.getClienteBuscado().getApellido());
+
+	}
+
+	@Test
+	@Transactional
+	@Rollback
+	public void queElClienteNoSeGuardeCorrectamenteSiNoSeCompletaronLosDatos() {
+		FormularioRegistro registro = new FormularioRegistro();
+		servicioCliente.guardarClienteRegistrado(registro);
+
+		assertThat(registro);
+
+	}
+
 	/*
 	 * @Test
 	 * 
@@ -133,5 +168,5 @@ public class RegistrarClienteTest extends SpringTest {
 	 * 
 	 * return imagenMultipart; }
 	 */
-	
+
 }
