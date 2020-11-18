@@ -9,6 +9,8 @@ public interface UsuarioRolRepository {
 	UsuarioRolModel buscarUsuarioRolPorId(Long id);
 	
 	List<UsuarioRolModel> buscarRolesPorUsuario(Long idUsuario);
+
+	void guardarUsuarioRol(Long idUsuario, Long idRol);
 	
 
 }

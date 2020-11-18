@@ -28,6 +28,10 @@ public class UsuarioRolModel {
 	private RolModel rolModel;
 	
 	
+	
+
+	public UsuarioRolModel() {
+	}
 
 	public Long getIdUsuarioRol() {
 		return idUsuarioRol;

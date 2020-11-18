@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 
 public interface UsuarioService {
 	
@@ -22,11 +23,11 @@ public interface UsuarioService {
 	
 	public UsuarioModel buscarUsuarioPorId(Long id);
 	
-	public ModelAndView validarUsuario(UsuarioModel usuario);
+	public ModelAndView validarUsuario(FormularioAgregarUsuario formularioAgregarUsuario);
 
 	public ModelAndView validarEliminarUsuario(Long id);
 	
-	public UsuarioModel cargarUsuarioRol();
+
 	
 
 }

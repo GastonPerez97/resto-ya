@@ -29,4 +29,17 @@ public class UsuarioRolRepositoryImpl implements UsuarioRolRepository {
 				.add(Restrictions.eq("usuarioModel.idUsuario",idUsuario)).list();
 	}
 
+
+	@Override
+	public void guardarUsuarioRol(Long idUsuario, Long idRol) {
+		sessionFactory.getCurrentSession().createSQLQuery("insert into usuario_rol (id_rol, id_usuario) values ( :valor1, :valor2)")
+		.setParameter("valor1", idRol)
+		.setParameter("valor2", idUsuario)
+		.executeUpdate();
+		
+	}
+
+
+
+
 }

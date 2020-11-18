@@ -1,19 +1,14 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-import ar.edu.unlam.tallerweb1.modelo.RolModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioRolModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRepository;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRolRepository;
 
@@ -26,9 +21,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Inject
 	private UsuarioRolRepository usuarioRolRepository;
-	
-	@Inject
-	private RolService rolService;
 	
 
 	@Override
@@ -93,8 +85,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public ModelAndView validarUsuario(UsuarioModel usuario) {
+	public ModelAndView validarUsuario(FormularioAgregarUsuario formularioAgregarUsuario) {
 		ModelMap modelo = new ModelMap();
+		
+		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
+	
 
 		modelo.put("titulo", "Agregar Usuario");
 
@@ -102,8 +97,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
 			return new ModelAndView("agregarUsuario", modelo);
 		} else {
-			guardarUsuario(usuario);
+		    guardarUsuario(usuario);
+		    usuarioRolRepository.guardarUsuarioRol(usuario.getIdUsuario(), formularioAgregarUsuario.getIdRol());
+		    
 			return new ModelAndView("redirect:/usuarios");
+			
 		}
 	}
 	
@@ -121,24 +119,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 	}
 
-	
-	@Override
-	public UsuarioModel cargarUsuarioRol() {
-		
-		List<RolModel> roles = rolService.listarRolUsuario();	
-		UsuarioModel usuario = new UsuarioModel();
-		
-		for (RolModel rol : roles) {
-			UsuarioRolModel usuarioRol = new UsuarioRolModel();
-			usuarioRol.setRolModel(rol);
-			usuarioRol.setUsuarioModel(usuario);
-			usuario.getListaUsuarioRoles().add(usuarioRol);
-		}
-	
-		return usuario;
-	}
-	
-	
+
 	
 
 }

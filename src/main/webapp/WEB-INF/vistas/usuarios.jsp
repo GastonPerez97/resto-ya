@@ -49,8 +49,8 @@
 				</div>
 			</div>
 		</div>
-
 	</c:forEach>
+
 </section>
 
 <%@ include file="footer.jsp"%>

@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.RolModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
+import ar.edu.unlam.tallerweb1.servicios.RolService;
 import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 
 @Controller
@@ -18,13 +21,24 @@ public class UsuarioController {
 
 	@Inject
 	private UsuarioService usuarioService;
+	
+	@Inject
+	private RolService rolService;
 
 	@RequestMapping("/usuarios")
-	public ModelAndView usuarios() {
+	public ModelAndView usuarios(HttpServletRequest request) {
+		
+		String rol = (String) request.getSession().getAttribute("ROL");
+		
+		if (!rol.equals("Admin")) {
+			return new ModelAndView("redirect:/login");
+		}
+		
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Usuarios");
 		modelo.put("usuarios", usuarioService.listarUsuarios());
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		return new ModelAndView("usuarios", modelo);
 	}
@@ -33,29 +47,35 @@ public class UsuarioController {
 	public ModelAndView agregarUsuario() {
 		ModelMap modelo = new ModelMap();
 
-		UsuarioModel usuario = new UsuarioModel();
+
+		FormularioAgregarUsuario formulario = new FormularioAgregarUsuario();
+		List<RolModel> listDeRoles = rolService.listarRolUsuario();
+		
 
 		modelo.put("titulo", "Agregar Usuario");
-		modelo.put("usuario", usuario);
+		modelo.put("formularioAgregarUsuario", formulario);
+		modelo.put("listaDeRoles", listDeRoles);
 		
 
 		return new ModelAndView("agregarUsuario", modelo);
 	}
 
 	@RequestMapping(path = "/validarUsuario", method = RequestMethod.POST)
-	public ModelAndView validarUsuario(@ModelAttribute("usuario") UsuarioModel usuario) {
-		return usuarioService.validarUsuario(usuario);
+	public ModelAndView validarUsuario(@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario) {
+		return usuarioService.validarUsuario(formularioAgregarUsuario);
 	}
 
 	@RequestMapping("/editarUsuario")
 	public ModelAndView editarUsuario(@RequestParam("id") Long id) {
-
-		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
-		
 		ModelMap modelo = new ModelMap();
 
+		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
+		List<RolModel> listDeRoles = rolService.listarRolUsuario();
+		
+		
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario);
+		modelo.put("listaDeRoles", listDeRoles);
 
 		return new ModelAndView("editarUsuario", modelo);
 	}

@@ -1,9 +1,9 @@
-/*
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +35,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
 		// al model attribute del form que esta definido en la vista 'login'
-		Usuario usuario = new Usuario();
+		UsuarioModel usuario = new UsuarioModel();
 
 		modelo.put("titulo", "Login");
 		modelo.put("usuario", usuario);
@@ -48,15 +48,16 @@ public class ControladorLogin {
 	// El método recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
+	public ModelAndView validarLogin(@ModelAttribute("usuario") UsuarioModel usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		model.put("titulo", "Contacto");
 		
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a través de la URL correspondiente a ésta
-		Usuario usuarioBuscado = servicioLogin.consultarUsuario(usuario);
+		UsuarioModel usuarioBuscado = servicioLogin.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			request.getSession().setAttribute("ROL", "Admin");
+			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombreDeUsuario());
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -65,6 +66,17 @@ public class ControladorLogin {
 		return new ModelAndView("login", model);
 	}
 
+	@RequestMapping("/logout")
+	public ModelAndView irAlogout(HttpServletRequest request) {
+
+		ModelMap modelo = new ModelMap();
+
+		
+		return new ModelAndView("logout", modelo);
+	}
+	
+	
+	
 	// Escucha la URL /home por GET, y redirige a una vista.
 	//@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
@@ -81,4 +93,3 @@ public class ControladorLogin {
 	}
 }
 
-*/
