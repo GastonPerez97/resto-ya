@@ -47,12 +47,21 @@ public class PedidoModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidoModel", cascade = CascadeType.ALL)
 	private List<PedidoComidaModel> listaPedidosComidas;
 	
+	public ClienteModel getClienteModel() {
+		return clienteModel;
+	}
+
+	public void setClienteModel(ClienteModel clienteModel) {
+		this.clienteModel = clienteModel;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
 	private ClienteModel clienteModel;
 	
 	public PedidoModel() {
 		listaPedidosComidas = new ArrayList<PedidoComidaModel>();
+		
 	}
 
 	public Long getIdPedido() {
@@ -80,12 +89,5 @@ public class PedidoModel {
 		this.listaPedidosComidas = pedidoComida;
 	}
 
-
-
-	
-	
-
-	
-	
 	
 }

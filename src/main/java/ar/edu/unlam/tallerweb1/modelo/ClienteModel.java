@@ -86,6 +86,8 @@ public class ClienteModel {
 	}
 
 	public ClienteModel() {
+		
+		
 
 	}
 
