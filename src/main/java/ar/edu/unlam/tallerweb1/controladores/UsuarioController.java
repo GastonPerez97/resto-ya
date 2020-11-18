@@ -14,6 +14,7 @@ import ar.edu.unlam.tallerweb1.modelo.RolModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 import ar.edu.unlam.tallerweb1.servicios.RolService;
+import ar.edu.unlam.tallerweb1.servicios.UsuarioRolService;
 import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 
 @Controller
@@ -21,21 +22,23 @@ public class UsuarioController {
 
 	@Inject
 	private UsuarioService usuarioService;
-	
+
 	@Inject
 	private RolService rolService;
+
+	@Inject
+	private UsuarioRolService usuarioRolService;
 
 	@RequestMapping("/usuarios")
 	public ModelAndView usuarios(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-		
+
 		String rol = (String) request.getSession().getAttribute("ROL");
-		
+
 		if (!rol.equals("Admin")) {
-			ModelAndView modelAndView =  new ModelAndView("redirect:/login.html");
+			ModelAndView modelAndView = new ModelAndView("redirect:/login.html");
 			return modelAndView;
 		}
-		
 
 		modelo.put("titulo", "Lista de Usuarios");
 		modelo.put("usuarios", usuarioService.listarUsuarios());
@@ -48,22 +51,35 @@ public class UsuarioController {
 	public ModelAndView agregarUsuario() {
 		ModelMap modelo = new ModelMap();
 
-
 		FormularioAgregarUsuario formulario = new FormularioAgregarUsuario();
 		List<RolModel> listDeRoles = rolService.listarRolUsuario();
-		
 
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("formularioAgregarUsuario", formulario);
 		modelo.put("listaDeRoles", listDeRoles);
-		
 
 		return new ModelAndView("agregarUsuario", modelo);
 	}
 
-	@RequestMapping(path = "/validarUsuario", method = RequestMethod.POST)
-	public ModelAndView validarUsuario(@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario) {
-		return usuarioService.validarUsuario(formularioAgregarUsuario);
+	@RequestMapping(path = "/validarRegistroUsuario", method = RequestMethod.POST)
+	public ModelAndView validarRegistroUsuario(
+			@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario) {
+		ModelMap modelo = new ModelMap();
+		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
+		List<RolModel> listDeRoles = rolService.listarRolUsuario();
+
+		modelo.put("titulo", "Agregar Usuario");
+		modelo.put("listaDeRoles", listDeRoles);
+
+		if (usuarioService.validarRegistroUsuario(formularioAgregarUsuario) == false) {
+			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
+			return new ModelAndView("agregarUsuario", modelo);
+
+		} else {
+			usuarioService.guardarUsuario(usuario);
+			usuarioRolService.guardarUsuarioRol(usuario.getIdUsuario(), formularioAgregarUsuario.getIdRol());
+			return new ModelAndView("redirect:/usuarios");
+		}
 	}
 
 	@RequestMapping("/editarUsuario")
@@ -71,8 +87,7 @@ public class UsuarioController {
 		ModelMap modelo = new ModelMap();
 
 		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
-		
-		
+
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario);
 
@@ -92,8 +107,15 @@ public class UsuarioController {
 
 	@RequestMapping("/validarEliminarUsuario")
 	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id) {
+		ModelMap modelo = new ModelMap();
 
-		return usuarioService.validarEliminarUsuario(id);
+		if (usuarioService.validarEliminarUsuario(id) == true) {
+			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
+			usuarioService.eliminarUsuarioPorId(id);
+			return new ModelAndView("usuarios", modelo);
+		} else {
+			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
+			return new ModelAndView("usuarios", modelo);
+		}
 	}
-
 }

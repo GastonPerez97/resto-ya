@@ -85,41 +85,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public ModelAndView validarUsuario(FormularioAgregarUsuario formularioAgregarUsuario) {
-		ModelMap modelo = new ModelMap();
-		
+	public Boolean validarRegistroUsuario(FormularioAgregarUsuario formularioAgregarUsuario) {	
 		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
+		Boolean validado = false;
 	
-
-		modelo.put("titulo", "Agregar Usuario");
-
 		if (existeUsuarioPorNombre(usuario.getNombreDeUsuario()) || existeUsuarioPorEmail(usuario.getEmail()) )  {
-			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
-			return new ModelAndView("agregarUsuario", modelo);
+			return validado;
 		} else {
-		    guardarUsuario(usuario);
-		    usuarioRolRepository.guardarUsuarioRol(usuario.getIdUsuario(), formularioAgregarUsuario.getIdRol());
-		    
-			return new ModelAndView("redirect:/usuarios");
-			
+			validado = true;
+		    return validado;		
 		}
 	}
+	
 	
 	@Override
-	public ModelAndView validarEliminarUsuario(Long id) {
-		ModelMap modelo = new ModelMap();
-		
+	public Boolean validarEliminarUsuario(Long id) {
+		Boolean validado = false;
+			
 		if (existeUsuarioPorId(id)) {
-			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
-			eliminarUsuarioPorId(id);
-			return new ModelAndView("usuarios", modelo);
-		} else {
-			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
-			return new ModelAndView("usuarios", modelo);
-		}
+			validado = true;
+			return validado;
+		} else 
+			return validado;		
 	}
-
-
-	
-
 }

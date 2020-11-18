@@ -23,9 +23,9 @@ public interface UsuarioService {
 	
 	public UsuarioModel buscarUsuarioPorId(Long id);
 	
-	public ModelAndView validarUsuario(FormularioAgregarUsuario formularioAgregarUsuario);
+	public Boolean validarRegistroUsuario(FormularioAgregarUsuario formularioAgregarUsuario);
 
-	public ModelAndView validarEliminarUsuario(Long id);
+	public Boolean validarEliminarUsuario(Long id);
 	
 
 	

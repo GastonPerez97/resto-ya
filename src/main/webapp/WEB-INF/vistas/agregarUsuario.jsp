@@ -14,7 +14,7 @@
 	</c:if>
 
 	<article>
-		<form:form action="validarUsuario" method="POST"
+		<form:form action="validarRegistroUsuario" method="POST"
 			modelAttribute="formularioAgregarUsuario">
 
 			<div class="form-group">
