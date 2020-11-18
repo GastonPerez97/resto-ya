@@ -70,12 +70,10 @@ public class UsuarioController {
 		ModelMap modelo = new ModelMap();
 
 		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
-		List<RolModel> listDeRoles = rolService.listarRolUsuario();
 		
 		
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario);
-		modelo.put("listaDeRoles", listDeRoles);
 
 		return new ModelAndView("editarUsuario", modelo);
 	}
