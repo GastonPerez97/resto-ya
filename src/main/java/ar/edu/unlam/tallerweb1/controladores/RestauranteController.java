@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,11 +35,13 @@ public class RestauranteController {
 	private HorarioService horarioService;
 	
 	@RequestMapping("/restaurantes")
-	public ModelAndView restaurantes() {
+	public ModelAndView restaurantes(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
+		
 		
 		modelo.put("titulo", "Lista de Restaurantes");
 		modelo.put("RESTAURANTES", servRestaurante.buscarRestaurantes());
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("restaurantes", modelo);
 	}

@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,9 +28,10 @@ public class BusquedaController {
 	private BusquedaService busquedaService;
 
 	@RequestMapping("/home")
-	public ModelAndView buscar() {
+	public ModelAndView buscar(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("formularioBusqueda", new FormularioBusqueda());
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		return new ModelAndView("buscador", modelo);
 	}
 

@@ -27,14 +27,15 @@ public class UsuarioController {
 
 	@RequestMapping("/usuarios")
 	public ModelAndView usuarios(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
 		
 		String rol = (String) request.getSession().getAttribute("ROL");
 		
 		if (!rol.equals("Admin")) {
-			return new ModelAndView("redirect:/login");
+			ModelAndView modelAndView =  new ModelAndView("redirect:/login.html");
+			return modelAndView;
 		}
 		
-		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Usuarios");
 		modelo.put("usuarios", usuarioService.listarUsuarios());

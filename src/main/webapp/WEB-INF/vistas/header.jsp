@@ -69,7 +69,7 @@
 			</div>
 			<div>
 				<c:if test="${not empty nombreUsuario}">
-					<p class="text-light logout">Cerrar Sesión</p>
+					<a class="text-light logout" href="/proyecto-limpio-spring-master/logout">Cerrar Sesión</a>
 				</c:if>
 			</div>
 		</nav>
