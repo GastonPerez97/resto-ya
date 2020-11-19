@@ -119,6 +119,16 @@ header nav {
 	color: #000000;
 }
 
+.bienvenido{
+	margin-top: 16px;
+	margin-right: 5px;
+}
+
+.logout{
+	margin-top: 16px;
+	
+}
+
 @media screen and (max-width: 1510px) {
     .comida {
         width: 48%;

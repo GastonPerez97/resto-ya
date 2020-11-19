@@ -32,7 +32,6 @@
 					class="form-control" required="true" />
 			</div>
 
-
 			<div class="form-group mt-5 text-center">
 				<button type="submit" class="btn btn-primary mx-auto">Editar</button>
 

@@ -15,7 +15,7 @@
 			<span>${estadoEliminar}</span>
 		</h4>
 		<a href="./usuarios"><button type="button"
-						class="btn btn-secondary">Volver</button></a>
+				class="btn btn-secondary">Volver</button></a>
 		<br>
 	</c:if>
 
@@ -33,19 +33,24 @@
 								<span class="h4">Email: ${usr.email} </span>
 							</p>
 							<p class="card-text">
-								<span class="h4">Rol: ${rol1} </span>
+								<span class="h4">Rol: </span>
 							</p>
-							<a href="editarUsuario?id=${usr.idUsuario}"><i
-								class="far fa-edit restaurante-btn my-3 mr-4"></i></a> <a
-								href="validarEliminarUsuario?id=${usr.idUsuario}" class="delete-btn"><i
-								class="far fa-trash-alt restaurante-btn my-3"></i></a>
+							<p class="card-text">
+							<c:forEach items="${usr.listaUsuarioRoles}" var="usuarioRol"
+								varStatus="status">
+								<span class="h4"> - ${usuarioRol.rolModel.nombre} </span>
+								<br>
+							</c:forEach>
+							</p>
+							<a href="editarUsuario?id=${usr.idUsuario}"><i class="far fa-edit restaurante-btn my-3 mr-4"></i></a> 
+							<a href="validarEliminarUsuario?id=${usr.idUsuario}"><i class="far fa-trash-alt restaurante-btn my-3"></i></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</c:forEach>
+
 </section>
 
 <%@ include file="footer.jsp"%>

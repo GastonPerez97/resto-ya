@@ -14,27 +14,34 @@
 	</c:if>
 
 	<article>
-		<form:form action="validarUsuario" method="POST"
-			modelAttribute="usuario">
+		<form:form action="validarRegistroUsuario" method="POST"
+			modelAttribute="formularioAgregarUsuario">
 
 			<div class="form-group">
 				<label for="nombreDeUsuario">Nombre:*</label>
-				<form:input path="nombreDeUsuario" id="nombreDeUsuario"
+				<form:input path="usuario.nombreDeUsuario" id="nombreDeUsuario"
 					class="form-control" required="true" />
 			</div>
 
 			<div class="form-group">
 				<label for="email">Email:*</label>
-				<form:input path="email" type="text" id="email" class="form-control"
+				<form:input path="usuario.email" type="text" id="email" class="form-control"
 					required="true" />
 			</div>
 			<div class="form-group">
 				<label for="clave">Clave:*</label>
-				<form:input path="clave" type="password" id="clave"
+				<form:input path="usuario.clave" type="password" id="clave"
 					class="form-control" required="true" />
 			</div>
-
-
+			<div class="form-group">
+			<label for="rol-select">Rol:*</label> <br>
+					<form:select id="rol-select" path="idRol" required="required">
+						<option value="0">---</option>
+						<c:forEach items="${listaDeRoles}" var="rol">
+					    	<form:option value="${rol.idRol}">${rol.nombre}</form:option>
+						</c:forEach>
+					</form:select>
+			</div>
 			<div class="form-group mt-5 text-center">
 				<button type="submit" class="btn btn-primary mx-auto">Agregar</button>
 

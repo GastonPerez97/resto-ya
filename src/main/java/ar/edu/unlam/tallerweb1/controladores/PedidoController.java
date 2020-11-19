@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class PedidoController {
 	private RestauranteService servRestaurante;
 	
 @RequestMapping("/hacerPedido")
-public ModelAndView hacerPedido(@RequestParam("id")Long id) {
+public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
 	RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 	
 	ModelMap modelo = new ModelMap();
@@ -51,6 +52,7 @@ public ModelAndView hacerPedido(@RequestParam("id")Long id) {
 	modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
 	modelo.put("COMIDAS", comidaService.buscarComida());
 	modelo.put("formularioPedido", formulario);
+	modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	
 	return new ModelAndView("hacerPedido", modelo);
 	
@@ -60,7 +62,7 @@ public ModelAndView hacerPedido(@RequestParam("id")Long id) {
 
 @RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-										@RequestParam("checkboxComidas") ArrayList<Long> idComidas) {		
+										@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
 	ModelMap modelo = new ModelMap();	
 	
 	 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -76,6 +78,7 @@ public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") Formu
 	modelo.put("pedidoComidaList", pedido.getPedidoComida());
     modelo.put("idPedido", pedido.getIdPedido());
     modelo.put("hora",dateFormat.format(date));
+    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	
 	return new ModelAndView("procesarPedido", modelo);
 }

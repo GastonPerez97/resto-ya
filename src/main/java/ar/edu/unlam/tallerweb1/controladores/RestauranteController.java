@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,23 +33,26 @@ public class RestauranteController {
 	private HorarioService horarioService;
 	
 	@RequestMapping("/restaurantes")
-	public ModelAndView restaurantes() {
+	public ModelAndView restaurantes(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
+		
 		
 		modelo.put("titulo", "Lista de Restaurantes");
 		modelo.put("RESTAURANTES", servRestaurante.buscarRestaurantes());
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("restaurantes", modelo);
 	}
 	
 	@RequestMapping(path = "/agregarRestaurante", method = RequestMethod.POST)
-	public ModelAndView agregarRestaurante() {
+	public ModelAndView agregarRestaurante(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		
 		RestauranteModel restaurante = new RestauranteModel();
 		
 		modelo.put("titulo", "Agregar Restaurante");
 		modelo.put("restaurante", restaurante);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("agregarRestaurante", modelo);
 	}
@@ -55,17 +60,18 @@ public class RestauranteController {
 	@RequestMapping(path = "/validar-nuevoRestaurante", method = RequestMethod.POST)
 	public ModelAndView validarNuevoRestaurante(
 			@ModelAttribute("restaurante") RestauranteModel restaurante,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Restaurantes");
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return servRestaurante.procesarNuevoRestaurante(restaurante, file, modelo);
 	}
 	
 	@RequestMapping("/editarRestaurante")
-	public ModelAndView editarRestaurante(@RequestParam("id") Long id) {
+	public ModelAndView editarRestaurante(@RequestParam("id") Long id, HttpServletRequest request) {
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 		
@@ -73,6 +79,7 @@ public class RestauranteController {
 		
 		modelo.put("titulo", "Editar " + restaurante.getNombre());
 		modelo.put("restaurante", restaurante);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("editarRestaurante", modelo);
 	}
@@ -80,7 +87,10 @@ public class RestauranteController {
 	@RequestMapping(path = "/validar-editarRestaurante", method = RequestMethod.POST)
 	public ModelAndView validarEdicionRestaurante(
 			@ModelAttribute("restaurante") RestauranteModel restaurante,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		servRestaurante.procesarEdicionRestaurante(restaurante, file);
 		
@@ -88,7 +98,9 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping("/eliminarRestaurante")
-	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id) throws Exception {
+	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id, HttpServletRequest request) throws Exception {
+		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 		
@@ -98,23 +110,25 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(path = "/nuevo-horario", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante) {
+	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("restaurante", servRestaurante.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("horarios", horarioService.getHorariosNoAsignadosARestaurante(idRestaurante));
 		modelAndView.addObject("formularioNuevoHorario", new FormularioRestauranteHorario());
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("generacionNuevoHorario");
 		
 		return modelAndView;
 	}
 
 	@RequestMapping(path = "/guardar-nuevo-horario", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario) {
+	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		HorarioModel horario = restauranteHorarioService.procesarNuevoHorarioRestaurante(formularioRestauranteHorario);
 		modelAndView.addObject("horario", horario);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("nuevoHorarioExitoso");
 		
 		return modelAndView;
