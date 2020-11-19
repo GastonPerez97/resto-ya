@@ -3,6 +3,11 @@ package ar.edu.unlam.tallerweb1.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
+import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRepository;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 
@@ -14,7 +19,7 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 // en hibernateCOntext.xml. De esta manera todos los metodos de cualquier dao invocados dentro de un servicio se ejecutan en la misma transaccion
 @Service("servicioLogin")
 @Transactional
-public class ServicioLoginImpl implements ServicioLogin {
+public class LoginServiceImpl implements LoginService {
 
 	private UsuarioRepository servicioLoginDao;
 
@@ -23,7 +28,25 @@ public class ServicioLoginImpl implements ServicioLogin {
 		this.servicioLoginDao = servicioLoginDao;
 	}
 
+	@Autowired
+	private RepositorioUsuario repositorioUsuario;
+
 	@Override
+	public void guardarUsuarioRegistrado(Usuario usuario) {
+		repositorioUsuario.guardarUsuarioRegistrado(usuario);
+
+	}
+
+	@Override
+	public Usuario consultarUsuarioRegistrado(FormularioRegistro registro) {
+		return repositorioUsuario.consultarUsuarioRegistrado(registro.getDatoBuscado());
+	}
+
+	@Override
+	public Usuario consultarUsuario2(Usuario usuario) {
+		return repositorioUsuario.consultarUsuarioRegistrado(usuario);
+	}
+
 	public UsuarioModel consultarUsuario (UsuarioModel usuario) {
 		return servicioLoginDao.consultarUsuario(usuario);
 	}

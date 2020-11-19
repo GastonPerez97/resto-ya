@@ -33,6 +33,7 @@
                                 <h2>NO DISPONIBLE</h2>
                             </c:if>
                         </div>
+                        
                         <div class="card-body">
                             <form action="reservar" class="form-inline" method="post">
                                 <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
@@ -42,6 +43,7 @@
                                 </div>
                             </form>
                         </div>
+                        
                         <div class="card-body">
                             <form action="nueva-mesa" class="form-inline" method="post">
                                 <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
