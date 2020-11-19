@@ -25,8 +25,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public void guardarUsuario(UsuarioModel usuario) {
+		usuario.setNombreDeUsuario(usuario.getEmail());
 		usuarioRepository.guardarUsuario(usuario);
-
 	}
 
 	@Override

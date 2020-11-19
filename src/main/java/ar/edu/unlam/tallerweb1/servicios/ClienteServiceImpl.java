@@ -26,8 +26,8 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void guardarClienteRegistrado(FormularioRegistro registro) {
-		registro.getClienteBuscado().setUsuario(registro.getDatoBuscado());
-		clienteRepository.guardarCliente(registro.getClienteBuscado());
+		registro.getClienteModel().setUsuario(registro.getUsuarioModel());
+		clienteRepository.guardarCliente(registro.getClienteModel());
 
 	}
 

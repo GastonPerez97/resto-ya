@@ -1,16 +1,12 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
-
+import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 
 public interface PedidoComidaService {
 
-	
 	void guardarPedidoComida(PedidoComidaModel pedidoComida);
 	
-	
-	
+	List<PedidoComidaModel> getComidasByPedido(Long idPedido);
 }

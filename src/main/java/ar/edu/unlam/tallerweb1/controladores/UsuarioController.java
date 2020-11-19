@@ -36,9 +36,8 @@ public class UsuarioController {
 				? (String) request.getSession().getAttribute("ROL")
 				: "";	
 
-		if (!rol.equals("Admin")) {
+		if (!rol.equals("Admin"))
 			return new ModelAndView ("redirect:/login");
-		}
 
 		ModelMap modelo = new ModelMap();
 		

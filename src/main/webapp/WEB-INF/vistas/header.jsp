@@ -60,11 +60,12 @@
 			<div>
 				<c:if test="${empty nombreUsuario}">
 					<a class="text-light" href="/proyecto-limpio-spring-master/login">Ingresar</a>
+					<a class="text-light" href="/proyecto-limpio-spring-master/registrate">Registrarse</a>
 				</c:if>
 			</div>
 			<div>
 				<c:if test="${not empty nombreUsuario}">
-					<p class="text-light bienvenido">Bienvenido ${nombreUsuario} | </p>
+					<p class="text-light bienvenido">${nombreUsuario} | </p>
 				</c:if>
 			</div>
 			<div>

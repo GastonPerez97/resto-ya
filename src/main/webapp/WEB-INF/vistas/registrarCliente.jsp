@@ -8,39 +8,38 @@
 			modelAttribute="formularioRegistro">
 			<div class="form-group">
 				<label for="nombre">Nombre:</label>
-				<form:input path="clienteBuscado.nombre" type="text" id="nombre"
+				<form:input path="clienteModel.nombre" type="text" id="nombre"
 					class="form-control" />
 			</div>
 
 			<div class="form-group">
 				<label for="nombre">Apellido:</label>
-				<form:input path="clienteBuscado.apellido" type="text" id="apellido"
+				<form:input path="clienteModel.apellido" type="text" id="apellido"
 					class="form-control" />
 			</div>
 			<div class="form-group">
 				<label for="nombre">DNI:</label>
-				<form:input path="clienteBuscado.dni" type="text" id="dni"
+				<form:input path="clienteModel.dni" type="text" id="dni"
 					class="form-control" />
 			</div>
 
 			<div class="form-group">
 				<label for="telefono">Teléfono:</label>
-				<form:input path="clienteBuscado.telefono" type="text" id="nombre"
+				<form:input path="clienteModel.telefono" type="text" id="nombre"
 					class="form-control" />
 			</div>
 			<div class="form-group">
-				<div class="form-group col-md-6">
 					<label for="email">Email:</label>
-					<form:input path="datoBuscado.email" type="email" id="email"
+					<form:input path="usuarioModel.email" type="email" id="email"
 						class="form-control" />
+			</div>
+			<div class="form-group">
 					<label for="contraseña">Contraseña:</label>
-					<form:input path="datoBuscado.password" type="password"
+					<form:input path="usuarioModel.clave" type="password"
 						id="password" class="form-control" />
-					<br> <input type="submit" class="float-right btn btn-dark"
-						value="Registrarse" /> <br> <br> <a class="nav-link"
-						href="/proyecto-limpio-spring-master/login">Iniciar Sesión</a>
-				</div>
-
+			</div>
+			<div class="form-group col-md-6">
+				<input type="submit" class="float-right btn btn-dark" value="Registrarse" />
 			</div>
 		</form:form>
 	</article>

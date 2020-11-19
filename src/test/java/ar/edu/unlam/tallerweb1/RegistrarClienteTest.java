@@ -52,11 +52,11 @@ public class RegistrarClienteTest extends SpringTest {
 		cliente.setTelefono("0303456");
 
 		FormularioRegistro registro = new FormularioRegistro();
-		registro.setClienteBuscado(cliente);
+		registro.setClienteModel(cliente);
 
 		servicioCliente.guardarClienteRegistrado(registro);
 
-		assertEquals("Apellido", registro.getClienteBuscado().getApellido());
+		assertEquals("Apellido", registro.getClienteModel().getApellido());
 
 	}
 

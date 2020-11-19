@@ -8,9 +8,18 @@
 		<article class="card comida shadow">
 
 			<div class="card-body">
-				<h3 class="card-title bebas">${pedido.idPedido}</h3>
-				<h3 class="card-title bebas">${pedido.restaurante.direccion}</h3>
-				<h3 class="card-title bebas">${pedido.restaurante.horario}</h3>
+				<h3 class="card-title bebas">Número de pedido: ${pedido.idPedido}</h3>
+				<h3 class="card-title bebas">Restaurante: ${pedido.restaurante.nombre}</h3>
+				<h3 class="card-title bebas">Dirección: ${pedido.restaurante.direccion}</h3>
+				<h3 class="card-title bebas">							
+				<form action="detalle-pedido" class="form-inline" method="post">
+					<input type="hidden" value="${pedido.idPedido}"
+						name="idPedido" id="id-restaurante-input" />
+					<div class="form-group">
+						<input type="submit" id="reserva-submit"
+							value="Ver detalle" class="float-right btn btn-dark" />
+					</div>
+				</form></h3>
 			</div>
 		</article>
 	</c:forEach>

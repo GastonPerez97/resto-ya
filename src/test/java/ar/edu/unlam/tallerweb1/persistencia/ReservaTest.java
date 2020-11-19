@@ -25,8 +25,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-// Clase que prueba la conexion a la base de datos. Hereda de SpringTest por lo que corre dentro del contexto
-// de spring
 public class ReservaTest extends SpringTest {
 
 	@Autowired
