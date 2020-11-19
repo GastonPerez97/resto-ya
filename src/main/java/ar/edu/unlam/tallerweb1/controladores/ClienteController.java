@@ -1,54 +1,90 @@
-package ar.edu.unlam.tallerweb1.servicios;
+package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.repositorios.ClienteRepository;
-import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
-import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
+import ar.edu.unlam.tallerweb1.servicios.ClienteService;
+import ar.edu.unlam.tallerweb1.servicios.LoginService;
 
-@Service("servicioCliente")
-@Transactional
-public class ClienteServiceImpl implements ClienteService {
-
-	@Autowired
-	private ClienteRepository clienteRepository;
+@Controller
+public class ClienteController {
 
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private ClienteService clienteService;
 
-	@Override
-	public void guardarClienteRegistrado(FormularioRegistro registro) {
-		registro.getClienteBuscado().setUsuario(registro.getDatoBuscado());
-		clienteRepository.guardarCliente(registro.getClienteBuscado());
+	@Autowired
+	private LoginService loginService;
+
+	@RequestMapping(path = "/registrarCliente")
+	public ModelAndView registro() {
+
+		ModelMap model = new ModelMap();
+
+		FormularioRegistro formulario = new FormularioRegistro();
+
+		model.put("formularioRegistro", formulario);
+
+		return new ModelAndView("registrarCliente", model);
+	}
+
+	@RequestMapping(path = "/guardarRegistro", method = RequestMethod.POST)
+
+	public ModelAndView guardarRegistro(@ModelAttribute("formularioRegistro") FormularioRegistro registro) {
+
+		ModelMap modelo = new ModelMap();
+
+		Usuario usuario = loginService.consultarUsuarioRegistrado(registro);
+
+		if (usuario != null) {
+
+			modelo.put("error", "El usuario ya existe");
+
+			return new ModelAndView("registrarCliente", modelo);
+
+		} else {
+
+			loginService.guardarUsuarioRegistrado(registro.getDatoBuscado());
+
+			clienteService.guardarClienteRegistrado(registro);
+
+			return new ModelAndView("registroRealizado");
+		}
 
 	}
 
-	@Override
-	public ResultadoRegistro consultarClienteRegistrado(FormularioRegistro registro) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(path = "/historicoPedidos")
+
+	public ModelAndView irAHistorico() {
+
+		ModelMap model = new ModelMap();
+
+		model.put("clienteModel", clienteService.buscarClientes());
+	
+		return new ModelAndView("consultarHistorico", model);
 	}
 
-	@Override
-	public List<PedidoModel> buscarPedidosCliente(ClienteModel cliente) {
+	// metodo que recibe el cliente y consulta los pedidos
 
-		return  pedidoRepository.buscarPedidoPorCliente(cliente);
+	@RequestMapping(path = "/consultarPedidos", method = RequestMethod.POST)
 
-		
+	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente) {
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("pedidoModel", clienteService.buscarPedidosCliente(cliente));
+
+		return new ModelAndView("pedidosPorCliente", modelo);
+
 	}
-
-	@Override
-	public List<ClienteModel> buscarClientes() {
-
-		return clienteRepository.buscarCliente();
-	}
-
 }
