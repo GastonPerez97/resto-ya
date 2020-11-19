@@ -20,6 +20,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 	}
 
 	public void guardarCliente(ClienteModel cliente) {
+		sessionFactory.getCurrentSession().save(cliente);
 	}
 
 	@Override

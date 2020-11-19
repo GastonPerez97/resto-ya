@@ -1,9 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
-import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,14 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorLogin {
 
-
-	private ServicioLogin servicioLogin;
-
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin){
-		this.servicioLogin = servicioLogin;
-	}
-
+	private LoginService loginService;
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
@@ -44,7 +37,7 @@ public class ControladorLogin {
 		model.put("titulo", "Contacto");
 		
 
-		UsuarioModel usuarioBuscado = servicioLogin.consultarUsuario(usuario);
+		UsuarioModel usuarioBuscado = loginService.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", "Admin");
 			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombreDeUsuario());

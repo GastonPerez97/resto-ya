@@ -28,7 +28,7 @@ public class ClienteModel {
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+	private UsuarioModel usuario;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL)
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
@@ -41,11 +41,11 @@ public class ClienteModel {
 		this.pedidos = pedidos;
 	}
 
-	public Usuario getUsuario() {
+	public UsuarioModel getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
 	}
 

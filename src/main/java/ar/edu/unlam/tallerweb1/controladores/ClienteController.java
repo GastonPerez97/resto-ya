@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
@@ -26,7 +24,7 @@ public class ClienteController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(path = "/registrarCliente")
+	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
 
 		ModelMap model = new ModelMap();
@@ -39,12 +37,11 @@ public class ClienteController {
 	}
 
 	@RequestMapping(path = "/guardarRegistro", method = RequestMethod.POST)
-
 	public ModelAndView guardarRegistro(@ModelAttribute("formularioRegistro") FormularioRegistro registro) {
 
 		ModelMap modelo = new ModelMap();
 
-		Usuario usuario = loginService.consultarUsuarioRegistrado(registro);
+		UsuarioModel usuario = loginService.consultarUsuarioRegistrado(registro);
 
 		if (usuario != null) {
 
@@ -54,17 +51,16 @@ public class ClienteController {
 
 		} else {
 
-			loginService.guardarUsuarioRegistrado(registro.getDatoBuscado());
+			loginService.guardarUsuarioRegistrado(registro.getUsuarioModel());
 
 			clienteService.guardarClienteRegistrado(registro);
 
-			return new ModelAndView("registroRealizado");
+			return new ModelAndView("login");
 		}
 
 	}
 
 	@RequestMapping(path = "/historicoPedidos")
-
 	public ModelAndView irAHistorico() {
 
 		ModelMap model = new ModelMap();
@@ -74,10 +70,7 @@ public class ClienteController {
 		return new ModelAndView("consultarHistorico", model);
 	}
 
-	// metodo que recibe el cliente y consulta los pedidos
-
 	@RequestMapping(path = "/consultarPedidos", method = RequestMethod.POST)
-
 	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente) {
 
 		ModelMap modelo = new ModelMap();

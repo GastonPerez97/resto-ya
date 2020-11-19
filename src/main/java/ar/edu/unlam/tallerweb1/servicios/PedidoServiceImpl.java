@@ -53,6 +53,15 @@ public class PedidoServiceImpl implements PedidoService {
 	
 		return pedido;
 	}
+
+	@Override
+	public Double calcularTotalPedido(List<PedidoComidaModel> pedidoComidaList) {
+		Double total = 0D;
+		for (PedidoComidaModel pedidoComidaModel : pedidoComidaList)
+			total += (pedidoComidaModel.getComidaModel().getPrecio() * pedidoComidaModel.getCantidad());
+		
+		return total;
+	}
 	
 
 	

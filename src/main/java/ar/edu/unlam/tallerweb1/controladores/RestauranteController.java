@@ -110,7 +110,7 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(path = "/nuevo-horario", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
+	public ModelAndView generarNuevoHorario(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("restaurante", servRestaurante.buscarRestaurantePorId(idRestaurante));
@@ -123,7 +123,7 @@ public class RestauranteController {
 	}
 
 	@RequestMapping(path = "/guardar-nuevo-horario", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario, HttpServletRequest request) {
+	public ModelAndView generarNuevoHorarioPost(@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		HorarioModel horario = restauranteHorarioService.procesarNuevoHorarioRestaurante(formularioRestauranteHorario);

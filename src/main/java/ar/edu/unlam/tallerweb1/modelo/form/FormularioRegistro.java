@@ -3,34 +3,25 @@ package ar.edu.unlam.tallerweb1.modelo.form;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.enums.TipoBusqueda;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.enums.TipoUsuario;
 
 public class FormularioRegistro {
 	private List<TipoUsuario> tiposUsuario;
 	private Integer tipoUsuarioSeleccionado;
-	private String atributoPrueba;
-	public String getAtributoPrueba() {
-		return atributoPrueba;
-	}
-
-	public void setAtributoPrueba(String atributoPrueba) {
-		this.atributoPrueba = atributoPrueba;
-	}
-
+	
 	public void setTiposUsuario(List<TipoUsuario> tiposUsuario) {
 		this.tiposUsuario = tiposUsuario;
 	}
 
-	private Usuario datoBuscado;
-	private ClienteModel clienteBuscado;
+	private UsuarioModel usuarioModel;
+	private ClienteModel clienteModel;
 
 	public FormularioRegistro() {
 		// forma de convertir un array a un tipo lista (casteo)
 		tiposUsuario = List.of(TipoUsuario.values());
-		datoBuscado = new Usuario(); 
-		clienteBuscado = new ClienteModel();
+		usuarioModel = new UsuarioModel(); 
+		clienteModel = new ClienteModel();
 	}
 
 	public List<TipoUsuario> getTiposUsuario() {
@@ -45,20 +36,20 @@ public class FormularioRegistro {
 		this.tipoUsuarioSeleccionado = tipoUsuarioSeleccionado;
 	}
 
-	public Usuario getDatoBuscado() {
-		return datoBuscado;
+	public UsuarioModel getUsuarioModel() {
+		return usuarioModel;
 	}
 
-	public void setDatoBuscado(Usuario datoBuscado) {
-		this.datoBuscado = datoBuscado;
+	public void setUsuarioModel(UsuarioModel usuario) {
+		this.usuarioModel = usuario;
 	}
 
-	public ClienteModel getClienteBuscado() {
-		return clienteBuscado;
+	public ClienteModel getClienteModel() {
+		return clienteModel;
 	}
 
-	public void setClienteBuscado(ClienteModel clienteBuscado) {
-		this.clienteBuscado = clienteBuscado;
+	public void setClienteModel(ClienteModel cliente) {
+		this.clienteModel = cliente;
 	}
 
 }

@@ -15,21 +15,19 @@ import ar.edu.unlam.tallerweb1.repositorios.PedidoComidaRepository;
 
 @Service
 @Transactional
-public class PedidoComidaServiceImpl {
+public class PedidoComidaServiceImpl implements PedidoComidaService{
 
 	@Inject
 	private PedidoComidaRepository repositorioPedidoComida;
-	
-
 	
 	public void guardarPedidoComida(PedidoComidaModel pedidoComida) {
 		repositorioPedidoComida.guardarPedidoComida(pedidoComida);
 		
 	}
-	
-	
 
-		
-	
+	@Override
+	public List<PedidoComidaModel> getComidasByPedido(Long idPedido) {
+		return repositorioPedidoComida.getComidasByPedido(idPedido);
+	}
 	
 }
