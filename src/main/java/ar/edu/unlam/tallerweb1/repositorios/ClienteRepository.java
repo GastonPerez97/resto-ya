@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 
 public interface ClienteRepository {
@@ -8,6 +10,6 @@ public interface ClienteRepository {
 
 	void guardarCliente(ClienteModel cliente);
 
-	/* List<PedidoModel> consultarPedidoPorCliente(Long cliente); */
+	List<ClienteModel> buscarCliente();
 
 }

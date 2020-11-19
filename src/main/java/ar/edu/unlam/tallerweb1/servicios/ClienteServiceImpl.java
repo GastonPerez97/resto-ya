@@ -37,25 +37,18 @@ public class ClienteServiceImpl implements ClienteService {
 		return null;
 	}
 
-	/*
-	 * @Override public PedidoModel consultarPedidosPorCliente(ClienteModel cliente)
-	 * { return (PedidoModel)
-	 * clienteRepository.consultarPedidoPorCliente(cliente.getIdCliente());
-	 * 
-	 * }
-	 */
-
 	@Override
 	public List<PedidoModel> buscarPedidosCliente(ClienteModel cliente) {
 
-		List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
-		List<PedidoModel> pedidoDB = pedidoRepository.buscarPedido();
-		for (PedidoModel pedidos1 : pedidoDB) {
-			if (pedidos1.getCliente().getIdCliente().equals(cliente.getIdCliente()))
-				pedidos.add(pedidos1);
-		}
+		return  pedidoRepository.buscarPedidoPorCliente(cliente);
 
-		return pedidos;
+		
+	}
+
+	@Override
+	public List<ClienteModel> buscarClientes() {
+
+		return clienteRepository.buscarCliente();
 	}
 
 }

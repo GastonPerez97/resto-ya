@@ -15,8 +15,8 @@ public interface ClienteService {
 
 	void guardarClienteRegistrado(FormularioRegistro registro);
 
-	/* PedidoModel consultarPedidosPorCliente(ClienteModel cliente); */
-	
 	public List<PedidoModel> buscarPedidosCliente(ClienteModel cliente);
+
+	List<ClienteModel> buscarClientes();
 
 }

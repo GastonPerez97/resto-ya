@@ -1,27 +1,47 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ include file="header.jsp"%>
-<h1 class="text-center h1 display-3 bebas mb-4">Mis pedidos</h1>
 
-<section class="mx-auto col-lg-6">
-	<article>
-		<form:form action="consultarPedidos" method="POST"
-			modelAttribute="clienteModel">
-			<div class="form-group">
-				<label for="nombre">Nombre del cliente:</label>
-				<form:input path="nombre" type="text" id="nombre"
-					class="form-control" />
+<%@ include file="header.jsp"%>
+
+<h1 class="text-center h1 display-3 bebas mb-4">Listado de 	clientes:</h1>
+
+<section class="restaurantes">
+
+	<c:forEach items="${clienteModel}" var="cli">
+		<div class="d-flex justify-content-center align-items-center">
+			<div class="card mb-3 restaurante shadow">
+				<div class="row no-gutters">
+
+					<div class="col-md-8">
+						<div class="card-body">
+							<h2 class="card-title bebas">${cli.nombre}</h2>
+							<p class="card-text">
+								<span class="h4">DNI: </span>${cli.dni}</p>
+							<p class="card-text">
+								<span class="h4">Tel&efono: </span>${REST.telefono}</p>
+						</div>
+
+						<div class="card-body">
+							<form action="consultarPedidos" class="form-inline" method="post">
+								<input type="hidden" value="${cli.idCliente}" name="idCliente"
+									id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="submit" id="ver-pedidos-submit" value="verPedidos"
+										class="float-right btn btn-dark">
+								</div>
+							</form>
+						</div>
+
+
+					</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="telefono">Teléfono:</label>
-				<form:input path="telefono" type="text" id="telefono"
-					class="form-control" />
+			<div class="d-flex flex-column ml-3">
+				<%-- <a href="agregarComida?idRestaurante=${REST.idRestaurante}"><i class="far fa-plus-square restaurante-btn my-3"></i></a>
+            <a href="editarRestaurante?id=${REST.idRestaurante}"><i class="far fa-edit restaurante-btn my-3"></i></a>
+            <a href="eliminarRestaurante?id=${REST.idRestaurante}" class="delete-btn"><i class="far fa-trash-alt restaurante-btn my-3"></i></a> --%>
 			</div>
-			<br>
-			<input type="submit" class="float-right btn btn-dark"
-				value="Consultar" />
-			<br>
-		</form:form>
-	</article>
+		</div>
+	</c:forEach>
 </section>
 
 <%@ include file="footer.jsp"%>
