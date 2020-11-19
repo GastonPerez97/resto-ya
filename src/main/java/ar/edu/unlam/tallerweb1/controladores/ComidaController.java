@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,7 +30,7 @@ public class ComidaController {
 	private RestauranteService servRestaurante;
 	
 	@RequestMapping("/restaurante/menu")
-	public ModelAndView verMenu(@RequestParam("id") Long id) {
+	public ModelAndView verMenu(@RequestParam("id") Long id, HttpServletRequest request) {
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 		
@@ -37,18 +39,21 @@ public class ComidaController {
 		modelo.put("titulo", "Menu de " + restaurante.getNombre());
 		modelo.put("restaurante", restaurante);
 		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestaurante(restaurante));
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("menu", modelo);
 	}
 	
 	@RequestMapping(path="/pagar", method=RequestMethod.POST)
-	public ModelAndView pagarPedido() {
+	public ModelAndView pagarPedido(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 		return new ModelAndView("pagoRealizado");
 	}
 	
 	@RequestMapping("/editarComida")
-	public ModelAndView editarComida(@RequestParam("id") Long id) {
+	public ModelAndView editarComida(@RequestParam("id") Long id, HttpServletRequest request) {
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -56,6 +61,7 @@ public class ComidaController {
 		
 		modelo.put("titulo", "Editar " + comida.getNombre());
 		modelo.put("comida", comida);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("editarComida", modelo);
 	}
@@ -71,7 +77,7 @@ public class ComidaController {
 	}
 	
 	@RequestMapping(path = "/agregarComida")
-	public ModelAndView agregarComida(@RequestParam Long idRestaurante) {
+	public ModelAndView agregarComida(@RequestParam Long idRestaurante, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
@@ -80,6 +86,7 @@ public class ComidaController {
 		
 		modelo.put("titulo", "Agregar Comida");
 		modelo.put("comida", comida);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("agregarComida", modelo);
 	}

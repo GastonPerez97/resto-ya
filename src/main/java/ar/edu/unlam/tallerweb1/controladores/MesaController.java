@@ -15,6 +15,8 @@ import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,23 +38,26 @@ public class MesaController {
 	private MesaService mesaService;
 
 	@RequestMapping(path = "/nueva-mesa", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante) {
+	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("formularioNuevaMesa", new FormularioNuevaMesa());
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("generacionNuevaMesa");
 		
 		return modelAndView;
 	}
 
 	@RequestMapping(path = "/guardar-nueva-mesa", method = RequestMethod.POST)
-	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevaMesa") FormularioNuevaMesa formularioNuevaMesa) {
+	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevaMesa") FormularioNuevaMesa formularioNuevaMesa, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		MesaModel mesa = mesaService.ProcesarNuevaMesa(formularioNuevaMesa);
 		modelAndView.addObject("mesa", mesa);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("nuevaMesaExitosa");
+		
 		
 		return modelAndView;
 	}

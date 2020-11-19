@@ -13,6 +13,8 @@ import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,24 +39,26 @@ public class ReservaController {
 	private MesaService mesaService;
 
 	@RequestMapping(path = "/reservar", method = RequestMethod.POST)
-	public ModelAndView reservar(@RequestParam("idRestaurante") Long idRestaurante, @RequestParam("fechaReserva") Date fechaReserva) {
+	public ModelAndView reservar(@RequestParam("idRestaurante") Long idRestaurante, @RequestParam("fechaReserva") Date fechaReserva, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("formularioGeneracionReserva", new FormularioGeneracionReserva(fechaReserva));
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("mesas", mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante));
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("generacionDeReserva");
 		
 		return modelAndView;
 	}
 
 	@RequestMapping(path = "/confirmar-reserva", method = RequestMethod.POST)
-	public ModelAndView confirmarReserva(@ModelAttribute("formularioGeneracionReserva") FormularioGeneracionReserva formularioGeneracionReserva) {
+	public ModelAndView confirmarReserva(@ModelAttribute("formularioGeneracionReserva") FormularioGeneracionReserva formularioGeneracionReserva, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		ReservaModel reserva = reservaService.procesarNuevaReserva(formularioGeneracionReserva);
 		
 		modelAndView.addObject("reserva", reserva);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.setViewName("reservaExitosa");
 		
 		return modelAndView;
