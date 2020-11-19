@@ -1,21 +1,16 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -95,5 +90,23 @@ public class PedidoServiceTest {
 		
 		verify(comidaServiceMock).mostrarComidaPedida(idComidas);
 		assertThat(pedido.getPedidoComida()).isEmpty();
+	}
+	
+	@Test
+	public void testQueGuardaUnPedido() {
+		PedidoModel pedido = new PedidoModel();
+		
+		doAnswer(new Answer<Void>() {
+	        @Override
+	        public Void answer(InvocationOnMock invocation) throws Throwable {
+	        	pedido.setIdPedido(1L);
+	            return null;
+	        }
+	    }).when(pedidoRepositoryMock).guardarPedido(pedido);
+		
+		pedidoService.guardarPedido(pedido);
+		
+		assertThat(pedido.getIdPedido()).isNotNull();
+		verify(pedidoRepositoryMock).guardarPedido(pedido);
 	}
 }
