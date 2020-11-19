@@ -59,8 +59,8 @@ public class ControladorLogin {
 	@RequestMapping("/logout")
 	public ModelAndView irAlogout(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-		request.getSession().setAttribute("ROL", null);
-		request.getSession().setAttribute("NOMBRE", null);
+		request.getSession().removeAttribute("ROL");
+		request.getSession().removeAttribute("NOMBRE");
 
 		
 		return new ModelAndView("logout", modelo);
