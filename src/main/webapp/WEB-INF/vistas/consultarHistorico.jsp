@@ -3,7 +3,7 @@
 <%@ include file="header.jsp"%>
 
 <h1 class="text-center h1 display-3 bebas mb-4">Listado de
-	clientes:</h1>
+	clientes:</h1>Lu
 <section class="restaurantes">
 	<c:forEach items="${clienteModel}" var="cli">
 		<div class="d-flex justify-content-center align-items-center">
