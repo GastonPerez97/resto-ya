@@ -59,7 +59,9 @@ public class ClienteController {
 
 			clienteService.guardarClienteRegistrado(registro);
 
-			mailService.enviarMail(registro.getUsuarioModel().getEmail(), "test asunto", "test texto");
+			mailService.enviarMail(registro.getUsuarioModel().getEmail(),
+								   mailService.getAsuntoConfirmacionRegistro(),
+								   mailService.getMensajeRegistro(registro.getClienteModel().getNombre()));
 
 			return new ModelAndView("redirect:/login");
 		}

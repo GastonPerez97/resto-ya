@@ -55,4 +55,14 @@ public class MailServiceImpl implements MailService {
 		}
 	}
 	
+	@Override
+	public String getAsuntoConfirmacionRegistro() {
+		return "Registro exitoso";
+	}
+	
+	@Override
+	public String getMensajeRegistro(String nombreUsuario) {
+		return "Hola " + nombreUsuario + "! Te registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
+	}
+	
 }
