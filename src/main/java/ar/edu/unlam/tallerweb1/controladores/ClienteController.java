@@ -14,6 +14,7 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
+import ar.edu.unlam.tallerweb1.servicios.MailService;
 
 @Controller
 public class ClienteController {
@@ -23,6 +24,9 @@ public class ClienteController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private MailService mailService;
 
 	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
@@ -55,7 +59,9 @@ public class ClienteController {
 
 			clienteService.guardarClienteRegistrado(registro);
 
-			return new ModelAndView("login");
+			mailService.enviarMail(registro.getUsuarioModel().getEmail(), "test asunto", "test texto");
+
+			return new ModelAndView("redirect:/login");
 		}
 
 	}
