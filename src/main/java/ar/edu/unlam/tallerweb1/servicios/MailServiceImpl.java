@@ -33,15 +33,15 @@ public class MailServiceImpl implements MailService {
 	}
  
 	@Override
-	public Boolean enviarMail(String destinatario) {
+	public Boolean enviarMail(String destinatario, String asunto, String mensaje) {
 		init();
 		
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress((String)properties.get("mail.smtp.mail.sender")));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-			message.setSubject("Prueba envio de mail tw1");
-			message.setText("Prueba body. Taller Web 1, UNLaM");
+			message.setSubject(asunto);
+			message.setText(mensaje);
 			
 			javax.mail.Transport t = session.getTransport("smtp");
 			t.connect((String)properties.get("mail.smtp.user"), "didimope");
