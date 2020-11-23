@@ -22,7 +22,7 @@
                 </article><br>
             </c:forEach>
             <p>Pedido realizado a las ${hora} hs.</p>
-            <p>Te enviamos un mail de confirmacion a ${email}</p>
+            <p>Te enviamos un mail de confirmacion a <b>${email}</b></p>
             <p>Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
 
 			<div class="d-flex justify-content-around mt-4">

@@ -83,7 +83,7 @@ public class MailServiceImpl implements MailService {
 			mensaje += comida.getNombre() + " ------- $" + comida.getPrecio() + "\n";
 		}
 		
-		mensaje += "\n Podes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
+		mensaje += "\nPodes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
 		
 		return mensaje;
 	}

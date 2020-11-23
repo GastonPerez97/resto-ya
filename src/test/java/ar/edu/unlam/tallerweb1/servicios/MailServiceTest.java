@@ -104,7 +104,7 @@ public class MailServiceTest {
 		String resultadoEsperado = "Hola! Tu pedido fue confirmado:\n\n"
 								 + "Milanesa ------- $200.0\n"
 								 + "Tiramisu ------- $300.0\n"
-								 + "\n Podes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
+								 + "\nPodes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
 		
 		String resultadoActual = mailService.getMensajePedido(comidas);
 		
