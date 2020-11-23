@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -10,6 +12,8 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 
 
 @Service("mailService")
@@ -61,8 +65,26 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	@Override
+	public String getAsuntoConfirmacionPedido() {
+		return "Confirmacion de pedido";
+	}
+	
+	@Override
 	public String getMensajeRegistro(String nombreUsuario) {
 		return "Hola " + nombreUsuario + "! Te registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
+	}
+	
+	@Override
+	public String getMensajePedido(List<ComidaModel> comidas) {
+		String mensaje = "Hola! Tu pedido fue confirmado:\n\n";
+		Double total = 0d;
+		
+		for (ComidaModel comida : comidas) {
+			total += comida.getPrecio();
+			mensaje += comida.getNombre() + " ------- $" + comida.getPrecio() + "\n";
+		}
+		
+		return mensaje;
 	}
 	
 }

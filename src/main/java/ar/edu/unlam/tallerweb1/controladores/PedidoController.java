@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
+import ar.edu.unlam.tallerweb1.servicios.MailService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -42,6 +44,9 @@ public class PedidoController {
 	
 	@Autowired
 	private RestauranteService servRestaurante;
+	
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
@@ -77,6 +82,16 @@ public class PedidoController {
 		pedido.setRestaurante(restaurante);
 	
 		pedidoService.guardarPedido(pedido);
+		
+		List<ComidaModel> comidas = new ArrayList<ComidaModel>();
+		
+		for (Long idComida : idComidas) {
+			comidas.add(comidaService.consultarComidaPorId(idComida));
+		}
+		
+		mailService.enviarMail("tallerweb1.proyecto@gmail.com",
+							   mailService.getAsuntoConfirmacionPedido(),
+							   mailService.getMensajePedido(comidas));
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
