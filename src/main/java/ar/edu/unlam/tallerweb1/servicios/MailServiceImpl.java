@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -87,6 +86,14 @@ public class MailServiceImpl implements MailService {
 		mensaje += "\n Podes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
 		
 		return mensaje;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public Properties getProperties() {
+		return properties;
 	}
 	
 }
