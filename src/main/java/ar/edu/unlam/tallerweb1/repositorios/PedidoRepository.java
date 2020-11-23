@@ -14,5 +14,7 @@ public interface PedidoRepository {
 
 	List<PedidoModel> buscarPedidoPorCliente(ClienteModel cliente);
 	
+	List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente);
+	
 
 }

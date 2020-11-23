@@ -10,6 +10,7 @@
 			<div class="card-body">
 				<h3 class="card-title bebas">Número de pedido: ${pedido.idPedido}</h3>
 				<h3 class="card-title bebas">Restaurante: ${pedido.restaurante.nombre}</h3>
+				<h3 class="card-title bebas">Fecha: ${pedido.fecha_pedido}</h3>
 				<h3 class="card-title bebas">Dirección: ${pedido.restaurante.direccion}</h3>
 				<h3 class="card-title bebas">							
 				<form action="detalle-pedido" class="form-inline" method="post">

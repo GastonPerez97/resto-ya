@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,14 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 	public List<PedidoModel> buscarPedidoPorCliente(ClienteModel cliente) {
 		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
 				.add(Restrictions.eq("clienteModel.idCliente", cliente.getIdCliente())).list();
+	}
+
+	@Override
+	public List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente) {
+		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
+				.add(Restrictions.eq("clienteModel.idCliente", cliente.getIdCliente()))
+				.addOrder(Order.desc("fecha_pedido"))
+				.list();
 	}
 
 }
