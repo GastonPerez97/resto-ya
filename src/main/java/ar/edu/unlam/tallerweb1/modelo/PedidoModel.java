@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "pedido")
 public class PedidoModel {
@@ -28,6 +29,18 @@ public class PedidoModel {
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidoModel", cascade = CascadeType.ALL)
+	private List<PedidoComidaModel> listaPedidosComidas;
+	
+	@Column(name = "fecha_pedido")
+	private String fecha_pedido;
+	
+	@ManyToOne
+	@JoinColumn(name="id_cliente")
+	private ClienteModel clienteModel;
+	
+
+
 	public List<PedidoComidaModel> getListaPedidosComidas() {
 		return listaPedidosComidas;
 	}
@@ -44,9 +57,7 @@ public class PedidoModel {
 		this.clienteModel = cliente;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedidoModel", cascade = CascadeType.ALL)
-	private List<PedidoComidaModel> listaPedidosComidas;
-	
+
 	public ClienteModel getClienteModel() {
 		return clienteModel;
 	}
@@ -55,9 +66,7 @@ public class PedidoModel {
 		this.clienteModel = clienteModel;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="id_cliente")
-	private ClienteModel clienteModel;
+
 	
 	public PedidoModel() {
 		listaPedidosComidas = new ArrayList<PedidoComidaModel>();
@@ -87,6 +96,14 @@ public class PedidoModel {
 
 	public void setPedidoComida(List<PedidoComidaModel> pedidoComida) {
 		this.listaPedidosComidas = pedidoComida;
+	}
+	
+	public String getFecha_pedido() {
+		return fecha_pedido;
+	}
+
+	public void setFecha_pedido(String string) {
+		this.fecha_pedido = string;
 	}
 
 	

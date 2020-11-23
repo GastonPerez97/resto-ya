@@ -68,15 +68,19 @@ public class PedidoController {
 											@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		 Date date = new Date();
-		    
+		
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		 
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
 		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
 		
 		pedido.setRestaurante(restaurante);
+		pedido.setFecha_pedido(dateFormat.format(date));
 	
 		pedidoService.guardarPedido(pedido);
+	//	pedidoService.guardarHoraPedido(pedido.getIdPedido(), dateFormat.format(date));
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());

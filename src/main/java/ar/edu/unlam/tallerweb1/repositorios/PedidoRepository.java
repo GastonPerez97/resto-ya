@@ -13,5 +13,6 @@ public interface PedidoRepository {
 	List<PedidoModel> buscarPedido();
 
 	List<PedidoModel> buscarPedidoPorCliente(ClienteModel cliente);
+	
 
 }
