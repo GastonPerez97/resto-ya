@@ -22,9 +22,16 @@
                 </article><br>
             </c:forEach>
             <p>Pedido realizado a las ${hora} hs.</p>
-            <form:form action="pagar" method="post" class="comidas-pedido mx-auto">
-                <input type="submit" value="Pagar" class="btn btn-primary btn-block" />
-            </form:form>
+            <p>Te enviamos un mail de confirmacion a ${email}</p>
+            <p>Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
+
+			<div class="d-flex justify-content-around mt-4">
+            	<a href="/proyecto-limpio-spring-master/restaurantes" class="btn btn-dark">Volver a Restaurantes</a>
+            	
+                <form:form action="pagar" method="post">
+                	<input type="submit" value="Pagar" class="btn btn-primary" />
+            	</form:form>
+			</div>
         </section>
 
         <%@ include file="footer.jsp" %>

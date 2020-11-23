@@ -70,11 +70,13 @@ public class PedidoController {
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
+											@RequestParam("checkboxComidas") ArrayList<Long> idComidas,
+											@RequestParam("emailPedido") String emailPedido,
+											HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		 Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		Date date = new Date();
 		    
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
 		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
@@ -84,12 +86,11 @@ public class PedidoController {
 		pedidoService.guardarPedido(pedido);
 		
 		List<ComidaModel> comidas = new ArrayList<ComidaModel>();
-		
 		for (Long idComida : idComidas) {
 			comidas.add(comidaService.consultarComidaPorId(idComida));
 		}
 		
-		mailService.enviarMail("tallerweb1.proyecto@gmail.com",
+		mailService.enviarMail(emailPedido,
 							   mailService.getAsuntoConfirmacionPedido(),
 							   mailService.getMensajePedido(comidas));
 		
@@ -97,6 +98,7 @@ public class PedidoController {
 	    modelo.put("idPedido", pedido.getIdPedido());
 	    modelo.put("hora",dateFormat.format(date));
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	    modelo.put("email", emailPedido);
 		
 		return new ModelAndView("procesarPedido", modelo);
 	}

@@ -71,7 +71,7 @@ public class MailServiceImpl implements MailService {
 	
 	@Override
 	public String getMensajeRegistro(String nombreUsuario) {
-		return "Hola " + nombreUsuario + "! Te registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
+		return "Hola " + nombreUsuario + "!\n\nTe registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
 	}
 	
 	@Override
@@ -83,6 +83,8 @@ public class MailServiceImpl implements MailService {
 			total += comida.getPrecio();
 			mensaje += comida.getNombre() + " ------- $" + comida.getPrecio() + "\n";
 		}
+		
+		mensaje += "\n Podes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
 		
 		return mensaje;
 	}
