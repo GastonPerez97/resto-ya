@@ -7,10 +7,6 @@ import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 import com.mercadopago.resources.datastructures.preference.Payer;
 
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-
-import java.util.ArrayList;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
