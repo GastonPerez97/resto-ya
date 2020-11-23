@@ -80,7 +80,6 @@ public class PedidoController {
 		pedido.setFecha_pedido(dateFormat.format(date));
 	
 		pedidoService.guardarPedido(pedido);
-	//	pedidoService.guardarHoraPedido(pedido.getIdPedido(), dateFormat.format(date));
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
