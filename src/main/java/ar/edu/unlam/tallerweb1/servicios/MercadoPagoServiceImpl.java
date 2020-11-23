@@ -9,6 +9,8 @@ import com.mercadopago.resources.datastructures.preference.Payer;
 
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MercadoPagoServiceImpl implements MercadoPagoService {
 
 	@Override
-	public Preference procesarPago() throws MPException {
+	public Preference procesarPagoDePedido(String[] items, Float[] precios) throws MPException {
 		MercadoPago.SDK.configure("TEST-867780493823573-112218-33ab1227d9d3f3d6db2332eb892bd369-200165530");
 		
 		Payer payer = new Payer();
@@ -31,11 +33,21 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
 							  .setSuccess("http://localhost:8080/proyecto-limpio-spring-master/pagoRealizado")
 		);
 		
-		Item item = new Item();
-		item.setTitle("Test item").setQuantity(1).setUnitPrice(3F);
+		for (int i = 0; i < items.length; i++) {
+			Item item = new Item();
+			item.setTitle(items[i]).setQuantity(1);
+			
+			for (int j = 0; j < precios.length; j++) {
+				if (i == j) {
+					item.setUnitPrice(precios[j]);
+					break;
+				}
+			}
+			
+			preference.appendItem(item);
+		}
 		
-		preference.appendItem(item);
-		
+
 		return preference.save();
 	}
 	

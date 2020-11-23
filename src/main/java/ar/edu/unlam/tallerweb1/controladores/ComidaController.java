@@ -15,15 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
-import ar.edu.unlam.tallerweb1.servicios.MercadoPagoService;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
-import com.mercadopago.*;
-import com.mercadopago.exceptions.MPException;
-import com.mercadopago.resources.Preference;
-import com.mercadopago.resources.datastructures.preference.BackUrls;
-import com.mercadopago.resources.datastructures.preference.Item;
-import com.mercadopago.resources.datastructures.preference.Payer;
 
 @Controller
 public class ComidaController {
@@ -33,9 +26,6 @@ public class ComidaController {
 	
 	@Autowired
 	private RestauranteService servRestaurante;
-	
-	@Autowired
-	private MercadoPagoService servicioMercadoPago;
 	
 	@RequestMapping("/restaurante/menu")
 	public ModelAndView verMenu(@RequestParam("id") Long id, HttpServletRequest request) {
@@ -50,16 +40,6 @@ public class ComidaController {
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("menu", modelo);
-	}
-	
-	@RequestMapping(path="/pagar", method = RequestMethod.POST)
-	public ModelAndView pagarPedido(HttpServletRequest request) throws MPException {
-		ModelMap modelo = new ModelMap();
-		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-
-		Preference resultado = servicioMercadoPago.procesarPago();
-		
-		return new ModelAndView("redirect:" + resultado.getSandboxInitPoint());
 	}
 	
 	@RequestMapping("/editarComida")

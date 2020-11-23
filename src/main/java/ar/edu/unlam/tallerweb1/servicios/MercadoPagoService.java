@@ -5,6 +5,6 @@ import com.mercadopago.resources.Preference;
 
 public interface MercadoPagoService {
 	
-	public Preference procesarPago() throws MPException;
+	public Preference procesarPagoDePedido(String[] comidas, Float[] precios) throws MPException;
 	
 }
