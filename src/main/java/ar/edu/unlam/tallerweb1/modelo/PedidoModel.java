@@ -39,6 +39,10 @@ public class PedidoModel {
 	@JoinColumn(name="id_cliente")
 	private ClienteModel clienteModel;
 	
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_estado_pedido")
+    private EstadoPedidoModel estadoPedidoModel;
+	
 
 
 	public List<PedidoComidaModel> getListaPedidosComidas() {

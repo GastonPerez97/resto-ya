@@ -18,16 +18,25 @@ public class ReclamoModel {
 	@Column(name = "id_reclamo")
 	private Long idReclamo;
 	
+	@Column(name = "detalle_reclamo")
+	private String detalle;
+
 	@OneToOne
 	@JoinColumn(name = "id_pedido")
-	private PedidoModel idPedido;
+	private PedidoModel pedido;
 	
 
-	public ReclamoModel(Long idReclamo, PedidoModel idPedido) {
-		super();
-		this.idReclamo = idReclamo;
-		this.idPedido = idPedido;
+	public ReclamoModel() {
 	}
+	
+
+	public ReclamoModel(String detalle, PedidoModel pedido) {
+		super();
+		this.detalle = detalle;
+		this.pedido = pedido;
+	}
+
+
 
 
 	public Long getIdReclamo() {
@@ -39,14 +48,23 @@ public class ReclamoModel {
 		this.idReclamo = idReclamo;
 	}
 
+	
+	public String getDetalle() {
+		return detalle;
+	}
+
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
 
 	public PedidoModel getIdPedido() {
-		return idPedido;
+		return pedido;
 	}
 
 
 	public void setIdPedido(PedidoModel idPedido) {
-		this.idPedido = idPedido;
+		this.pedido = idPedido;
 	}
 
 }

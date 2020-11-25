@@ -21,6 +21,14 @@
 							value="Ver detalle" class="float-right btn btn-dark" />
 					</div>
 				</form></h3>
+				<form action="generarReclamo" class="form-inline" method="post">
+					<input type="hidden" value="${pedido.idPedido}"
+						name="idPedido" id="idPedido" />
+					<div class="form-group">
+						<input type="submit" id="reclamo-submit"
+							value="Hacer un reclamo" class="float-right btn btn-dark" />
+					</div>
+				</form></h3>
 			</div>
 		</article>
 	</c:forEach>
