@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,7 @@ public class RestauranteController {
 
 	@RequestMapping("/restaurantes")
 	public ModelAndView restaurantes(HttpServletRequest request) {
+		
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Restaurantes");
@@ -140,7 +143,7 @@ public class RestauranteController {
 
 	@RequestMapping(path = "/nueva-calificacion")
 	public ModelAndView irACalificacion() {
-
+		/* List <String> array= new ArrayList<>(); */
 		ModelMap model = new ModelMap();
 
 		model.put("calificacionModel", servCalificacion.buscarCalificaciones());

@@ -28,4 +28,9 @@ public class CalificacionServiceImpl implements CalificacionService {
 		return calificacionRepository.buscarCalificaciones();
 
 	}
+
+	public void guardarCalificaciones(CalificacionModel calificacion) {
+	
+		
+	}
 }

@@ -4,51 +4,51 @@
 <h1 class="text-center h1 display-3 bebas mb-4">Calificar
 	Restaurante</h1>
 
-
-<section class="restaurantes">
-	<div class="mx-auto mb-4" style="width: 75%;">
-		<form action="guardado-calificacion" method="POST">
-			<input type="submit" class="float-right btn btn-dark"
-				value="Calificar">
-		</form>
-	</div>
-	<div class="mb-4 volver-btn">
-		<a href="./restaurantes"><button type="button"
-				class="btn btn-dark">Volver</button></a>
-	</div>
+<section class="restaurantes"></section>
 
 
-	<div class="form-row">
+<section class="comidas mx-auto">
+	<article class="card comida shadow">
 
-		<c:forEach items="${calificacionModel}" var="CALIFICACION">
+		<div class="card-body">
+			<div class="img-calificacion"></div>
+			<h3 class="card-title bebas">
+				<form action="guardado-calificacion" class="form-inline"
+					method="post">
 
-			<c:if test="${not empty CALIFICACION.imagenNombre}">
-				<img src="img/calificaciones/${CALIFICACION.imagenNombre}"
-					class="card-img img-restaurante img-fluid">
-			</c:if>
+					<c:forEach items="${calificacionModel}" var="CALIFICACION">
+						<c:if test="${not empty CALIFICACION.imageName}">
+							<%-- <img src="img/calificaciones/${CALIFICACION.imageName}"
+							class="img-calificacion"> --%>
+							<input type="image"
+								src="img/calificaciones/${CALIFICACION.imageName}"
+								class="img-calificacion">
+						</c:if>
 
-		</c:forEach>
+						<br>
+						<input type="hidden" value="${calificacion.idCalificacion}"
+							name="idCalificacion" id="" />
+					</c:forEach>
 
-	</div>
+					<input type="hidden"
+						value="${calificacion.restaurante.idRestaurante}"
+						name="idCalificacion" id="" /> <input type="text"
+						value="Ingrese su comentario" name="comentario" id="" />
 
-
-	<%-- 	<form:form action="guardado-calificacion" method="POST"
-			modelAttribute="calificacion" enctype="multipart/form-data">
-			<div class="form-row">
-			
-			<input type="hidden" value="${idCalificacion}" name="idRestaurante" id="id-restaurante-input" />
-				<div class="form-group col-md-6">
-					<label for="nombre">Comentario:</label>
-					<form:input path="comentario" id="nombre" class="form-control" />
-				</div>
-			</div>
-
-			<div class="form-group mt-5 text-center">
-				<button type="submit" class="btn btn-dark mx-auto">Calificar</button>
-			</div>
-		</form:form>
-		
+					<div class="form-group">
+						<br> <input type="submit" id="reserva-submit"
+							value="Calificar" class="float-right btn btn-dark" />
+					</div>
+				</form>
+			</h3>
+		</div>
 	</article>
+
 </section>
- --%>
-	<%@ include file="footer.jsp"%>
+
+
+<div class="mb-4 volver-btn">
+	<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
+</div>
+
+<%@ include file="footer.jsp"%>

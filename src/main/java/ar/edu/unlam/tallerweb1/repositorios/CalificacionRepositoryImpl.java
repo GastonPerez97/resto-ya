@@ -22,4 +22,10 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 		return sessionFactory.getCurrentSession().createCriteria(CalificacionModel.class).list();
 	}
 
+	@Override
+	public void guardarCalificaciones(CalificacionModel calificacion) {
+		sessionFactory.getCurrentSession().createCriteria(CalificacionModel.class).list();
+		
+	}
+
 }

@@ -8,5 +8,6 @@ public interface CalificacionRepository {
 
 	List<CalificacionModel> buscarCalificaciones();
 	
+	void guardarCalificaciones(CalificacionModel calificacion);
 
 }
