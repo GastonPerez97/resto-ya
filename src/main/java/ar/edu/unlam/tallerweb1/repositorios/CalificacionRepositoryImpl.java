@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.CalificacionModel;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 
 @Repository("repositorioCalificacion")
 public class CalificacionRepositoryImpl implements CalificacionRepository {
@@ -24,8 +25,8 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 
 	@Override
 	public void guardarCalificaciones(CalificacionModel calificacion) {
-		sessionFactory.getCurrentSession().createCriteria(CalificacionModel.class).list();
-		
+		sessionFactory.getCurrentSession().save(calificacion);
+
 	}
 
 }

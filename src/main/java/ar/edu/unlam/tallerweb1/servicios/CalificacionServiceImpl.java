@@ -30,6 +30,8 @@ public class CalificacionServiceImpl implements CalificacionService {
 	}
 
 	public void guardarCalificaciones(CalificacionModel calificacion) {
+		
+		calificacionRepository.guardarCalificaciones(calificacion);
 	
 		
 	}

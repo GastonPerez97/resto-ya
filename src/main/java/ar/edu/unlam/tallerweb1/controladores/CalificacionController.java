@@ -34,20 +34,17 @@ public class CalificacionController {
 
 	// En Proceso
 
-	/*
-	 * @RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
-	 * public ModelAndView guardarCalificacion(@ModelAttribute("calificacion")
-	 * CalificacionModel calificacion) throws Exception { ModelMap modelo = new
-	 * ModelMap(); modelo.put("calificacion", calificacion);
-	 * 
-	 * servCalificacion.guardarCalificaciones(calificacion);
-	 * 
-	 * 
-	 * return null;
-	 * 
-	 * }
-	 */
+	@RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
+	public ModelAndView guardarCalificacion(@ModelAttribute("calificacion") CalificacionModel calificacion)
+			throws Exception {
+		ModelMap modelo = new ModelMap();
+		modelo.put("calificacion", calificacion);
 
+		servCalificacion.guardarCalificaciones(calificacion);
+
+		return null;
+
+	}
 
 	/*
 	 * @RequestMapping(path="/guardado-calificacion", method=RequestMethod.POST)
@@ -66,16 +63,14 @@ public class CalificacionController {
 	 * 
 	 * return new ModelAndView("detallePedido", modelo); }
 	 */
-	
-	
-	
-	
-	@RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
-	public ModelAndView guardarCalificacion(@RequestParam("idCalificacion") Long idCalificacion,
-			HttpServletRequest request) {
-		ModelMap modelo = new ModelMap();
-		return null;
 
-	}
+	/*
+	 * @RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
+	 * public ModelAndView guardarCalificacion(@RequestParam("idCalificacion") Long
+	 * idCalificacion, HttpServletRequest request) { ModelMap modelo = new
+	 * ModelMap(); return null;
+	 * 
+	 * }
+	 */
 
 }

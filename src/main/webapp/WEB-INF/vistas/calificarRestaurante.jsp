@@ -22,7 +22,7 @@
 							class="img-calificacion"> --%>
 							<input type="image"
 								src="img/calificaciones/${CALIFICACION.imageName}"
-								class="img-calificacion">
+								class="img-calificacion" id="imageName">
 						</c:if>
 
 						<br>
@@ -36,7 +36,7 @@
 						value="Ingrese su comentario" name="comentario" id="" />
 
 					<div class="form-group">
-						<br> <input type="submit" id="reserva-submit"
+						<br> <input type="submit" id="calificar-submit"
 							value="Calificar" class="float-right btn btn-dark" />
 					</div>
 				</form>
@@ -46,9 +46,16 @@
 
 </section>
 
-
 <div class="mb-4 volver-btn">
 	<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
 </div>
 
+<script>
+	$(document).ready(function() {
+		$('.calificar-submit').click(function() {
+			var imageName = $('.img-calificacion').val();
+			alert(imageName);
+		});
+	});
+</script>
 <%@ include file="footer.jsp"%>
