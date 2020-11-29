@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +22,19 @@ public class ClienteController {
 
 	@Autowired
 	private LoginService loginService;
+
+	public ClienteController(ClienteService clienteService, LoginService loginService) {
+		this.clienteService = clienteService;
+		this.loginService = loginService;
+	}
+	
+
+
+	public ClienteController() {
+		super();
+	}
+
+
 
 	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
@@ -66,7 +78,7 @@ public class ClienteController {
 		ModelMap model = new ModelMap();
 
 		model.put("clienteModel", clienteService.buscarClientes());
-	
+
 		return new ModelAndView("consultarHistorico", model);
 	}
 

@@ -80,6 +80,18 @@
 								</div>
 							</form>
 						</div>
+
+						<div class="col-3">
+							<form action="nueva-calificacion" class="form-inline"
+								method="post">
+								<input type="hidden" value="${REST.idRestaurante}"
+									name="idRestaurante" id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="submit" id="reserva-submit" value="Calificar"
+										class="float-right btn btn-dark" />
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

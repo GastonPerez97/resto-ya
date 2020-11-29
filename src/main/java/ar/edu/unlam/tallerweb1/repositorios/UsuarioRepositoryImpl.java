@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
+/*import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;*/
 
 @Repository("usuarioRepository")
 public class UsuarioRepositoryImpl implements UsuarioRepository {

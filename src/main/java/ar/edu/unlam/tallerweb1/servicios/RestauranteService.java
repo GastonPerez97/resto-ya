@@ -48,6 +48,8 @@ public interface RestauranteService {
 	public void procesarEliminacionRestaurante(RestauranteModel restaurante);
 	
 	public Boolean verificarExtensionDeImagen(MultipartFile imagen);
+	
+	/* public void calificarRestaurante(RestauranteModel restaurante); */
 }
 
 

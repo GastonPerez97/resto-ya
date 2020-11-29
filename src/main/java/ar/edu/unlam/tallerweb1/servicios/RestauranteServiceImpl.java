@@ -175,5 +175,14 @@ public class RestauranteServiceImpl implements RestauranteService {
 		
 		return false;
 	}
+
+	/*@Override
+	public void calificarRestaurante(RestauranteModel restaurante) {
+	//Lógica del servicio	
+	*/
+		
+	/*
+	 * }
+	 */
 	
 }

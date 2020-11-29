@@ -51,7 +51,6 @@ public class MesaController {
 	@RequestMapping(path = "/guardar-nueva-mesa", method = RequestMethod.POST)
 	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevaMesa") FormularioNuevaMesa formularioNuevaMesa, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		
 		MesaModel mesa = mesaService.ProcesarNuevaMesa(formularioNuevaMesa);
 		modelAndView.addObject("mesa", mesa);
 		modelAndView.setViewName("nuevaMesaExitosa");
