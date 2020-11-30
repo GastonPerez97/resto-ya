@@ -32,6 +32,11 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
+	
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<meta name="google-signin-client_id" content="944559455733-1q39bf2aqu04q1v5h71jbsngidb1qoh1.apps.googleusercontent.com">
+
 </head>
 <body>
 
