@@ -22,17 +22,17 @@
 							class="img-calificacion"> --%>
 							<input type="image"
 								src="img/calificaciones/${CALIFICACION.imageName}"
-								class="img-calificacion" id="imageName">
+								class="img-calificacion" id="idCalificacion">
 						</c:if>
 
 						<br>
 						<input type="hidden" value="${calificacion.idCalificacion}"
-							name="idCalificacion" id="" />
+							name="idCalificacion" id="idCalificacion" />
 					</c:forEach>
 
 					<input type="hidden"
 						value="${calificacion.restaurante.idRestaurante}"
-						name="idCalificacion" id="" /> <input type="text"
+						name="idRestaurante" id="idRestaurante" /> <input type="text"
 						value="Ingrese su comentario" name="comentario" id="" />
 
 					<div class="form-group">

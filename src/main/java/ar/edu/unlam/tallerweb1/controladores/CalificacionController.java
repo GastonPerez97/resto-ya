@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,22 @@ public class CalificacionController {
 
 	}
 
+	
+	
+	/*
+	 * @RequestMapping(path = "/nueva-calificacion") public ModelAndView
+	 * irACalificacion() { List <Long> array= new ArrayList<>();
+	 * 
+	 * for (int i=0; i <4 ; i++) { array.add((long) (i+1)); }
+	 * 
+	 * ModelMap model = new ModelMap();
+	 * 
+	 * model.put("calificacionArray", array);
+	 * 
+	 * return new ModelAndView("calificarRestaurante2", model); }
+	 */
+	
+	
 	/*
 	 * @RequestMapping(path="/guardado-calificacion", method=RequestMethod.POST)
 	 * public ModelAndView verDetalleDePedido(@RequestParam("calificacion")

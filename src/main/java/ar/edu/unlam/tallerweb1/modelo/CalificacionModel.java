@@ -19,6 +19,9 @@ public class CalificacionModel {
 	@Column(name = "comentario")
 	private String comentario;
 
+	@Column(name = "valor")
+	private Integer valor;
+	
 	@Column(name = "imageName")
 	private String imageName;
 	
