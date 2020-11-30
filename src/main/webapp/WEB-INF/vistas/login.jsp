@@ -49,7 +49,7 @@
 					"<a class='btn btn-success btn-block' href='/proyecto-limpio-spring-master/login/google/exito?email=" + email + "&name=" + name 
 					+ "'>Continuar con mi cuenta de Google</a><button class='btn btn-danger btn-block mt-2' onclick='logOut()'>Me arrepentí, cerrar sesión de Google</button>"
 	}
-
+	
 	function logOut() {
 		gapi.auth2.getAuthInstance().disconnect();
 		document.getElementById("tenes-google").style.display = "inline";

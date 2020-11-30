@@ -50,6 +50,21 @@
         })
     });
 </script>
+
+<script>
+	function init() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+		});
+	}
+</script>
+
+<script>
+	function logOutHeaderBtn() {
+		gapi.auth2.getAuthInstance().disconnect();
+	}
+</script>
+
 </body>
 
 </html>
