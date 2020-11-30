@@ -54,8 +54,10 @@ public class ReclamoController {
 		
 		ReclamoModel reclamo = reclamoService.buscarReclamoPorIdPedido(idPedido);
 		
+		modelo.put("titulo", "Ver Reclamo");
 		modelo.put("reclamo", reclamo);
 		modelo.put("idPedido", idPedido);
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 				  		
 		return new ModelAndView("verReclamo", modelo);
 	}
