@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
 import ar.edu.unlam.tallerweb1.servicios.HorarioService;
@@ -133,4 +133,18 @@ public class RestauranteController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping(path = "/pedidosPorRestaurante")
+	public ModelAndView pedidosPorRestaurante(@RequestParam("id") Long idRestaurante) {
+		ModelMap modelo = new ModelMap();
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
+
+		modelo.put("titulo", "Pedidos " + restaurante.getNombre());
+		modelo.put("nombreRestaurante", restaurante.getNombre());
+		modelo.put("pedidoModel", servRestaurante.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante));
+
+		return new ModelAndView("pedidosPorRestaurante", modelo);
+	}
+	
+	
 }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 @Repository
 @Transactional
@@ -49,6 +50,14 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 	public List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente) {
 		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
 				.add(Restrictions.eq("clienteModel.idCliente", cliente.getIdCliente()))
+				.addOrder(Order.desc("fecha_pedido"))
+				.list();
+	}
+
+	@Override
+	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante) {
+		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
+				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
 				.addOrder(Order.desc("fecha_pedido"))
 				.list();
 	}
