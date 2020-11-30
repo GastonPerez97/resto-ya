@@ -18,5 +18,10 @@ public class ReclamoServiceImpl implements ReclamoService{
 		repositorioReclamo.guardarReclamo(reclamo);
 	}
 
+	@Override
+	public ReclamoModel buscarReclamoPorIdPedido(Long idPedido) {
+		return repositorioReclamo.buscarReclamoPorIdPedido(idPedido);
+	}
+
 
 }

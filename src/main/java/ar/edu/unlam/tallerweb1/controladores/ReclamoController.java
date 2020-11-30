@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.ReclamoModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReclamo;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.ReclamoService;
@@ -51,6 +47,19 @@ public class ReclamoController {
 
 		return new ModelAndView("reclamoGeneradoExitoso");
 	}
+	
+	@RequestMapping(path="/verReclamo")
+	public ModelAndView verReclamo(@RequestParam("id")Long idPedido, HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		
+		ReclamoModel reclamo = reclamoService.buscarReclamoPorIdPedido(idPedido);
+		
+		modelo.put("reclamo", reclamo);
+		modelo.put("idPedido", idPedido);
+				  		
+		return new ModelAndView("verReclamo", modelo);
+	}
+	
 	
 	
 		

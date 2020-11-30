@@ -135,10 +135,11 @@ public class RestauranteController {
 	}
 	
 	@RequestMapping(path = "/pedidosPorRestaurante")
-	public ModelAndView pedidosPorRestaurante(@RequestParam("id") Long idRestaurante) {
+	public ModelAndView pedidosPorRestaurante(@RequestParam("id") Long idRestaurante, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pedidos " + restaurante.getNombre());
 		modelo.put("nombreRestaurante", restaurante.getNombre());
 		modelo.put("pedidoModel", servRestaurante.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante));

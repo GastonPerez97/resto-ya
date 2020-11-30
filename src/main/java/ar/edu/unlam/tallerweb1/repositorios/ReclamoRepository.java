@@ -6,4 +6,6 @@ public interface ReclamoRepository {
 	
 	void guardarReclamo(ReclamoModel reclamo);
 
+	ReclamoModel buscarReclamoPorIdPedido(Long idPedido);
+
 }

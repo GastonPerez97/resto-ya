@@ -6,4 +6,6 @@ public interface ReclamoService {
 	
 	void guardarReclamo(ReclamoModel reclamo);
 
+	ReclamoModel buscarReclamoPorIdPedido(Long idPedido);
+
 }
