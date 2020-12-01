@@ -10,6 +10,8 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
+import ar.edu.unlam.tallerweb1.modelo.enums.Calificacion;
+
 @Entity
 @Table(name = "restaurante")
 public class RestauranteModel {
@@ -47,7 +49,7 @@ public class RestauranteModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.ALL)
 	private List<MesaModel> mesas = new LinkedList<MesaModel>();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurante", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
 	private List<CalificacionModel> calificacion = new LinkedList<CalificacionModel>();
 
 	public List<PedidoModel> getPedidos() {
@@ -58,7 +60,6 @@ public class RestauranteModel {
 		this.pedidos = pedidos;
 	}
 
-	
 	public List<CalificacionModel> getCalificacion() {
 		return calificacion;
 	}

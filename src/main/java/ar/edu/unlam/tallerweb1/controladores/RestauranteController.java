@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificarRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
 import ar.edu.unlam.tallerweb1.servicios.CalificacionService;
 import ar.edu.unlam.tallerweb1.servicios.HorarioService;
@@ -143,12 +144,21 @@ public class RestauranteController {
 
 	@RequestMapping(path = "/nueva-calificacion")
 	public ModelAndView irACalificacion() {
-		/* List <String> array= new ArrayList<>(); */
 		ModelMap model = new ModelMap();
 
 		model.put("calificacionModel", servCalificacion.buscarCalificaciones());
 
-		return new ModelAndView("calificarRestaurante", model);
+		return new ModelAndView("calificarRestaurante1", model);
 	}
 
+	
+	@RequestMapping(path = "/nueva-calificacion1")
+	public ModelAndView verACalificacion(HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+		model.put("formularioCalificacion", new FormularioCalificarRestaurante());
+		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		return new ModelAndView("calificarRestaurante", model);
+	}
+	
+	
 }

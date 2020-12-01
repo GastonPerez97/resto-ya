@@ -33,6 +33,9 @@ public class ClienteModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL)
 	private List<PedidoModel> pedidos = new LinkedList<PedidoModel>();
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL)
+	private List<CalificacionModel> calificacion= new LinkedList<CalificacionModel>();
+	
 	public List<PedidoModel> getPedidos() {
 		return pedidos;
 	}
