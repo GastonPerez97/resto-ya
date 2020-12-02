@@ -2,14 +2,15 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.modelo.CalificacionModel;
+import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificarRestaurante;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 
 public interface CalificacionService {
 	
 
-	List<CalificacionModel> buscarCalificaciones();
+	List<CalificacionRestauranteModel> buscarCalificaciones();
 
-	void guardarCalificaciones(CalificacionModel calificacion);
+	void guardarCalificaciones(FormularioCalificacionRestaurante calificacion);
+
 }

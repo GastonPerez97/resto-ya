@@ -1,31 +1,15 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-import ar.edu.unlam.tallerweb1.modelo.CalificacionModel;
-import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
-import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificarRestaurante;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.servicios.CalificacionService;
-import ar.edu.unlam.tallerweb1.servicios.HorarioService;
-import ar.edu.unlam.tallerweb1.servicios.RestauranteHorarioService;
-import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 
 @Controller
 public class CalificacionController {
@@ -36,19 +20,18 @@ public class CalificacionController {
 	// En Proceso
 
 	@RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
-	public ModelAndView guardarCalificacion(@ModelAttribute("calificacion") CalificacionModel calificacion)
-			throws Exception {
-		ModelMap modelo = new ModelMap();
-		modelo.put("calificacion", calificacion);
+	public ModelAndView guardarCalificacion(
+			@ModelAttribute("formularioCalificacion") FormularioCalificacionRestaurante formularioCalificacion,
+			HttpServletRequest request) throws Exception {
+			ModelMap modelo = new ModelMap();
+			//formularioCalificacion.getCalificacion().getValor();
+			modelo.put("calificacion", formularioCalificacion);
+			servCalificacion.guardarCalificaciones(formularioCalificacion);
 
-		servCalificacion.guardarCalificaciones(calificacion);
-
-		return null;
+		return new ModelAndView ("calificacionExitosa" , modelo);
 
 	}
 
-	
-	
 	/*
 	 * @RequestMapping(path = "/nueva-calificacion") public ModelAndView
 	 * irACalificacion() { List <Long> array= new ArrayList<>();
@@ -61,8 +44,7 @@ public class CalificacionController {
 	 * 
 	 * return new ModelAndView("calificarRestaurante2", model); }
 	 */
-	
-	
+
 	/*
 	 * @RequestMapping(path="/guardado-calificacion", method=RequestMethod.POST)
 	 * public ModelAndView verDetalleDePedido(@RequestParam("calificacion")

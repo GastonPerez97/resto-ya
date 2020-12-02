@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class CalificacionModel {
 	@Column(name = "valor")
 	private Calificacion valor;
 
-	@Column(name = "imageName")
+	@Column(name = "image_name")
 	private String imageName;
 
 	public String getComentario() {
@@ -32,30 +33,8 @@ public class CalificacionModel {
 		this.comentario = comentario;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "id_restaurante")
-	private RestauranteModel restauranteModel;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_cliente")
-	private ClienteModel clienteModel;	
-
-
-	public RestauranteModel getRestauranteModel() {
-		return restauranteModel;
-	}
-
-	public void setRestauranteModel(RestauranteModel restauranteModel) {
-		this.restauranteModel = restauranteModel;
-	}
-
-	public ClienteModel getClienteModel() {
-		return clienteModel;
-	}
-
-	public void setClienteModel(ClienteModel clienteModel) {
-		this.clienteModel = clienteModel;
-	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "calificacionModel", cascade = CascadeType.ALL)
+	private List<CalificacionRestauranteModel> calificacionRestaurante = new LinkedList<CalificacionRestauranteModel>();
 
 	public Long getIdCalificacion() {
 		return idCalificacion;

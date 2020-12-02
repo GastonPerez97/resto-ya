@@ -1,61 +1,50 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="header.jsp"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h1 class="text-center h1 display-3 bebas mb-4">Calificar
 	Restaurante</h1>
 
-<section class="restaurantes"></section>
+<section class="mx-auto" style="width: 80%;">
+	<div class="restaurantes">
+		<div id="loginbox" style="margin-top: 50px;" class="card-body">
 
 
-<%-- <section class="comidas mx-auto">
-	<article class="card comida shadow">
+			<form:form action="guardado-calificacion" method="POST"
+				modelAttribute="formularioCalificacion">
+				<hr class="colorgraph">
+				<br>
+				<div class="form-group"></div>
 
-		<div class="card-body">
-			<div class="img-calificacion"></div>
-			<h3 class="card-title bebas">
-				<form action="guardado-calificacion" class="form-inline"
-					method="post">
+				<c:forEach items="${calificacion}" var="CAL">
+					<c:if test="${not empty CAL.valor}">
+						<img src="img/calificaciones/tenedor.jpg" class="img-calificacion">
+						<input type="image" src="img/calificaciones/tenedor.jpg"
+							class="img-calificacion" id="idCalificacion">
+					</c:if>
 
-					<c:forEach items="${calificacionModel}" var="CALIFICACION">
-						<c:if test="${not empty CALIFICACION.imageName}">
-							<img src="img/calificaciones/${CALIFICACION.imageName}"
-							class="img-calificacion">
-							<input type="image"
-								src="img/calificaciones/${CALIFICACION.imageName}"
-								class="img-calificacion" id="idCalificacion">
-						</c:if>
+				</c:forEach>
 
-						<br>
-						<input type="hidden" value="${calificacion.idCalificacion}"
-							name="idCalificacion" id="idCalificacion" />
-					</c:forEach>
+				<div class="form-group">
+					<form:hidden path="cliente.idCliente" value="${cliente.idCliente}" />
 
-					<input type="hidden"
-						value="${calificacion.restaurante.idRestaurante}"
-						name="idRestaurante" id="idRestaurante" /> <input type="text"
-						value="Ingrese su comentario" name="comentario" id="" />
+					<form:hidden path="restaurante.idRestaurante"
+						value="${restaurante.idRestaurante}" />
 
-					<div class="form-group">
-						<br> <input type="submit" id="calificar-submit"
-							value="Calificar" class="float-right btn btn-dark" />
-					</div>
-				</form>
-			</h3>
+					<form:input path="calificacion.comentario" id="comentario"
+						class="form-control" required="true" />
+					<br> <input type="submit" id="calificar-submit"
+						value="Calificar" class="float-right btn btn-dark" />
+				</div>
+			</form:form>
 		</div>
-	</article>
-
+	</div>
 </section>
 
 <div class="mb-4 volver-btn">
 	<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
 </div>
 
-<script>
-	$(document).ready(function() {
-		$('.calificar-submit').click(function() {
-			var imageName = $('.img-calificacion').val();
-			alert(imageName);
-		});
-	});
-</script> --%>
+
+
 <%@ include file="footer.jsp"%>

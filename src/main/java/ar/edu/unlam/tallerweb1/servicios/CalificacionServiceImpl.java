@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.repositorios.CalificacionRepository;
 import ar.edu.unlam.tallerweb1.repositorios.ClienteRepository;
 import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
-import ar.edu.unlam.tallerweb1.modelo.CalificacionModel;
+import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
 
@@ -24,12 +24,12 @@ public class CalificacionServiceImpl implements CalificacionService {
 	private CalificacionRepository calificacionRepository;
 
 	@Override
-	public List<CalificacionModel> buscarCalificaciones() {
+	public List<CalificacionRestauranteModel> buscarCalificaciones() {
 		return calificacionRepository.buscarCalificaciones();
 
 	}
 
-	public void guardarCalificaciones(CalificacionModel calificacion) {
+	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
 		
 		calificacionRepository.guardarCalificaciones(calificacion);
 	

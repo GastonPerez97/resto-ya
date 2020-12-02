@@ -50,7 +50,7 @@ public class RestauranteModel {
 	private List<MesaModel> mesas = new LinkedList<MesaModel>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
-	private List<CalificacionModel> calificacion = new LinkedList<CalificacionModel>();
+	private List<CalificacionRestauranteModel> calificacion = new LinkedList<CalificacionRestauranteModel>();
 
 	public List<PedidoModel> getPedidos() {
 		return pedidos;
@@ -60,11 +60,11 @@ public class RestauranteModel {
 		this.pedidos = pedidos;
 	}
 
-	public List<CalificacionModel> getCalificacion() {
+	public List<CalificacionRestauranteModel> getCalificacion() {
 		return calificacion;
 	}
 
-	public void setCalificacion(List<CalificacionModel> calificacion) {
+	public void setCalificacion(List<CalificacionRestauranteModel> calificacion) {
 		this.calificacion = calificacion;
 	}
 
