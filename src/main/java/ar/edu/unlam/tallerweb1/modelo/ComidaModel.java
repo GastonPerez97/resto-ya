@@ -44,6 +44,11 @@ public class ComidaModel {
 	public ComidaModel() {
 		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
     }
+	
+	public ComidaModel(Long idComida) {
+		this.idComida = idComida;
+		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
+    }
     
 //  Constructor para tests
     public ComidaModel(String nombre) {
