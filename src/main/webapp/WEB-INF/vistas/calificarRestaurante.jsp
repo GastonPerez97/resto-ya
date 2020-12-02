@@ -15,27 +15,33 @@
 				<hr class="colorgraph">
 				<br>
 				<div class="form-group"></div>
-
-				<c:forEach items="${calificacion}" var="CAL">
-					<c:if test="${not empty CAL.valor}">
-						<img src="img/calificaciones/tenedor.jpg" class="img-calificacion">
-						<input type="image" src="img/calificaciones/tenedor.jpg"
-							class="img-calificacion" id="idCalificacion">
-					</c:if>
-
-				</c:forEach>
-
 				<div class="form-group">
 					<form:hidden path="cliente.idCliente" value="${cliente.idCliente}" />
 
 					<form:hidden path="restaurante.idRestaurante"
 						value="${restaurante.idRestaurante}" />
-
+					<label for="nombreDeUsuario">Ingres&aacute un comentario y una calificaci&oacuten:*</label>
 					<form:input path="calificacion.comentario" id="comentario"
 						class="form-control" required="true" />
-					<br> <input type="submit" id="calificar-submit"
-						value="Calificar" class="float-right btn btn-dark" />
+					<br>
+
+					<!-- <input type="submit" id="calificar-submit"
+						value="Calificar" class="float-right btn btn-dark" /> -->
 				</div>
+
+				<c:forEach items="${formularioCalificacion.valor}" var="CAL">
+					<!-- 
+							<img src="img/calificaciones/tenedor.jpg"
+								class="img-calificacion">
+							 -->
+					<input type="image" src="img/calificaciones/${CAL.ordinal()}"
+						class="img-calificacion" id="idCalificacion">
+
+					<form:hidden path="calificacion.idCalificacion"
+						value="${idCalificacion}" />
+				</c:forEach>
+
+
 			</form:form>
 		</div>
 	</div>
