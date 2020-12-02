@@ -44,18 +44,18 @@ public class PedidoController {
 	private RestauranteService servRestaurante;
 	
 	@RequestMapping("/hacerPedido")
-	public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
 		
 		FormularioPedido formulario = new FormularioPedido();
-		formulario.setRestaurante(id);
+		formulario.setRestaurante(idRestaurante);
 			
 		modelo.put("idRestaurante", restaurante.getIdRestaurante());
 		modelo.put("restaurante", restaurante);
 		modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
