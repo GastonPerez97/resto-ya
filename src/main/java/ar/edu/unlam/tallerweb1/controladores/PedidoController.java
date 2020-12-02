@@ -65,14 +65,14 @@ public class PedidoController {
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
+											@RequestParam("pedidoHidden") String pedidoSinFormato, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		 Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		Date date = new Date();
 		    
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
-		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
+		PedidoModel pedido = pedidoService.cargarPedidoComida(pedidoSinFormato);
 		
 		pedido.setRestaurante(restaurante);
 	
