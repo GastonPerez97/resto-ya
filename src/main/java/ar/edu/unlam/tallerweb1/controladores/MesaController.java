@@ -52,9 +52,16 @@ public class MesaController {
 	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevaMesa") FormularioNuevaMesa formularioNuevaMesa, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		MesaModel mesa = mesaService.ProcesarNuevaMesa(formularioNuevaMesa);
-		modelAndView.addObject("mesa", mesa);
-		modelAndView.setViewName("nuevaMesaExitosa");
+		MesaModel mesa = mesaService.procesarNuevaMesa(formularioNuevaMesa);
+		if (mesa.getIdMesa() != null) {
+			modelAndView.addObject("mesa", mesa);
+			modelAndView.setViewName("nuevaMesaExitosa");
+		} else {
+			modelAndView.addObject("error", "El número de mesa ni la combinación de la ubicación pueden repetirse.");
+			modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(formularioNuevaMesa.getIdRestaurante()));
+			modelAndView.addObject("formularioNuevaMesa", formularioNuevaMesa);
+			modelAndView.setViewName("generacionNuevaMesa");
+		}
 		
 		return modelAndView;
 	}

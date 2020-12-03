@@ -10,7 +10,8 @@ public interface MesaService {
 	List<MesaModel> getMesasDisponiblesParaReservaByRestaurante(Long idRestaurante);
 	MesaModel getMesaById(Long idMesa);
 	void guardarMesa(MesaModel mesa);
-	MesaModel ProcesarNuevaMesa(FormularioNuevaMesa formulario);
+	MesaModel procesarNuevaMesa(FormularioNuevaMesa formulario);
+	Boolean validarNuevaMesa(FormularioNuevaMesa formulario);
 	Integer getMaximaUbicacionFilaByRestaurante(Long idRestaurante);
 	Integer getMaximaUbicacionColumnaByRestaurante(Long idRestaurante);
 	MesaModel[][] generarMapaDeMesas(List<MesaModel> mesas);

@@ -34,15 +34,29 @@ public class MesaServiceImpl implements MesaService {
 	}
 
 	@Override
-	public MesaModel ProcesarNuevaMesa(FormularioNuevaMesa formulario) {
-		MesaModel mesa = new MesaModel();
-		mesa.setNumeroDeMesa(formulario.getNumeroDeMesa());
-		mesa.setCantidad(formulario.getCantidad());
-		mesa.setRestaurante(new RestauranteModel(formulario.getIdRestaurante()));
+	public MesaModel procesarNuevaMesa(FormularioNuevaMesa formulario) {
 		
-		guardarMesa(mesa);
+		MesaModel mesa = new MesaModel();
+		
+		if (validarNuevaMesa(formulario)) {
+			mesa.setNumeroDeMesa(formulario.getNumeroDeMesa());
+			mesa.setCantidad(formulario.getCantidad());
+			mesa.setRestaurante(new RestauranteModel(formulario.getIdRestaurante()));
+			mesa.setUbicacionFila(formulario.getUbicacionFila());
+			mesa.setUbicacionColumna(formulario.getUbicacionColumna());
+			
+			guardarMesa(mesa);
+		}
 		
 		return mesa;
+	}
+	
+	@Override
+	public Boolean validarNuevaMesa(FormularioNuevaMesa formulario) {
+		if (mesaRepository.existeMesaEnRestauranteByFilaYColumna(formulario) || mesaRepository.existeMesaEnRestauranteByNumero(formulario))
+			return false;
+		
+		return true;
 	}
 
 	@Override

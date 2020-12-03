@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioNuevaMesa;
 
 @Repository("mesaRepository")
 public class MesaRepositoryImpl implements MesaRepository {
@@ -52,6 +53,28 @@ public class MesaRepositoryImpl implements MesaRepository {
 				.setProjection(Projections.max("ubicacionColumna"))
 				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
 				.uniqueResult();
+	}
+
+	@Override
+	public Boolean existeMesaEnRestauranteByNumero(FormularioNuevaMesa formularioNuevaMesa) {
+		MesaModel mesa = (MesaModel) sessionFactory.getCurrentSession().createCriteria(MesaModel.class)
+				.add(Restrictions.eq("restaurante.idRestaurante", formularioNuevaMesa.getIdRestaurante()))
+				.add(Restrictions.eq("numeroDeMesa", formularioNuevaMesa.getNumeroDeMesa()))				
+				.uniqueResult();
+		
+		return mesa != null;
+	}
+
+	@Override
+	public Boolean existeMesaEnRestauranteByFilaYColumna(FormularioNuevaMesa formularioNuevaMesa) {
+		MesaModel mesa = (MesaModel) sessionFactory.getCurrentSession().createCriteria(MesaModel.class)
+				.add(Restrictions.eq("restaurante.idRestaurante", formularioNuevaMesa.getIdRestaurante()))
+				.add(Restrictions.eq("ubicacionFila", formularioNuevaMesa.getUbicacionFila()))				
+				.add(Restrictions.eq("ubicacionColumna", formularioNuevaMesa.getUbicacionColumna()))				
+				.uniqueResult();
+		
+		return mesa != null;
+
 	}
 	
 }
