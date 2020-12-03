@@ -1,18 +1,23 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 
@@ -20,18 +25,39 @@ import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 @Transactional
 public class PedidoServiceImpl implements PedidoService {
 
-	@Inject
+	@Autowired
 	private PedidoRepository repositorioPedido;
 	
-	
-	@Inject
+	@Autowired
 	private ComidaService comidaService;
 	
+	@Autowired
+	private RestauranteService restauranteService;
+	
+	@Autowired
+	private ClienteService clienteService;
+	
+	@Autowired
+	private MailService mailService;
 
 	@Override
 	public PedidoModel procesarPedido(FormularioPedido formularioPedido) {
-		// TODO Auto-generated method stub
-		return null;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date date = new Date();
+		
+		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(formularioPedido.getRestaurante());
+		ClienteModel cliente = clienteService.buscarClienteLogueado(formularioPedido.getIdCliente());
+		PedidoModel pedido = cargarPedidoComida(formularioPedido.getPedidoSinFormato());
+		
+		pedido.setRestaurante(restaurante);
+		pedido.setFechaPedido(dateFormat.format(date));
+		guardarPedido(pedido);
+
+		mailService.enviarMail(cliente.getUsuario().getEmail(),
+							   mailService.getAsuntoConfirmacionPedido(),
+							   mailService.getMensajePedido(pedido.getListaPedidosComidas()));
+		
+		return pedido;
 	}
 	
 	@Override
@@ -73,8 +99,5 @@ public class PedidoServiceImpl implements PedidoService {
 		return total;
 	}
 
-	
-
-	
 
 }

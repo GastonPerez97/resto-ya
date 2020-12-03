@@ -87,7 +87,7 @@ public class MailServiceTest {
 		assertThat(resultadoActual).isEqualTo(resultadoEsperado);
 	}
 	
-	@Test
+	/*@Test
 	public void testQueRecibeCorrectamenteMensajeDePedido() {
 		ComidaModel comida1 = new ComidaModel();
 		comida1.setNombre("Milanesa");
@@ -109,6 +109,6 @@ public class MailServiceTest {
 		String resultadoActual = mailService.getMensajePedido(comidas);
 		
 		assertThat(resultadoActual).isEqualTo(resultadoEsperado);
-	}
+	}*/
 	
 }

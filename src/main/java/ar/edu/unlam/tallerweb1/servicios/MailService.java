@@ -6,6 +6,7 @@ import java.util.Properties;
 import javax.mail.Session;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 
 public interface MailService {
 	
@@ -14,7 +15,7 @@ public interface MailService {
 	public String getAsuntoConfirmacionRegistro();
 	public String getMensajeRegistro(String nombreUsuario);
 	public String getAsuntoConfirmacionPedido();
-	public String getMensajePedido(List<ComidaModel> comidas);
+	public String getMensajePedido(List<PedidoComidaModel> comidas);
 	public Session getSession();
 	public Properties getProperties();
 	

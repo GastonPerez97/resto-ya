@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 
 
 @Service("mailService")
@@ -74,15 +75,19 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	@Override
-	public String getMensajePedido(List<ComidaModel> comidas) {
+	public String getMensajePedido(List<PedidoComidaModel> comidas) {
 		String mensaje = "Hola! Tu pedido fue confirmado:\n\n";
 		Double total = 0d;
 		
-		for (ComidaModel comida : comidas) {
-			total += comida.getPrecio();
-			mensaje += comida.getNombre() + " ------- $" + comida.getPrecio() + "\n";
+		for (PedidoComidaModel pedidoComida : comidas) {
+			total += pedidoComida.getComidaModel().getPrecio() * pedidoComida.getCantidad();
+			mensaje += pedidoComida.getComidaModel().getNombre() 
+					+ " ------- Cantidad: " + pedidoComida.getCantidad()
+					+ " ------- $" 
+					+ pedidoComida.getComidaModel().getPrecio() * pedidoComida.getCantidad() + "\n";
 		}
 		
+		mensaje += "\nEl total de tu pedido es: $" + total;
 		mensaje += "\nPodes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
 		
 		return mensaje;

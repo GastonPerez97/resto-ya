@@ -83,7 +83,7 @@ public class ClienteController {
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("pedidoModel", clienteService.buscarPedidosCliente(cliente));
+		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 
