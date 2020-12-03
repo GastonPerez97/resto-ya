@@ -57,7 +57,7 @@ public class MesaController {
 			modelAndView.addObject("mesa", mesa);
 			modelAndView.setViewName("nuevaMesaExitosa");
 		} else {
-			modelAndView.addObject("error", "El número de mesa ni la combinación de la ubicación pueden repetirse.");
+			modelAndView.addObject("error", "El nï¿½mero de mesa ni la combinaciï¿½n de la ubicaciï¿½n pueden repetirse.");
 			modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(formularioNuevaMesa.getIdRestaurante()));
 			modelAndView.addObject("formularioNuevaMesa", formularioNuevaMesa);
 			modelAndView.setViewName("generacionNuevaMesa");
