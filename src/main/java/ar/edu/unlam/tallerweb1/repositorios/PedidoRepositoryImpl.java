@@ -50,7 +50,7 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 	public List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente) {
 		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
 				.add(Restrictions.eq("clienteModel.idCliente", cliente.getIdCliente()))
-				.addOrder(Order.desc("fecha_pedido"))
+				.addOrder(Order.desc("fechaPedido"))
 				.list();
 	}
 
@@ -58,7 +58,7 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante) {
 		return sessionFactory.getCurrentSession().createCriteria(PedidoModel.class)
 				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
-				.addOrder(Order.desc("fecha_pedido"))
+				.addOrder(Order.desc("fechaPedido"))
 				.list();
 	}
 

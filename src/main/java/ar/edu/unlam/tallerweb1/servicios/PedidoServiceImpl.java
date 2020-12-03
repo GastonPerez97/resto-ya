@@ -42,7 +42,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 	@Override
 	public PedidoModel procesarPedido(FormularioPedido formularioPedido) {
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
 		
 		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(formularioPedido.getRestaurante());
