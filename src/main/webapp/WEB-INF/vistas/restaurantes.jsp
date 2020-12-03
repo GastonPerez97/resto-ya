@@ -33,7 +33,13 @@
 									class="float-right btn btn-dark">Ver Men&uacute</a>
 							</h2>
 							<p class="card-text">
-								<span class="h4">Direcci&oacuten: </span>${REST.direccion}</p>
+								<span class="h4">Direcci&oacuten: </span>${REST.direccion}
+								<c:if test="${not empty REST.urlMaps}">
+									<a href="${REST.urlMaps}" target="_blank" class="ml-1">
+										<img class="location-icon rounded" src="img/restaurantes/Localizacion.png">
+									</a>
+								</c:if>
+							</p>
 							<p class="card-text">
 								<span class="h4">Horario: </span>${REST.horario}</p>
 							<p class="card-text">

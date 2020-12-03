@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,14 @@ public class ComidaRepositoryImpl implements ComidaRepository {
 	public List<ComidaModel> buscarComida() {
 		return (ArrayList<ComidaModel>) sessionFactory.getCurrentSession()
 				.createCriteria(ComidaModel.class).list();
+	}
+	
+	@Override
+	public List<ComidaModel> getComidasDisponiblesByRestaurante(Long idRestaurante) {
+		return (ArrayList<ComidaModel>) sessionFactory.getCurrentSession()
+				.createCriteria(ComidaModel.class)
+				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
+				.add(Restrictions.eq("disponible", true)).list();
 	}
 
 	@Override

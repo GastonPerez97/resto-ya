@@ -58,11 +58,11 @@ public class MesaControllerTest extends SpringTest {
 	    mesaModel.setCantidad(5);
 	    HttpServletRequest request = null;
 	    
-	    when(mesaServiceMock.ProcesarNuevaMesa(formularioMesa)).thenReturn(mesaModel);
+	    when(mesaServiceMock.procesarNuevaMesa(formularioMesa)).thenReturn(mesaModel);
 	    
 	    ModelAndView modelAndView = mesaController.generarNuevaMesaPost(formularioMesa, request);
 	    
-	    verify(mesaServiceMock, times(1)).ProcesarNuevaMesa(formularioMesa);
+	    verify(mesaServiceMock, times(1)).procesarNuevaMesa(formularioMesa);
 	    
 	    assertThat(((MesaModel)(modelAndView.getModel().get("mesa"))).getNumeroDeMesa()).isEqualTo(1);
 	}

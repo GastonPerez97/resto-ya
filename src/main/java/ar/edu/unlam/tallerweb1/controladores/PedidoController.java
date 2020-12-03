@@ -49,18 +49,18 @@ public class PedidoController {
 	private MailService mailService;
 	
 	@RequestMapping("/hacerPedido")
-	public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
 		
 		FormularioPedido formulario = new FormularioPedido();
-		formulario.setRestaurante(id);
+		formulario.setRestaurante(idRestaurante);
 			
 		modelo.put("idRestaurante", restaurante.getIdRestaurante());
 		modelo.put("restaurante", restaurante);
 		modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
@@ -70,16 +70,14 @@ public class PedidoController {
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("checkboxComidas") ArrayList<Long> idComidas,
-											@RequestParam("emailPedido") String emailPedido,
-											HttpServletRequest request) {		
+											@RequestParam("pedidoHidden") String pedidoSinFormato, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		Date date = new Date();
 		    
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
-		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
+		PedidoModel pedido = pedidoService.cargarPedidoComida(pedidoSinFormato);
 		
 		pedido.setRestaurante(restaurante);
 	

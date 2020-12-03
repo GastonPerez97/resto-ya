@@ -42,6 +42,11 @@ public class ComidaServiceImpl implements ComidaService {
 	}
 	
 	@Override
+	public List<ComidaModel> buscarComidasDisponiblesDeRestaurante(Long idRestaurante) {
+		return comidaRepository.getComidasDisponiblesByRestaurante(idRestaurante);
+	}
+	
+	@Override
 	public List<ComidaModel> buscarComidaDeseada(String nombre) {
 		
 		List<ComidaModel> comidasBuscadas = new ArrayList<ComidaModel>();
