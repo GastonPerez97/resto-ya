@@ -6,8 +6,11 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 
 public interface PedidoService {
+	
+	PedidoModel procesarPedido(FormularioPedido formularioPedido);
 	void guardarPedido(PedidoModel pedido);
 	PedidoModel consultarPedidoPorId(Long id);
 	PedidoModel cargarPedidoComida(String pedidoSinFormato);

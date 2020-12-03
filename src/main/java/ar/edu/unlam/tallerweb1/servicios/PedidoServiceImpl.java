@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 
 @Service
@@ -26,6 +27,12 @@ public class PedidoServiceImpl implements PedidoService {
 	@Inject
 	private ComidaService comidaService;
 	
+
+	@Override
+	public PedidoModel procesarPedido(FormularioPedido formularioPedido) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public void guardarPedido(PedidoModel pedido) {
@@ -65,6 +72,7 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		return total;
 	}
+
 	
 
 	
