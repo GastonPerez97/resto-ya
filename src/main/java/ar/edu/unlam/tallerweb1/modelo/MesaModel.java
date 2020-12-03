@@ -17,6 +17,12 @@ public class MesaModel {
 	@Column(name = "cantidad")
     private Integer cantidad;
 	
+	@Column(name = "ubicacion_fila")
+	private Integer ubicacionFila;
+	
+	@Column(name = "ubicacion_columna")
+	private Integer ubicacionColumna;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
@@ -59,6 +65,22 @@ public class MesaModel {
 
 	public void setRestaurante(RestauranteModel restaurante) {
 		this.restaurante = restaurante;
+	}
+
+	public Integer getUbicacionFila() {
+		return ubicacionFila;
+	}
+
+	public void setUbicacionFila(Integer ubicacionFila) {
+		this.ubicacionFila = ubicacionFila;
+	}
+
+	public Integer getUbicacionColumna() {
+		return ubicacionColumna;
+	}
+
+	public void setUbicacionColumna(Integer ubicacionColumna) {
+		this.ubicacionColumna = ubicacionColumna;
 	}
 	
 }

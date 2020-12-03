@@ -10,6 +10,7 @@
 			<div class="card-body">
 				<h3 class="card-title bebas">Número de pedido: ${pedido.idPedido}</h3>
 				<h3 class="card-title bebas">Restaurante: ${pedido.restaurante.nombre}</h3>
+				<h3 class="card-title bebas">Fecha: ${pedido.fechaPedido}</h3>
 				<h3 class="card-title bebas">Dirección: ${pedido.restaurante.direccion}</h3>
 				<h3 class="card-title bebas">							
 				<form action="detalle-pedido" class="form-inline" method="post">
@@ -18,6 +19,14 @@
 					<div class="form-group">
 						<input type="submit" id="reserva-submit"
 							value="Ver detalle" class="float-right btn btn-dark" />
+					</div>
+				</form></h3>
+				<form action="generarReclamo" class="form-inline" method="post">
+					<input type="hidden" value="${pedido.idPedido}"
+						name="idPedido" id="idPedido" />
+					<div class="form-group">
+						<input type="submit" id="reclamo-submit"
+							value="Hacer un reclamo" class="float-right btn btn-dark" />
 					</div>
 				</form></h3>
 			</div>

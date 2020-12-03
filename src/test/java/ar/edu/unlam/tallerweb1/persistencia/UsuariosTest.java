@@ -38,8 +38,8 @@ public class UsuariosTest extends SpringTest{
     public void testQueGuardaUnUsuario(){
         usuarioService.guardarUsuario(usuario1);
         
-        UsuarioModel usuarioEsperado = usuario1;
-        UsuarioModel usuarioObtenido = usuarioService.buscarUsuarioPorId(usuario1.getIdUsuario());
+        UsuarioModel usuarioEsperado = usuario1;      
+        UsuarioModel usuarioObtenido = session().get(UsuarioModel.class, usuario1.getIdUsuario());
         
         assertEquals(usuarioEsperado, usuarioObtenido);	
     }

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
@@ -155,4 +155,19 @@ public class RestauranteController {
 		return new ModelAndView("calificarRestaurante", model);
 	}
 
+	
+	@RequestMapping(path = "/pedidosPorRestaurante")
+	public ModelAndView pedidosPorRestaurante(@RequestParam("id") Long idRestaurante, HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
+
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Pedidos " + restaurante.getNombre());
+		modelo.put("nombreRestaurante", restaurante.getNombre());
+		modelo.put("pedidoModel", servRestaurante.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante));
+
+		return new ModelAndView("pedidosPorRestaurante", modelo);
+	}
+	
+	
 }

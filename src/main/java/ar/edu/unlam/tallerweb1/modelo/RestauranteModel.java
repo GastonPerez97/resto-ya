@@ -4,10 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java.util.ArrayList;
-
 import javax.persistence.*;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
 import ar.edu.unlam.tallerweb1.modelo.enums.Calificacion;
@@ -26,8 +24,11 @@ public class RestauranteModel {
 
 	@Column(name = "direccion")
 	private String direccion;
-
-	@Column(name = "horario")
+    
+    @Column(name = "urlMaps")
+    private String urlMaps;
+    
+    @Column(name = "horario")
 	private String horario;
 
 	@Column(name = "telefono")
@@ -184,4 +185,13 @@ public class RestauranteModel {
 	public void setPromedioCalificaciones(Integer promedioCalificaciones) {
 		this.promedioCalificaciones = promedioCalificaciones;
 	}
+	
+	public String getUrlMaps() {
+		return urlMaps;
+	}
+
+	public void setUrlMaps(String urlMaps) {
+		this.urlMaps = urlMaps;
+	}
+	
 }

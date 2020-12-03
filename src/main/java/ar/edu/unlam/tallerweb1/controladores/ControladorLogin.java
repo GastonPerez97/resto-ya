@@ -36,16 +36,15 @@ public class ControladorLogin {
 		ModelMap model = new ModelMap();
 		model.put("titulo", "Contacto");
 		
-
 		UsuarioModel usuarioBuscado = loginService.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", "Admin");
+			request.getSession().setAttribute("id", usuarioBuscado.getIdUsuario());
 			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombreDeUsuario());
 			return new ModelAndView("redirect:/home");
-		} else {
-
+		} else
 			model.put("error", "Usuario o clave incorrecta");
-		}
+		
 		return new ModelAndView("login", model);
 	}
 
@@ -54,7 +53,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		request.getSession().removeAttribute("ROL");
 		request.getSession().removeAttribute("NOMBRE");
-
+		request.getSession().removeAttribute("id");
 		
 		return new ModelAndView("logout", modelo);
 	}

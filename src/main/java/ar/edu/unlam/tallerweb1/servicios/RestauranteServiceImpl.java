@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 import ar.edu.unlam.tallerweb1.repositorios.RestauranteRepository;
 
 @Service("restauranteService")
@@ -26,6 +28,9 @@ public class RestauranteServiceImpl implements RestauranteService {
 	
 	@Autowired
     ServletContext servletContext;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
 
 	@Override
 	public ArrayList<RestauranteModel> buscarRestaurantes() {
@@ -178,11 +183,16 @@ public class RestauranteServiceImpl implements RestauranteService {
 
 	/*@Override
 	public void calificarRestaurante(RestauranteModel restaurante) {
-	//Lógica del servicio	
+	//Lï¿½gica del servicio	
 	*/
 		
 	/*
 	 * }
 	 */
+	
+	@Override
+	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante) {
+		return  pedidoRepository.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante);
+	}
 	
 }
