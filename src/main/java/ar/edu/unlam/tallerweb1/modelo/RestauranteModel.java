@@ -3,12 +3,8 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.LinkedList;
 import java.util.List;
 
-
-import java.util.ArrayList;
-
 import javax.persistence.*;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -25,6 +21,9 @@ public class RestauranteModel {
     
     @Column(name = "direccion")
 	private String direccion;
+    
+    @Column(name = "urlMaps")
+    private String urlMaps;
     
     @Column(name = "horario")
 	private String horario;
@@ -151,4 +150,13 @@ public class RestauranteModel {
 	public void setMesas(List<MesaModel> mesas) {
 		this.mesas = mesas;
 	}
+
+	public String getUrlMaps() {
+		return urlMaps;
+	}
+
+	public void setUrlMaps(String urlMaps) {
+		this.urlMaps = urlMaps;
+	}
+	
 }

@@ -8,6 +8,8 @@ public interface ComidaRepository {
 	
 	public List<ComidaModel> buscarComida();
 	
+	List<ComidaModel> getComidasDisponiblesByRestaurante(Long idRestaurante);
+	
 	public void editarComida(ComidaModel comida);
 	
 	public void eliminarComida(ComidaModel comida);

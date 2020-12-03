@@ -11,6 +11,7 @@
 
                     </div>
                     <div class="pedido-detalle">Precio: $${pedidoComida.comidaModel.precio}</div>
+                    <div class="pedido-detalle">Cantidad: ${pedidoComida.cantidad}</div>
                     <div>
                         <c:if test="${not empty comida.imageName}">
                             <img src="img/comidas/${comida.imageName}" width="300" height="200">
@@ -22,9 +23,16 @@
                 </article><br>
             </c:forEach>
             <p>Pedido realizado a las ${hora} hs.</p>
-            <form:form action="pagar" method="post" class="comidas-pedido mx-auto">
-                <input type="submit" value="Pagar" class="btn btn-primary btn-block" />
-            </form:form>
+            <p>Te enviamos un mail de confirmacion a <b>${email}</b></p>
+            <p>Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
+
+			<div class="d-flex justify-content-around mt-4">
+            	<a href="/proyecto-limpio-spring-master/restaurantes" class="btn btn-dark">Volver a Restaurantes</a>
+            	
+                <form:form action="pagar" method="post">
+                	<input type="submit" value="Pagar" class="btn btn-primary" />
+            	</form:form>
+			</div>
         </section>
 
         <%@ include file="footer.jsp" %>

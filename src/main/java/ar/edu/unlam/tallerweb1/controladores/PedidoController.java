@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
+import ar.edu.unlam.tallerweb1.servicios.MailService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -43,19 +45,22 @@ public class PedidoController {
 	@Autowired
 	private RestauranteService servRestaurante;
 	
+	@Autowired
+	private MailService mailService;
+	
 	@RequestMapping("/hacerPedido")
-	public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
 		
 		FormularioPedido formulario = new FormularioPedido();
-		formulario.setRestaurante(id);
+		formulario.setRestaurante(idRestaurante);
 			
 		modelo.put("idRestaurante", restaurante.getIdRestaurante());
 		modelo.put("restaurante", restaurante);
 		modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
@@ -65,21 +70,23 @@ public class PedidoController {
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
+											@RequestParam("pedidoHidden") String pedidoSinFormato, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		Date date = new Date();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
-		 
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
-		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
+		PedidoModel pedido = pedidoService.cargarPedidoComida(pedidoSinFormato);
 		
 		pedido.setRestaurante(restaurante);
 		pedido.setFecha_pedido(dateFormat.format(date));
 	
 		pedidoService.guardarPedido(pedido);
+
+		mailService.enviarMail(emailPedido,
+							   mailService.getAsuntoConfirmacionPedido(),
+							   mailService.getMensajePedido(comidas));
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());

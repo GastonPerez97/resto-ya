@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
+import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
@@ -42,6 +43,9 @@ public class ReservaController {
 	public ModelAndView reservar(@RequestParam("idRestaurante") Long idRestaurante, @RequestParam("fechaReserva") Date fechaReserva, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
+
+		modelAndView.addObject("matriz", mesaService.generarMapaDeMesas(mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante)));
+
 		modelAndView.addObject("formularioGeneracionReserva", new FormularioGeneracionReserva(fechaReserva));
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("mesas", mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante));

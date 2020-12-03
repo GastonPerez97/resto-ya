@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 
 @Service
@@ -25,6 +27,12 @@ public class PedidoServiceImpl implements PedidoService {
 	@Inject
 	private ComidaService comidaService;
 	
+
+	@Override
+	public PedidoModel procesarPedido(FormularioPedido formularioPedido) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public void guardarPedido(PedidoModel pedido) {
@@ -38,15 +46,17 @@ public class PedidoServiceImpl implements PedidoService {
 	}
 
 	@Override
-	public PedidoModel cargarPedidoComida(ArrayList<Long> idComidas) {
+	public PedidoModel cargarPedidoComida(String pedidoSinFormato) {
+        
+		String[] comidasYCantidades = pedidoSinFormato.split(";");
+		List<String> comidasYCantidadesList = Arrays.asList(comidasYCantidades);
 		
-		List<ComidaModel> comidas = comidaService.mostrarComidaPedida(idComidas);	
 		PedidoModel pedido = new PedidoModel();
 		
-		for (ComidaModel comida : comidas) {
+		for (String comidaCantidad : comidasYCantidadesList) {
 			PedidoComidaModel pedidoComida = new PedidoComidaModel();
-			pedidoComida.setCantidad(0d);
-			pedidoComida.setComidaModel(comida);
+			pedidoComida.setCantidad(Double.parseDouble(comidaCantidad.split("-")[1]));
+			pedidoComida.setComidaModel(comidaService.consultarComidaPorId((Long.parseLong(comidaCantidad.split("-")[0]))));
 			pedidoComida.setPedidoModel(pedido);
 			pedido.getPedidoComida().add(pedidoComida);
 		}

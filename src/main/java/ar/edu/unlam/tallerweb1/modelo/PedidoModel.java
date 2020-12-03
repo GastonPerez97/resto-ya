@@ -48,6 +48,8 @@ public class PedidoModel {
 	public List<PedidoComidaModel> getListaPedidosComidas() {
 		return listaPedidosComidas;
 	}
+	
+	
 
 	public void setListaPedidosComidas(List<PedidoComidaModel> listaPedidosComidas) {
 		this.listaPedidosComidas = listaPedidosComidas;
