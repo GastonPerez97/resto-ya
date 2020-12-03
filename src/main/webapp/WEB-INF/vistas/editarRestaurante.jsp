@@ -27,6 +27,10 @@
 				<form:input path="direccion" type="text" id="direccion" class="form-control"/>
 			</div>
 			<div class="form-group">
+				<label for="urlMaps">URL de Google Maps:</label>
+				<form:input path="urlMaps" type="url" id="urlMaps" class="form-control"/>
+			</div>
+			<div class="form-group">
 				<label for="horario">Horario:</label>
 				<form:input path="horario" type="text" id="horario" class="form-control"/>
 			</div>

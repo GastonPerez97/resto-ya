@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 import ar.edu.unlam.tallerweb1.repositorios.RestauranteRepository;
 
 @Service("restauranteService")
@@ -26,15 +28,28 @@ public class RestauranteServiceImpl implements RestauranteService {
 	
 	@Autowired
     ServletContext servletContext;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private CalificacionService calificacionService;
 
 	@Override
 	public ArrayList<RestauranteModel> buscarRestaurantes() {
-		return repositorioRestaurante.buscarRestaurantes();
+		ArrayList<RestauranteModel> restaurantes = repositorioRestaurante.buscarRestaurantes();
+		
+		for (RestauranteModel restauranteModel : restaurantes)
+			restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+		
+		return restaurantes;
 	}
 
 	@Override
 	public RestauranteModel buscarRestaurantePorId(Long id) {
-		return repositorioRestaurante.buscarRestaurantePorId(id);
+		RestauranteModel restauranteModel = repositorioRestaurante.buscarRestaurantePorId(id);
+		restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(id));
+		return restauranteModel;
 	}
 
 	@Override
@@ -42,9 +57,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 		ArrayList<RestauranteModel> listaReturn = new ArrayList<>();
 		ArrayList<RestauranteModel> listadoDb = repositorioRestaurante.buscarRestaurantePorNombre(nombre);
 
-		for (RestauranteModel list : listadoDb) {
-			if (list.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
-				listaReturn.add(list);
+		for (RestauranteModel restauranteModel : listadoDb) {
+			if (restauranteModel.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+				restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+				listaReturn.add(restauranteModel);
 			}
 		}
 
@@ -59,7 +75,9 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public RestauranteModel buscarRestaurantePorDireccion(String direccion) {
 		String direccionToLower = direccion.toLowerCase();
-		return repositorioRestaurante.buscarRestaurantePorDireccion(direccionToLower);
+		RestauranteModel restauranteModel =  repositorioRestaurante.buscarRestaurantePorDireccion(direccionToLower);
+		restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+		return restauranteModel;
 	}
 
 	@Override
@@ -174,6 +192,11 @@ public class RestauranteServiceImpl implements RestauranteService {
 			return true;
 		
 		return false;
+	}
+	
+	@Override
+	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante) {
+		return  pedidoRepository.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante);
 	}
 	
 }

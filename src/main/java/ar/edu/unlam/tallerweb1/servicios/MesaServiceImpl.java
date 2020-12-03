@@ -34,15 +34,53 @@ public class MesaServiceImpl implements MesaService {
 	}
 
 	@Override
-	public MesaModel ProcesarNuevaMesa(FormularioNuevaMesa formulario) {
-		MesaModel mesa = new MesaModel();
-		mesa.setNumeroDeMesa(formulario.getNumeroDeMesa());
-		mesa.setCantidad(formulario.getCantidad());
-		mesa.setRestaurante(new RestauranteModel(formulario.getIdRestaurante()));
+	public MesaModel procesarNuevaMesa(FormularioNuevaMesa formulario) {
 		
-		guardarMesa(mesa);
+		MesaModel mesa = new MesaModel();
+		
+		if (validarNuevaMesa(formulario)) {
+			mesa.setNumeroDeMesa(formulario.getNumeroDeMesa());
+			mesa.setCantidad(formulario.getCantidad());
+			mesa.setRestaurante(new RestauranteModel(formulario.getIdRestaurante()));
+			mesa.setUbicacionFila(formulario.getUbicacionFila());
+			mesa.setUbicacionColumna(formulario.getUbicacionColumna());
+			
+			guardarMesa(mesa);
+		}
 		
 		return mesa;
+	}
+	
+	@Override
+	public Boolean validarNuevaMesa(FormularioNuevaMesa formulario) {
+		if (mesaRepository.existeMesaEnRestauranteByFilaYColumna(formulario) || mesaRepository.existeMesaEnRestauranteByNumero(formulario))
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public Integer getMaximaUbicacionFilaByRestaurante(Long idRestaurante) {
+		return mesaRepository.getMaximaUbicacionFilaByRestaurante(idRestaurante);
+	}
+
+	@Override
+	public Integer getMaximaUbicacionColumnaByRestaurante(Long idRestaurante) {
+		return mesaRepository.getMaximaUbicacionColumnaByRestaurante(idRestaurante);
+	}
+
+	@Override
+	public MesaModel[][] generarMapaDeMesas(List<MesaModel> mesas) {
+		Long idRestaurante = mesas.get(0).getRestaurante().getIdRestaurante();
+		Integer filaMaxima = getMaximaUbicacionFilaByRestaurante(idRestaurante);
+		Integer columnaMaxima = getMaximaUbicacionColumnaByRestaurante(idRestaurante);
+		
+		MesaModel[][] matrizMesas = new MesaModel[filaMaxima][columnaMaxima];
+		
+		for (MesaModel mesa : mesas)
+			matrizMesas[mesa.getUbicacionFila() - 1][mesa.getUbicacionColumna() - 1] = mesa;
+		
+		return matrizMesas;
 	}
 
 }

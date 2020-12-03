@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -10,6 +11,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 
 
 @Service("mailService")
@@ -33,15 +37,15 @@ public class MailServiceImpl implements MailService {
 	}
  
 	@Override
-	public Boolean enviarMail(String destinatario) {
+	public Boolean enviarMail(String destinatario, String asunto, String mensaje) {
 		init();
 		
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress((String)properties.get("mail.smtp.mail.sender")));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-			message.setSubject("Prueba envio de mail tw1");
-			message.setText("Prueba body. Taller Web 1, UNLaM");
+			message.setSubject(asunto);
+			message.setText(mensaje);
 			
 			javax.mail.Transport t = session.getTransport("smtp");
 			t.connect((String)properties.get("mail.smtp.user"), "didimope");
@@ -53,6 +57,48 @@ public class MailServiceImpl implements MailService {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	@Override
+	public String getAsuntoConfirmacionRegistro() {
+		return "Registro exitoso";
+	}
+	
+	@Override
+	public String getAsuntoConfirmacionPedido() {
+		return "Confirmacion de pedido";
+	}
+	
+	@Override
+	public String getMensajeRegistro(String nombreUsuario) {
+		return "Hola " + nombreUsuario + "!\n\nTe registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
+	}
+	
+	@Override
+	public String getMensajePedido(List<PedidoComidaModel> comidas) {
+		String mensaje = "Hola! Tu pedido fue confirmado:\n\n";
+		Double total = 0d;
+		
+		for (PedidoComidaModel pedidoComida : comidas) {
+			total += pedidoComida.getComidaModel().getPrecio() * pedidoComida.getCantidad();
+			mensaje += pedidoComida.getComidaModel().getNombre() 
+					+ " ------- Cantidad: " + pedidoComida.getCantidad()
+					+ " ------- $" 
+					+ pedidoComida.getComidaModel().getPrecio() * pedidoComida.getCantidad() + "\n";
+		}
+		
+		mensaje += "\nEl total de tu pedido es: $" + total;
+		mensaje += "\nPodes pagar tu pedido con Mercado Pago en nuestro sitio o en efectivo";
+		
+		return mensaje;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public Properties getProperties() {
+		return properties;
 	}
 	
 }

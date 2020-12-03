@@ -15,7 +15,6 @@ import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 @Repository("restauranteRepository")
 public class RestauranteRepositoryImpl implements RestauranteRepository {
 
-
 	@Autowired
 	private SessionFactory sessionFactory;
 	

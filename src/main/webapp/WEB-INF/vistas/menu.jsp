@@ -38,7 +38,7 @@
             </article>
         </c:forEach>
         
-        <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Procesar Pedido</a>
+        <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Realizar Pedido</a>
     </section>
 
     <%@ include file="footer.jsp" %>

@@ -39,10 +39,16 @@ public class HorarioRespositoryImpl implements HorarioRespository {
 				.setParameter(1, idRestaurante)
 		        .addScalar("id_horario", StandardBasicTypes.LONG).list();
 		
-		return sessionFactory.getCurrentSession().createCriteria(HorarioModel.class)
-				.add(Restrictions.not(Restrictions.in("idHorario", idsReservados)))
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)  
-	 			.list();
+		if (idsReservados.size() > 0) {
+			return sessionFactory.getCurrentSession().createCriteria(HorarioModel.class)
+					.add(Restrictions.not(Restrictions.in("idHorario", idsReservados)))
+					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)  
+		 			.list();
+		} else {
+			return sessionFactory.getCurrentSession().createCriteria(HorarioModel.class)
+					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)  
+		 			.list();
+		}
 	}
 	
 	@Override

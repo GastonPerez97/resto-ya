@@ -4,11 +4,11 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioRolModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.UsuarioRepository;
+import ar.edu.unlam.tallerweb1.repositorios.UsuarioRolRepository;
 
 @Service("usuarioService")
 @Transactional
@@ -17,11 +17,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Inject
 	private UsuarioRepository usuarioRepository;
 	
+	@Inject
+	private UsuarioRolRepository usuarioRolRepository;
+	
 
 	@Override
 	public void guardarUsuario(UsuarioModel usuario) {
+		usuario.setNombreDeUsuario(usuario.getEmail());
 		usuarioRepository.guardarUsuario(usuario);
-
 	}
 
 	@Override
@@ -38,7 +41,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public List<UsuarioModel> listarUsuarios() {
-		return usuarioRepository.listarUsuarios();
+		List<UsuarioModel> usuarios = usuarioRepository.listarUsuarios();
+		
+		for (UsuarioModel usuarioModel : usuarios) {
+			List<UsuarioRolModel> listaUsuarioRol = usuarioRolRepository.buscarRolesPorUsuario(usuarioModel.getIdUsuario());
+			usuarioModel.setListaUsuarioRoles(listaUsuarioRol);
+		}
+		return usuarios;
 	}
 
 	@Override
@@ -74,33 +83,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public ModelAndView validarUsuario(UsuarioModel usuario) {
-		ModelMap modelo = new ModelMap();
-
-		modelo.put("titulo", "Agregar Usuario");
-
+	public Boolean validarRegistroUsuario(FormularioAgregarUsuario formularioAgregarUsuario) {	
+		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
+		Boolean validado = false;
+	
 		if (existeUsuarioPorNombre(usuario.getNombreDeUsuario()) || existeUsuarioPorEmail(usuario.getEmail()) )  {
-			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador");
-			return new ModelAndView("agregarUsuario", modelo);
+			return validado;
 		} else {
-			guardarUsuario(usuario);
-			return new ModelAndView("redirect:/usuarios");
+			validado = true;
+		    return validado;		
 		}
 	}
 	
+	
 	@Override
-	public ModelAndView validarEliminarUsuario(Long id) {
-		ModelMap modelo = new ModelMap();
-		
+	public Boolean validarEliminarUsuario(Long id) {
+		Boolean validado = false;
+			
 		if (existeUsuarioPorId(id)) {
-			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
-			eliminarUsuarioPorId(id);
-			return new ModelAndView("usuarios", modelo);
-		} else {
-			modelo.put("estadoEliminar", "Usuario no encontrado, contacte al administrador ");
-			return new ModelAndView("usuarios", modelo);
-		}
+			validado = true;
+			return validado;
+		} else 
+			return validado;		
 	}
-
-
 }
