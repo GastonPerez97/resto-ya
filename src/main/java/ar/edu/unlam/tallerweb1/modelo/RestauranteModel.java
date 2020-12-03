@@ -33,8 +33,10 @@ public class RestauranteModel {
 
 	@Column(name = "telefono")
 	private String telefono;
+	
 	private String imageName;
 	
+	@Transient
 	private Integer promedioCalificaciones;
 
 	@Type(type = "org.hibernate.type.TrueFalseType")

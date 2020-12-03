@@ -27,18 +27,26 @@ public class CalificacionServiceImpl implements CalificacionService {
 	@Override
 	public List<CalificacionRestauranteModel> buscarCalificaciones() {
 		return calificacionRepository.buscarCalificaciones();
-
 	}
 
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
 				calificacionRepository.guardarCalificaciones(calificacion);
-	
-		
 	}
 
 	@Override
 	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante) {
 		return calificacionRepository.buscarCalificacionPorRestaurante(restaurante);
+	}
+
+	@Override
+	public Integer calcularCalificacionDeRestaurante(Long idRestaurante) {
 		
+		List<CalificacionRestauranteModel> calificaciones = calificacionRepository.getCalificacionByRestaurante(idRestaurante);
+		Integer total = 0;
+		
+		for (CalificacionRestauranteModel calificacionRestauranteModel : calificaciones)
+			total += calificacionRestauranteModel.getCalificacionModel().getValor();
+		
+		return total / calificaciones.size();
 	}
 }

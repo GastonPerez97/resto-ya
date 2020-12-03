@@ -12,7 +12,10 @@ public interface CalificacionRepository {
 	
 	void guardarCalificaciones(FormularioCalificacionRestaurante calificacion);
 
-	List <CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante);
+	List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante);
 
+	List<CalificacionRestauranteModel> getCalificacionByRestaurante(Long idRestaurante);
+
+	Integer getPromedioCalificacionDeRestaurante(Long idRestaurante);
 	
 }

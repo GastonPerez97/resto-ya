@@ -15,5 +15,7 @@ public interface CalificacionService {
 	void guardarCalificaciones(FormularioCalificacionRestaurante calificacion);
 
 	public List <CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante);
+	
+	Integer calcularCalificacionDeRestaurante(Long idRestaurante);
 
 }

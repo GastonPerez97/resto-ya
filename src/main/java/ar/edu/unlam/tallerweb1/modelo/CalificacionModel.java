@@ -17,7 +17,7 @@ public class CalificacionModel {
 	private Long idCalificacion;
 
 	@Column(name = "valor")
-	private Calificacion valor;
+	private Integer valor;
 
 	@Column(name = "image_name")
 	private String imageName;
@@ -44,11 +44,11 @@ public class CalificacionModel {
 		this.imageName = imageName;
 	}
 
-	public Calificacion getValor() {
+	public Integer getValor() {
 		return valor;
 	}
 
-	public void setValor(Calificacion valor) {
+	public void setValor(Integer valor) {
 		this.valor = valor;
 	}
 

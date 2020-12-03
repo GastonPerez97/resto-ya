@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
@@ -33,6 +34,21 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 				.getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(Restrictions
 						.eq("calificacionRestaurante.restauranteModel.idRestaurante", restaurante.getIdRestaurante()))
 				.list();
+	}
+
+	@Override
+	public List<CalificacionRestauranteModel> getCalificacionByRestaurante(Long idRestaurante) {
+		return sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
+				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante))
+				.list();
+	}
+	
+	@Override
+	public Integer getPromedioCalificacionDeRestaurante(Long idRestaurante) {
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
+				.setProjection(Projections.avg("calificacionModel.valor"))
+				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante))
+				.uniqueResult();
 	}
 
 }

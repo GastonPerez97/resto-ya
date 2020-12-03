@@ -40,6 +40,8 @@
                                     <span class="h4">Horario: </span>${REST.horario}</p>
                                 <p class="card-text">
                                     <span class="h4">Tel&eacutefono: </span>${REST.telefono}</p>
+                                <p class="card-text">
+                                    <span class="h4">Calificación: </span>${REST.promedioCalificaciones}</p>
                                 <c:if test="${REST.disponible == false}">
 
                                     <h2>NO DISPONIBLE</h2>
@@ -86,19 +88,6 @@
                                     </div>
                                 </form>
                             </div>
-
-
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title bebas">CALIFICACION
-                                        <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-dark">Ver Men&uacute</a>
-                                    </h2>
-                                    <p class="card-text">
-
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>

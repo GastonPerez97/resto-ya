@@ -31,15 +31,25 @@ public class RestauranteServiceImpl implements RestauranteService {
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private CalificacionService calificacionService;
 
 	@Override
 	public ArrayList<RestauranteModel> buscarRestaurantes() {
-		return repositorioRestaurante.buscarRestaurantes();
+		ArrayList<RestauranteModel> restaurantes = repositorioRestaurante.buscarRestaurantes();
+		
+		for (RestauranteModel restauranteModel : restaurantes)
+			restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+		
+		return restaurantes;
 	}
 
 	@Override
 	public RestauranteModel buscarRestaurantePorId(Long id) {
-		return repositorioRestaurante.buscarRestaurantePorId(id);
+		RestauranteModel restauranteModel = repositorioRestaurante.buscarRestaurantePorId(id);
+		restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(id));
+		return restauranteModel;
 	}
 
 	@Override
@@ -47,9 +57,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 		ArrayList<RestauranteModel> listaReturn = new ArrayList<>();
 		ArrayList<RestauranteModel> listadoDb = repositorioRestaurante.buscarRestaurantePorNombre(nombre);
 
-		for (RestauranteModel list : listadoDb) {
-			if (list.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
-				listaReturn.add(list);
+		for (RestauranteModel restauranteModel : listadoDb) {
+			if (restauranteModel.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+				restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+				listaReturn.add(restauranteModel);
 			}
 		}
 
@@ -64,7 +75,9 @@ public class RestauranteServiceImpl implements RestauranteService {
 	@Override
 	public RestauranteModel buscarRestaurantePorDireccion(String direccion) {
 		String direccionToLower = direccion.toLowerCase();
-		return repositorioRestaurante.buscarRestaurantePorDireccion(direccionToLower);
+		RestauranteModel restauranteModel =  repositorioRestaurante.buscarRestaurantePorDireccion(direccionToLower);
+		restauranteModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeRestaurante(restauranteModel.getIdRestaurante()));
+		return restauranteModel;
 	}
 
 	@Override
@@ -180,15 +193,6 @@ public class RestauranteServiceImpl implements RestauranteService {
 		
 		return false;
 	}
-
-	/*@Override
-	public void calificarRestaurante(RestauranteModel restaurante) {
-	//L�gica del servicio	
-	*/
-		
-	/*
-	 * }
-	 */
 	
 	@Override
 	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante) {
