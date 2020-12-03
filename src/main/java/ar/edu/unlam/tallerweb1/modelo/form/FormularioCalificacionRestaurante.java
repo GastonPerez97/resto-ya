@@ -13,6 +13,7 @@ public class FormularioCalificacionRestaurante {
 	private CalificacionModel calificacion = new CalificacionModel();
 	private RestauranteModel restaurante = new RestauranteModel();
 	private ClienteModel cliente = new ClienteModel();
+	private CalificacionRestauranteModel calificacionRestaurante = new CalificacionRestauranteModel();
 	public ClienteModel getCliente() {
 		return cliente;
 	}
@@ -50,6 +51,14 @@ public class FormularioCalificacionRestaurante {
 
 	public void setRestaurante(RestauranteModel restaurante) {
 		this.restaurante = restaurante;
+	}
+
+	public CalificacionRestauranteModel getCalificacionRestaurante() {
+		return calificacionRestaurante;
+	}
+
+	public void setCalificacionRestaurante(CalificacionRestauranteModel calificacionRestaurante) {
+		this.calificacionRestaurante = calificacionRestaurante;
 	}
 
 }

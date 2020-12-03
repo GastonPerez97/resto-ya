@@ -16,22 +16,12 @@ public class CalificacionModel {
 	@Column(name = "id_calificacion")
 	private Long idCalificacion;
 
-	@Column(name = "comentario")
-	private String comentario;
-
 	@Column(name = "valor")
 	private Calificacion valor;
 
 	@Column(name = "image_name")
 	private String imageName;
 
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
 	
 	/* List <CalificacionModel> listadoCalificaciones = new LinkedList<>(); */
 

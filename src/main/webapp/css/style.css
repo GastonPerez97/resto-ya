@@ -8,7 +8,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
-}
+}b
 
 main {
     width: 80%;
@@ -124,12 +124,29 @@ header nav {
 	margin-right: 5px;
 }
 
-.img-calificacion{
-	width: 20px;
-	height: 20px;
-	display: flex;
+/* .img-calificacion{
+	width: 10px;
+	height: 10px;
+	margin-right:auto;
 	
+} */
+
+/* button {
+    display: inline-block;
+    height: 10px;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    width: 10px;
 }
+
+#boton-image img {
+  	margin-right:auto;
+  	justify-content:space-around;
+    height: 10px;  
+    width: 10px;
+}
+ */
 
 
 .logout{

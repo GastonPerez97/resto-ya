@@ -25,7 +25,7 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 
 	@Override
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
-		sessionFactory.getCurrentSession().save(calificacion.getCalificacion());
+		sessionFactory.getCurrentSession().save(calificacion.getCalificacionRestaurante());
 		//sessionFactory.getCurrentSession().save(calificacion.getCalificacion().getComentario());
 
 
