@@ -5,6 +5,8 @@ public class FormularioNuevaMesa {
 	private Long idRestaurante;
 	private Integer numeroDeMesa;
 	private Integer cantidad;
+	private Integer ubicacionFila;
+	private Integer ubicacionColumna;
 	
 	public FormularioNuevaMesa() {
 		
@@ -32,6 +34,22 @@ public class FormularioNuevaMesa {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public Integer getUbicacionFila() {
+		return ubicacionFila;
+	}
+
+	public void setUbicacionFila(Integer ubicacionFila) {
+		this.ubicacionFila = ubicacionFila;
+	}
+
+	public Integer getUbicacionColumna() {
+		return ubicacionColumna;
+	}
+
+	public void setUbicacionColumna(Integer ubicacionColumna) {
+		this.ubicacionColumna = ubicacionColumna;
 	}
 	
 }

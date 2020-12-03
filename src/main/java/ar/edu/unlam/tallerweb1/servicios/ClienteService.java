@@ -18,5 +18,9 @@ public interface ClienteService {
 	public List<PedidoModel> buscarPedidosCliente(ClienteModel cliente);
 
 	List<ClienteModel> buscarClientes();
+	
+	public List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente);
+	
+	ClienteModel buscarClienteLogueado(Long idUsuario);
 
 }

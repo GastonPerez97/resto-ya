@@ -31,13 +31,21 @@
 							<h2 class="card-title bebas">${REST.nombre}
 								<a href="restaurante/menu?id=${REST.idRestaurante}"
 									class="float-right btn btn-dark">Ver Men&uacute</a>
+									<a href="pedidosPorRestaurante?id=${REST.idRestaurante}"
+									class="float-right btn btn-dark mr-2">Ver Pedidos</a>
 							</h2>
 							<p class="card-text">
-								<span class="h4">Direcci&oacuten: </span>${REST.direccion}</p>
+								<span class="h4">Direcci&oacuten: </span>${REST.direccion}
+								<c:if test="${not empty REST.urlMaps}">
+									<a href="${REST.urlMaps}" target="_blank" class="ml-1">
+										<img class="location-icon rounded" src="img/restaurantes/Localizacion.png">
+									</a>
+								</c:if>
+							</p>
 							<p class="card-text">
 								<span class="h4">Horario: </span>${REST.horario}</p>
 							<p class="card-text">
-								<span class="h4">Telefono: </span>${REST.telefono}</p>
+								<span class="h4">Tel&eacutefono: </span>${REST.telefono}</p>
 							<c:if test="${REST.disponible == false}">
 								<h2>NO DISPONIBLE</h2>
 							</c:if>

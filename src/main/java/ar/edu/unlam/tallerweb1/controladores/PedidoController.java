@@ -22,12 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
 
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.servicios.MercadoPagoService;
+import ar.edu.unlam.tallerweb1.servicios.MailService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -50,20 +52,23 @@ public class PedidoController {
 	
 	@Autowired
 	private MercadoPagoService servicioMercadoPago;
+
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping("/hacerPedido")
-	public ModelAndView hacerPedido(@RequestParam("id")Long id, HttpServletRequest request) {
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
+	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
 		
 		FormularioPedido formulario = new FormularioPedido();
-		formulario.setRestaurante(id);
+		formulario.setRestaurante(idRestaurante);
 			
 		modelo.put("idRestaurante", restaurante.getIdRestaurante());
 		modelo.put("restaurante", restaurante);
 		modelo.put("titulo", "Hacer pedido en " + restaurante.getNombre());
-		modelo.put("COMIDAS", comidaService.buscarComida());
+		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
@@ -72,23 +77,15 @@ public class PedidoController {
 	}
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
-	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("checkboxComidas") ArrayList<Long> idComidas, HttpServletRequest request) {		
+	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		 DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		 Date date = new Date();
-		    
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
-		PedidoModel pedido = pedidoService.cargarPedidoComida(idComidas);
-		
-		pedido.setRestaurante(restaurante);
-	
-		pedidoService.guardarPedido(pedido);
+		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
+		PedidoModel pedido = pedidoService.procesarPedido(formularioPedido);
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
-	    modelo.put("hora",dateFormat.format(date));
+	    modelo.put("hora", pedido.getFechaPedido());
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("procesarPedido", modelo);

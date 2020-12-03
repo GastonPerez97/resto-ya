@@ -2,7 +2,8 @@
     <%@ include file="header.jsp" %>
 
         <h3 class="pedido-titulo">Número de pedido: ${pedido.idPedido} </h3> <br>
-        <h3 class="pedido-titulo">Cantidad: $${total} </h3> <br>
+        <h3 class="pedido-titulo">Fecha y hora de generación: ${pedido.fechaPedido} </h3> <br>
+        <h3 class="pedido-titulo">Total: $${total} </h3> <br>
         
         <section class="pedido mx-auto">
             <c:forEach items="${pedidoComidaList}" var="pedidoComida" varStatus="status">

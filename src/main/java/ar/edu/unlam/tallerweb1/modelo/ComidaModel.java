@@ -37,11 +37,15 @@ public class ComidaModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comidaModel", cascade = CascadeType.ALL)
 	private List<PedidoComidaModel> listaComidasPedidos;
 	
-
 	@Type(type = "org.hibernate.type.TrueFalseType")
 	private Boolean disponible;
 
 	public ComidaModel() {
+		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
+    }
+	
+	public ComidaModel(Long idComida) {
+		this.idComida = idComida;
 		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
     }
     
