@@ -2,8 +2,9 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
-import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
 
+/*import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario;
+*/
 public interface UsuarioRepository {
 
 	public UsuarioModel consultarUsuario (UsuarioModel usuario);

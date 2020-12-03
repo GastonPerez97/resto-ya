@@ -30,18 +30,19 @@ public class BuscarTest extends SpringTest {
 		assertThat(session().isConnected()).isTrue();
 	}
 
-	@Test
-	@Transactional
-	@Rollback
-	public void queElBuscadorTraigaComidas() {
-		FormularioBusqueda formulario = new FormularioBusqueda();
-		ComidaModel comida = new ComidaModel();
-		String dato="COMIDA";
-		formulario.setDatoBuscado(dato);
-		
-		
-	}
-
+	/*
+	 * @Test
+	 * 
+	 * @Transactional
+	 * 
+	 * @Rollback public void queElBuscadorTraigaComidas() { FormularioBusqueda
+	 * formulario = new FormularioBusqueda(); ComidaModel comida = new
+	 * ComidaModel(); String dato="COMIDA"; formulario.setDatoBuscado(dato);
+	 * 
+	 * 
+	 * }
+	 */
+	
 	/*
 	 * @Test
 	 * 
@@ -61,8 +62,8 @@ public class BuscarTest extends SpringTest {
 	 * assertEquals("Apellido", registro.getClienteBuscado().getApellido());
 	 * 
 	 * }
-	 */
-	/*
+	 * 
+	 * 
 	 * @Test
 	 * 
 	 * @Transactional

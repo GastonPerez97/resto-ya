@@ -28,7 +28,6 @@ public class ClienteServiceImpl implements ClienteService {
 	public void guardarClienteRegistrado(FormularioRegistro registro) {
 		registro.getClienteModel().setUsuario(registro.getUsuarioModel());
 		clienteRepository.guardarCliente(registro.getClienteModel());
-
 	}
 
 	@Override
@@ -39,16 +38,22 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<PedidoModel> buscarPedidosCliente(ClienteModel cliente) {
-
-		return  pedidoRepository.buscarPedidoPorCliente(cliente);
-
-		
+		return  pedidoRepository.buscarPedidoPorCliente(cliente);		
 	}
 
 	@Override
 	public List<ClienteModel> buscarClientes() {
-
 		return clienteRepository.buscarCliente();
+	}
+
+	@Override
+	public List<PedidoModel> buscarPedidosClienteOrdenadosPorFecha(ClienteModel cliente) {
+		return  pedidoRepository.buscarPedidosClienteOrdenadosPorFecha(cliente);
+	}
+
+	@Override
+	public ClienteModel buscarClienteLogueado(Long idUsuario) {
+		return clienteRepository.getClienteByUsuario(idUsuario);
 	}
 
 }

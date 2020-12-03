@@ -11,5 +11,7 @@ public interface ClienteRepository {
 	void guardarCliente(ClienteModel cliente);
 
 	List<ClienteModel> buscarCliente();
+	
+	ClienteModel getClienteByUsuario(Long idUsuario);
 
 }

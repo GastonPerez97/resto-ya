@@ -14,6 +14,8 @@ public interface ComidaService {
 	ComidaModel mostrarComidaModel(Long id);
 
 	public List<ComidaModel> buscarComida();
+	
+	List<ComidaModel> buscarComidasDisponiblesDeRestaurante(Long idRestaurante);
 
 	public List<ComidaModel> buscarComidaDeseada(String nombre);
 	

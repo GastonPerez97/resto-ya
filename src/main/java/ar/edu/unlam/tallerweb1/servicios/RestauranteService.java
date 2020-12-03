@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 
@@ -48,6 +49,10 @@ public interface RestauranteService {
 	public void procesarEliminacionRestaurante(RestauranteModel restaurante);
 	
 	public Boolean verificarExtensionDeImagen(MultipartFile imagen);
+	
+	/* public void calificarRestaurante(RestauranteModel restaurante); */
+
+	public List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante);
 }
 
 

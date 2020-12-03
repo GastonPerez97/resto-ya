@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
+import ar.edu.unlam.tallerweb1.servicios.MailService;
 
 @Controller
 public class ClienteController {
@@ -23,6 +23,22 @@ public class ClienteController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private MailService mailService;
+
+	public ClienteController(ClienteService clienteService, LoginService loginService) {
+		this.clienteService = clienteService;
+		this.loginService = loginService;
+	}
+	
+
+
+	public ClienteController() {
+		super();
+	}
+
+
 
 	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
@@ -55,7 +71,11 @@ public class ClienteController {
 
 			clienteService.guardarClienteRegistrado(registro);
 
-			return new ModelAndView("login");
+			mailService.enviarMail(registro.getUsuarioModel().getEmail(),
+								   mailService.getAsuntoConfirmacionRegistro(),
+								   mailService.getMensajeRegistro(registro.getClienteModel().getNombre()));
+
+			return new ModelAndView("redirect:/login");
 		}
 
 	}
@@ -66,7 +86,7 @@ public class ClienteController {
 		ModelMap model = new ModelMap();
 
 		model.put("clienteModel", clienteService.buscarClientes());
-	
+
 		return new ModelAndView("consultarHistorico", model);
 	}
 
@@ -75,7 +95,7 @@ public class ClienteController {
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("pedidoModel", clienteService.buscarPedidosCliente(cliente));
+		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 

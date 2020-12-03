@@ -8,29 +8,35 @@ import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 public class FormularioPedido {
 
 	private Long restaurante; 
-	private ArrayList<ComidaModel> comidas;
+	private String pedidoSinFormato;
+	private Long idCliente;
 	
 	public FormularioPedido() {
-		comidas = new ArrayList<ComidaModel>();
+
 	}
+	
 	public Long getRestaurante() {
 		return restaurante;
 	}
 	
-	
-	
 	public void setRestaurante(Long restaurante) {
 		this.restaurante = restaurante;
 	}
-	public List<ComidaModel> getComidas() {
-		return comidas;
-	}
-	public void setComidas(ArrayList<ComidaModel> comidas) {
-		this.comidas = comidas;
+
+	public String getPedidoSinFormato() {
+		return pedidoSinFormato;
 	}
 
+	public void setPedidoSinFormato(String pedidoSinFormato) {
+		this.pedidoSinFormato = pedidoSinFormato;
+	}
 
-	
-	
-	
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+
 }
