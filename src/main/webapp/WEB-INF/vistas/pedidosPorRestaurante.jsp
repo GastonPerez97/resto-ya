@@ -8,7 +8,7 @@
 
 			<div class="card-body">
 				<h3 class="card-title bebas">Número de pedido: ${pedido.idPedido}</h3>
-				<h3 class="card-title bebas">Fecha: ${pedido.fecha_pedido}</h3>
+				<h3 class="card-title bebas">Fecha: ${pedido.fechaPedido}</h3>
 				<h3 class="card-title bebas">							
 				<form action="detalle-pedido" class="form-inline" method="post">
 					<input type="hidden" value="${pedido.idPedido}"
@@ -18,9 +18,10 @@
 							value="Ver detalle" class="float-right btn btn-dark" />
 					</div>
 				</form></h3>
+				<h3 class="card-title bebas">
 				<a href="verReclamo?id=${pedido.idPedido}"
 									class="float-left btn btn-dark">Ver Reclamo</a>
-				</form></h3>
+				</h3>
 			</div>
 		</article>
 	</c:forEach>

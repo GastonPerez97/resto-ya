@@ -51,4 +51,9 @@ public class ClienteServiceImpl implements ClienteService {
 		return  pedidoRepository.buscarPedidosClienteOrdenadosPorFecha(cliente);
 	}
 
+	@Override
+	public ClienteModel buscarClienteLogueado(Long idUsuario) {
+		return clienteRepository.getClienteByUsuario(idUsuario);
+	}
+
 }

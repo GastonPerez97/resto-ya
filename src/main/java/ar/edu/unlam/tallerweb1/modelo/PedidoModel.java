@@ -33,7 +33,7 @@ public class PedidoModel {
 	private List<PedidoComidaModel> listaPedidosComidas;
 	
 	@Column(name = "fecha_pedido")
-	private String fecha_pedido;
+	private String fechaPedido;
 	
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
@@ -104,12 +104,12 @@ public class PedidoModel {
 		this.listaPedidosComidas = pedidoComida;
 	}
 	
-	public String getFecha_pedido() {
-		return fecha_pedido;
+	public String getFechaPedido() {
+		return fechaPedido;
 	}
 
-	public void setFecha_pedido(String string) {
-		this.fecha_pedido = string;
+	public void setFechaPedido(String string) {
+		this.fechaPedido = string;
 	}
 
 	

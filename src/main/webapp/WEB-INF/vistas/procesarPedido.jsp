@@ -8,7 +8,6 @@
                     <div class="pedido-detalle">
                         <p style="text-decoration-line: underline;">${pedidoComida.comidaModel.tipo}</p>
                         <p>${pedidoComida.comidaModel.nombre}</p>
-
                     </div>
                     <div class="pedido-detalle">Precio: $${pedidoComida.comidaModel.precio}</div>
                     <div class="pedido-detalle">Cantidad: ${pedidoComida.cantidad}</div>
@@ -22,8 +21,8 @@
                     </div>
                 </article><br>
             </c:forEach>
-            <p>Pedido realizado a las ${hora} hs.</p>
-            <p>Te enviamos un mail de confirmacion a <b>${email}</b></p>
+            <p>Fecha de realización del pedido: ${fechaPedido} hs.</p>
+            <p>Te enviamos un mail de confirmacion a tu casilla.</p>
             <p>Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
 
 			<div class="d-flex justify-content-around mt-4">

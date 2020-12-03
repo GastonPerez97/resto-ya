@@ -69,28 +69,15 @@ public class PedidoController {
 	}
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
-	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, 
-											@RequestParam("pedidoHidden") String pedidoSinFormato, HttpServletRequest request) {		
+	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		Date date = new Date();
-		
-		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(formularioPedido.getRestaurante()); 	
-		PedidoModel pedido = pedidoService.cargarPedidoComida(pedidoSinFormato);
-		
-		pedido.setRestaurante(restaurante);
-		pedido.setFecha_pedido(dateFormat.format(date));
-	
-		pedidoService.guardarPedido(pedido);
-
-		mailService.enviarMail(emailPedido,
-							   mailService.getAsuntoConfirmacionPedido(),
-							   mailService.getMensajePedido(comidas));
+		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
+		PedidoModel pedido = pedidoService.procesarPedido(formularioPedido);
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
-	    modelo.put("hora",dateFormat.format(date));
+	    modelo.put("hora", pedido.getFechaPedido());
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("procesarPedido", modelo);
