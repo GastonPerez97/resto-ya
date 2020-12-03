@@ -45,68 +45,86 @@
 							</c:if>
 
 						</div>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-5 border-right">
-									<form action="reservar" class="form-inline" method="post">
-										<input type="hidden" value="${REST.idRestaurante}"
-											name="idRestaurante" id="id-restaurante-input" />
-										<div class="form-group">
-											<input type="date" name="fechaReserva"
-												id="fecha-reserva-input" class="col-8 form-control"
-												required="required"
-												<c:if test="${REST.disponible == false}">disabled</c:if> />
-											<input type="submit" id="reserva-submit" value="Reservar"
-												class="float-right btn btn-dark"
-												<c:if test="${REST.disponible == false}">disabled</c:if> />
-										</div>
-									</form>
-								</div>
-								<div class="col-3 border-right">
-									<form action="nueva-mesa" class="form-inline" method="post">
-										<input type="hidden" value="${REST.idRestaurante}"
-											name="idRestaurante" id="id-restaurante-input" />
-										<div class="form-group">
-											<input type="submit" id="reserva-submit" value="Agregar mesa"
-												class="float-right btn btn-dark" />
-										</div>
-									</form>
-								</div>
-								<div class="col-3">
-									<form action="nuevo-horario" class="form-inline" method="post">
-										<input type="hidden" value="${REST.idRestaurante}"
-											name="idRestaurante" id="id-restaurante-input" />
-										<div class="form-group">
-											<input type="submit" id="reserva-submit"
-												value="Agregar horario" class="float-right btn btn-dark" />
-										</div>
-									</form>
-								</div>
-
-								<div class="col-3">
-									<form action="nueva-calificacion" class="form-inline"
-										method="post">
-										<input type="hidden" value="${REST.idRestaurante}"
-											name="idRestaurante" id="id-restaurante-input" />
-										<div class="form-group">
-											<input type="submit" id="reserva-submit" value="Calificar"
-												class="float-right btn btn-dark" />
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="d-flex flex-column ml-3">
-						<a href="agregarComida?idRestaurante=${REST.idRestaurante}"><i
-							class="far fa-plus-square restaurante-btn my-3"></i></a> <a
-							href="editarRestaurante?id=${REST.idRestaurante}"><i
-							class="far fa-edit restaurante-btn my-3"></i></a> <a
-							href="eliminarRestaurante?id=${REST.idRestaurante}"
-							class="delete-btn"><i
-							class="far fa-trash-alt restaurante-btn my-3"></i></a>
 					</div>
 				</div>
+
+				<div class="card-body">
+					<div class="row">
+						<div class="col-5 border-right">
+							<form action="reservar" class="form-inline" method="post">
+								<input type="hidden" value="${REST.idRestaurante}"
+									name="idRestaurante" id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="date" name="fechaReserva" id="fecha-reserva-input"
+										class="col-8 form-control" required="required"
+										<c:if test="${REST.disponible == false}">disabled</c:if> /> <input
+										type="submit" id="reserva-submit" value="Reservar"
+										class="float-right btn btn-dark"
+										<c:if test="${REST.disponible == false}">disabled</c:if> />
+								</div>
+							</form>
+						</div>
+						<div class="col-3 border-right">
+							<form action="nueva-mesa" class="form-inline" method="post">
+								<input type="hidden" value="${REST.idRestaurante}"
+									name="idRestaurante" id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="submit" id="reserva-submit" value="Agregar mesa"
+										class="float-right btn btn-dark" />
+								</div>
+							</form>
+						</div>
+						<div class="col-3">
+							<form action="nuevo-horario" class="form-inline" method="post">
+								<input type="hidden" value="${REST.idRestaurante}"
+									name="idRestaurante" id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="submit" id="reserva-submit"
+										value="Agregar horario" class="float-right btn btn-dark" />
+								</div>
+							</form>
+						</div>
+
+						<div class="col-3">
+						<br>
+							<form action="nueva-calificacion" class="form-inline"
+								method="post">
+								<input type="hidden" value="${REST.idRestaurante}"
+									name="idRestaurante" id="id-restaurante-input" />
+								<div class="form-group">
+									<input type="submit" id="reserva-submit" value="Calificar"
+										class="float-right btn btn-dark" />
+								</div>
+							</form>
+						</div>
+				
+				
+						<div class="col-md-8">
+						<div class="card-body">
+							<h2 class="card-title bebas">CALIFICACION
+								<a href="restaurante/menu?id=${REST.idRestaurante}"
+									class="float-right btn btn-dark">Ver Men&uacute</a>
+							</h2>
+							<p class="card-text">
+						
+						</div>
+					</div>				
+						
+
+					</div>
+				</div>
+			</div>
+			<div class="d-flex flex-column ml-3">
+				<a href="agregarComida?idRestaurante=${REST.idRestaurante}"><i
+					class="far fa-plus-square restaurante-btn my-3"></i></a> <a
+					href="editarRestaurante?id=${REST.idRestaurante}"><i
+					class="far fa-edit restaurante-btn my-3"></i></a> <a
+					href="eliminarRestaurante?id=${REST.idRestaurante}"
+					class="delete-btn"><i
+					class="far fa-trash-alt restaurante-btn my-3"></i></a>
+			</div>
+		</div>
+
 	</c:forEach>
 
 

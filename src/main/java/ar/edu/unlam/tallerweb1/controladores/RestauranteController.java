@@ -41,7 +41,7 @@ public class RestauranteController {
 
 	@RequestMapping("/restaurantes")
 	public ModelAndView restaurantes(HttpServletRequest request) {
-		
+
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Restaurantes");
@@ -142,23 +142,17 @@ public class RestauranteController {
 		return modelAndView;
 	}
 
-	@RequestMapping(path = "/nueva-calificacion1")
-	public ModelAndView irACalificacion() {
+	@RequestMapping(path = "/nueva-calificacion", method = RequestMethod.POST)
+	public ModelAndView verACalificacion(@RequestParam("idRestaurante") Long idRestaurante,
+			HttpServletRequest request) {
 		ModelMap model = new ModelMap();
-
-		model.put("calificacionModel", servCalificacion.buscarCalificaciones());
-
-		return new ModelAndView("calificarRestaurante1", model);
-	}
-
-	
-	@RequestMapping(path = "/nueva-calificacion")
-	public ModelAndView verACalificacion(HttpServletRequest request) {
-		ModelMap model = new ModelMap();
-		model.put("formularioCalificacion", new FormularioCalificacionRestaurante());
+		RestauranteModel restaurante = new RestauranteModel();
+		restaurante.setIdRestaurante(idRestaurante);
+		FormularioCalificacionRestaurante formulario = new FormularioCalificacionRestaurante();
+		formulario.getCalificacionRestaurante().setRestauranteModel(restaurante);
+		model.put("formularioCalificacion", formulario);
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		return new ModelAndView("calificarRestaurante", model);
 	}
-	
-	
+
 }

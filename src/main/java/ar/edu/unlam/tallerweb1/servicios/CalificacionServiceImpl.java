@@ -12,6 +12,7 @@ import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
 import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
@@ -30,9 +31,14 @@ public class CalificacionServiceImpl implements CalificacionService {
 	}
 
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
-		
-		calificacionRepository.guardarCalificaciones(calificacion);
+				calificacionRepository.guardarCalificaciones(calificacion);
 	
+		
+	}
+
+	@Override
+	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante) {
+		return calificacionRepository.buscarCalificacionPorRestaurante(restaurante);
 		
 	}
 }

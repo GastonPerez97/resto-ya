@@ -6,19 +6,10 @@
 	Restaurante</h1>
 
 
-
-<section class="mx-auto" style="width: 80%;">
+<section class="mx-auto col-lg-6" style="width: 80%;">
 
 	<c:forEach items="${formularioCalificacion.valor}" var="CAL">
-		<%-- <form:button type = "img" src="img/calificaciones/tenedor.jpg"
-							class="img-calificacion" id="imageName" />
-						
-						<button id="boton-image" class="img-calificacion">
-							<img src="img/calificaciones/tenedor.jpg" width="13" height="13">
-						</button> --%>
 
-		<%-- 						<input hidden path="calificacion.idCalificacion"
-							value="${idCalificacion}" id = "id-calificacion"/> --%>
 	</c:forEach>
 	<button id="boton-image1" class="img-calificacion">
 		<img src="img/calificaciones/tenedor.jpg" width="13" height="13">
@@ -45,18 +36,20 @@
 				<div class="form-group">
 
 					<form:hidden path="cliente.idCliente" value="${cliente.idCliente}" />
-					<form:hidden path="restaurante.idRestaurante"
-						value="${restaurante.idRestaurante}" />
-					<label for="nombreDeUsuario">Ingresa un comentario y una
-						calificacion:*</label>
+					<form:hidden
+						path="calificacionRestaurante.restauranteModel.idRestaurante"
+						value="${calificacionRestaurante.restauranteModel.idRestaurante}" />
+					<label for="nombreDeUsuario">Ingresa un comentario y una calificacion:*</label>
 					<div class="form-row">
 						<form:input path="calificacionRestaurante.comentario"
 							id="calificacionRestaurante.comentario" class="form-control" />
 						<br>
 					</div>
-					<input hidden path="calificacion.idCalificacion"
-						value="${idCalificacion}" id="id-calificacion" /> <input
-						type="submit" id="calificar-submit" value="Calificar"
+					<form:input type="hidden"
+						path="calificacionRestaurante.calificacionModel.idCalificacion"
+						value="" id="id-calificacion" />
+						<br>
+					<input type="submit" id="calificar-submit" value="Calificar"
 						class="float-right btn btn-dark" />
 				</div>
 
