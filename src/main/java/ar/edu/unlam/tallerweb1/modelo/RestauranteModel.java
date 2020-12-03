@@ -33,6 +33,8 @@ public class RestauranteModel {
 	@Column(name = "telefono")
 	private String telefono;
 	private String imageName;
+	
+	private Integer promedioCalificaciones;
 
 	@Type(type = "org.hibernate.type.TrueFalseType")
 	private Boolean disponible;
@@ -173,5 +175,13 @@ public class RestauranteModel {
 
 	public void setMesas(List<MesaModel> mesas) {
 		this.mesas = mesas;
+	}
+
+	public Integer getPromedioCalificaciones() {
+		return promedioCalificaciones;
+	}
+
+	public void setPromedioCalificaciones(Integer promedioCalificaciones) {
+		this.promedioCalificaciones = promedioCalificaciones;
 	}
 }

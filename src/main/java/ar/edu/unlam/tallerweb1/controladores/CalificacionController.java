@@ -37,21 +37,28 @@ public class CalificacionController {
 		return new ModelAndView("calificacionExitosa", modelo);
 
 	}
+	
+	
+	@RequestMapping(path = "calificacionPorRestaurante")
+	public ModelAndView irACalificacion() {
+
+		ModelMap model = new ModelMap();
+
+		model.put("restauranteModel", servCalificacion.buscarCalificaciones());
+
+		return new ModelAndView("calificacionPorRestaurante", model);
+	}
 
 		
-	/*
-	 * @RequestMapping(path = "/consultarCalificacionRestaurante", method =
-	 * RequestMethod.POST) public ModelAndView
-	 * pedidos(@ModelAttribute("restauranteModel") RestauranteModel restaurante) {
-	 * 
-	 * ModelMap modelo = new ModelMap();
-	 * 
-	 * modelo.put("restauranteModel",
-	 * servCalificacion.buscarCalificacionPorRestaurante(restaurante));
-	 * 
-	 * return new ModelAndView("calificacionPorRestaurante", modelo);
-	 * 
-	 * }
-	 */
+	@RequestMapping(path = "/consultarCalificacionRestaurante", method = RequestMethod.POST)
+	public ModelAndView pedidos(@ModelAttribute("restauranteModel") RestauranteModel restaurante) {
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("restauranteModel", servCalificacion.buscarCalificacionPorRestaurante(restaurante));
+
+		return new ModelAndView("calificacionPorRestaurante", modelo);
+
+	}
 	
 }
