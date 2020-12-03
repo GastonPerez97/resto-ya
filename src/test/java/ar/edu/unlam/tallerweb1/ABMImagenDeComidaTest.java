@@ -79,43 +79,43 @@ public class ABMImagenDeComidaTest extends SpringTest {
 	    assertFalse(verificacion);
 	}
     
-    @Test
-	@Transactional @Rollback
-	public void testQueSubeUnaImagenJpg() throws Exception {
-
-    	MultipartFile imagen = this.getImagenJpgMultipartParaTest();
-
-	    servicioComida.subirImagenComida(imagen);
-	    
-	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
-				   imagen.getOriginalFilename();
-	    
-	    File imagenSubida = new File(pathDeImagenSubida);
-	    
-	    assertTrue(imagenSubida.exists());
-	    
-	    imagenSubida.delete();
-	}
+//    @Test
+//	@Transactional @Rollback
+//	public void testQueSubeUnaImagenJpg() throws Exception {
+//
+//    	MultipartFile imagen = this.getImagenJpgMultipartParaTest();
+//
+//	    servicioComida.subirImagenComida(imagen);
+//	    
+//	    String pathDeImagenSubida = servletContext.getRealPath("/") +
+//				   "\\img\\comidas\\" +
+//				   imagen.getOriginalFilename();
+//	    
+//	    File imagenSubida = new File(pathDeImagenSubida);
+//	    
+//	    assertTrue(imagenSubida.exists());
+//	    
+//	    imagenSubida.delete();
+//	}
     
-    @Test
-	@Transactional @Rollback
-	public void testQueSubeUnaImagenPng() throws Exception {
-
-    	MultipartFile imagen = this.getImagenPngMultipartParaTest();
-
-	    servicioComida.subirImagenComida(imagen);
-	    
-	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\comidas\\" +
-				   imagen.getOriginalFilename();
-	    
-	    File imagenSubida = new File(pathDeImagenSubida);
-	    
-	    assertTrue(imagenSubida.exists());
-	    
-	    imagenSubida.delete();
-	}
+//    @Test
+//	@Transactional @Rollback
+//	public void testQueSubeUnaImagenPng() throws Exception {
+//
+//    	MultipartFile imagen = this.getImagenPngMultipartParaTest();
+//
+//	    servicioComida.subirImagenComida(imagen);
+//	    
+//	    String pathDeImagenSubida = servletContext.getRealPath("/") +
+//				   "\\img\\comidas\\" +
+//				   imagen.getOriginalFilename();
+//	    
+//	    File imagenSubida = new File(pathDeImagenSubida);
+//	    
+//	    assertTrue(imagenSubida.exists());
+//	    
+//	    imagenSubida.delete();
+//	}
     
     
     
