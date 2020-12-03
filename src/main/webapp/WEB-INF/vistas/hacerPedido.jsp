@@ -4,7 +4,7 @@
 
 <section>
     <form:form action="procesarPedido" method="post" modelAttribute="formularioPedido" class="comidas-pedido mx-auto" id="form-pedido">
-        <form:hidden action="procesarPedido" path="restaurante" value="${formularioPedido.restaurante}" />
+        <form:hidden path="restaurante" value="${formularioPedido.restaurante}" />
         <c:forEach items="${COMIDAS}" var="comida" varStatus="status">
             <article class="comida mx-auto">
                 <div>
@@ -25,8 +25,8 @@
                         <div class="card-footer">
                             <small class="text-muted">${comida.tipo} | Seleccionar: </small>
                             <c:if test="${comida.disponible == true}">
-                               <small><input type="checkbox" id="comida-${comida.idComida}" value="${comida.idComida}" name="checkboxComidas" /></small>
-							   <small>Cantidad: <input type="number" id="${comida.idComida}" value="0" class="form-control cantidades"/></small>
+                                <small><input type="checkbox" id="comida-${comida.idComida}" value="${comida.idComida}" name="checkboxComidas" /></small>
+                                <small>Cantidad: <input type="number" id="${comida.idComida}" value="0" class="form-control cantidades"/></small>
                             </c:if>
                             <c:if test="${comida.disponible == false}"><small class="h5">NO DISPONIBLE</small></c:if>
                         </div>
@@ -34,26 +34,28 @@
                 </div>
             </article>
         </c:forEach>
-        <input type="hidden" id="hidden-cantidades" name="pedidoHidden"/>
+
+        <form:hidden path="pedidoSinFormato" id="hidden-cantidades" name="pedidoHidden" />
         <input type="submit" id="boton-pago" value="Realizar el Pago" class="btn btn-primary btn-block" />
     </form:form>
 
 </section>
-            
+
 <script>
-$(document).ready(function(){
-	
-	$("#form-pedido").submit(function(event) {
-		var valueHidden = "";
-		$(".cantidades").each(function() {
-			if($(this).val() > 0) {
-				valueHidden += $(this).attr('id') + '-' + $(this).val() + ';';
-			}
-		});
-		$("#hidden-cantidades").val(valueHidden);
-	});
-	
-});
+    $(document).ready(function() {
+
+        $("#form-pedido").submit(function(event) {
+            var valueHidden = "";
+            $(".cantidades").each(function() {
+                if ($(this).val() > 0) {
+                    valueHidden += $(this).attr('id') + '-' + $(this).val() + ';';
+                }
+            });
+            $("#hidden-cantidades").val(valueHidden);
+        });
+
+    });
 </script>
 
 <%@ include file="footer.jsp"%>
+            
