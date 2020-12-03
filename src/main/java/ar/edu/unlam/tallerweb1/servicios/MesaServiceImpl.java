@@ -45,4 +45,28 @@ public class MesaServiceImpl implements MesaService {
 		return mesa;
 	}
 
+	@Override
+	public Integer getMaximaUbicacionFilaByRestaurante(Long idRestaurante) {
+		return mesaRepository.getMaximaUbicacionFilaByRestaurante(idRestaurante);
+	}
+
+	@Override
+	public Integer getMaximaUbicacionColumnaByRestaurante(Long idRestaurante) {
+		return mesaRepository.getMaximaUbicacionColumnaByRestaurante(idRestaurante);
+	}
+
+	@Override
+	public MesaModel[][] generarMapaDeMesas(List<MesaModel> mesas) {
+		Long idRestaurante = mesas.get(0).getRestaurante().getIdRestaurante();
+		Integer filaMaxima = getMaximaUbicacionFilaByRestaurante(idRestaurante);
+		Integer columnaMaxima = getMaximaUbicacionColumnaByRestaurante(idRestaurante);
+		
+		MesaModel[][] matrizMesas = new MesaModel[filaMaxima][columnaMaxima];
+		
+		for (MesaModel mesa : mesas)
+			matrizMesas[mesa.getUbicacionFila() - 1][mesa.getUbicacionColumna() - 1] = mesa;
+		
+		return matrizMesas;
+	}
+
 }

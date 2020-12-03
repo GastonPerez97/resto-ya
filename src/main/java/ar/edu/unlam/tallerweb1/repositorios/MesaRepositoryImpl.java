@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -34,6 +36,22 @@ public class MesaRepositoryImpl implements MesaRepository {
 	@Override
 	public void guardarMesa(MesaModel mesa) {
 		sessionFactory.getCurrentSession().save(mesa);
+	}
+
+	@Override
+	public Integer getMaximaUbicacionFilaByRestaurante(Long idRestaurante) {
+		return (Integer)sessionFactory.getCurrentSession().createCriteria(MesaModel.class)
+				.setProjection(Projections.max("ubicacionFila"))
+				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
+				.uniqueResult();
+	}
+
+	@Override
+	public Integer getMaximaUbicacionColumnaByRestaurante(Long idRestaurante) {
+		return (Integer)sessionFactory.getCurrentSession().createCriteria(MesaModel.class)
+				.setProjection(Projections.max("ubicacionColumna"))
+				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
+				.uniqueResult();
 	}
 	
 }

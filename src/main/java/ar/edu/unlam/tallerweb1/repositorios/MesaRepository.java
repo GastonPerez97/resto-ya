@@ -11,4 +11,6 @@ public interface MesaRepository {
 	List<MesaModel> getMesasByRestaurante(Long idRestaurante);
 	MesaModel getMesaById(Long idMesa);
 	void guardarMesa(MesaModel mesa);
+	Integer getMaximaUbicacionFilaByRestaurante(Long idRestaurante);
+	Integer getMaximaUbicacionColumnaByRestaurante(Long idRestaurante);
 }
