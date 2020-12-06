@@ -16,5 +16,6 @@ public interface PedidoService {
 	Double calcularTotalPedido(List<PedidoComidaModel> pedidoComidaList);
 	void guardarNroReferencia(Long idPedido, Long nroReferencia);
 	void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido);
+//	String procesarFinalizarPedidoDe(Long idPedido);
 	
 }

@@ -138,5 +138,36 @@ public class PedidoController {
 		
 		return new ModelAndView("detallePedido", modelo);
 	}
+	
+	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)
+	public ModelAndView finalizarPedido(@RequestParam("idPedido") Long idPedido) {
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		
+		if (pedido.getNroReferenciaMP() != null) {
+			ModelMap model = new ModelMap();
+			model.put("idPedido", idPedido);
+			return new ModelAndView("ingresarNroReferencia", model);
+		} else {
+			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+		}
+	}
+	
+	@RequestMapping(path = "/finalizar-pedido/nro-referencia", method = RequestMethod.POST)
+	public ModelAndView ingresarNroReferencia(@RequestParam("idPedido") Long idPedido,
+											  @RequestParam("nroReferencia") Long nroReferencia) {
+		
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		
+		if (pedido.getNroReferenciaMP().equals(nroReferencia))  {
+			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+		} else {
+			ModelMap model = new ModelMap();
+			model.put("idPedido", idPedido);
+			model.put("error", "El Nro de Referencia que ingresaste no es correcto, intenta nuevamente");
+			return new ModelAndView("ingresarNroReferencia", model);
+		}
+	}
 		
 }

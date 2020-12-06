@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,5 +106,20 @@ public class PedidoServiceImpl implements PedidoService {
 	public void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido) {
 		repositorioPedido.cambiarEstadoDePedido(idPedido, idEstadoPedido);
 	}
+
+//	@Override
+//	public String procesarFinalizarPedidoDe(Long idPedido) {
+//		PedidoModel pedido = consultarPedidoPorId(idPedido);
+//		String resultado;
+//		
+//		if (pedido.getNroReferenciaMP() == null || pedido.getEstadoPedidoModel().getIdEstadoPedido().equals(2L)) {
+//			cambiarEstadoDePedido(idPedido, 3L);
+//			resultado = "Finalizado";
+//		} else {
+//			resultado = "IngresarNroReferencia";
+//		}
+//		
+//		return resultado;
+//	}
 
 }
