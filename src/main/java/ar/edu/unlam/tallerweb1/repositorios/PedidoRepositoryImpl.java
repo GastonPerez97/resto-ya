@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 @Repository
 @Transactional
@@ -60,6 +57,13 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 				.add(Restrictions.eq("restaurante.idRestaurante", idRestaurante))
 				.addOrder(Order.desc("fechaPedido"))
 				.list();
+	}
+
+	@Override
+	public void guardarNroReferencia(Long idPedido, Long nroReferencia) {
+		PedidoModel pedido = sessionFactory.getCurrentSession().get(PedidoModel.class, idPedido);
+		pedido.setNroReferenciaMP(nroReferencia);
+		sessionFactory.getCurrentSession().update(pedido);
 	}
 
 }

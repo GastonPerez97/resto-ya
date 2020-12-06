@@ -4,7 +4,6 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
-import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 
 public interface PedidoRepository {
 	void guardarPedido(PedidoModel pedido);
@@ -19,5 +18,5 @@ public interface PedidoRepository {
 
 	List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante);
 	
-
+	void guardarNroReferencia(Long idPedido, Long nroReferencia);
 }

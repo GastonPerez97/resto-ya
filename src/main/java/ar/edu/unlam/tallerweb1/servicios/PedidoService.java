@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
@@ -15,5 +14,6 @@ public interface PedidoService {
 	PedidoModel consultarPedidoPorId(Long id);
 	PedidoModel cargarPedidoComida(String pedidoSinFormato);
 	Double calcularTotalPedido(List<PedidoComidaModel> pedidoComidaList);
+	void guardarNroReferencia(Long idPedido, Long nroReferencia);
 
 }

@@ -73,6 +73,7 @@ public class PedidoController {
 		
 		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
 		PedidoModel pedido = pedidoService.procesarPedido(formularioPedido);
+		request.getSession().setAttribute("idPedido", pedido.getIdPedido());
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
@@ -107,8 +108,13 @@ public class PedidoController {
 	}
 	
 	@RequestMapping("/pagoPendiente")
-	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia) {
+	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
+		
+		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
+		pedidoService.guardarNroReferencia(idPedido, nroReferencia);
+		request.getSession().removeAttribute("idPedido");
+		
 		modelo.put("nroReferencia", nroReferencia);
 		return new ModelAndView("pagoPendiente", modelo);
 	}

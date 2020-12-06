@@ -42,7 +42,9 @@ public class PedidoModel {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_estado_pedido")
     private EstadoPedidoModel estadoPedidoModel;
-	
+    
+    @Column(name = "nro_referencia_mp")
+	private Long nroReferenciaMP;
 
 
 	public List<PedidoComidaModel> getListaPedidosComidas() {
@@ -112,5 +114,12 @@ public class PedidoModel {
 		this.fechaPedido = string;
 	}
 
+	public Long getNroReferenciaMP() {
+		return nroReferenciaMP;
+	}
+
+	public void setNroReferenciaMP(Long nroReferenciaMP) {
+		this.nroReferenciaMP = nroReferenciaMP;
+	}
 	
 }

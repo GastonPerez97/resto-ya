@@ -3,18 +3,15 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
@@ -99,5 +96,9 @@ public class PedidoServiceImpl implements PedidoService {
 		return total;
 	}
 
+	@Override
+	public void guardarNroReferencia(Long idPedido, Long nroReferencia) {
+		repositorioPedido.guardarNroReferencia(idPedido, nroReferencia);
+	}
 
 }
