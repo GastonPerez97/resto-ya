@@ -121,5 +121,13 @@ public class PedidoModel {
 	public void setNroReferenciaMP(Long nroReferenciaMP) {
 		this.nroReferenciaMP = nroReferenciaMP;
 	}
+
+	public EstadoPedidoModel getEstadoPedidoModel() {
+		return estadoPedidoModel;
+	}
+	
+	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
+		this.estadoPedidoModel = estadoPedidoModel;
+	}
 	
 }

@@ -98,7 +98,10 @@ public class PedidoController {
 	}
 	
 	@RequestMapping("/pagoRealizado")
-	public ModelAndView pagoRealizado() {	
+	public ModelAndView pagoRealizado(HttpServletRequest request) {
+		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
+		pedidoService.cambiarEstadoDePedido(idPedido, 2L);
+		request.getSession().removeAttribute("idPedido");
 		return new ModelAndView("pagoRealizado");
 	}
 	
@@ -113,6 +116,7 @@ public class PedidoController {
 		
 		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
 		pedidoService.guardarNroReferencia(idPedido, nroReferencia);
+		pedidoService.cambiarEstadoDePedido(idPedido, 1L);
 		request.getSession().removeAttribute("idPedido");
 		
 		modelo.put("nroReferencia", nroReferencia);

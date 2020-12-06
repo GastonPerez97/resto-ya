@@ -19,4 +19,6 @@ public interface PedidoRepository {
 	List<PedidoModel> buscarPedidosRestauranteOrdenadosPorFecha(Long idRestaurante);
 	
 	void guardarNroReferencia(Long idPedido, Long nroReferencia);
+	
+	void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido);
 }

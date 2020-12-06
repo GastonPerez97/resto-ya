@@ -101,4 +101,9 @@ public class PedidoServiceImpl implements PedidoService {
 		repositorioPedido.guardarNroReferencia(idPedido, nroReferencia);
 	}
 
+	@Override
+	public void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido) {
+		repositorioPedido.cambiarEstadoDePedido(idPedido, idEstadoPedido);
+	}
+
 }

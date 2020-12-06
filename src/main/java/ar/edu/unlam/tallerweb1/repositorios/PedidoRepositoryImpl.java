@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
+import ar.edu.unlam.tallerweb1.modelo.EstadoPedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 
 @Repository
@@ -63,6 +64,15 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 	public void guardarNroReferencia(Long idPedido, Long nroReferencia) {
 		PedidoModel pedido = sessionFactory.getCurrentSession().get(PedidoModel.class, idPedido);
 		pedido.setNroReferenciaMP(nroReferencia);
+		sessionFactory.getCurrentSession().update(pedido);
+	}
+
+	@Override
+	public void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido) {
+		PedidoModel pedido = sessionFactory.getCurrentSession().get(PedidoModel.class, idPedido);
+		EstadoPedidoModel estado = new EstadoPedidoModel(idEstadoPedido);
+		
+		pedido.setEstadoPedidoModel(estado);
 		sessionFactory.getCurrentSession().update(pedido);
 	}
 
