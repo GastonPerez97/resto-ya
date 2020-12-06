@@ -119,7 +119,7 @@ public class MesaServiceTest {
 	        }
 	    }).when(mesaRepositoryMock).guardarMesa(any(MesaModel.class));
 		
-		mesaActual = mesaService.ProcesarNuevaMesa(formulario);
+		mesaActual = mesaService.procesarNuevaMesa(formulario);
 		
 		
 		assertThat(mesaActual.getNumeroDeMesa()).isEqualTo(formulario.getNumeroDeMesa());
