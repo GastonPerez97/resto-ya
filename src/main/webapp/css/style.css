@@ -59,6 +59,19 @@ header nav {
     margin-right: 1.3%;
 }
 
+.pedidos-container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pedido-card {
+	width: 45%;
+    margin-bottom: 2em;
+    margin-right: 1.3%;
+}
+
 .pedido {
     width: 90%;
 }

@@ -169,5 +169,12 @@ public class PedidoController {
 			return new ModelAndView("ingresarNroReferencia", model);
 		}
 	}
-		
+	
+	@RequestMapping(path = "/cancelar-pedido", method = RequestMethod.POST)
+	public ModelAndView cancelarPedido(@RequestParam("idPedido") Long idPedido) {
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		pedidoService.cambiarEstadoDePedido(idPedido, 4L);
+		return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+	}
+
 }
