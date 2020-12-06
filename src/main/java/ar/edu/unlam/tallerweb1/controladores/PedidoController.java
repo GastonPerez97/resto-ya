@@ -1,10 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,14 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
 
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.servicios.MercadoPagoService;
-import ar.edu.unlam.tallerweb1.servicios.MailService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -52,9 +46,6 @@ public class PedidoController {
 	
 	@Autowired
 	private MercadoPagoService servicioMercadoPago;
-
-	@Autowired
-	private MailService mailService;
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
@@ -123,7 +114,7 @@ public class PedidoController {
 	}
 	
 	@RequestMapping(path="/detalle-pedido", method=RequestMethod.POST)
-	public ModelAndView verDetalleDePedido(@RequestParam("idPedido")Long idPedido, HttpServletRequest request) {		
+	public ModelAndView verDetalleDePedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
 		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
