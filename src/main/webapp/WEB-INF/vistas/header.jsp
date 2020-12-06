@@ -60,6 +60,8 @@
 					</li>
 					<li class="nav-item"><a class="nav-link text-light"
 						href="/proyecto-limpio-spring-master/usuarios">Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link text-light"
+						href="/proyecto-limpio-spring-master/historicoPedidos">Historico Pedidos</a></li>
 				</ul>
 			</div>
 			<div>
