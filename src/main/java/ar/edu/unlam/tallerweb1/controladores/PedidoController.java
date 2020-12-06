@@ -146,6 +146,7 @@ public class PedidoController {
 		if (pedido.getNroReferenciaMP() != null) {
 			ModelMap model = new ModelMap();
 			model.put("idPedido", idPedido);
+			model.put("titulo", "Nro de Referencia");
 			return new ModelAndView("ingresarNroReferencia", model);
 		} else {
 			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
@@ -167,6 +168,7 @@ public class PedidoController {
 		} else {
 			ModelMap model = new ModelMap();
 			model.put("idPedido", idPedido);
+			model.put("titulo", "Nro de Referencia");
 			model.put("error", "El Nro de Referencia que ingresaste no es correcto, intenta nuevamente");
 			return new ModelAndView("ingresarNroReferencia", model);
 		}
