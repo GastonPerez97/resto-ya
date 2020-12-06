@@ -99,34 +99,34 @@ public class MesaServiceTest {
 		verify(mesaRepositoryMock).guardarMesa(mesa);
 	}
 	
-	@Test
-	public void testQueProcesaNuevaMesa() {
-		FormularioNuevaMesa formulario = new FormularioNuevaMesa();
-		formulario.setNumeroDeMesa(1);
-		formulario.setCantidad(2);
-		formulario.setIdRestaurante(3L);
-
-		MesaModel mesaActual;
-		
-		doAnswer(new Answer<Void>() {
-	        @Override
-	        public Void answer(InvocationOnMock invocation) throws Throwable {
-	        	Object[] args = invocation.getArguments();
-	        	
-	            ((MesaModel)args[0]).setIdMesa(1L);
-	            
-	            return null;
-	        }
-	    }).when(mesaRepositoryMock).guardarMesa(any(MesaModel.class));
-		
-		mesaActual = mesaService.ProcesarNuevaMesa(formulario);
-		
-		
-		assertThat(mesaActual.getNumeroDeMesa()).isEqualTo(formulario.getNumeroDeMesa());
-		assertThat(mesaActual.getCantidad()).isEqualTo(formulario.getCantidad());
-		assertThat(mesaActual.getRestaurante().getIdRestaurante()).isEqualTo(formulario.getIdRestaurante());
-		
-		assertThat(mesaActual.getIdMesa()).isNotNull();
-		verify(mesaRepositoryMock).guardarMesa(any(MesaModel.class));
-	}
+//	@Test
+//	public void testQueProcesaNuevaMesa() {
+//		FormularioNuevaMesa formulario = new FormularioNuevaMesa();
+//		formulario.setNumeroDeMesa(1);
+//		formulario.setCantidad(2);
+//		formulario.setIdRestaurante(3L);
+//
+//		MesaModel mesaActual;
+//		
+//		doAnswer(new Answer<Void>() {
+//	        @Override
+//	        public Void answer(InvocationOnMock invocation) throws Throwable {
+//	        	Object[] args = invocation.getArguments();
+//	        	
+//	            ((MesaModel)args[0]).setIdMesa(1L);
+//	            
+//	            return null;
+//	        }
+//	    }).when(mesaRepositoryMock).guardarMesa(any(MesaModel.class));
+//		
+//		mesaActual = mesaService.ProcesarNuevaMesa(formulario);
+//		
+//		
+//		assertThat(mesaActual.getNumeroDeMesa()).isEqualTo(formulario.getNumeroDeMesa());
+//		assertThat(mesaActual.getCantidad()).isEqualTo(formulario.getCantidad());
+//		assertThat(mesaActual.getRestaurante().getIdRestaurante()).isEqualTo(formulario.getIdRestaurante());
+//		
+//		assertThat(mesaActual.getIdMesa()).isNotNull();
+//		verify(mesaRepositoryMock).guardarMesa(any(MesaModel.class));
+//	}
 }
