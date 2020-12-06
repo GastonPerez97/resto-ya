@@ -3,6 +3,9 @@
 
         <h3 class="pedido-titulo">Número de pedido: ${pedido.idPedido} </h3> <br>
         <h3 class="pedido-titulo">Fecha y hora de generación: ${pedido.fechaPedido} </h3> <br>
+        <c:if test="${not empty pedido.fechaFinalizacionPedido}">
+			<h3 class="pedido-titulo">Fecha de Finalizacion: ${pedido.fechaFinalizacionPedido}</h3> <br>
+		</c:if>
         <h3 class="pedido-titulo">Total: $${total} </h3> <br>
         
         <section class="pedido mx-auto">
