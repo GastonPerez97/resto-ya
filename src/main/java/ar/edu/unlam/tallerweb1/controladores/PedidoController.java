@@ -149,6 +149,7 @@ public class PedidoController {
 			return new ModelAndView("ingresarNroReferencia", model);
 		} else {
 			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			pedidoService.generarFechaFinalizacionDe(idPedido);
 			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
 		}
 	}
@@ -161,6 +162,7 @@ public class PedidoController {
 		
 		if (pedido.getNroReferenciaMP().equals(nroReferencia))  {
 			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			pedidoService.generarFechaFinalizacionDe(idPedido);
 			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
 		} else {
 			ModelMap model = new ModelMap();

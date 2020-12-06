@@ -1,6 +1,9 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -73,6 +76,16 @@ public class PedidoRepositoryImpl implements PedidoRepository {
 		EstadoPedidoModel estado = new EstadoPedidoModel(idEstadoPedido);
 		
 		pedido.setEstadoPedidoModel(estado);
+		sessionFactory.getCurrentSession().update(pedido);
+	}
+
+	@Override
+	public void generarFechaFinalizacionDe(Long idPedido) {
+		PedidoModel pedido = sessionFactory.getCurrentSession().get(PedidoModel.class, idPedido);
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date fechaFinalizacionPedido = new Date();
+		
+		pedido.setFechaFinalizacionPedido(dateFormat.format(fechaFinalizacionPedido));
 		sessionFactory.getCurrentSession().update(pedido);
 	}
 

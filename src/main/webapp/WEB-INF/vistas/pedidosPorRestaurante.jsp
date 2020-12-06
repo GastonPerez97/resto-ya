@@ -12,6 +12,10 @@
 				<h5 class="card-title"><b>Numero de pedido:</b> ${pedido.idPedido}</h5>
 				<h5 class="card-title"><b>Fecha:</b>  ${pedido.fechaPedido}</h5>
 				<h5 class="card-title"><b>Estado:</b>  ${pedido.estadoPedidoModel.nombreEstado}</h5>
+				<c:if test="${not empty pedido.fechaFinalizacionPedido}">
+					<h5 class="card-title"><b>Fecha de Finalizacion:</b>  ${pedido.fechaFinalizacionPedido}</h5>
+				</c:if>
+				
 				<div class="d-flex justify-content-around mt-4">
 					<form action="detalle-pedido" method="post">
 						<input type="hidden" value="${pedido.idPedido}"	name="idPedido" id="id-restaurante-input" />

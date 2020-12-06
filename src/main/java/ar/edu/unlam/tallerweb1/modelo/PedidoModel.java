@@ -35,6 +35,9 @@ public class PedidoModel {
 	@Column(name = "fecha_pedido")
 	private String fechaPedido;
 	
+	@Column(name = "fecha_finalizacion_pedido")
+	private String fechaFinalizacionPedido;
+	
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
 	private ClienteModel clienteModel;
@@ -128,6 +131,14 @@ public class PedidoModel {
 	
 	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
 		this.estadoPedidoModel = estadoPedidoModel;
+	}
+
+	public String getFechaFinalizacionPedido() {
+		return fechaFinalizacionPedido;
+	}
+
+	public void setFechaFinalizacionPedido(String fechaFinalizacionPedido) {
+		this.fechaFinalizacionPedido = fechaFinalizacionPedido;
 	}
 	
 }

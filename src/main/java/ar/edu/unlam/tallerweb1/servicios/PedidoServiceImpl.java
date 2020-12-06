@@ -107,19 +107,9 @@ public class PedidoServiceImpl implements PedidoService {
 		repositorioPedido.cambiarEstadoDePedido(idPedido, idEstadoPedido);
 	}
 
-//	@Override
-//	public String procesarFinalizarPedidoDe(Long idPedido) {
-//		PedidoModel pedido = consultarPedidoPorId(idPedido);
-//		String resultado;
-//		
-//		if (pedido.getNroReferenciaMP() == null || pedido.getEstadoPedidoModel().getIdEstadoPedido().equals(2L)) {
-//			cambiarEstadoDePedido(idPedido, 3L);
-//			resultado = "Finalizado";
-//		} else {
-//			resultado = "IngresarNroReferencia";
-//		}
-//		
-//		return resultado;
-//	}
+	@Override
+	public void generarFechaFinalizacionDe(Long idPedido) {
+		repositorioPedido.generarFechaFinalizacionDe(idPedido);
+	}
 
 }

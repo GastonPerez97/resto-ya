@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 
 public interface PedidoRepository {
+	
 	void guardarPedido(PedidoModel pedido);
 
 	PedidoModel consultarPedidoPorId(Long id);
@@ -21,4 +22,6 @@ public interface PedidoRepository {
 	void guardarNroReferencia(Long idPedido, Long nroReferencia);
 	
 	void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido);
+	
+	void generarFechaFinalizacionDe(Long idPedido);
 }
