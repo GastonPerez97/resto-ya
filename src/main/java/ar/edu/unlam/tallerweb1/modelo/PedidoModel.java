@@ -44,7 +44,6 @@ public class PedidoModel {
     private EstadoPedidoModel estadoPedidoModel;
 	
 
-
 	public List<PedidoComidaModel> getListaPedidosComidas() {
 		return listaPedidosComidas;
 	}
@@ -110,6 +109,14 @@ public class PedidoModel {
 
 	public void setFechaPedido(String string) {
 		this.fechaPedido = string;
+	}
+	
+	public EstadoPedidoModel getEstadoPedidoModel() {
+		return estadoPedidoModel;
+	}
+
+	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
+		this.estadoPedidoModel = estadoPedidoModel;
 	}
 
 	

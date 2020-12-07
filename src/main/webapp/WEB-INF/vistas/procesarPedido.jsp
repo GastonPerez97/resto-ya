@@ -25,7 +25,7 @@
                         </div>
                     </article><br>
                 </c:forEach>
-                <p>Fecha de realizaciï¿½n del pedido: ${fechaPedido} hs.</p>
+                <p>Fecha de realización del pedido: ${hora} hs.</p>
                 <p>Te enviamos un mail de confirmacion a tu casilla.</p>
                 <p>Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
 

@@ -27,4 +27,22 @@ public class EstadoPedidoModel {
     	this.idEstadoPedido = idEstadoPedido;
     }
 
+	public Long getIdEstadoPedido() {
+		return idEstadoPedido;
+	}
+
+	public void setIdEstadoPedido(Long idEstadoPedido) {
+		this.idEstadoPedido = idEstadoPedido;
+	}
+
+	public String getNombreEstado() {
+		return nombreEstado;
+	}
+
+	public void setNombreEstado(String nombreEstado) {
+		this.nombreEstado = nombreEstado;
+	}
+    
+    
+
 }
