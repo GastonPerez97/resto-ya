@@ -9,6 +9,7 @@
 			<div class="card-body">
 				<h3 class="card-title bebas">Número de pedido: ${pedido.idPedido}</h3>
 				<h3 class="card-title bebas">Fecha: ${pedido.fechaPedido}</h3>
+				<h3 class="card-title bebas">Estado: ${pedido.estadoPedidoModel.nombreEstado}</h3>
 				<h3 class="card-title bebas">							
 				<form action="detalle-pedido" class="form-inline" method="post">
 					<input type="hidden" value="${pedido.idPedido}"
