@@ -20,7 +20,7 @@
 								class="form-control" />
 						</div>
 						
-					<p style= "font-weight: bold"; >El reclamo ya se encuentra atendido. Si desea puede actualizar su respuesta</p>
+					<p>El reclamo ya se encuentra atendido. Si desea puede actualizar su respuesta</p>
 
 
 						<div class="form-group">
