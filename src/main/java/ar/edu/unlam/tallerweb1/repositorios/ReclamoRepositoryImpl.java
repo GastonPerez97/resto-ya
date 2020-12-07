@@ -27,6 +27,11 @@ public class ReclamoRepositoryImpl implements ReclamoRepository {
 				.uniqueResult();
 	}
 
+	@Override
+	public void actualizarReclamo(ReclamoModel reclamo) {
+		sessionFactory.getCurrentSession().update(reclamo);	
+	}
+
 
 
 }

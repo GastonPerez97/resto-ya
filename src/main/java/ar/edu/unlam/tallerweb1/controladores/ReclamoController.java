@@ -56,10 +56,21 @@ public class ReclamoController {
 		
 		modelo.put("titulo", "Ver Reclamo");
 		modelo.put("reclamo", reclamo);
-		modelo.put("idPedido", idPedido);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 				  		
 		return new ModelAndView("verReclamo", modelo);
+	}
+	
+	@RequestMapping(path="/reclamoRespuesta", method=RequestMethod.POST)
+	public ModelAndView reclamoRespuesta(@ModelAttribute("reclamoModel") ReclamoModel reclamo, HttpServletRequest request) {		
+		ModelMap modelo = new ModelMap();	   
+				
+		reclamoService.actualizarReclamo(reclamo);
+		
+		modelo.put("titulo", "Respuesta Generada");
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+
+		return new ModelAndView("reclamoRespuestaExitosa");
 	}
 	
 	
