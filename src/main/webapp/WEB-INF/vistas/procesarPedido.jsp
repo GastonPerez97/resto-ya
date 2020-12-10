@@ -6,6 +6,7 @@
     <form:form action="pagar" method="post">
         <c:forEach items="${pedidoComidaList}" var="pedidoComida" varStatus="status">
             <input type="hidden" name="comidas" value="${pedidoComida.comidaModel.nombre}">
+			<input type="hidden" name="cantidades" value="${pedidoComida.cantidad}">
             <input type="hidden" name="precios" value="${pedidoComida.comidaModel.precio}">
 
             <article class="pedido-flex">

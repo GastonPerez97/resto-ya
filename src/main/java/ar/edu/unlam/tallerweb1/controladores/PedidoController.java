@@ -87,12 +87,14 @@ public class PedidoController {
 	public ModelAndView pagarPedido(HttpServletRequest request) throws MPException {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+
 		String[] comidas = request.getParameterValues("comidas");
+		String[] cantidadesString = request.getParameterValues("cantidades");
+		Integer[] cantidades = pedidoService.convertirDeStringAIntegerA(cantidadesString);
 		String[] preciosString = request.getParameterValues("precios");
 		Float[] precios = Arrays.stream(preciosString).map(Float::valueOf).toArray(Float[]::new);
 		
-		Preference resultado = servicioMercadoPago.procesarPagoDePedido(comidas, precios);
+		Preference resultado = servicioMercadoPago.procesarPagoDePedido(comidas, cantidades, precios);
 		
 		return new ModelAndView("redirect:" + resultado.getSandboxInitPoint());
 	}

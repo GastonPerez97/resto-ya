@@ -112,4 +112,15 @@ public class PedidoServiceImpl implements PedidoService {
 		repositorioPedido.generarFechaFinalizacionDe(idPedido);
 	}
 
+	@Override
+	public Integer[] convertirDeStringAIntegerA(String[] array) {
+		Integer[] resultado = new Integer[array.length];
+		
+		for (int i = 0; i < array.length; i++) {
+			resultado[i] = Math.round(Float.parseFloat(array[i]));
+		}
+		
+		return resultado;
+	}
+
 }

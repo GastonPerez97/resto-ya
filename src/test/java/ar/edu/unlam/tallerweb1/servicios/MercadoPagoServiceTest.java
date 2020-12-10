@@ -20,18 +20,21 @@ public class MercadoPagoServiceTest {
 	@Test
 	public void testQueProcesaElPagoDeUnPedido() throws MPException {
 		String[] items = {"Item1", "Item2"};
+		Integer[] cantidades = {2, 3};
 		Float[] precios = {200F, 300F};
 		
 		Preference preferenceActual;
 		
-		preferenceActual = mpService.procesarPagoDePedido(items, precios);
+		preferenceActual = mpService.procesarPagoDePedido(items, cantidades, precios);
 		
 		assertThat(preferenceActual.getItems()).hasSize(2);
 		
 		assertThat((preferenceActual.getItems().get(0).getTitle())).isEqualTo("Item1");
+		assertThat((preferenceActual.getItems().get(0).getQuantity())).isEqualTo(2);
 		assertThat((preferenceActual.getItems().get(0).getUnitPrice())).isEqualTo(200.0f);
 		
 		assertThat((preferenceActual.getItems().get(1).getTitle())).isEqualTo("Item2");
+		assertThat((preferenceActual.getItems().get(1).getQuantity())).isEqualTo(3);
 		assertThat((preferenceActual.getItems().get(1).getUnitPrice())).isEqualTo(300.0f);
 		
 		assertThat(preferenceActual.getBackUrls().getSuccess())

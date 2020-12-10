@@ -17,5 +17,6 @@ public interface PedidoService {
 	void guardarNroReferencia(Long idPedido, Long nroReferencia);
 	void cambiarEstadoDePedido(Long idPedido, Long idEstadoPedido);
 	void generarFechaFinalizacionDe(Long idPedido);
+	Integer[] convertirDeStringAIntegerA(String[] array);
 	
 }

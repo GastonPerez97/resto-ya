@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MercadoPagoServiceImpl implements MercadoPagoService {
 
 	@Override
-	public Preference procesarPagoDePedido(String[] items, Float[] precios) throws MPException {
+	public Preference procesarPagoDePedido(String[] items, Integer[] cantidades, Float[] precios) throws MPException {
 		MercadoPago.SDK.configure("TEST-867780493823573-112218-33ab1227d9d3f3d6db2332eb892bd369-200165530");
 		
 		Payer payer = new Payer();
@@ -31,11 +31,18 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
 		
 		for (int i = 0; i < items.length; i++) {
 			Item item = new Item();
-			item.setTitle(items[i]).setQuantity(1);
+			item.setTitle(items[i]);
 			
-			for (int j = 0; j < precios.length; j++) {
+			for (int j = 0; j < cantidades.length; j++) {
 				if (i == j) {
-					item.setUnitPrice(precios[j]);
+					item.setQuantity(cantidades[j]);
+					break;
+				}
+			}
+			
+			for (int k = 0; k < precios.length; k++) {
+				if (i == k) {
+					item.setUnitPrice(precios[k]);
 					break;
 				}
 			}
