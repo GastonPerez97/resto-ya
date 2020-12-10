@@ -3,11 +3,13 @@ package ar.edu.unlam.tallerweb1.controladores;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,6 +27,8 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioNuevaMesa;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
@@ -84,5 +88,38 @@ public class PedidoControllerTest {
 	    assertThat((((FormularioPedido) modelAndView.getModel().get("formularioPedido"))).getRestaurante()).isEqualTo(idRestaurante);
 	    assertThat(modelAndView.getModel().get("nombreUsuario")).isEqualTo("nombreUsuario");
 	}
+    
+    @Test
+	@Transactional @Rollback
+	public void testQueProcesaUnPedido() {
+    	FormularioPedido formularioPedido = new FormularioPedido();
+    	
+    	PedidoModel pedido = new PedidoModel();
+    	pedido.setIdPedido(2L);
+    	pedido.setFechaPedido("2020-12-10");
+    	pedido.setPedidoComida(new ArrayList<PedidoComidaModel>());
+    	
+    	MockHttpServletRequest request = new MockHttpServletRequest();
+    	request.getSession().setAttribute("id", 1L);
+    	request.getSession().setAttribute("NOMBRE", "nombreUsuario");
+
+    	when(pedidoServiceMock.procesarPedido(formularioPedido)).thenReturn(pedido);
+    	
+    	ModelAndView mav = pedidoController.procesarPedidoPost(formularioPedido, request);
+    	
+    	assertThat(formularioPedido.getIdCliente()).isEqualTo(1L);
+    	assertThat(request.getSession().getAttribute("idPedido")).isEqualTo(pedido.getIdPedido());
+    	assertThat(mav.getModel().get("idPedido")).isEqualTo(2L);
+    	assertThat(mav.getModel().get("hora")).isEqualTo("2020-12-10");
+    	assertThat(mav.getModel().get("nombreUsuario")).isEqualTo("nombreUsuario");
+    	assertThat(mav.getModel().get("pedidoComidaList")).isEqualTo(pedido.getPedidoComida());
+    	verify(pedidoServiceMock, times(1)).procesarPedido(formularioPedido);
+	}
+    
+//    @Test
+//	@Transactional @Rollback
+//	public void testQuePagaUnPedido() {
+//    	
+//	}
 
 }
