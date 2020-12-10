@@ -39,7 +39,7 @@
 <meta name="google-signin-client_id" content="944559455733-1q39bf2aqu04q1v5h71jbsngidb1qoh1.apps.googleusercontent.com">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 	<header class="container-footer bebas bg-dark mb-5">
 		<nav class="navbar navbar-expand-lg navbar-dark">
