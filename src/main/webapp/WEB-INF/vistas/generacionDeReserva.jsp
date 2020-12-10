@@ -37,38 +37,41 @@
 }
 </style>
 
-<h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> ¡Reserva tu lugar!</h1>
-<section class="mx-auto" style="width:80%;">
-	<div class = "restaurantes">
-		<div id="loginbox" style="margin-top:50px;" class="card-body">
-			<h3>${restaurante.nombre}</h3>
-			<form:form action="confirmar-reserva" method="POST" modelAttribute="formularioGeneracionReserva">
-				<form:hidden path = "idRestaurante" value = "${restaurante.idRestaurante}"/>
-				<form:hidden path = "fechaReserva" value = "${formularioGeneracionReserva.fechaReserva}" id="fecha-reserva"/>
-				<div class="form-group">
-				<table class="cc-selector">
-					<c:forEach var="rowData" items="${matriz}">
-				        <tr>
-				            <c:forEach var="cellData" varStatus="loop" items="${rowData}" >
-				                <td>
-					                <c:if test="${not empty cellData.idMesa}">
-						                <form:radiobutton path="idMesa" id="mesa-${cellData.idMesa}" name="mesa" class="radio-mesa" value="${cellData.idMesa}"/> 
-						                <label class="drinkcard-cc radio-img" for="mesa-${cellData.idMesa}">Cantidad: ${cellData.cantidad}</label>
-					                </c:if>
-				                </td>                    
-				            </c:forEach>
-				        </tr>
-				    </c:forEach>
-				    </table>
-				  	<label>Cantidad de comensales:</label>
-					<form:select id="horarios-select" path="idRestauranteHorario" required="required">
-					</form:select>
-				</div>
-				<input type="submit" class="float-right btn btn-dark" value="Reservar"/>
-			</form:form>
+<div class="main-container">
+	<h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> ¡Reserva tu lugar!</h1>
+	<section class="mx-auto" style="width:80%;">
+		<div class = "restaurantes">
+			<div id="loginbox" style="margin-top:50px;" class="card-body">
+				<h3 class="mb-3">${restaurante.nombre}</h3>
+				<form:form action="confirmar-reserva" method="POST" modelAttribute="formularioGeneracionReserva">
+					<form:hidden path = "idRestaurante" value = "${restaurante.idRestaurante}"/>
+					<form:hidden path = "fechaReserva" value = "${formularioGeneracionReserva.fechaReserva}" id="fecha-reserva"/>
+					<div class="form-group">
+					<table class="cc-selector">
+						<c:forEach var="rowData" items="${matriz}">
+					        <tr>
+					            <c:forEach var="cellData" varStatus="loop" items="${rowData}" >
+					                <td>
+						                <c:if test="${not empty cellData.idMesa}">
+							                <form:radiobutton path="idMesa" id="mesa-${cellData.idMesa}" name="mesa" class="radio-mesa" value="${cellData.idMesa}"/> 
+							                <label class="drinkcard-cc radio-img" for="mesa-${cellData.idMesa}">Cantidad: ${cellData.cantidad}</label>
+						                </c:if>
+					                </td>                    
+					            </c:forEach>
+					        </tr>
+					    </c:forEach>
+					    </table>
+					  	<label>Horario:</label>
+						<form:select id="horarios-select" path="idRestauranteHorario" required="required">
+						</form:select>
+					</div>
+					<input type="submit" class="float-right btn btn-dark" value="Reservar"/>
+				</form:form>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
+
 <script>
 $(document).ready(function(){
 	/*$("#mesas-select").on('change', function(){

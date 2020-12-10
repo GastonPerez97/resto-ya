@@ -1,5 +1,6 @@
 <%@ include file="header.jsp" %>
 
+<div class="main-container">
     <h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> Men&uacute de "${restaurante.nombre}"</h1>
 
     <div class="mb-4 volver-btn d-flex justify-content-between">
@@ -37,8 +38,10 @@
 				</div>
             </article>
         </c:forEach>
-        
-        <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Realizar Pedido</a>
     </section>
+    <div class="text-center mt-4 mb-5">
+    	<a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-lg btn-primary">Realizar Pedido</a>
+    </div>
+</div>
 
-    <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>

@@ -1,36 +1,38 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="header.jsp"%>
 
-<div class="container">
-	<div id="loginbox" style="margin-top:50px;" class="col-lg-5 col-sm-12 mx-auto">
-		<form:form action="validar-login" method="POST" modelAttribute="usuario">
-	    	<h3 class="form-signin-heading text-center">Bienvenido!</h3>
-			<hr class="colorgraph"><br>
-
-			<label for="email">E-Mail:</label>
-			<form:input path="email" id="email" type="email" class="form-control mb-2" />
+<div class="main-container">
+	<div class="container">
+		<div id="loginbox" style="margin-top:50px;" class="col-lg-5 col-sm-12 mx-auto">
+			<form:form action="validar-login" method="POST" modelAttribute="usuario">
+		    	<h3 class="form-signin-heading text-center">Bienvenido!</h3>
+				<hr class="colorgraph"><br>
+	
+				<label for="email">E-Mail:</label>
+				<form:input path="email" id="email" type="email" class="form-control mb-2" />
+				
+				<label for="clave">Contraseña:</label>
+				<form:input path="clave" type="password" id="clave" class="form-control mb-2" />
+				
+				<button id="ingresar-btn" class="btn btn-lg btn-primary btn-block mb-4" style="margin-top:10px;" type="Submit"/>Ingresar</button>
+			</form:form>
+	
+			<c:if test="${not empty error}">
+		        <h4><span>${error}</span></h4>
+		        <br>
+	        </c:if>
+	        
+	        <p class="mb-3" id="tenes-google">¿Tenés cuenta de Google?</p>
+			<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
 			
-			<label for="clave">Contraseña:</label>
-			<form:input path="clave" type="password" id="clave" class="form-control mb-2" />
-			
-			<button id="ingresar-btn" class="btn btn-lg btn-primary btn-block mb-4" style="margin-top:10px;" type="Submit"/>Ingresar</button>
-		</form:form>
-
-		<c:if test="${not empty error}">
-	        <h4><span>${error}</span></h4>
-	        <br>
-        </c:if>
-        
-        <p class="mb-3" id="tenes-google">¿Tenés cuenta de Google?</p>
-		<div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-		
-		<div class="d-flex align-items-center justify-content-center mb-4">
-			<img class="rounded-circle mr-4" width="80px" id="myImg"><br>
-  			<h4 id="name"></h4>
+			<div class="d-flex align-items-center justify-content-center mb-4">
+				<img class="rounded-circle mr-4" width="80px" id="myImg"><br>
+	  			<h4 id="name"></h4>
+			</div>
+	
+		    <div id="status"></div>
+	        
 		</div>
-
-	    <div id="status"></div>
-        
 	</div>
 </div>
 

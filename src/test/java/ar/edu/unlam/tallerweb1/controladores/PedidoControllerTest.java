@@ -115,11 +115,5 @@ public class PedidoControllerTest {
     	assertThat(mav.getModel().get("pedidoComidaList")).isEqualTo(pedido.getPedidoComida());
     	verify(pedidoServiceMock, times(1)).procesarPedido(formularioPedido);
 	}
-    
-//    @Test
-//	@Transactional @Rollback
-//	public void testQuePagaUnPedido() {
-//    	
-//	}
 
 }
