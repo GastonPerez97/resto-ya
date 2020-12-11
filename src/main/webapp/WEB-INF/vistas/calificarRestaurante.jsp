@@ -59,13 +59,11 @@
 				</form:form>
 			</div>
 		</div>
+		<div class="mb-4">
+			<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
+		</div>
 	</section>
-	
-	<div class="mb-4 volver-btn">
-		<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
-	</div>
 </div>
-
 
 <script>
 	$('#boton-image1').click(function() {

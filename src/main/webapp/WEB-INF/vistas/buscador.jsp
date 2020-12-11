@@ -33,7 +33,7 @@
 
 <div class="main-container">
 	<h1 class="text-center h1 display-2 bebas mb-2">
-		<i class="fas fa-utensils mr-3"></i> Busc&aacute tu comida o restaurante!
+		<i class="fas fa-utensils mr-3"></i> ¡Busc&aacute tu comida o restaurante!
 	</h1>
 	
 	<section style="width: 60%; height: 300px;" class="mx-auto">
