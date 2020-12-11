@@ -17,6 +17,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void guardarUsuarioRegistrado(UsuarioModel usuario) {
+		usuario.setNombreDeUsuario(usuario.getEmail());
 		usuarioRepository.guardarUsuario(usuario);
 	}
 
