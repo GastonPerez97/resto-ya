@@ -32,7 +32,7 @@
 </section>
 
 <div class="main-container">
-	<h1 class="text-center h1 display-2 bebas mb-2">
+	<h1 class="text-center h1 display-2 bebas mb-2 mt-5">
 		<i class="fas fa-utensils mr-3"></i> ¡Busc&aacute tu comida o restaurante!
 	</h1>
 	
@@ -44,12 +44,11 @@
 					<hr class="colorgraph">
 					<br>
 					<div class="form-group">
-	
 						<form:radiobutton value="${formularioBusqueda.tiposBusqueda[0].ordinal()}"
-							path="tipoBusquedaSeleccionada" class="mr-2" />${formularioBusqueda.tiposBusqueda[0]}
+							path="tipoBusquedaSeleccionada" class="mr-3 mb-2 radio-home" /><span class="h4 mr-3">${formularioBusqueda.tiposBusqueda[0]}</span>
 							&nbsp
 						<form:radiobutton value="${formularioBusqueda.tiposBusqueda[1].ordinal()}"
-							path="tipoBusquedaSeleccionada" class="mr-2" />${formularioBusqueda.tiposBusqueda[1]}
+							path="tipoBusquedaSeleccionada" class="mr-3 mb-2 radio-home" /><span class="h4">${formularioBusqueda.tiposBusqueda[1]}</span>
 						<form:input path="datoBuscado"  type="text" placeholder="Ingresa el dato a buscar" class="form-control"  />  		
 					</div>
 					<input type="submit" class="float-right btn btn-dark" value="Buscar" />

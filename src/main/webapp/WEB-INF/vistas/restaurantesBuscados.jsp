@@ -5,7 +5,7 @@
 	<h1 class="text-center h1 display-3 bebas mb-4">Restaurantes Encontrados:</h1>
 	
 	<section class="comidas mx-auto">
-		<c:forEach items="${resultadoBusqueda.listaRestaurantes}" var="RESTO">
+		<c:forEach items="${RESTAURANTES}" var="RESTO">
 			<article class="card comida shadow">
 				<div class="card-body">
 					<c:if test="${not empty RESTO.imageName}">
@@ -21,11 +21,12 @@
 				</div>
 			</article>
 		</c:forEach>
-	
-		<form:form action="home" method="get">
-			<button class="float-right btn btn-dark" type="submit">Volver</button>
-		</form:form>
 	</section>
+	<div class="text-center">
+		<form:form action="home" method="get">
+			<button class="btn btn-dark" type="submit">Volver a buscar</button>
+		</form:form>
+	</div>
 </div>
 
 <%@ include file="footer.jsp"%>

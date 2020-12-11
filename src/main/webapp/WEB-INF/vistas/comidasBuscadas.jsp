@@ -20,8 +20,9 @@
 			</article>
 		</c:forEach>
 	</section>
-	
-	<a class="btn btn-dark" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
+	<div class="text-center">
+		<a class="btn btn-dark" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
+	</div>
 </div>
 
 <%@ include file="footer.jsp" %>

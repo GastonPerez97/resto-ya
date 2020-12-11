@@ -138,6 +138,13 @@ header nav {
     align-items: center;
 }
 
+.radio-home {
+	-ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+    height: 20px;
+}
+
 .img-restaurante {
     max-height: 230px;
     width: auto;
