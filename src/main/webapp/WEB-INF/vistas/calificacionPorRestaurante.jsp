@@ -4,8 +4,13 @@
 
 <h1 class="text-center h1 display-3 bebas mb-4">Calificaciones del restaurante:</h1>
 <section class="restaurantes">
-	<c:forEach items="${restauranteModel}" var="cal">
-		<div class="d-flex justify-content-center align-items-center">
+  <c:forEach items="${restauranteModel}" var="cal">
+	 <div class="card-body">
+				<h3 class="card-title bebas">Número de pedido: ${cal.idRestaurante}</h3>
+				<h3 class="card-title bebas">Restaurante: ${cal.nombre}</h3>
+	</div>
+	
+		<%-- <div class="d-flex justify-content-center align-items-center">
 			<div class="card mb-3 restaurante shadow">
 				<div class="row no-gutters">
 					<div class="col-md-8">
@@ -18,7 +23,7 @@
 								
 						</div>
 
-						<%-- <div class="card-body">
+						<div class="card-body">
 							<form action="consultarCalificacionRestaurante" class="form-inline" method="POST">
 								<input type="hidden" value="${cal.idCalificacionRestaurante}" name="idCalificacionRestaurante"
 									id="id-restaurante-input" />
@@ -27,7 +32,7 @@
 										class="float-right btn btn-dark">
 								</div>
 							</form>
-						</div> --%>
+						</div>
 
 
 					</div>
@@ -35,7 +40,7 @@
 			</div>
 			<div class="d-flex flex-column ml-3"></div>
 		</div>
-	</c:forEach>
+ --%>	</c:forEach>
 </section>
 
 <%@ include file="footer.jsp"%>

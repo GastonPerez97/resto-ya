@@ -49,7 +49,7 @@ public class CalificacionServiceImpl implements CalificacionService {
 			total += calificacionRestauranteModel.getCalificacionModel().getValor();
 		if (calificaciones.size() != 0) {
 
-			return (total / calificaciones.size());
+			return total/calificaciones.size();
 		}
 		return null;
 	}

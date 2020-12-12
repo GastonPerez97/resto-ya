@@ -28,11 +28,20 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 		sessionFactory.getCurrentSession().save(calificacion.getCalificacionRestaurante());
 	}
 
+	/*
+	 * @Override public List<CalificacionRestauranteModel>
+	 * buscarCalificacionPorRestaurante(RestauranteModel restaurante) { return
+	 * sessionFactory
+	 * .getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(
+	 * Restrictions .eq("restauranteModel.idRestaurante",
+	 * restaurante.getIdRestaurante())) .list(); }
+	 */
+	
 	@Override
 	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante) {
 		return sessionFactory
-				.getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(Restrictions
-						.eq("restauranteModel.idRestaurante", restaurante.getIdRestaurante()))
+				.getCurrentSession().createCriteria(RestauranteModel.class).add(Restrictions
+						.eq("idRestaurante", restaurante.getIdRestaurante()))
 				.list();
 	}
 
@@ -45,10 +54,10 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 	
 	@Override
 	public Integer getPromedioCalificacionDeRestaurante(Long idRestaurante) {
-		return (Integer) sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
-				.setProjection(Projections.avg("calificacionModel.valor"))
+		return Math.round((float) sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
+				.setProjection(Projections.avg("calificacionRestauranteModel.valor"))
 				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante))
-				.uniqueResult();
+				.uniqueResult());
 	}
 
 }
