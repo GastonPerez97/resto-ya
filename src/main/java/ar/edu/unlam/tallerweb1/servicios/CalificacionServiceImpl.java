@@ -30,7 +30,7 @@ public class CalificacionServiceImpl implements CalificacionService {
 	}
 
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
-				calificacionRepository.guardarCalificaciones(calificacion);
+		calificacionRepository.guardarCalificaciones(calificacion);
 	}
 
 	@Override
@@ -40,13 +40,17 @@ public class CalificacionServiceImpl implements CalificacionService {
 
 	@Override
 	public Integer calcularCalificacionDeRestaurante(Long idRestaurante) {
-		
-		List<CalificacionRestauranteModel> calificaciones = calificacionRepository.getCalificacionByRestaurante(idRestaurante);
+
+		List<CalificacionRestauranteModel> calificaciones = calificacionRepository
+				.getCalificacionByRestaurante(idRestaurante);
 		Integer total = 0;
-		
+
 		for (CalificacionRestauranteModel calificacionRestauranteModel : calificaciones)
 			total += calificacionRestauranteModel.getCalificacionModel().getValor();
-		
-		return total / calificaciones.size();
+		if (calificaciones.size() != 0) {
+
+			return (total / calificaciones.size());
+		}
+		return null;
 	}
 }

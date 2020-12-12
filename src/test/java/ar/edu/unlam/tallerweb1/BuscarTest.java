@@ -41,9 +41,9 @@ public class BuscarTest extends SpringTest {
 	 * 
 	 * 
 	 * }
-	 */
-	
-	/*
+	 * 
+	 * 
+	 * 
 	 * @Test
 	 * 
 	 * @Transactional
@@ -62,8 +62,9 @@ public class BuscarTest extends SpringTest {
 	 * assertEquals("Apellido", registro.getClienteBuscado().getApellido());
 	 * 
 	 * }
-	 * 
-	 * 
+	 */
+
+	/*
 	 * @Test
 	 * 
 	 * @Transactional
@@ -77,5 +78,4 @@ public class BuscarTest extends SpringTest {
 	 * 
 	 * }
 	 */
-
 }

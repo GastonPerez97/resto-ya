@@ -32,7 +32,7 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante) {
 		return sessionFactory
 				.getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(Restrictions
-						.eq("calificacionRestaurante.restauranteModel.idRestaurante", restaurante.getIdRestaurante()))
+						.eq("restauranteModel.idRestaurante", restaurante.getIdRestaurante()))
 				.list();
 	}
 

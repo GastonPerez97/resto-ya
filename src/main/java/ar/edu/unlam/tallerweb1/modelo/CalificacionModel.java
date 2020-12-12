@@ -25,6 +25,14 @@ public class CalificacionModel {
 	
 	/* List <CalificacionModel> listadoCalificaciones = new LinkedList<>(); */
 
+	public List<CalificacionRestauranteModel> getCalificacionRestaurante() {
+		return calificacionRestaurante;
+	}
+
+	public void setCalificacionRestaurante(List<CalificacionRestauranteModel> calificacionRestaurante) {
+		this.calificacionRestaurante = calificacionRestaurante;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "calificacionModel", cascade = CascadeType.ALL)
 	private List<CalificacionRestauranteModel> calificacionRestaurante = new LinkedList<CalificacionRestauranteModel>();
 
