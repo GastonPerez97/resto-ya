@@ -24,11 +24,10 @@
 				</div>
 	
 				<div class="form-group mt-5 text-center">
-					<button type="submit" class="btn btn-primary mx-auto">Generar
+					<button type="submit" class="btn btn-outline-primary mx-auto">Generar
 						Reclamo</button>
 	
-					<a href="./home"><button type="button"
-							class="btn btn-secondary">Volver</button></a>
+				<button type="button" class="btn btn-secondary" onclick="history.back()">Volver</button>
 				</div>
 			</form:form>
 		</article>

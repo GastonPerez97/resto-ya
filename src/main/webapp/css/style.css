@@ -54,6 +54,16 @@ header nav {
 	background-color: #a2222d !important;
 }
 
+.btn-outline-dark {
+	border-color: #e83141 !important;
+	color: #e83141 !important;
+}
+
+.btn-outline-dark:hover {
+	background-color: #e83141 !important;
+	color: #fff !important;
+}
+
 .logo {
     font-size: 2em;
 }
@@ -139,9 +149,9 @@ header nav {
 }
 
 .radio-home {
-	-ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
-    transform: scale(1.5);
+	-ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Chrome, Safari, Opera */
+    transform: scale(1.2);
     height: 20px;
 }
 

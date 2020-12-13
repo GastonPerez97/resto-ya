@@ -6,7 +6,7 @@
 	<section class="restaurantes">
 		<div class="mb-4 float-right">
 			<form action="agregarUsuario" method="POST">
-				<input type="submit" class="float-right btn btn-primary"
+				<input type="submit" class="float-right btn btn-outline-primary"
 					value="Agregar Usuario">
 			</form>
 		</div>
@@ -23,29 +23,22 @@
 			<c:forEach items="${usuarios}" var="usr">
 					<div class="card mb-3 shadow" style="width: 32%;">
 						<div class="row no-gutters">
-							<div class="card-body">
-								<p class="card-text">
-									<span class="h4"><b>Nombre: </b>${usr.nombreDeUsuario}</span>
-								</p>
-								<p class="card-text">
-									<span class="h4"><b>ID: </b>${usr.idUsuario} </span>
-								</p>
-								<p class="card-text">
-									<span class="h4"><b>Email: </b>${usr.email} </span>
-								</p>
-								<p class="card-text">
-									<span class="h4">Rol: </span>
-								</p>
-								<p class="card-text">
+							<div class="card-body pb-1">
+								<div class="d-flex justify-content-between">
+									<p><span class="h4"><b class="d-block">Nombre de usuario: </b></span>${usr.nombreDeUsuario}</p>
+									<p><span class="h4"><b>ID: </b></span>${usr.idUsuario}</p>
+								</div>
+								<p><span class="h4"><b>Email: </b></span>${usr.email}</p>
+								<p><span class="h4"><b>Rol: </b></span></p>
 								<c:forEach items="${usr.listaUsuarioRoles}" var="usuarioRol"
 									varStatus="status">
-									<span class="h4"> - ${usuarioRol.rolModel.nombre} </span>
+									<p class="mb-0"> - ${usuarioRol.rolModel.nombre} </p>
 									<br>
 								</c:forEach>
-								</p>
 								
-								<a href="editarUsuario?id=${usr.idUsuario}"><i class="far fa-edit restaurante-btn my-3 mr-4"></i></a> 
-								<a href="validarEliminarUsuario?id=${usr.idUsuario}"><i class="far fa-trash-alt restaurante-btn my-3"></i></a>
+								<div class="d-flex justify-content-end">
+									<a href="editarUsuario?id=${usr.idUsuario}"><i class="far fa-edit restaurante-btn my-3 mr-4"></i></a> 
+								</div>
 							</div>
 						</div>
 					</div>

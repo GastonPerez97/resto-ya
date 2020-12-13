@@ -32,26 +32,29 @@
 </section>
 
 <div class="main-container">
-	<h1 class="text-center h1 display-2 bebas mb-2 mt-5">
+	<h1 class="text-center display-3 bebas mb-2 mt-5">
 		<i class="fas fa-utensils mr-3"></i> ¡Busc&aacute tu comida o restaurante!
 	</h1>
+	<hr class="colorgraph col-8 mx-auto">
+	<br>
 	
 	<section style="width: 60%; height: 300px;" class="mx-auto">
 		<div class="restaurantes">
-			<div id="loginbox" class="card-body">
-	
+			<div id="loginbox" class="mx-auto mt-2 col-6">
 				<form:form action="buscar" method="POST" modelAttribute="formularioBusqueda">
-					<hr class="colorgraph">
-					<br>
 					<div class="form-group">
-						<form:radiobutton value="${formularioBusqueda.tiposBusqueda[0].ordinal()}"
-							path="tipoBusquedaSeleccionada" class="mr-3 mb-2 radio-home" /><span class="h4 mr-3">${formularioBusqueda.tiposBusqueda[0]}</span>
-							&nbsp
-						<form:radiobutton value="${formularioBusqueda.tiposBusqueda[1].ordinal()}"
-							path="tipoBusquedaSeleccionada" class="mr-3 mb-2 radio-home" /><span class="h4">${formularioBusqueda.tiposBusqueda[1]}</span>
-						<form:input path="datoBuscado"  type="text" placeholder="Ingresa el dato a buscar" class="form-control"  />  		
+						<div class="mb-1 d-flex pl-0 justify-content-start align-items-center col-6">
+							<form:radiobutton value="${formularioBusqueda.tiposBusqueda[0].ordinal()}"
+									path="tipoBusquedaSeleccionada" class="mr-2 mb-1 radio-home" /><span class="h5 mr-3">${formularioBusqueda.tiposBusqueda[0]}</span>
+									&nbsp
+							<form:radiobutton value="${formularioBusqueda.tiposBusqueda[1].ordinal()}"
+								path="tipoBusquedaSeleccionada" class="mr-2 mb-1 radio-home" /><span class="h5">${formularioBusqueda.tiposBusqueda[1]}</span>
+						</div>
+						
+						<form:input path="datoBuscado"  type="text" placeholder="Ingresa el dato a buscar" class="form-control-lg col-12"  /> 	
 					</div>
-					<input type="submit" class="float-right btn btn-dark" value="Buscar" />
+					
+					<input type="submit" class="float-right btn btn-dark" value="Buscar" /> 	
 				</form:form>
 			</div>
 		</div>

@@ -35,7 +35,7 @@
 			</article>
 		</c:forEach>
 		
-		<a class="btn btn-primary nav-link" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
+		<a class="btn btn-outline-primary nav-link" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
 	</section>
 </div>
 

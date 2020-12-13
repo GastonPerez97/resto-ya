@@ -43,7 +43,7 @@
 	<header class="container-footer bebas bg-dark">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand logo text-white"
-				href="/proyecto-limpio-spring-master/home">Restoya</a>
+				href="/proyecto-limpio-spring-master/home">Restoya!</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

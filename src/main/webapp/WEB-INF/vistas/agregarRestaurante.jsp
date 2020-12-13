@@ -11,7 +11,7 @@
 	    </c:if>
 	
 		<div class="mb-4">
-		    <a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
+		    <a href="./restaurantes"><button type="button" class="btn btn-outline-dark">Volver</button></a>
 		</div>
 	
 		<article>

@@ -6,7 +6,7 @@
 	<section class="restaurantes">
 	    <div class="mx-auto mb-4" style="width: 75%;">
 	        <form action="agregarRestaurante" method="POST">
-	            <input type="submit" class="float-right btn btn-dark" value="Agregar Restaurante">
+	            <input type="submit" class="float-right btn btn-outline-dark" value="Agregar Restaurante">
 	        </form>
 	    </div>
 	
@@ -25,8 +25,8 @@
 	                    <div class="col-md-8">
 	                        <div class="card-body">
 	                            <h2 class="card-title">${REST.nombre}
-	                                <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-primary">Ver Men&uacute</a>
-	                                <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-primary mr-2">Ver Pedidos</a>
+	                                <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary">Ver Men&uacute</a>
+	                                <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Pedidos</a>
 	                            </h2>
 	                            <p class="card-text">
 	                                <span class="h4">Direcci&oacuten: </span>${REST.direccion}

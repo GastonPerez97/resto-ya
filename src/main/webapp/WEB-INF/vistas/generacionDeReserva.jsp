@@ -41,8 +41,9 @@
 	<h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> ¡Reserva tu lugar!</h1>
 	<section class="mx-auto" style="width:80%;">
 		<div class = "restaurantes">
-			<div id="loginbox" style="margin-top:50px;" class="card-body">
-				<h3 class="mb-3">${restaurante.nombre}</h3>
+			<div id="loginbox" style="margin-top:10px;" class="text-center mx-auto">
+				<h3 class="mb-5"><b>Restaurante: </b>${restaurante.nombre}</h3>
+				<h3 class="mb-5">1. Elegi tu mesa:</h3>
 				<form:form action="confirmar-reserva" method="POST" modelAttribute="formularioGeneracionReserva">
 					<form:hidden path = "idRestaurante" value = "${restaurante.idRestaurante}"/>
 					<form:hidden path = "fechaReserva" value = "${formularioGeneracionReserva.fechaReserva}" id="fecha-reserva"/>
@@ -61,11 +62,16 @@
 					        </tr>
 					    </c:forEach>
 					    </table>
-					  	<label>Horario:</label>
-						<form:select id="horarios-select" path="idRestauranteHorario" required="required">
-						</form:select>
+					    <div class="d-flex justify-content-between align-items-center mt-5">
+						    <div>
+	       					  	<label class="h3 mr-2">2. Elegi el horario:</label>
+								<form:select id="horarios-select" path="idRestauranteHorario" required="required" class="form-control-lg">
+								</form:select>
+						    </div>
+
+							<input type="submit" class="btn btn-dark" value="Reservar"/>
+					    </div>
 					</div>
-					<input type="submit" class="float-right btn btn-dark" value="Reservar"/>
 				</form:form>
 			</div>
 		</div>
