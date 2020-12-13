@@ -19,10 +19,10 @@
 	            <div class="pedido-detalle">Precio: $${pedidoComida.comidaModel.precio}</div>
 	            <div class="pedido-detalle">Cantidad: ${pedidoComida.cantidad}</div>
 	            <div>
-	                <c:if test="${not empty comida.imageName}">
-	                    <img src="img/comidas/${comida.imageName}" width="300" height="200">
+	                <c:if test="${not empty pedidoComida.comidaModel.imageName}">
+	                    <img src="img/comidas/${pedidoComida.comidaModel.imageName}" width="300" height="200">
 	                </c:if>
-	                <c:if test="${empty comida.imageName}">
+	                <c:if test="${empty pedidoComida.comidaModel.imageName}">
 	                    <img src="img/comidas/defaultComida.jpg" width="300" height="200">
 	                </c:if>
 	            </div>
