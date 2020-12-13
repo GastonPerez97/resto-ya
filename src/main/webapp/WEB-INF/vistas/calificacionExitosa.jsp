@@ -1,32 +1,35 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@ include file="header.jsp"%>
 
-<h2 class="text-center h1 display-3 bebas mb-4">¡Calificacion
-	guardada!</h2>
+<h1 class="text-center h1 display-3 bebas mb-4">¡TU calificación ha
+	sido guardada!</h1>
 
-
-<div class="mb-4 volver-btn">
-	<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
-</div>
-
-<div class="card-body">
-	<form action="consultarCalificacionRestaurante" class="form-inline"	method="POST">
-			<input type="submit" id="ver-pedidos-submit" value="verCalificacion"
-				class="float-right btn btn-dark">
-		</div>		
-	</form>
-	
-	<%-- <c:forEach items="${calificacionRestaurante.restauranteModel}" var="cal">
-	<div class="card-body">
-							<span class="h4">NUMERO: </span>${cal.idCalificacionRestaurante}</p>
+<section class="restaurantes">
+	<c:forEach items="${calificacion}" var="res">
+		<div class="d-flex justify-content-center align-items-center">
+			<div class="card mb-3 restaurante shadow">
+				<div class="row no-gutters">
+					<div class="col-md-8">
+						<div class="card-body">
+							<h2 class="card-title bebas">${res.restauranteModel.nombre}</h2>
 							<p class="card-text">
-								<span class="h4">RESTAURANTE: </span>${cal.restauranteModel}
-								
-								<span class="h4">COMENTARIO: </span>${cal.comentario}</p>
-								
+								<span class="h4">Calificacion N°: </span>${res.idCalificacionRestaurante}</p>
+							<p class="card-text">
+								<span class="h4">Calificacion: </span>${res.calificacionModel.idCalificacion}</p>
+							<p class="card-text">
+								<span class="h4">Comentario: </span>${res.comentario}</p>
+								<a href="./restaurantes"><button type="button"
+								class="btn btn-dark">Volver</button></a>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex flex-column ml-3"></div>
 	</c:forEach>
-	
-</div>
- --%>
+</section>
+
+
+
 <%@ include file="footer.jsp"%>

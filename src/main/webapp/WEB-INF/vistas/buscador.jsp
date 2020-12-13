@@ -16,8 +16,8 @@
 				<br>
 				<div class="form-group">
 
-					<form:radiobutton value="${formularioBusqueda.tiposBusqueda[0].ordinal()}"
-						path="tipoBusquedaSeleccionada" />${formularioBusqueda.tiposBusqueda[0]}
+					<form:radiobutton value="${formularioBusqueda.tiposBusqueda[0].ordinal()}" 
+						path="tipoBusquedaSeleccionada" checked="true"/>${formularioBusqueda.tiposBusqueda[0]}
 						&nbsp
 					<form:radiobutton value="${formularioBusqueda.tiposBusqueda[1].ordinal()}"
 						path="tipoBusquedaSeleccionada" />${formularioBusqueda.tiposBusqueda[1]}

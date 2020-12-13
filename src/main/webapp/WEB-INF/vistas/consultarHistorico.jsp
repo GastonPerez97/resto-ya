@@ -16,7 +16,8 @@
 								<span class="h4">DNI: </span>${cli.dni}</p>
 							<p class="card-text">
 								<span class="h4">Telefono: </span>${cli.telefono}</p>
-						</div>
+						</div><p class="card-text">
+								<span class="h4">DNI: </span>${cli.dni}</p>
 
 						<div class="card-body">
 							<form action="consultarPedidos" class="form-inline" method="post">

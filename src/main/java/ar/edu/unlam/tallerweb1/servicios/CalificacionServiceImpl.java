@@ -34,8 +34,13 @@ public class CalificacionServiceImpl implements CalificacionService {
 	}
 
 	@Override
-	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(RestauranteModel restaurante) {
-		return calificacionRepository.buscarCalificacionPorRestaurante(restaurante);
+	public List<CalificacionRestauranteModel> buscarCalificacionDelRestaurante(RestauranteModel restaurante) {
+		return calificacionRepository.buscarCalificacionDelRestaurante(restaurante);
+	}
+	
+	@Override
+	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(Long idRestaurante) {
+		return calificacionRepository.buscarCalificacionPorRestaurante(idRestaurante);
 	}
 
 	@Override
@@ -48,9 +53,10 @@ public class CalificacionServiceImpl implements CalificacionService {
 		for (CalificacionRestauranteModel calificacionRestauranteModel : calificaciones)
 			total += calificacionRestauranteModel.getCalificacionModel().getValor();
 		if (calificaciones.size() != 0) {
-
-			return total/calificaciones.size();
+			return Math.round(total / calificaciones.size());
 		}
 		return null;
 	}
+
+	
 }

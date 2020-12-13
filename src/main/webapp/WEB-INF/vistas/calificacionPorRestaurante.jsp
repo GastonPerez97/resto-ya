@@ -1,46 +1,39 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <%@ include file="header.jsp"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">Calificaciones del restaurante:</h1>
-<section class="restaurantes">
-  <c:forEach items="${restauranteModel}" var="cal">
-	 <div class="card-body">
-				<h3 class="card-title bebas">Número de pedido: ${cal.idRestaurante}</h3>
-				<h3 class="card-title bebas">Restaurante: ${cal.nombre}</h3>
-	</div>
-	
-		<%-- <div class="d-flex justify-content-center align-items-center">
-			<div class="card mb-3 restaurante shadow">
-				<div class="row no-gutters">
-					<div class="col-md-8">
-						<div class="card-body">
-							<span class="h4">NUMERO: </span>${cal.idCalificacionRestaurante}</p>
-							<p class="card-text">
-								<span class="h4">RESTAURANTE: </span>${cal.restauranteModel}
-								
-								<span class="h4">COMENTARIO: </span>${cal.comentario}</p>
-								
-						</div>
+<h1 class="text-center h1 display-3 bebas mb-4">Calificaciones del Restaurante</h1>
 
-						<div class="card-body">
-							<form action="consultarCalificacionRestaurante" class="form-inline" method="POST">
-								<input type="hidden" value="${cal.idCalificacionRestaurante}" name="idCalificacionRestaurante"
-									id="id-restaurante-input" />
-								<div class="form-group">
-									<input type="submit" id="ver-pedidos-submit" value="verPedidos"
-										class="float-right btn btn-dark">
-								</div>
-							</form>
-						</div>
+<section class="comidas mx-auto">
+	<c:forEach items="${restaurante}" var="restaurante">
+		<article class="card comida shadow">
 
-
+			<div class="card-body">
+				<h3 class="card-title bebas">Rsestaurante: ${restaurante.idRestaurante}</h3>
+				<h3 class="card-title bebas">Nombre: ${restaurante.nombre}</h3>
+				<h3 class="card-title bebas">Calificacion: ${restaurante.calificacion}</h3>
+				<h3 class="card-title bebas">							
+				<%-- <form action="detalle-pedido" class="form-inline" method="post">
+					<input type="hidden" value="${pedido.idPedido}"
+						name="idPedido" id="id-restaurante-input" />
+					<div class="form-group">
+						<input type="submit" id="reserva-submit"
+							value="Ver detalle" class="float-right btn btn-dark" />
 					</div>
-				</div>
+				</form></h3>
+				<form action="generarReclamo" class="form-inline" method="post">
+					<input type="hidden" value="${pedido.idPedido}"
+						name="idPedido" id="idPedido" />
+					<div class="form-group">
+						<input type="submit" id="reclamo-submit"
+							value="Hacer un reclamo" class="float-right btn btn-dark" />
+					</div>
+				</form></h3> --%>
 			</div>
-			<div class="d-flex flex-column ml-3"></div>
-		</div>
- --%>	</c:forEach>
+		</article>
+	</c:forEach>
+	<a class="nav-link"
+		href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
 </section>
 
 <%@ include file="footer.jsp"%>
+
+

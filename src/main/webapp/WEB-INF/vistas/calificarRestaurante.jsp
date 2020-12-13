@@ -65,13 +65,14 @@
 </div>
 
 <script>
-	$('#boton-image1').click(function() {
-		$('#id-calificacion').attr('value', "1");
-		$('#teneder01').attr('src', "img/calificaciones/tenedor verde.jpg");
-		$('#teneder02').attr('src', "img/calificaciones/tenedor.jpg");
-		$('#teneder03').attr('src', "img/calificaciones/tenedor.jpg");
-		$('#teneder04').attr('src', "img/calificaciones/tenedor.jpg");
-		$('#teneder05').attr('src', "img/calificaciones/tenedor.jpg");
+	$('#id-calificacion').attr('value', "1");
+		$('#boton-image1').click(function() {
+			$('#id-calificacion').attr('value', "1");
+			$('#teneder01').attr('src', "img/calificaciones/tenedor verde.jpg");
+			$('#teneder02').attr('src', "img/calificaciones/tenedor.jpg");
+			$('#teneder03').attr('src', "img/calificaciones/tenedor.jpg");
+			$('#teneder04').attr('src', "img/calificaciones/tenedor.jpg");
+			$('#teneder05').attr('src', "img/calificaciones/tenedor.jpg");
 
 	});
 
