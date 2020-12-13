@@ -49,6 +49,7 @@ public class PedidoServiceImpl implements PedidoService {
 		
 		pedido.setRestaurante(restaurante);
 		pedido.setFechaPedido(dateFormat.format(date));
+		pedido.setClienteModel(cliente);
 		guardarPedido(pedido);
 
 		mailService.enviarMail(cliente.getUsuario().getEmail(),

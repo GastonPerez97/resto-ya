@@ -28,6 +28,8 @@
 	            </div>
 	        </article>
 	    </c:forEach>
+	    
+	    <button type="button" class="btn btn-dark mt-3" onclick="history.back()">Volver</button>
 	</section>
 </div>
 

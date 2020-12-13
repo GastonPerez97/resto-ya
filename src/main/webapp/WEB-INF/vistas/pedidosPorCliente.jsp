@@ -34,9 +34,11 @@
 				</div>
 			</article>
 		</c:forEach>
-		
-		<a class="btn btn-outline-primary nav-link" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
 	</section>
+	
+	<div style="width: 80%" class="mx-auto">
+		<a class="btn btn-outline-primary" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
+	</div>
 </div>
 
 <%@ include file="footer.jsp"%>
