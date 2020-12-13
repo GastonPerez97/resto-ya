@@ -4,7 +4,7 @@
     <h1 class="text-center h1 display-3 bebas mb-4"><i class="fas fa-utensils mr-3"></i> Men&uacute de "${restaurante.nombre}"</h1>
 
     <div class="mb-4 volver-btn d-flex justify-content-between">
-        <a href="../restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
+        <a href="../restaurantes"><button type="button" class="btn btn-outline-dark">Volver</button></a>
         <a href="../agregarComida?idRestaurante=${restaurante.idRestaurante}">
 	       	<button type="button" class="btn btn-dark mr-3">
 	       		<i class="far fa-plus-square mr-3"></i>Agregar Comida

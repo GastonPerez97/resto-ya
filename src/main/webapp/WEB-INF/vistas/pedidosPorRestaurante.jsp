@@ -2,7 +2,7 @@
 
 <h1 class="text-center h1 display-3 bebas my-4">Pedidos de "${nombreRestaurante}" </h1>
 <div class="mx-auto" style="width: 73%;">
-	<a class="btn btn-dark mb-4" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
+	<a class="btn btn-outline-dark mb-4" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
 </div>
 	
 <section class="pedidos-container mx-auto">
