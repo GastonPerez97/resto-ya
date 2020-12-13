@@ -5,9 +5,9 @@
 	<h1 class="text-center h1 display-3 bebas mb-4">Listado de clientes:</h1>
 	
 	<section>
-		<div class="d-flex justify-content-between flex-wrap">
+		<div class="d-flex justify-content-start flex-wrap">
 			<c:forEach items="${clienteModel}" var="cli">
-				<div class="card mb-3 shadow" style="width: 32%;">
+				<div class="card mb-3 mr-3 shadow" style="width: 32%;">
 					<div class="row no-gutters">
 						<div class="card-body">
 							<p><span class="h4"><b>Nombre y Apellido: </b></span>${cli.nombre} ${cli.apellido}</p>

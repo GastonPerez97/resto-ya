@@ -3,32 +3,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="main-container">
-	<h1 class="text-center h1 display-3 bebas mb-4">Calificar
-		Restaurante</h1>
-	
+	<h1 class="text-center h1 display-3 bebas mb-4">Calificar Restaurante</h1>
 	
 	<section class="mx-auto col-lg-6" style="width: 80%;">
-	<label for="nombreDeUsuario">Calific&aacute:</label>
-	<br>
-		<c:forEach items="${formularioCalificacion.valor}" var="CAL">
-	
-		</c:forEach>
-		<button id="boton-image1" class="img-calificacion">
-			<img src="img/calificaciones/tenedor.jpg" width="13" height="13" id= "teneder01">
-		</button>
-		<button id="boton-image2" class="img-calificacion">
-			<img src="img/calificaciones/tenedor.jpg" width="13" height="13"  id= "teneder02">
-		</button>
-		<button id="boton-image3" class="img-calificacion">
-			<img src="img/calificaciones/tenedor.jpg" width="13" height="13"  id= "teneder03">
-		</button>
-		<button id="boton-image4" class="img-calificacion">
-			<img src="img/calificaciones/tenedor.jpg" width="13" height="13"  id= "teneder04">
-		</button>
-		<button id="boton-image5" class="img-calificacion">
-			<img src="img/calificaciones/tenedor.jpg" width="13" height="13"  id= "teneder05">
-		</button>
-	
+		<div class="mb-4">
+			<a href="./restaurantes"><button type="button" class="btn btn-outline-dark">Volver</button></a>
+		</div>
+		
+		<div class="text-center">
+			<label for="nombreDeUsuario" class="h4 mb-3">Calific&aacute:</label>
+			<br>
+			<c:forEach items="${formularioCalificacion.valor}" var="CAL">
+		
+			</c:forEach>
+			<button id="boton-image1" class="img-calificacion-btn">
+				<img src="img/calificaciones/tenedor.jpg" id= "teneder01" class="img-calificacion">
+			</button>
+			<button id="boton-image2" class="img-calificacion-btn">
+				<img src="img/calificaciones/tenedor.jpg" id= "teneder02" class="img-calificacion">
+			</button>
+			<button id="boton-image3" class="img-calificacion-btn">
+				<img src="img/calificaciones/tenedor.jpg" id= "teneder03" class="img-calificacion">
+			</button>
+			<button id="boton-image4" class="img-calificacion-btn">
+				<img src="img/calificaciones/tenedor.jpg" id= "teneder04" class="img-calificacion">
+			</button>
+			<button id="boton-image5" class="img-calificacion-btn">
+				<img src="img/calificaciones/tenedor.jpg" id= "teneder05" class="img-calificacion">
+			</button>
+		</div>
+		
 		<div class="restaurantes">
 			<div id="loginbox" style="margin-top: 50px;" class="card-body">
 				<form:form action="guardado-calificacion" method="POST"
@@ -58,9 +62,6 @@
 	
 				</form:form>
 			</div>
-		</div>
-		<div class="mb-4">
-			<a href="./restaurantes"><button type="button" class="btn btn-dark">Volver</button></a>
 		</div>
 	</section>
 </div>

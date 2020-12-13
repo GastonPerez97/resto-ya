@@ -1,8 +1,11 @@
 <%@ include file="header.jsp"%>
 
 <div class="main-container">
-	<h1 class="text-center h1 display-3 bebas mb-4">Histórico de
-		pedidos</h1>
+	<h1 class="text-center h1 display-3 bebas mb-4">Histórico de pedidos</h1>
+		
+	<div style="width: 80%" class="mx-auto mb-3">
+		<a class="btn btn-outline-primary" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
+	</div>
 	
 	<section class="comidas mx-auto">
 		<c:forEach items="${pedidoModel}" var="pedido">
@@ -35,10 +38,6 @@
 			</article>
 		</c:forEach>
 	</section>
-	
-	<div style="width: 80%" class="mx-auto">
-		<a class="btn btn-outline-primary" href="/proyecto-limpio-spring-master/historicoPedidos">Volver a Clientes</a>
-	</div>
 </div>
 
 <%@ include file="footer.jsp"%>

@@ -4,7 +4,7 @@
 	<h1 class="text-center h1 display-3 bebas mb-4">Listado de usuarios:</h1>
 	
 	<section class="restaurantes">
-		<div class="mb-4 float-right">
+		<div class="mb-4 mr-4 float-right">
 			<form action="agregarUsuario" method="POST">
 				<input type="submit" class="float-right btn btn-outline-primary"
 					value="Agregar Usuario">
@@ -19,9 +19,9 @@
 					class="btn btn-secondary">Volver</button></a>
 			<br>
 		</c:if>
-		<div class="d-flex justify-content-between flex-wrap">
+		<div class="d-flex justify-content-start flex-wrap">
 			<c:forEach items="${usuarios}" var="usr">
-					<div class="card mb-3 shadow" style="width: 32%;">
+					<div class="card mb-3 mr-3 shadow" style="width: 32%;">
 						<div class="row no-gutters">
 							<div class="card-body pb-1">
 								<div class="d-flex justify-content-between">
