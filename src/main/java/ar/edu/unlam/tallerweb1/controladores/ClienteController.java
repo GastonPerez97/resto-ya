@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -79,21 +81,26 @@ public class ClienteController {
 	}
 
 	@RequestMapping(path = "/historicoPedidos")
-	public ModelAndView irAHistorico() {
+	public ModelAndView irAHistorico(HttpServletRequest request) {
 
 		ModelMap model = new ModelMap();
 
 		model.put("clienteModel", clienteService.buscarClientes());
+		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("titulo", "Listado de clientes");
 
 		return new ModelAndView("consultarHistorico", model);
 	}
 
 	@RequestMapping(path = "/consultarPedidos", method = RequestMethod.POST)
-	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente) {
+	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente,
+								HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Historico de pedidos");
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 

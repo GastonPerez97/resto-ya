@@ -35,9 +35,9 @@
 	  
 	  ModelMap modelo = new ModelMap();
 	  
-	  modelo.put("titulo", "Lista de Usuarios"); modelo.put("usuarios",
-	  usuarioService.listarUsuarios()); modelo.put("nombreUsuario",
-	  request.getSession().getAttribute("NOMBRE"));
+	  modelo.put("titulo", "Lista de Usuarios");
+	  modelo.put("usuarios", usuarioService.listarUsuarios());
+	  modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	  
 	  return new ModelAndView("usuarios", modelo); 
   }
@@ -51,7 +51,8 @@
 	  
 	  modelo.put("titulo", "Agregar Usuario");
 	  modelo.put("formularioAgregarUsuario", formulario);
-	  modelo.put("listaDeRoles", listDeRoles); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	  modelo.put("listaDeRoles", listDeRoles);
+	  modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	  
 	  return new ModelAndView("agregarUsuario", modelo);
   }
@@ -86,8 +87,8 @@
 	  UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
 	  
 	  modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
-	  modelo.put("usuario", usuario); modelo.put("nombreUsuario",
-	  request.getSession().getAttribute("NOMBRE"));
+	  modelo.put("usuario", usuario);
+	  modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	  
 	  return new ModelAndView("editarUsuario", modelo);
   }
@@ -96,7 +97,8 @@
   public ModelAndView validarEditarUsuario(@ModelAttribute("usuario") UsuarioModel usuario,
 		  									HttpServletRequest request) {
 	  ModelMap modelo = new ModelMap();
-	  modelo.put("titulo", "Editar Usuario"); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	  modelo.put("titulo", "Editar Usuario");
+	  modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
 	  usuarioService.modificarUsuario(usuario);
 	  

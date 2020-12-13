@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
-import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
@@ -118,6 +115,7 @@ public class RestauranteController {
 	public ModelAndView generarNuevoHorario(@RequestParam("idRestaurante") Long idRestaurante,
 			HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("titulo", "Generar nuevo horario");
 
 		modelAndView.addObject("restaurante", servRestaurante.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("horarios", horarioService.getHorariosNoAsignadosARestaurante(idRestaurante));
@@ -133,6 +131,7 @@ public class RestauranteController {
 			@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario,
 			HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("titulo", "Horario guardado");
 
 		HorarioModel horario = restauranteHorarioService.procesarNuevoHorarioRestaurante(formularioRestauranteHorario);
 		modelAndView.addObject("horario", horario);
@@ -150,6 +149,7 @@ public class RestauranteController {
 		restaurante.setIdRestaurante(idRestaurante);
 		FormularioCalificacionRestaurante formulario = new FormularioCalificacionRestaurante();
 		formulario.getCalificacionRestaurante().setRestauranteModel(restaurante);
+		model.put("titulo", "Nueva calificacion");
 		model.put("formularioCalificacion", formulario);
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		return new ModelAndView("calificarRestaurante", model);

@@ -40,7 +40,7 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100">
-	<header class="container-footer bebas bg-dark">
+	<header class="bebas bg-dark">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand logo text-white"
 				href="/proyecto-limpio-spring-master/home">Restoya!</a>
