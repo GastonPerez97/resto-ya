@@ -1,8 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="header.jsp"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">Realizar Reclamo</h1>
+<c:choose>
+<c:when test="${empty reclamo.detalle}">
 
+<h1 class="text-center h1 display-3 bebas mb-4">Realizar Reclamo</h1>
 
 <section class="mx-auto col-lg-6">
 
@@ -33,5 +35,19 @@
 		</form:form>
 	</article>
 </section>
+</c:when>
+
+<c:when test="${not empty reclamo.detalle}">
+
+<section class="comidas mx-auto">
+	<h3 class="text-center h1 display-3 bebas mb-4">Ya se encuentra un reclamo generado, en breve nos estaremos comunicando contigo. </h3>
+	<a class="nav-link" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
+</section>
+
+
+</c:when>
+</c:choose>
+
+
 
 <%@ include file="footer.jsp"%>
