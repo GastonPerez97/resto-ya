@@ -7,8 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
+import ar.edu.unlam.tallerweb1.modelo.CalificacionComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 
 @Repository("repositorioCalificacion")
@@ -22,20 +25,28 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 
 		return sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class).list();
 	}
+	
+
+	@Override
+	public List<CalificacionComidaModel> buscarCalificacionesComidas() {
+		return sessionFactory.getCurrentSession().createCriteria(CalificacionComidaModel.class).list();
+
+	}
+
+
 
 	@Override
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
 		sessionFactory.getCurrentSession().save(calificacion.getCalificacionRestaurante());
 	}
 
-	/*
-	 * @Override public List<CalificacionRestauranteModel>
-	 * buscarCalificacionPorRestaurante(RestauranteModel restaurante) { return
-	 * sessionFactory
-	 * .getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(
-	 * Restrictions .eq("restauranteModel.idRestaurante",
-	 * restaurante.getIdRestaurante())) .list(); }
-	 */
+
+	@Override
+	public void guardarCalificacionesComida(FormularioCalificacionComida formularioCalificacionComida) {
+		sessionFactory.getCurrentSession().save(formularioCalificacionComida.getCalificacionComida());
+		
+	}
+
 	
 	@Override
 	public List<CalificacionRestauranteModel> buscarCalificacionDelRestaurante(RestauranteModel restaurante) {
@@ -46,15 +57,7 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 	}
 	
 	
-	/*
-	 * @Override public List<CalificacionRestauranteModel>
-	 * buscarCalificacionPorRestaurante(CalificacionRestauranteModel
-	 * calificacionRestaurante) { return sessionFactory
-	 * .getCurrentSession().createCriteria(CalificacionRestauranteModel.class).add(
-	 * Restrictions .eq("idRestaurante",
-	 * calificacionRestaurante.getRestauranteModel().getIdRestaurante())).list(); }
-	 * 
-	 */
+	
 		@Override
 		public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(Long idRestaurante) {
 			return sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
@@ -79,7 +82,11 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 				.uniqueResult());
 	}
 
+	
 
+	
+	
+	
 }
 
 

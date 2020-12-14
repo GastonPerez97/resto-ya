@@ -2,8 +2,10 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.CalificacionComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 
 public interface CalificacionRepository {
@@ -20,5 +22,9 @@ public interface CalificacionRepository {
 
 	List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(
 			Long idRestaurante);
+
+	void guardarCalificacionesComida(FormularioCalificacionComida formularioCalificacionComida);
+
+	List<CalificacionComidaModel> buscarCalificacionesComidas();
 	
 }

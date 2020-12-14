@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.repositorios.CalificacionRepository;
 import ar.edu.unlam.tallerweb1.repositorios.ClienteRepository;
 import ar.edu.unlam.tallerweb1.repositorios.PedidoRepository;
+import ar.edu.unlam.tallerweb1.modelo.CalificacionComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.CalificacionRestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.modelo.resultadoBusqueda.ResultadoRegistro;
@@ -28,6 +30,12 @@ public class CalificacionServiceImpl implements CalificacionService {
 	public List<CalificacionRestauranteModel> buscarCalificaciones() {
 		return calificacionRepository.buscarCalificaciones();
 	}
+	
+	@Override
+	public List<CalificacionComidaModel> buscarCalificacionesComidas() {
+		return calificacionRepository.buscarCalificacionesComidas();
+	}
+
 
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
 		calificacionRepository.guardarCalificaciones(calificacion);
@@ -58,5 +66,12 @@ public class CalificacionServiceImpl implements CalificacionService {
 		return null;
 	}
 
+	@Override
+	public void guardarCalificacionesComidas(FormularioCalificacionComida formularioCalificacionComida) {
+		calificacionRepository.guardarCalificacionesComida(formularioCalificacionComida);
+		
+	}
+
+	
 	
 }

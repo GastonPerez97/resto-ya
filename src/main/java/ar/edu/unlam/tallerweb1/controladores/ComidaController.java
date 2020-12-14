@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
 
 @Controller
@@ -100,5 +102,19 @@ public class ComidaController {
 		
 		return new ModelAndView("redirect:/restaurante/menu?id=" + comida.getRestaurante().getIdRestaurante());
 	}
+	
+	@RequestMapping(path = "/nueva-calificacion-comida", method = RequestMethod.POST)
+	public ModelAndView verCalificacionComida(@RequestParam("idComida") Long idComida,
+			HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+		ComidaModel comida = new ComidaModel();
+		comida.setIdComida(idComida);
+		FormularioCalificacionComida formulario = new FormularioCalificacionComida();
+		formulario.getCalificacionComida().setComidaModel(comida);
+		model.put("formularioCalificacionComida", formulario);
+		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		return new ModelAndView("calificarComida", model);
+	}
+
 	
 }

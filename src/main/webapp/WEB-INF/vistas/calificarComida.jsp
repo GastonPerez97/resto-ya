@@ -2,14 +2,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">Calificar
-	Restaurante</h1>
+<h1 class="text-center h1 display-3 bebas mb-4">Calificar Comida</h1>
 
-
+	${calificacionComida.comidaModel.idComida}
 <section class="mx-auto col-lg-6" style="width: 80%;">
 <label for="nombreDeUsuario">Calific&aacute:</label>
 <br>
-	<c:forEach items="${formularioCalificacion.valor}" var="CAL">
+	<c:forEach items="${formularioCalificacionComida.valor}" var="CAL">
 
 	</c:forEach>
 	<button id="boton-image1" class="">
@@ -30,24 +29,23 @@
 
 	<div class="restaurantes">
 		<div id="loginbox" style="margin-top: 50px;" class="card-body">
-			<form:form action="guardado-calificacion-restaurante" method="POST"
-				modelAttribute="formularioCalificacion">
+			<form:form action="guardado-calificacion-comida" method="POST"
+				modelAttribute="formularioCalificacionComida">
 				<hr class="colorgraph">
 				<br>
 				<div class="form-group">
-
-					<form:hidden path="cliente.idCliente" value="${cliente.idCliente}" />
+		
 					<form:hidden
-						path="calificacionRestaurante.restauranteModel.idRestaurante"
-						value="${calificacionRestaurante.restauranteModel.idRestaurante}" />
+						path="calificacionComida.comidaModel.idComida"
+						value="${calificacionComida.comidaModel.idComida}" />
 					<label for="nombreDeUsuario">Ingresa un comentario:</label>
 					<div class="form-row">
-						<form:input path="calificacionRestaurante.comentario"
-							id="calificacionRestaurante.comentario" class="form-control" />
+						<form:input path="calificacionComida.comentario"
+							id="calificacionComida.comentario" class="form-control" />
 						<br>
 					</div>
 					<form:input type="hidden"
-						path="calificacionRestaurante.calificacionModel.idCalificacion"
+						path="calificacionComida.calificacionModel.idCalificacion"
 						value="" id="id-calificacion" />
 						<br>
 					<input type="submit" id="calificar-submit" value="Calificar"

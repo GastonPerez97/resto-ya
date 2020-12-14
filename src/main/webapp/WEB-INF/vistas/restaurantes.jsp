@@ -100,6 +100,7 @@
 									<img class="location-icon rounded"
 										src="img/calificaciones/tenedor.jpg">
 								</c:if>
+								</p>
 								<c:if test="${REST.disponible == false}">
 
 									<h2>NO DISPONIBLE</h2>
