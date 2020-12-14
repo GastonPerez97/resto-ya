@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
 
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
+import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.servicios.MercadoPagoService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
@@ -46,6 +48,9 @@ public class PedidoController {
 	
 	@Autowired
 	private MercadoPagoService servicioMercadoPago;
+	
+	@Autowired
+	private ClienteService clienteService;
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
@@ -151,6 +156,16 @@ public class PedidoController {
 	    modelo.put("titulo", "Detalle de pedido");
 		
 		return new ModelAndView("detallePedido", modelo);
+	}
+	
+	@RequestMapping(path = "/misPedidos", method = RequestMethod.GET)
+	public ModelAndView misPedidos(HttpServletRequest request) {
+		ClienteModel cliente = new ClienteModel((Long)request.getSession().getAttribute("id"));
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
+
+		return new ModelAndView("pedidosPorCliente", modelo);
 	}
 	
 	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)

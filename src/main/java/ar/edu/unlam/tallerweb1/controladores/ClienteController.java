@@ -39,11 +39,9 @@ public class ClienteController {
 	}
 	
 
-
 	public ClienteController() {
 		super();
 	}
-
 
 
 	@RequestMapping(path = "/registrate")
