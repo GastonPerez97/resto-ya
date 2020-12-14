@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.annotation.Rollback;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,8 @@ public class MesaControllerTest extends SpringTest {
 	@Transactional @Rollback
 	public void testChequeaQueSeAgregueRestauranteAModel() {
 	    Long idRestaurante = 1L;
-	    HttpServletRequest request = null;
+	    MockHttpServletRequest request = new MockHttpServletRequest();
+	    request.setAttribute("nombreUsuario", "userTest");
 	    
 	    when(restauranteServiceMock.buscarRestaurantePorId(idRestaurante)).thenReturn(new RestauranteModel(idRestaurante));
 	    
@@ -56,14 +58,17 @@ public class MesaControllerTest extends SpringTest {
 	    MesaModel mesaModel = new MesaModel();
 	    mesaModel.setNumeroDeMesa(1);
 	    mesaModel.setCantidad(5);
-	    HttpServletRequest request = null;
+	    mesaModel.setIdMesa(1L);
+	    
+	    MockHttpServletRequest request = new MockHttpServletRequest();
+	    request.setAttribute("nombreUsuario", "userTest");
 	    
 	    when(mesaServiceMock.procesarNuevaMesa(formularioMesa)).thenReturn(mesaModel);
 	    
 	    ModelAndView modelAndView = mesaController.generarNuevaMesaPost(formularioMesa, request);
 	    
 	    verify(mesaServiceMock, times(1)).procesarNuevaMesa(formularioMesa);
-	    
+
 	    assertThat(((MesaModel)(modelAndView.getModel().get("mesa"))).getNumeroDeMesa()).isEqualTo(1);
 	}
 	

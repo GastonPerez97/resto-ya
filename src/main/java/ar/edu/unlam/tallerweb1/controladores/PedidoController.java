@@ -78,11 +78,13 @@ public class PedidoController {
 		
 		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
 		PedidoModel pedido = pedidoService.procesarPedido(formularioPedido);
+		request.getSession().setAttribute("idPedido", pedido.getIdPedido());
 		
 		modelo.put("pedidoComidaList", pedido.getPedidoComida());
 	    modelo.put("idPedido", pedido.getIdPedido());
 	    modelo.put("hora", pedido.getFechaPedido());
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	    modelo.put("titulo", "Procesar pedido");
 		
 		return new ModelAndView("procesarPedido", modelo);
 	}
@@ -91,35 +93,56 @@ public class PedidoController {
 	public ModelAndView pagarPedido(HttpServletRequest request) throws MPException {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+
 		String[] comidas = request.getParameterValues("comidas");
+		String[] cantidadesString = request.getParameterValues("cantidades");
+		Integer[] cantidades = pedidoService.convertirDeStringAIntegerA(cantidadesString);
 		String[] preciosString = request.getParameterValues("precios");
 		Float[] precios = Arrays.stream(preciosString).map(Float::valueOf).toArray(Float[]::new);
 		
-		Preference resultado = servicioMercadoPago.procesarPagoDePedido(comidas, precios);
+		Preference resultado = servicioMercadoPago.procesarPagoDePedido(comidas, cantidades, precios);
 		
 		return new ModelAndView("redirect:" + resultado.getSandboxInitPoint());
 	}
 	
 	@RequestMapping("/pagoRealizado")
-	public ModelAndView pagoRealizado() {	
-		return new ModelAndView("pagoRealizado");
+	public ModelAndView pagoRealizado(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Pago realizado");
+		
+		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
+		pedidoService.cambiarEstadoDePedido(idPedido, 2L);
+		request.getSession().removeAttribute("idPedido");
+		return new ModelAndView("pagoRealizado", modelo);
 	}
 	
 	@RequestMapping("/pagoFallido")
-	public ModelAndView pagoFallido() {	
-		return new ModelAndView("pagoFallido");
+	public ModelAndView pagoFallido(HttpServletRequest request) {	
+		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Pago fallido");
+		
+		return new ModelAndView("pagoFallido", modelo);
 	}
 	
 	@RequestMapping("/pagoPendiente")
-	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia) {
+	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Pago pendiente");
+		
+		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
+		pedidoService.guardarNroReferencia(idPedido, nroReferencia);
+		pedidoService.cambiarEstadoDePedido(idPedido, 1L);
+		request.getSession().removeAttribute("idPedido");
+		
 		modelo.put("nroReferencia", nroReferencia);
 		return new ModelAndView("pagoPendiente", modelo);
 	}
 	
 	@RequestMapping(path="/detalle-pedido", method=RequestMethod.POST)
-	public ModelAndView verDetalleDePedido(@RequestParam("idPedido")Long idPedido, HttpServletRequest request) {		
+	public ModelAndView verDetalleDePedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
 		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
@@ -130,6 +153,7 @@ public class PedidoController {
 	    modelo.put("pedido", pedido);
 	    modelo.put("total", total);
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	    modelo.put("titulo", "Detalle de pedido");
 		
 		return new ModelAndView("detallePedido", modelo);
 	}
@@ -143,5 +167,53 @@ public class PedidoController {
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 	}
+	
+	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)
+	public ModelAndView finalizarPedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("titulo", "Finalizar pedido");
 		
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		
+		if (pedido.getNroReferenciaMP() != null) {
+			model.put("idPedido", idPedido);
+			model.put("titulo", "Nro de Referencia");
+			return new ModelAndView("ingresarNroReferencia", model);
+		} else {
+			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			pedidoService.generarFechaFinalizacionDe(idPedido);
+			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+		}
+	}
+	
+	@RequestMapping(path = "/finalizar-pedido/nro-referencia", method = RequestMethod.POST)
+	public ModelAndView ingresarNroReferencia(@RequestParam("idPedido") Long idPedido,
+											  @RequestParam("nroReferencia") Long nroReferencia,
+											  HttpServletRequest request) {
+		
+		ModelMap model = new ModelMap();
+		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("titulo", "Nro de referencia");
+		
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		
+		if (pedido.getNroReferenciaMP().equals(nroReferencia))  {
+			pedidoService.cambiarEstadoDePedido(idPedido, 3L);
+			pedidoService.generarFechaFinalizacionDe(idPedido);
+			return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+		} else {
+			model.put("idPedido", idPedido);
+			model.put("error", "El Nro de Referencia que ingresaste no es correcto, intenta nuevamente");
+			return new ModelAndView("ingresarNroReferencia", model);
+		}
+	}
+	
+	@RequestMapping(path = "/cancelar-pedido", method = RequestMethod.POST)
+	public ModelAndView cancelarPedido(@RequestParam("idPedido") Long idPedido) {
+		PedidoModel pedido = pedidoService.consultarPedidoPorId(idPedido);
+		pedidoService.cambiarEstadoDePedido(idPedido, 4L);
+		return new ModelAndView("redirect:/pedidosPorRestaurante?id=" + pedido.getRestaurante().getIdRestaurante());
+	}
+
 }

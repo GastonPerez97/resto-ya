@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.mockito.Mock;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.annotation.Rollback;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -49,12 +50,13 @@ public class BuscarPedidoPorClienteTest extends SpringTest {
 		pedido.setIdPedido(1L);
 		pedido.setCliente(cliente);
 		listaPedidos.add(pedido);
+		MockHttpServletRequest requestMock = new MockHttpServletRequest();
 		
 		when(clienteServiceMock.buscarPedidosCliente(cliente)).thenReturn(listaPedidos);
 
 		// ejecución
 
-		ModelAndView mav = clienteController.pedidos(cliente);
+		ModelAndView mav = clienteController.pedidos(cliente, requestMock);
 
 		// validación
 		assertThat(mav).isNotNull();
