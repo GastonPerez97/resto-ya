@@ -1,10 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,14 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
 
-import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
+import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.servicios.MercadoPagoService;
-import ar.edu.unlam.tallerweb1.servicios.MailService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoComidaService;
 import ar.edu.unlam.tallerweb1.servicios.PedidoService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -52,9 +48,9 @@ public class PedidoController {
 	
 	@Autowired
 	private MercadoPagoService servicioMercadoPago;
-
+	
 	@Autowired
-	private MailService mailService;
+	private ClienteService clienteService;
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
@@ -136,6 +132,16 @@ public class PedidoController {
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
 		return new ModelAndView("detallePedido", modelo);
+	}
+	
+	@RequestMapping(path = "/misPedidos", method = RequestMethod.GET)
+	public ModelAndView misPedidos(HttpServletRequest request) {
+		ClienteModel cliente = new ClienteModel((Long)request.getSession().getAttribute("id"));
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
+
+		return new ModelAndView("pedidosPorCliente", modelo);
 	}
 		
 }

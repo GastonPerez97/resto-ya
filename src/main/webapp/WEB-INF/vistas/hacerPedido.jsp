@@ -1,5 +1,5 @@
 <%@ include file="header.jsp"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <section>
@@ -23,9 +23,8 @@
                             <p class="card-text">${comida.descripcion}</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">${comida.tipo} | Seleccionar: </small>
+                            <small class="text-muted">${comida.tipo}</small>
                             <c:if test="${comida.disponible == true}">
-                                <small><input type="checkbox" id="comida-${comida.idComida}" value="${comida.idComida}" name="checkboxComidas" /></small>
                                 <small>Cantidad: <input type="number" id="${comida.idComida}" value="0" class="form-control cantidades"/></small>
                             </c:if>
                             <c:if test="${comida.disponible == false}"><small class="h5">NO DISPONIBLE</small></c:if>
