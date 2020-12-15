@@ -18,37 +18,33 @@
                         </c:if>
                     </div>
 
-                    <div class="card-body">
-                        <h3 class="card-title bebas">N�mero de pedido: ${pedido.idPedido}</h3>
-                        <h3 class="card-title bebas">Fecha: ${pedido.fechaPedido}</h3>
-                        <h3 class="card-title bebas">Estado: ${pedido.estadoPedidoModel.nombreEstado}</h3>
-                        <div class="d-flex justify-content-around mt-4">
-                            <div class="d-flex justify-content-between">
-                                <form action="detalle-pedido" method="post">
-                                    <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                    <input type="submit" id="reserva-submit" value="Ver Detalle" class="btn btn-dark mr-2" />
-                                </form>
+                    <div class="pedido-card-btn-container">
+                        <div class="d-flex justify-content-between">
+                            <form action="detalle-pedido" method="post">
+                                <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
+                                <input type="submit" id="reserva-submit" value="Ver Detalle" class="btn btn-dark mr-2 pedido-card-btn" />
+                            </form>
 
-                                <a href="verReclamo?id=${pedido.idPedido}" class="btn btn-dark">Ver Reclamo</a>
-                            </div>
-
-                            <c:if test="${pedido.estadoPedidoModel.idEstadoPedido != 3}">
-                                <c:if test="${pedido.estadoPedidoModel.idEstadoPedido != 4}">
-                                    <div class="d-flex justify-content-between">
-                                        <form action="finalizar-pedido" method="post">
-                                            <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                            <input type="submit" value="Finalizar Pedido" class="btn btn-dark mr-2" />
-                                        </form>
-
-                                        <form action="cancelar-pedido" method="post">
-                                            <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                            <input type="submit" value="Cancelar Pedido" class="btn btn-dark" />
-                                        </form>
-                                    </div>
-                                </c:if>
-                            </c:if>
+                            <a href="verReclamo?id=${pedido.idPedido}" class="btn btn-dark pedido-card-btn">Ver Reclamo</a>
                         </div>
+
+                        <c:if test="${pedido.estadoPedidoModel.idEstadoPedido != 3}">
+                            <c:if test="${pedido.estadoPedidoModel.idEstadoPedido != 4}">
+                                <div class="d-flex justify-content-between">
+                                    <form action="finalizar-pedido" method="post">
+                                        <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
+                                        <input type="submit" value="Finalizar Pedido" class="btn btn-dark mr-2 pedido-card-btn" />
+                                    </form>
+
+                                    <form action="cancelar-pedido" method="post">
+                                        <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
+                                        <input type="submit" value="Cancelar Pedido" class="btn btn-dark pedido-card-btn" />
+                                    </form>
+                                </div>
+                            </c:if>
+                        </c:if>
                     </div>
+                </div>
             </article>
         </c:forEach>
     </section>

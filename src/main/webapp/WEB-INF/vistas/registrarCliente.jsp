@@ -4,7 +4,7 @@
 <div class="main-container">
 	<h1 class="text-center h1 display-3 bebas mb-4">Registrarse</h1>
 	
-	<section class="mx-auto col-lg-6">
+	<section class="mx-auto col-lg-4">
 		<article>
 			<form:form action="guardarRegistro" method="POST"
 				modelAttribute="formularioRegistro">

@@ -117,6 +117,11 @@ header nav {
     height: 250px;
 }
 
+.pedido-card-btn-container {
+	display: flex;
+	justify-content: space-around;
+}
+
 .pedido {
     width: 90%;
 }
@@ -181,6 +186,16 @@ header nav {
 	color: #343a40;
 }
 
+.restaurante-bottom-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.rest-agregar-btn-container {
+	display: flex;
+	justify-content: space-between;
+}
+
 .restaurante-btn:hover {
 	color: #000000;
 }
@@ -219,9 +234,43 @@ header nav {
     width: 10px;
 }
 
+@media screen and (max-width: 1680px) {
+	header nav {
+	    width: 80%;
+	}
+}
+
+@media screen and (max-width: 1580px) {
+    .pedido-card-btn-container {
+        flex-direction: column;
+		width: 80%;
+		margin-right: auto;
+		margin-left: auto;
+    }
+    .pedido-card-btn {
+    	margin-bottom: 5px;
+    	margin-top: 10px;
+    }
+}
+
 @media screen and (max-width: 1510px) {
     .comida {
         width: 48%;
+    }
+}
+
+@media screen and (max-width: 1245px) {
+	header nav {
+	    width: 100%;
+	}
+	.rest-agregar-btn-container {
+		justify-content: space-around;
+	}
+}
+
+@media screen and (max-width: 1150px) {
+	.pedido-card-btn-container {
+		width: 100%;
     }
 }
 
@@ -229,4 +278,16 @@ header nav {
     .comida {
         width: 100%;
     }
+	.pedido-card {
+		width: 90%;
+	}
+	.restaurante-bottom-container {
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 992px) {
+    header nav {
+	    width: 70%;
+	}
 }
