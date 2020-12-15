@@ -61,13 +61,15 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante)).list();
 	}
 
-	@Override
-	public Integer getPromedioCalificacionDeRestaurante(Long idRestaurante) {
-		return (int) Math
-				.ceil((double) sessionFactory.getCurrentSession().createCriteria(CalificacionRestauranteModel.class)
-						.setProjection(Projections.avg("calificacionRestauranteModel.valor"))
-						.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante)).uniqueResult());
-	}
+	/*
+	 * @Override public Integer getPromedioCalificacionDeRestaurante(Long
+	 * idRestaurante) { return (int) Math .ceil((double)
+	 * sessionFactory.getCurrentSession().createCriteria(
+	 * CalificacionRestauranteModel.class)
+	 * .setProjection(Projections.avg("calificacionRestauranteModel.valor"))
+	 * .add(Restrictions.eq("restauranteModel.idRestaurante",
+	 * idRestaurante)).uniqueResult()); }
+	 */
 
 	@Override
 	public List<CalificacionComidaModel> getCalificacionByComida(Long idComida) {
@@ -75,11 +77,11 @@ public class CalificacionRepositoryImpl implements CalificacionRepository {
 				.add(Restrictions.eq("comidaModel.idComida", idComida)).list();
 	}
 
-	@Override
-	public Integer getPromedioCalificacionDeComida(Long idComida) {
-		return (int) Math.ceil((double) sessionFactory.getCurrentSession().createCriteria(CalificacionComidaModel.class)
-				.setProjection(Projections.avg("calificacionComidaModel.valor"))
-				.add(Restrictions.eq("comidaModel.idComida", idComida)).uniqueResult());
-	}
-
+	/*
+	 * @Override public Integer getPromedioCalificacionDeComida(Long idComida) {
+	 * return (int) Math.ceil((double)
+	 * sessionFactory.getCurrentSession().createCriteria(CalificacionComidaModel.
+	 * class) .setProjection(Projections.avg("calificacionComidaModel.valor"))
+	 * .add(Restrictions.eq("comidaModel.idComida", idComida)).uniqueResult()); }
+	 */
 }

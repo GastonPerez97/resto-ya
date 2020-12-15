@@ -70,21 +70,13 @@ public class RestauranteServiceImpl implements RestauranteService {
 		return listaReturn;
 	}
 
-	/*
-	 * @Override public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel
-	 * restaurante){ return
-	 * repositorioRestaurante.buscarMenuPorRestaurante(restaurante);
-	 * 
-	 * 
-	 * }
-	 */
 
 	@Override
 	public List<ComidaModel> buscarMenuPorRestaurante(RestauranteModel restaurante) {
 		List<ComidaModel> listaReturn = new LinkedList<>();
 		List<ComidaModel> listadoDB = repositorioRestaurante.buscarMenuPorRestaurante(restaurante);
 		for (ComidaModel comidaModel : listadoDB) {
-			calificacionService.calcularCalificacionDeComida(comidaModel.getIdComida());
+			comidaModel.setPromedioCalificaciones(calificacionService.calcularCalificacionDeComida(comidaModel.getIdComida()));
 			listaReturn.add(comidaModel);
 
 		}

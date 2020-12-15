@@ -124,14 +124,6 @@ header nav {
 	margin-right: 5px;
 }
 
-#boton-image img {
-  	margin-right:auto;
-  	justify-content:space-around;
-    height: 10px;  
-    width: 10px;
-}
-
-
 
 .logout{
 	margin-top: 16px;
@@ -144,6 +136,25 @@ header nav {
 .location-icon:hover {
 	border: 2px solid #000;
 }
+
+
+.img-calificacion-btn {
+	border: none;
+	font-size: 3em;
+}
+
+.img-calificacion {
+	width: 80px;
+	background: #FFF;
+}
+
+#boton-image img {
+  	margin-right:auto;
+  	justify-content:space-around;
+    height: 10px;  
+    width: 10px;
+}
+
 
 @media screen and (max-width: 1510px) {
     .comida {

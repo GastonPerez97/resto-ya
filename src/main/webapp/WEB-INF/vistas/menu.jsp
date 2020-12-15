@@ -33,18 +33,16 @@
 					<h3 class="card-title bebas">${COMIDA.nombre}</h3>
 					<h5>${COMIDA.tipo}</h5>
 					<p class="card-text">${COMIDA.descripcion}</p>
-						
-						${promedioCalificaciones}
+					
 					<p class="card-text">
-						
-						<c:if test="${COMIDA.promedioCalificaciones == 1}">
-							<span class="h4">Calificación: </span>
+					<c:if test="${COMIDA.promedioCalificaciones == 1}">
+							<span class="card-text">Calificación: </span>
 							<img class="location-icon rounded"
 								src="img/calificaciones/tenedor.jpg">
 						</c:if>
 
 						<c:if test="${COMIDA.promedioCalificaciones == 2}">
-							<span class="h4">Calificación: </span>
+							<span class="card-text">Calificación: </span>
 							<img class="location-icon rounded"
 								src="img/calificaciones/tenedor.jpg">
 							<img class="location-icon rounded"
@@ -53,7 +51,7 @@
 
 
 						<c:if test="${COMIDA.promedioCalificaciones == 3}">
-							<span class="h4">Calificación: </span>
+							<span class="card-text">Calificación: </span>
 							<img class="location-icon rounded"
 								src="img/calificaciones/tenedor.jpg">
 							<img class="location-icon rounded"
@@ -63,7 +61,7 @@
 						</c:if>
 
 						<c:if test="${COMIDA.promedioCalificaciones == 4}">
-							<span class="h4">Calificación: </span>
+							<span class="card-text">Calificación: </span>
 							<img class="location-icon rounded"
 								src="img/calificaciones/tenedor.jpg">
 							<img class="location-icon rounded"
@@ -75,7 +73,7 @@
 						</c:if>
 
 						<c:if test="${COMIDA.promedioCalificaciones == 5}">
-							<span class="h4">Calificación: </span>
+							<span class="card-text">Calificación: </span>
 							<img class="location-icon rounded"
 								src="img/calificaciones/tenedor.jpg">
 							<img class="location-icon rounded"

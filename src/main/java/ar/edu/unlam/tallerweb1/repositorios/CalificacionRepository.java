@@ -18,7 +18,7 @@ public interface CalificacionRepository {
 
 	List<CalificacionRestauranteModel> getCalificacionByRestaurante(Long idRestaurante);
 
-	Integer getPromedioCalificacionDeRestaurante(Long idRestaurante);
+	/* Integer getPromedioCalificacionDeRestaurante(Long idRestaurante); */
 
 	List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(Long idRestaurante);
 
@@ -27,7 +27,8 @@ public interface CalificacionRepository {
 	List<CalificacionComidaModel> buscarCalificacionesComidas();
 
 	List<CalificacionComidaModel> getCalificacionByComida(Long idComida);
-
-	Integer getPromedioCalificacionDeComida(Long idComida);
+	/*
+	 * Integer getPromedioCalificacionDeComida(Long idComida);
+	 */
 
 }
