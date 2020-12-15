@@ -4,7 +4,7 @@
         <c:choose>
             <c:when test="${empty reclamo.detalle}">
 
-                <h1 class="text-center h1 display-3 bebas mb-4">Realizar Reclamo</h1>
+                <h1 class="text-center h1 display-3 bebas my-4">Realizar Reclamo</h1>
 
                 <section class="mx-auto col-lg-6">
 
@@ -27,7 +27,7 @@
                                 <button type="submit" class="btn btn-primary mx-auto">Generar
 					Reclamo</button>
 
-                                <a href="./home"><button type="button"
+                                <a onclick="history.back()"><button type="button"
 						class="btn btn-secondary">Volver</button></a>
                             </div>
                         </form:form>
