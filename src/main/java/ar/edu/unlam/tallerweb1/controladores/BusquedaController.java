@@ -39,7 +39,7 @@ public class BusquedaController {
 			return new ModelAndView("comidasBuscadas", modelo);
 		} else {
 			modelo.put("RESTAURANTES", resultadoBusqueda.getListaRestaurantes());
-			return new ModelAndView("restaurantes", modelo);
+			return new ModelAndView("restaurantesBuscados", modelo);
 		}
 	}
 }

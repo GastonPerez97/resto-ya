@@ -16,6 +16,7 @@ import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
 import ar.edu.unlam.tallerweb1.servicios.MailService;
+import ar.edu.unlam.tallerweb1.servicios.UsuarioRolService;
 
 @Controller
 public class ClienteController {
@@ -28,6 +29,9 @@ public class ClienteController {
 	
 	@Autowired
 	private MailService mailService;
+	
+	@Autowired 
+	private UsuarioRolService usuarioRolService;
 
 	public ClienteController(ClienteService clienteService, LoginService loginService) {
 		this.clienteService = clienteService;
@@ -35,11 +39,9 @@ public class ClienteController {
 	}
 	
 
-
 	public ClienteController() {
 		super();
 	}
-
 
 
 	@RequestMapping(path = "/registrate")
@@ -56,23 +58,17 @@ public class ClienteController {
 
 	@RequestMapping(path = "/guardarRegistro", method = RequestMethod.POST)
 	public ModelAndView guardarRegistro(@ModelAttribute("formularioRegistro") FormularioRegistro registro) {
-
 		ModelMap modelo = new ModelMap();
-
 		UsuarioModel usuario = loginService.consultarUsuarioRegistrado(registro);
 
 		if (usuario != null) {
-
 			modelo.put("error", "El usuario ya existe");
-
 			return new ModelAndView("registrarCliente", modelo);
-
 		} else {
-
 			loginService.guardarUsuarioRegistrado(registro.getUsuarioModel());
-
 			clienteService.guardarClienteRegistrado(registro);
-
+			usuarioRolService.guardarUsuarioRol(registro.getUsuarioModel().getIdUsuario(), 2L);
+			
 			mailService.enviarMail(registro.getUsuarioModel().getEmail(),
 								   mailService.getAsuntoConfirmacionRegistro(),
 								   mailService.getMensajeRegistro(registro.getClienteModel().getNombre()));
@@ -89,17 +85,20 @@ public class ClienteController {
 
 		model.put("clienteModel", clienteService.buscarClientes());
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("titulo", "Listado de clientes");
 
 		return new ModelAndView("consultarHistorico", model);
 	}
 
 	@RequestMapping(path = "/consultarPedidos", method = RequestMethod.POST)
-	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente, HttpServletRequest request) {
+	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente,
+								HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Histórico de pedidos");
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 

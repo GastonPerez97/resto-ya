@@ -36,6 +36,14 @@ public class ClienteModel {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clienteModel", cascade = CascadeType.ALL)
 	private List<CalificacionRestauranteModel> calificacionRestaurante= new LinkedList<CalificacionRestauranteModel>();
 	
+	public ClienteModel() {
+
+	}
+
+	public ClienteModel(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+	
 	public List<PedidoModel> getPedidos() {
 		return pedidos;
 	}
@@ -82,10 +90,6 @@ public class ClienteModel {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public ClienteModel() {
-
 	}
 
 	public String getNombre() {

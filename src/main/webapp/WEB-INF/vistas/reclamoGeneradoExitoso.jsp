@@ -1,11 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="header.jsp" %>
+    <%@ include file="header.jsp" %>
 
-<h2 class="text-center h1 display-3 bebas mb-4">¡Tu reclamo fue realizado con éxito! </h2>
+        <div class="main-container">
+            <h2 class="text-center h1 display-3 bebas mb-4">ï¿½Tu reclamo fue realizado con ï¿½xito! </h2>
 
-<section class="comidas mx-auto">
-	<h3 class="text-center h1 display-3 bebas mb-4">Nos estaremos contactando contigo en las próximas horas </h3>
-	<a class="nav-link" href="/proyecto-limpio-spring-master/home">Volver</a>
-</section>
+            <section class="comidas mx-auto">
+                <h3 class="text-center h1 display-3 bebas mb-4">Nos estaremos contactando contigo en las proximas horas </h3>
+                <a class="nav-link" href="/proyecto-limpio-spring-master/home">Volver</a>
+            </section>
+        </div>
 
-<%@ include file="footer.jsp" %>
+        <%@ include file="footer.jsp" %>

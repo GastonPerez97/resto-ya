@@ -1,21 +1,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <%@ include file="header.jsp"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">Listado de
-	clientes:</h1>
-<section class="restaurantes">
-	<c:forEach items="${clienteModel}" var="cli">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class="card mb-3 restaurante shadow">
-				<div class="row no-gutters">
-					<div class="col-md-8">
+<div class="main-container">
+	<h1 class="text-center h1 display-3 bebas mb-4">Listado de clientes:</h1>
+	
+	<section>
+		<div class="d-flex justify-content-start flex-wrap">
+			<c:forEach items="${clienteModel}" var="cli">
+				<div class="card mb-3 mr-3 shadow" style="width: 32%;">
+					<div class="row no-gutters">
 						<div class="card-body">
-							<h2 class="card-title bebas">${cli.nombre}</h2>
-							<p class="card-text">
-								<span class="h4">DNI: </span>${cli.dni}</p>
-							<p class="card-text">
-								<span class="h4">Telefono: </span>${cli.telefono}</p>
+							<p><span class="h4"><b>Nombre y Apellido: </b></span>${cli.nombre} ${cli.apellido}</p>
+							<p><span class="h4"><b>DNI: </b></span>${cli.dni}</p>
+							<p><span class="h4"><b>Telefono: </b></span>${cli.telefono}</p>
 						</div>
 
 						<div class="card-body">
@@ -23,19 +20,16 @@
 								<input type="hidden" value="${cli.idCliente}" name="idCliente"
 									id="id-restaurante-input" />
 								<div class="form-group">
-									<input type="submit" id="ver-pedidos-submit" value="verPedidos"
+									<input type="submit" id="ver-pedidos-submit" value="Ver Pedidos"
 										class="float-right btn btn-dark">
 								</div>
 							</form>
 						</div>
-
-
 					</div>
 				</div>
-			</div>
-			<div class="d-flex flex-column ml-3"></div>
+			</c:forEach>
 		</div>
-	</c:forEach>
-</section>
+	</section>
+</div>
 
 <%@ include file="footer.jsp"%>
