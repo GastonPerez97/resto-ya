@@ -49,7 +49,6 @@ public class PedidoModel {
     @Column(name = "nro_referencia_mp")
 	private Long nroReferenciaMP;
 
-
 	public List<PedidoComidaModel> getListaPedidosComidas() {
 		return listaPedidosComidas;
 	}
@@ -116,6 +115,14 @@ public class PedidoModel {
 	public void setFechaPedido(String string) {
 		this.fechaPedido = string;
 	}
+	
+	public EstadoPedidoModel getEstadoPedidoModel() {
+		return estadoPedidoModel;
+	}
+
+	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
+		this.estadoPedidoModel = estadoPedidoModel;
+	}
 
 	public Long getNroReferenciaMP() {
 		return nroReferenciaMP;
@@ -123,14 +130,6 @@ public class PedidoModel {
 
 	public void setNroReferenciaMP(Long nroReferenciaMP) {
 		this.nroReferenciaMP = nroReferenciaMP;
-	}
-
-	public EstadoPedidoModel getEstadoPedidoModel() {
-		return estadoPedidoModel;
-	}
-	
-	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
-		this.estadoPedidoModel = estadoPedidoModel;
 	}
 
 	public String getFechaFinalizacionPedido() {

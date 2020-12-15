@@ -28,10 +28,12 @@ public class ReclamoController {
 	public ModelAndView generarReclamo(@RequestParam("idPedido")Long idPedido, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();	
 		
+		ReclamoModel reclamo = reclamoService.buscarReclamoPorIdPedido(idPedido);
 		FormularioGeneracionReclamo formulario = new FormularioGeneracionReclamo(); 
 		formulario.setPedido(pedidoService.consultarPedidoPorId(idPedido));
 
 		modelo.put("titulo", "Generar Reclamo");
+		modelo.put("reclamo", reclamo);
 		modelo.put("formularioGeneracionReclamo", formulario);
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		
@@ -60,10 +62,19 @@ public class ReclamoController {
 		
 		modelo.put("titulo", "Ver Reclamo");
 		modelo.put("reclamo", reclamo);
-		modelo.put("idPedido", idPedido);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 				  		
 		return new ModelAndView("verReclamo", modelo);
 	}
+	
+	@RequestMapping(path="/reclamoRespuesta", method=RequestMethod.POST)
+	public ModelAndView reclamoRespuesta(@ModelAttribute("reclamoModel") ReclamoModel reclamo) {		
+		ModelMap modelo = new ModelMap();	   
+		modelo.put("titulo", "Respuesta Generada");
+
+		reclamoService.actualizarReclamo(reclamo);
 		
+		return new ModelAndView("reclamoRespuestaExitosa");
+	}
+	
 }

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
+import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.EstadoPedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
@@ -46,9 +48,12 @@ public class PedidoServiceImpl implements PedidoService {
 		RestauranteModel restaurante = restauranteService.buscarRestaurantePorId(formularioPedido.getRestaurante());
 		ClienteModel cliente = clienteService.buscarClienteLogueado(formularioPedido.getIdCliente());
 		PedidoModel pedido = cargarPedidoComida(formularioPedido.getPedidoSinFormato());
+		EstadoPedidoModel estadoPedido = new EstadoPedidoModel();
+		estadoPedido.setIdEstadoPedido(1L);
 		
 		pedido.setRestaurante(restaurante);
 		pedido.setFechaPedido(dateFormat.format(date));
+		pedido.setEstadoPedidoModel(estadoPedido);
 		pedido.setClienteModel(cliente);
 		guardarPedido(pedido);
 

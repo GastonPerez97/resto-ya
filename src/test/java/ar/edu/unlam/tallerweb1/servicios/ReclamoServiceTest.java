@@ -41,5 +41,16 @@ public class ReclamoServiceTest {
 		assertThat(reclamo.getIdReclamo()).isNotNull();
 		verify(reclamoRepositoryMock).guardarReclamo(reclamo);
 	}
+	
+	@Test
+	public void testQueBuscaUnReclamoPorIdPedido() {
+		Long idPedido = 1L;
+		ReclamoModel reclamo = new ReclamoModel();
+		
+		when(reclamoRepositoryMock.buscarReclamoPorIdPedido(idPedido)).thenReturn(reclamo);
+		
+		assertThat(reclamoRepositoryMock.buscarReclamoPorIdPedido(idPedido)).isEqualTo(reclamo);
+		verify(reclamoRepositoryMock, times(1)).buscarReclamoPorIdPedido(idPedido);
+	}
 
 }

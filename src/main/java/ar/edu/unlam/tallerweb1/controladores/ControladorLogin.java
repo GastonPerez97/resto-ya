@@ -18,6 +18,11 @@ public class ControladorLogin {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	public ControladorLogin(LoginService servicioLogin){
+		this.loginService = servicioLogin;
+	}
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {

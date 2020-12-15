@@ -98,7 +98,7 @@ public class ClienteController {
 
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		modelo.put("titulo", "Historico de pedidos");
+		modelo.put("titulo", "Histórico de pedidos");
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 
