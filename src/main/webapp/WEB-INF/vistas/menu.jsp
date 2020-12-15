@@ -33,7 +33,8 @@
 					<h3 class="card-title bebas">${COMIDA.nombre}</h3>
 					<h5>${COMIDA.tipo}</h5>
 					<p class="card-text">${COMIDA.descripcion}</p>
-
+						
+						${promedioCalificaciones}
 					<p class="card-text">
 						
 						<c:if test="${COMIDA.promedioCalificaciones == 1}">

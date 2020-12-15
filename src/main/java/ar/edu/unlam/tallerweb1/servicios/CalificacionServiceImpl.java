@@ -30,12 +30,11 @@ public class CalificacionServiceImpl implements CalificacionService {
 	public List<CalificacionRestauranteModel> buscarCalificaciones() {
 		return calificacionRepository.buscarCalificaciones();
 	}
-	
+
 	@Override
 	public List<CalificacionComidaModel> buscarCalificacionesComidas() {
 		return calificacionRepository.buscarCalificacionesComidas();
 	}
-
 
 	public void guardarCalificaciones(FormularioCalificacionRestaurante calificacion) {
 		calificacionRepository.guardarCalificaciones(calificacion);
@@ -45,7 +44,7 @@ public class CalificacionServiceImpl implements CalificacionService {
 	public List<CalificacionRestauranteModel> buscarCalificacionDelRestaurante(RestauranteModel restaurante) {
 		return calificacionRepository.buscarCalificacionDelRestaurante(restaurante);
 	}
-	
+
 	@Override
 	public List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(Long idRestaurante) {
 		return calificacionRepository.buscarCalificacionPorRestaurante(idRestaurante);
@@ -69,9 +68,21 @@ public class CalificacionServiceImpl implements CalificacionService {
 	@Override
 	public void guardarCalificacionesComidas(FormularioCalificacionComida formularioCalificacionComida) {
 		calificacionRepository.guardarCalificacionesComida(formularioCalificacionComida);
-		
+
 	}
 
-	
-	
+	@Override
+	public Integer calcularCalificacionDeComida(Long idComida) {
+
+		List<CalificacionComidaModel> calificaciones = calificacionRepository.getCalificacionByComida(idComida);
+		Integer total = 0;
+
+		for (CalificacionComidaModel calificacionComidaModel : calificaciones)
+			total += calificacionComidaModel.getCalificacionModel().getValor();
+		if (calificaciones.size() != 0) {
+			return Math.round(total / calificaciones.size());
+		}
+		return null;
+	}
+
 }

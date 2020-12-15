@@ -4,7 +4,7 @@
 
 <h1 class="text-center h1 display-3 bebas mb-4">Calificar Comida</h1>
 
-	${calificacionComida.comidaModel.idComida}
+	${calificacionComida.comidaModel.idComida.valor}
 <section class="mx-auto col-lg-6" style="width: 80%;">
 <label for="nombreDeUsuario">Calific&aacute:</label>
 <br>

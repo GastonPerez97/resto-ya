@@ -25,5 +25,7 @@ public interface CalificacionService {
 
 	List<CalificacionComidaModel> buscarCalificacionesComidas();
 
+	Integer calcularCalificacionDeComida(Long idComida);
+
 	
 }

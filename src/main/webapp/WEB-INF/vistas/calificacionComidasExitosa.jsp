@@ -14,7 +14,7 @@
 						<div class="card-body">
 							<h2 class="card-title bebas">${comida.comidaModel.nombre}</h2>
 							<p class="card-text">
-								<span class="h4">Calificación N°: </span>$comida.idCalificacionComida}</p>
+								<span class="h4">Calificación N°: </span>${comida.idCalificacionComida}</p>
 
 							<c:if test="${comida.calificacionModel.idCalificacion == 1}">
 								<span class="h4">Calificación: </span>

@@ -11,7 +11,7 @@ import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 public interface CalificacionRepository {
 
 	List<CalificacionRestauranteModel> buscarCalificaciones();
-	
+
 	void guardarCalificaciones(FormularioCalificacionRestaurante calificacion);
 
 	List<CalificacionRestauranteModel> buscarCalificacionDelRestaurante(RestauranteModel restaurante);
@@ -20,11 +20,14 @@ public interface CalificacionRepository {
 
 	Integer getPromedioCalificacionDeRestaurante(Long idRestaurante);
 
-	List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(
-			Long idRestaurante);
+	List<CalificacionRestauranteModel> buscarCalificacionPorRestaurante(Long idRestaurante);
 
 	void guardarCalificacionesComida(FormularioCalificacionComida formularioCalificacionComida);
 
 	List<CalificacionComidaModel> buscarCalificacionesComidas();
-	
+
+	List<CalificacionComidaModel> getCalificacionByComida(Long idComida);
+
+	Integer getPromedioCalificacionDeComida(Long idComida);
+
 }

@@ -40,7 +40,6 @@ public class ComidaController {
 		modelo.put("restaurante", restaurante);
 		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestaurante(restaurante));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
 		return new ModelAndView("menu", modelo);
 	}
 	
