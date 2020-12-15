@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
@@ -45,6 +46,7 @@ public class ReservaServiceImpl implements ReservaService {
 		reserva.setEstadoReservaModel(new EstadoReservaModel(EstadoReserva.PENDIENTE_DE_CONFIRMACION.getId()));
 		reserva.setRestauranteHorarioModel(restauranteHorarioService.getRestauranteHorarioById(formularioGeneracionReserva.getIdRestauranteHorario()));
 		reserva.setMesaModel(mesaService.getMesaById(formularioGeneracionReserva.getIdMesa()));
+		reserva.setClienteModel(new ClienteModel(formularioGeneracionReserva.getIdCliente()));
 		
 		guardarReserva(reserva);
 		
@@ -70,6 +72,11 @@ public class ReservaServiceImpl implements ReservaService {
 		}
 		
 		return horariosDisponibles;
+	}
+
+	@Override
+	public List<ReservaModel> getReservasDeCliente(Long idCliente) {
+		return reservaRepository.getReservasByClienteOrderByFechaDescendiente(idCliente);
 	}
 
 }

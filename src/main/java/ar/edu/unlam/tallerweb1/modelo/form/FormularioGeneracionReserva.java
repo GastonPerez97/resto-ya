@@ -10,6 +10,7 @@ public class FormularioGeneracionReserva {
 	private Long idMesa;
 	private Long idRestaurante;
 	private Long idRestauranteHorario;
+	private Long idCliente;
 	private Date fechaReserva;
 	
 	public FormularioGeneracionReserva() {
@@ -42,6 +43,14 @@ public class FormularioGeneracionReserva {
 
 	public void setIdRestauranteHorario(Long idRestauranteHorario) {
 		this.idRestauranteHorario = idRestauranteHorario;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public Date getFechaReserva() {

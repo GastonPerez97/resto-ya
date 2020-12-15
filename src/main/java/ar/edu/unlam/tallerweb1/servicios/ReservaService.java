@@ -18,4 +18,6 @@ public interface ReservaService {
 	ReservaModel getReservaByIdReserva(Long idReserva);
 
 	List<FormularioHorarioReserva> getHorariosDisponiblesParaReservaDeMesa(FormularioGeneracionReserva formularioGeneracionReserva);
+
+	List<ReservaModel> getReservasDeCliente(Long idCliente);
 }

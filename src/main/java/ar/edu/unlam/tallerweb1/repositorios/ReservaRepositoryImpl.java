@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.persistence.Query;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.hibernate.type.StandardBasicTypes;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
@@ -71,7 +73,13 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 
 		return lista;
 	}
-	
 
+	@Override
+	public List<ReservaModel> getReservasByClienteOrderByFechaDescendiente(Long idCliente) {
+		return sessionFactory.getCurrentSession().createCriteria(ReservaModel.class)
+				.add(Restrictions.eq("clienteModel.idCliente", idCliente))
+				.addOrder(Order.desc("fechaReserva"))
+				.list();
+	}
 	
 }

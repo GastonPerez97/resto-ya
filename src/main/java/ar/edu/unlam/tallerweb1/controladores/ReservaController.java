@@ -54,6 +54,8 @@ public class ReservaController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Reserva exitosa");
 		
+		formularioGeneracionReserva.setIdCliente((Long)request.getSession().getAttribute("id"));
+		
 		ReservaModel reserva = reservaService.procesarNuevaReserva(formularioGeneracionReserva);
 		
 		modelAndView.addObject("reserva", reserva);

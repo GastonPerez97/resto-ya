@@ -16,6 +16,7 @@ import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
 import ar.edu.unlam.tallerweb1.servicios.MailService;
+import ar.edu.unlam.tallerweb1.servicios.ReservaService;
 import ar.edu.unlam.tallerweb1.servicios.UsuarioRolService;
 
 @Controller
@@ -32,6 +33,9 @@ public class ClienteController {
 	
 	@Autowired 
 	private UsuarioRolService usuarioRolService;
+	
+	@Autowired 
+	private ReservaService reservaService;
 
 	public ClienteController(ClienteService clienteService, LoginService loginService) {
 		this.clienteService = clienteService;
@@ -42,7 +46,6 @@ public class ClienteController {
 	public ClienteController() {
 		super();
 	}
-
 
 	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
@@ -102,5 +105,23 @@ public class ClienteController {
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 
+	}
+	
+	@RequestMapping(path = "/misPedidos", method = RequestMethod.GET)
+	public ModelAndView misPedidos(HttpServletRequest request) {
+		ClienteModel cliente = new ClienteModel((Long)request.getSession().getAttribute("id"));
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
+
+		return new ModelAndView("pedidosPorCliente", modelo);
+	}
+	
+	@RequestMapping(path = "/misReservas", method = RequestMethod.GET)
+	public ModelAndView misReservas(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		modelo.put("reservas", reservaService.getReservasDeCliente((Long)request.getSession().getAttribute("id")));
+
+		return new ModelAndView("misReservas", modelo);
 	}
 }
