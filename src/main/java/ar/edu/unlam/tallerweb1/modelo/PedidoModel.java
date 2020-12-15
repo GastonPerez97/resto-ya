@@ -132,14 +132,6 @@ public class PedidoModel {
 		this.nroReferenciaMP = nroReferenciaMP;
 	}
 
-	public EstadoPedidoModel getEstadoPedidoModel() {
-		return estadoPedidoModel;
-	}
-	
-	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
-		this.estadoPedidoModel = estadoPedidoModel;
-	}
-
 	public String getFechaFinalizacionPedido() {
 		return fechaFinalizacionPedido;
 	}
