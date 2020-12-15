@@ -24,6 +24,7 @@ public class BusquedaController {
 	public ModelAndView buscar(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("formularioBusqueda", new FormularioBusqueda());
+		modelo.put("titulo", "Home");
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		return new ModelAndView("buscador", modelo);
 	}

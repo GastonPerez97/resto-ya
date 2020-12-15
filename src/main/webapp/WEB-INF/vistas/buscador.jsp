@@ -9,7 +9,7 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner" style="width: 100%; height: 500px !important;">
+        <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="./img/homeSlider/image1.jpg" class="d-block w-100" alt="imagenSlider1">
           </div>
@@ -38,7 +38,7 @@
 	<hr class="colorgraph col-8 mx-auto">
 	<br>
 	
-	<section style="width: 60%; height: 300px;" class="mx-auto">
+	<section style="width: 60%; height: 200px;" class="mx-auto">
 		<div class="restaurantes">
 			<div id="loginbox" class="mx-auto mt-2 col-6">
 				<form:form action="buscar" method="POST" modelAttribute="formularioBusqueda">

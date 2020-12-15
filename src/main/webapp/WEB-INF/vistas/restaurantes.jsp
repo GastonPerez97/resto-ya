@@ -56,26 +56,26 @@
 	                    </div>
 	                </div>
 	
-	                <div class="card-body">
-	                    <div class="row">
-	                        <div class="col-4 border-right">
-	                            <form action="reservar" class="form-inline" method="post">
-	                                <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
-	                                <div class="form-group">
-	                                    <input type="date" name="fechaReserva" id="fecha-reserva-input" class="col-8 form-control" required="required" <c:if test="${REST.disponible == false}">disabled</c:if> /> <input type="submit" id="reserva-submit"
-	                                        value="Reservar" class="float-right ml-1 btn btn-dark" />
-	                                </div>
-	                            </form>
-	                        </div>
-	                        <div class="col-3 border-right">
+	                <div class="restaurante-bottom-container mx-3 mt-3 mb-0">
+                        <div class="mb-3">
+                            <form action="reservar" class="form-inline" method="post">
+                                <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
+                                <div class="form-group">
+                                    <input type="date" name="fechaReserva" id="fecha-reserva-input" class="col-8 form-control" required="required" <c:if test="${REST.disponible == false}">disabled</c:if> /> <input type="submit" id="reserva-submit"
+                                        value="Reservar" class="float-right ml-1 btn btn-dark" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="rest-agregar-btn-container mb-2">
+	                        <div>
 	                            <form action="nueva-mesa" class="form-inline" method="post">
 	                                <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
 	                                <div class="form-group">
-	                                    <input type="submit" id="reserva-submit" value="Agregar mesa" class="float-right btn btn-dark" />
+	                                    <input type="submit" id="reserva-submit" value="Agregar mesa" class="float-right btn btn-dark mr-4" />
 	                                </div>
 	                            </form>
 	                        </div>
-	                        <div class="col-3">
+	                        <div>
 	                            <form action="nuevo-horario" class="form-inline" method="post">
 	                                <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
 	                                <div class="form-group">
@@ -83,7 +83,7 @@
 	                                </div>
 	                            </form>
 	                        </div>
-	                    </div>
+                        </div>
 	                </div>
 	            </div>
 	            <div class="d-flex flex-column ml-3">
