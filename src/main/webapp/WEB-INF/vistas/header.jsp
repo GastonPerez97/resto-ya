@@ -43,22 +43,22 @@
                             <li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/usuarios">Usuarios</a></li>
                             <li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/historicoPedidos">Historico Pedidos</a></li>
                         </ul>
-                    </div>
-                    <div>
-                        <c:if test="${empty nombreUsuario}">
-                            <a class="text-light text-decoration-none mr-2" href="/proyecto-limpio-spring-master/login">Ingresar</a>
-                            <a class="text-light text-decoration-none" href="/proyecto-limpio-spring-master/registrate">Registrarse</a>
-                        </c:if>
-                    </div>
-                    <div>
-                        <c:if test="${not empty nombreUsuario}">
-                            <p class="text-light bienvenido">${nombreUsuario} | </p>
-                        </c:if>
-                    </div>
-                    <div>
-                        <c:if test="${not empty nombreUsuario}">
-                            <a class="text-light logout" onclick="logOutHeaderBtn()" href="/proyecto-limpio-spring-master/logout">Cerrar Sesión</a>
-                        </c:if>
+						<div>
+	                        <c:if test="${empty nombreUsuario}">
+	                            <a class="text-light text-decoration-none mr-2" href="/proyecto-limpio-spring-master/login">Ingresar</a>
+	                            <a class="text-light text-decoration-none" href="/proyecto-limpio-spring-master/registrate">Registrarse</a>
+	                        </c:if>
+	                    </div>
+	                    <div>
+	                        <c:if test="${not empty nombreUsuario}">
+	                            <p class="text-light bienvenido">${nombreUsuario} | </p>
+	                        </c:if>
+	                    </div>
+	                    <div>
+	                        <c:if test="${not empty nombreUsuario}">
+	                            <a class="text-light logout" onclick="logOutHeaderBtn()" href="/proyecto-limpio-spring-master/logout">Cerrar Sesión</a>
+	                        </c:if>
+	                    </div>
                     </div>
                 </nav>
             </header>

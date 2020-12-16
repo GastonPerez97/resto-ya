@@ -25,9 +25,33 @@ public class CalificacionModel {
 	
 	/* List <CalificacionModel> listadoCalificaciones = new LinkedList<>(); */
 
+	public List<CalificacionRestauranteModel> getCalificacionRestaurante() {
+		return calificacionRestaurante;
+	}
+
+	public void setCalificacionRestaurante(List<CalificacionRestauranteModel> calificacionRestaurante) {
+		this.calificacionRestaurante = calificacionRestaurante;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "calificacionModel", cascade = CascadeType.ALL)
 	private List<CalificacionRestauranteModel> calificacionRestaurante = new LinkedList<CalificacionRestauranteModel>();
 
+
+	public List<CalificacionComidaModel> getCalificacionComida() {
+		return calificacionComida;
+	}
+
+	public void setCalificacionComida(List<CalificacionComidaModel> calificacionComida) {
+		this.calificacionComida = calificacionComida;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "calificacionModel", cascade = CascadeType.ALL)
+	private List<CalificacionComidaModel> calificacionComida = new LinkedList<CalificacionComidaModel>();
+
+	
+	
+	
+	
 	public Long getIdCalificacion() {
 		return idCalificacion;
 	}

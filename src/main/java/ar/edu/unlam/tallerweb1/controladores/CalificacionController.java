@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
@@ -19,47 +20,38 @@ public class CalificacionController {
 	@Autowired
 	private CalificacionService servCalificacion;
 
-	@RequestMapping(path = "/guardado-calificacion", method = RequestMethod.POST)
+	@RequestMapping(path = "/guardado-calificacion-restaurante", method = RequestMethod.POST)
 	public ModelAndView guardarCalificacion(
 			@ModelAttribute("formularioCalificacion") FormularioCalificacionRestaurante formularioCalificacion,
 			HttpServletRequest request) throws Exception {
 		ModelMap modelo = new ModelMap();
-		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		modelo.put("titulo", "Calificacion guardada");
-		modelo.put("calificacion", formularioCalificacion);
-		
 		servCalificacion.guardarCalificaciones(formularioCalificacion);
-
-		return new ModelAndView("calificacionExitosa", modelo);
+		modelo.put("calificacion", servCalificacion.buscarCalificaciones());
+		return new ModelAndView("calificacionRestauranteExitosa", modelo);
 
 	}
-	
-	
-	@RequestMapping(path = "calificacionPorRestaurante")
-	public ModelAndView irACalificacion(HttpServletRequest request) {
 
-		ModelMap model = new ModelMap();
+	@RequestMapping(path = "/guardado-calificacion-comida", method = RequestMethod.POST)
+	public ModelAndView guardarCalificacionComidas(
 
-		model.put("restauranteModel", servCalificacion.buscarCalificaciones());
-		model.put("titulo", "Calificaciones por restaurante");
-		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+			@ModelAttribute("formularioCalificacionComida") FormularioCalificacionComida formularioCalificacionComida,
+			HttpServletRequest request) throws Exception {
+		ModelMap modelo = new ModelMap();
+		servCalificacion.guardarCalificacionesComidas(formularioCalificacionComida);
+		modelo.put("calificacion", servCalificacion.buscarCalificacionesComidas());
+		return new ModelAndView("calificacionComidasExitosa", modelo);
 
-		return new ModelAndView("calificacionPorRestaurante", model);
 	}
 
-		
 	@RequestMapping(path = "/consultarCalificacionRestaurante", method = RequestMethod.POST)
-	public ModelAndView pedidos(@ModelAttribute("restauranteModel") RestauranteModel restaurante,
-								HttpServletRequest request) {
+	public ModelAndView pedidos(@ModelAttribute("calificacionRestaurante") Long idRestaurante) {
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("restauranteModel", servCalificacion.buscarCalificacionPorRestaurante(restaurante));
-		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		modelo.put("titulo", "Consultar calificaciones");
+		modelo.put("restaurante", servCalificacion.buscarCalificacionPorRestaurante(idRestaurante));
 
 		return new ModelAndView("calificacionPorRestaurante", modelo);
 
 	}
-	
+
 }

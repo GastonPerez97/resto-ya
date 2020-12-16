@@ -3,9 +3,9 @@
 
 <div class="main-container">
 	<div class="container">
-		<div id="loginbox" style="margin-top:50px;" class="col-lg-5 col-sm-12 mx-auto">
+		<div id="loginbox" style="margin-top:40px;" class="col-lg-5 col-sm-12 mx-auto">
 			<form:form action="validar-login" method="POST" modelAttribute="usuario">
-		    	<h3 class="form-signin-heading text-center">Bienvenido!</h3>
+		    	<h1 class="form-signin-heading text-center bebas display-3">Bienvenido!</h1>
 				<hr class="colorgraph"><br>
 	
 				<label for="email">E-Mail:</label>
@@ -14,7 +14,7 @@
 				<label for="clave">Contraseña:</label>
 				<form:input path="clave" type="password" id="clave" class="form-control mb-2" />
 				
-				<button id="ingresar-btn" class="btn btn-lg btn-primary btn-block mb-4" style="margin-top:10px;" type="Submit"/>Ingresar</button>
+				<button id="ingresar-btn" class="btn btn-lg btn-primary btn-block mb-4 mt-3" type="Submit"/>Ingresar</button>
 			</form:form>
 	
 			<c:if test="${not empty error}">

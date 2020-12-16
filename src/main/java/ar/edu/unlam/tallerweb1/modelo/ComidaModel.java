@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -27,6 +28,33 @@ public class ComidaModel {
 	
 	private String imageName;
 	
+	@Transient
+	private Integer promedioCalificaciones;
+	
+	public Integer getPromedioCalificaciones() {
+		return promedioCalificaciones;
+	}
+
+	public void setPromedioCalificaciones(Integer promedioCalificaciones) {
+		this.promedioCalificaciones = promedioCalificaciones;
+	}
+
+	public List<PedidoComidaModel> getListaComidasPedidos() {
+		return listaComidasPedidos;
+	}
+
+	public void setListaComidasPedidos(List<PedidoComidaModel> listaComidasPedidos) {
+		this.listaComidasPedidos = listaComidasPedidos;
+	}
+
+	public List<CalificacionComidaModel> getCalificacionComida() {
+		return calificacionComida;
+	}
+
+	public void setCalificacionComida(List<CalificacionComidaModel> calificacionComida) {
+		this.calificacionComida = calificacionComida;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante")
 	private RestauranteModel restaurante;
@@ -40,6 +68,10 @@ public class ComidaModel {
 	@Type(type = "org.hibernate.type.TrueFalseType")
 	private Boolean disponible;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comidaModel", cascade = CascadeType.ALL)
+	private List<CalificacionComidaModel> calificacionComida = new LinkedList<CalificacionComidaModel>();
+	
+	
 	public ComidaModel() {
 		listaComidasPedidos = new ArrayList<PedidoComidaModel>();
     }
@@ -56,7 +88,7 @@ public class ComidaModel {
     
     public ComidaModel(String nombre, Long id) {
     	this.nombre = nombre;
-    	this.idComida = idComida;
+    	this.idComida = id;
     }
     
 	public Long getIdComida() {
