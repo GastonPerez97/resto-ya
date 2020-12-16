@@ -1,6 +1,7 @@
 <%@ include file="header.jsp"%>
 
-    <h1 class="text-center h1 display-3 bebas my-4">
+<div class="main-container">
+	<h1 class="text-center h1 display-3 bebas my-4">
         <i class="fas fa-utensils mr-3"></i> Men&uacute de "${restaurante.nombre}"
     </h1>
 
@@ -90,5 +91,6 @@
 
         <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-outline-success btn-block mb-4">Realizar Pedido</a>
     </section>
+</div>
 
-    <%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%>
