@@ -3,12 +3,9 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.LinkedList;
 import java.util.List;
 
-import java.util.ArrayList;
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
-
-import ar.edu.unlam.tallerweb1.modelo.enums.Calificacion;
 
 @Entity
 @Table(name = "restaurante")
@@ -55,7 +52,7 @@ public class RestauranteModel {
 	private List<MesaModel> mesas = new LinkedList<MesaModel>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "restauranteModel", cascade = CascadeType.ALL)
-	private List<CalificacionRestauranteModel> calificacion = new LinkedList<CalificacionRestauranteModel>();
+	private List<CalificacionRestauranteModel> calificacionRestaurante = new LinkedList<CalificacionRestauranteModel>();
 
 	public List<PedidoModel> getPedidos() {
 		return pedidos;
@@ -66,11 +63,11 @@ public class RestauranteModel {
 	}
 
 	public List<CalificacionRestauranteModel> getCalificacion() {
-		return calificacion;
+		return calificacionRestaurante;
 	}
 
 	public void setCalificacion(List<CalificacionRestauranteModel> calificacion) {
-		this.calificacion = calificacion;
+		this.calificacionRestaurante = calificacion;
 	}
 
 	public void setRestauranteHorarioList(List<RestauranteHorarioModel> restauranteHorarioList) {
@@ -84,7 +81,7 @@ public class RestauranteModel {
 
 	public RestauranteModel(String nombre, Long id) {
 		this.nombre = nombre;
-		this.idRestaurante = idRestaurante;
+		this.idRestaurante = id;
 	}
 
 	public RestauranteModel() {
@@ -94,6 +91,14 @@ public class RestauranteModel {
 
 	public RestauranteModel(Long idRestaurante) {
 		this.idRestaurante = idRestaurante;
+	}
+
+	public List<CalificacionRestauranteModel> getCalificacionRestaurante() {
+		return calificacionRestaurante;
+	}
+
+	public void setCalificacionRestaurante(List<CalificacionRestauranteModel> calificacionRestaurante) {
+		this.calificacionRestaurante = calificacionRestaurante;
 	}
 
 	public Long getIdRestaurante() {
