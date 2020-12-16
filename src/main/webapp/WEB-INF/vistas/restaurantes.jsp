@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h2 class="card-title bebas">${REST.nombre}
+                                <h2 class="card-title"><span class="bebas">${REST.nombre} </span>
                                     <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-dark">Ver Men&uacute</a> <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-dark mr-2">Ver Pedidos</a>
                                 </h2>
                                 <p class="card-text">
@@ -42,26 +42,26 @@
                                     <%-- <span class="h4">Calificaci�n: </span>${REST.promedioCalificaciones}</p> --%>
 
                                         <c:if test="${REST.promedioCalificaciones == 1}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 2}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
 
                                         <c:if test="${REST.promedioCalificaciones == 3}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n:</span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 4}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
@@ -69,7 +69,7 @@
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 5}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
