@@ -1,10 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
-import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
-import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
-import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioHorarioReserva;
 import ar.edu.unlam.tallerweb1.servicios.MesaService;
@@ -18,9 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +36,7 @@ public class ReservaController {
 	@RequestMapping(path = "/reservar", method = RequestMethod.POST)
 	public ModelAndView reservar(@RequestParam("idRestaurante") Long idRestaurante, @RequestParam("fechaReserva") Date fechaReserva, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		
+		modelAndView.addObject("titulo", "Reservar");
 
 		modelAndView.addObject("matriz", mesaService.generarMapaDeMesas(mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante)));
 
@@ -58,6 +52,7 @@ public class ReservaController {
 	@RequestMapping(path = "/confirmar-reserva", method = RequestMethod.POST)
 	public ModelAndView confirmarReserva(@ModelAttribute("formularioGeneracionReserva") FormularioGeneracionReserva formularioGeneracionReserva, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("titulo", "Reserva exitosa");
 		
 		ReservaModel reserva = reservaService.procesarNuevaReserva(formularioGeneracionReserva);
 		

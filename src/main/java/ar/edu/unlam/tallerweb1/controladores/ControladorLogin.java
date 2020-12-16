@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +18,14 @@ public class ControladorLogin {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	public ControladorLogin(LoginService servicioLogin){
+		this.loginService = servicioLogin;
+	}
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
-
 		ModelMap modelo = new ModelMap();
 		UsuarioModel usuario = new UsuarioModel();
 
@@ -35,7 +40,6 @@ public class ControladorLogin {
 	public ModelAndView validarLogin(@ModelAttribute("usuario") UsuarioModel usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		model.put("titulo", "Contacto");
-		
 		UsuarioModel usuarioBuscado = loginService.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", "Admin");
@@ -47,12 +51,23 @@ public class ControladorLogin {
 		
 		return new ModelAndView("login", model);
 	}
+	
+	@RequestMapping(path = "/login/google/exito")
+	public ModelAndView loginGoogle(HttpServletRequest request,	@RequestParam("name") String name,
+									@RequestParam("email") String email) {
+		
+		request.getSession().setAttribute("NOMBRE", name);
+		request.getSession().setAttribute("EMAIL", email);
+		
+		return new ModelAndView("redirect:/home");
+	}
 
 	@RequestMapping("/logout")
 	public ModelAndView irAlogout(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		request.getSession().removeAttribute("ROL");
 		request.getSession().removeAttribute("NOMBRE");
+		request.getSession().removeAttribute("EMAIL");
 		request.getSession().removeAttribute("id");
 		
 		return new ModelAndView("logout", modelo);

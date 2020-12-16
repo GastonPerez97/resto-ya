@@ -1,8 +1,8 @@
 </main>
 
-<footer class="container-footer bg-dark footer mt-5">
+<footer class="footer bg-dark mt-auto">
     <div class="container d-flex justify-content-between align-items-center">
-        <span class="text-light">Copyright ï¿½ 2020, Capa 8. Todos los derechos reservados.</span>
+        <span class="text-light">Copyright 2020, Capa 8. Todos los derechos reservados.</span>
         <a href="#" class="btn btn-light float-right">Ir arriba</a>
     </div>
 </footer>
@@ -14,7 +14,7 @@
 
         Swal.fire({
             title: 'Eliminar Comida',
-            text: "ï¿½Estï¿½s seguro de querer eliminar esta comida?",
+            text: "¿Estas seguro de querer eliminar esta comida?",
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
@@ -36,7 +36,7 @@
 
         Swal.fire({
             title: 'Eliminar Restaurante',
-            text: "ï¿½Estï¿½s seguro de querer eliminar este restaurante?",
+            text: "¿Estas seguro de querer eliminar este restaurante?",
             icon: 'warning',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
@@ -50,6 +50,21 @@
         })
     });
 </script>
+
+<script>
+	function init() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+		});
+	}
+</script>
+
+<script>
+	function logOutHeaderBtn() {
+		gapi.auth2.getAuthInstance().disconnect();
+	}
+</script>
+
 </body>
 
 </html>

@@ -80,43 +80,43 @@ public class ABMImagenDeRestauranteTest extends SpringTest {
 	    assertFalse(verificacion);
 	}
     
-    @Test
-	@Transactional @Rollback
-	public void testQueSubeUnaImagenJpg() throws Exception {
-
-    	MultipartFile imagen = this.getImagenJpgMultipartParaTest();
-
-	    servicioRestaurante.subirImagenRestaurante(imagen);
-	    
-	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\restaurantes\\" +
-				   imagen.getOriginalFilename();
-	    
-	    File imagenSubida = new File(pathDeImagenSubida);
-	    
-	    assertTrue(imagenSubida.exists());
-	    
-	    imagenSubida.delete();
-	}
+//    @Test
+//	@Transactional @Rollback
+//	public void testQueSubeUnaImagenJpg() throws Exception {
+//
+//    	MultipartFile imagen = this.getImagenJpgMultipartParaTest();
+//
+//	    servicioRestaurante.subirImagenRestaurante(imagen);
+//	    
+//	    String pathDeImagenSubida = servletContext.getRealPath("/") +
+//				   "\\img\\restaurantes\\" +
+//				   imagen.getOriginalFilename();
+//	    
+//	    File imagenSubida = new File(pathDeImagenSubida);
+//	    
+//	    assertTrue(imagenSubida.exists());
+//	    
+//	    imagenSubida.delete();
+//	}
     
-    @Test
-	@Transactional @Rollback
-	public void testQueSubeUnaImagenPng() throws Exception {
-
-    	MultipartFile imagen = this.getImagenPngMultipartParaTest();
-
-	    servicioRestaurante.subirImagenRestaurante(imagen);
-	    
-	    String pathDeImagenSubida = servletContext.getRealPath("/") +
-				   "\\img\\restaurantes\\" +
-				   imagen.getOriginalFilename();
-	    
-	    File imagenSubida = new File(pathDeImagenSubida);
-	    
-	    assertTrue(imagenSubida.exists());
-	    
-	    imagenSubida.delete();
-	}
+//    @Test
+//	@Transactional @Rollback
+//	public void testQueSubeUnaImagenPng() throws Exception {
+//
+//    	MultipartFile imagen = this.getImagenPngMultipartParaTest();
+//
+//	    servicioRestaurante.subirImagenRestaurante(imagen);
+//	    
+//	    String pathDeImagenSubida = servletContext.getRealPath("/") +
+//				   "\\img\\restaurantes\\" +
+//				   imagen.getOriginalFilename();
+//	    
+//	    File imagenSubida = new File(pathDeImagenSubida);
+//	    
+//	    assertTrue(imagenSubida.exists());
+//	    
+//	    imagenSubida.delete();
+//	}
     
     
     

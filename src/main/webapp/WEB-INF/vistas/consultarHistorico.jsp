@@ -1,42 +1,31 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ include file="header.jsp"%>
 
-<%@ include file="header.jsp"%>
+        <div class="main-container">
+            <h1 class="text-center h1 display-3 bebas mb-4">Listado de clientes:</h1>
+            <section class="comidas mx-auto">
+                <div class="d-flex justify-content-start flex-wrap">
 
-<h1 class="text-center h1 display-3 bebas mb-4">Listado de
-	clientes:</h1>
-<section class="restaurantes">
-	<c:forEach items="${clienteModel}" var="cli">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class="card mb-3 restaurante shadow">
-				<div class="row no-gutters">
-					<div class="col-md-8">
-						<div class="card-body">
-							<h2 class="card-title bebas">${cli.nombre}</h2>
-							<p class="card-text">
-								<span class="h4">DNI: </span>${cli.dni}</p>
-							<p class="card-text">
-								<span class="h4">Telefono: </span>${cli.telefono}</p>
-						</div><p class="card-text">
-								<span class="h4">DNI: </span>${cli.dni}</p>
+                    <c:forEach items="${clienteModel}" var="cli">
+                        <article class="card comida shadow d-flex flex-column justify-content-between">
+                            <div class="card-body">
+                                <p><span class="h4"><b>Nombre y Apellido: </b></span>${cli.nombre} ${cli.apellido}</p>
+                                <p><span class="h4"><b>DNI: </b></span>${cli.dni}</p>
+                                <p><span class="h4"><b>Telefono: </b></span>${cli.telefono}</p>
+                            </div>
 
-						<div class="card-body">
-							<form action="consultarPedidos" class="form-inline" method="post">
-								<input type="hidden" value="${cli.idCliente}" name="idCliente"
-									id="id-restaurante-input" />
-								<div class="form-group">
-									<input type="submit" id="ver-pedidos-submit" value="verPedidos"
-										class="float-right btn btn-dark">
-								</div>
-							</form>
-						</div>
+                            <div class="card-body">
+                                <form action="consultarPedidos" class="form-inline" method="post">
+                                    <input type="hidden" value="${cli.idCliente}" name="idCliente" id="id-restaurante-input" />
+                                    <div class="form-group">
+                                        <input type="submit" id="ver-pedidos-submit" value="verPedidos" class="float-right btn btn-dark">
+                                    </div>
+                                </form>
+                            </div>
+                        </article>
+                    </c:forEach>
+                </div>
+            </section>
+        </div>
 
-
-					</div>
-				</div>
-			</div>
-			<div class="d-flex flex-column ml-3"></div>
-		</div>
-	</c:forEach>
-</section>
-
-<%@ include file="footer.jsp"%>
+        <%@ include file="footer.jsp"%>

@@ -1,23 +1,69 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* Azul: #007bff */
+
+
+/* Verde: #28a745 */
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0 auto;
-}b
-
-main {
-    width: 80%;
 }
 
 header nav {
     font-size: 1.5em;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
+}
+
+.main-container {
+    width: 80%;
+    margin: 2rem auto 2rem auto;
+}
+
+.verde {
+    color: #28a745 !important;
+}
+
+.azul {
+    color: #007bff !important;
+}
+
+.rojo {
+    color: #d02c3a !important;
+}
+
+.rojo:hover {
+    color: #a2222d !important;
+}
+
+.bg-dark {
+    background-color: #e83141 !important;
+}
+
+.btn-dark {
+    background-color: #d02c3a !important;
+}
+
+.btn-dark:hover {
+    background-color: #a2222d !important;
+}
+
+.btn-outline-dark {
+    border-color: #e83141 !important;
+    color: #e83141 !important;
+}
+
+.btn-outline-dark:hover {
+    background-color: #e83141 !important;
+    color: #fff !important;
 }
 
 .logo {
@@ -59,6 +105,25 @@ header nav {
     margin-right: 1.3%;
 }
 
+.pedidos-container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pedido-card {
+    width: 45%;
+    margin-bottom: 2em;
+    margin-right: 1.3%;
+    height: 250px;
+}
+
+.pedido-card-btn-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 .pedido {
     width: 90%;
 }
@@ -90,6 +155,15 @@ header nav {
     align-items: center;
 }
 
+.radio-home {
+    -ms-transform: scale(1.2);
+    /* IE 9 */
+    -webkit-transform: scale(1.2);
+    /* Chrome, Safari, Opera */
+    transform: scale(1.2);
+    height: 20px;
+}
+
 .img-restaurante {
     max-height: 230px;
     width: auto;
@@ -108,53 +182,80 @@ header nav {
 
 .no-disponible {
     opacity: 0.6;
+    pointer-events: none;
 }
 
 .restaurante-btn {
-	font-size: 50px;
-	color: #343a40;
+    font-size: 50px;
+    color: #343a40;
+}
+
+.restaurante-bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rest-agregar-btn-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .restaurante-btn:hover {
-	color: #000000;
+    color: #000000;
 }
 
-.bienvenido{
-	margin-top: 16px;
-	margin-right: 5px;
+.bienvenido {
+    margin-top: 16px;
+    margin-right: 5px;
 }
 
-
-.logout{
-	margin-top: 16px;
+.logout {
+    margin-top: 16px;
 }
 
 .location-icon {
-	width: 30px;
+    width: 30px;
 }
 
 .location-icon:hover {
-	border: 2px solid #000;
+    border: 2px solid #000;
 }
 
-
 .img-calificacion-btn {
-	border: none;
-	font-size: 3em;
+    border: none;
+    font-size: 3em;
 }
 
 .img-calificacion {
-	width: 80px;
-	background: #FFF;
+    width: 80px;
+    background: #FFF;
 }
 
 #boton-image img {
-  	margin-right:auto;
-  	justify-content:space-around;
-    height: 10px;  
+    margin-right: auto;
+    justify-content: space-around;
+    height: 10px;
     width: 10px;
 }
 
+@media screen and (max-width: 1680px) {
+    header nav {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1580px) {
+    .pedido-card-btn-container {
+        flex-direction: column;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .pedido-card-btn {
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
+}
 
 @media screen and (max-width: 1510px) {
     .comida {
@@ -162,8 +263,35 @@ header nav {
     }
 }
 
+@media screen and (max-width: 1245px) {
+    header nav {
+        width: 100%;
+    }
+    .rest-agregar-btn-container {
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .pedido-card-btn-container {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .comida {
         width: 100%;
+    }
+    .pedido-card {
+        width: 90%;
+    }
+    .restaurante-bottom-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    header nav {
+        width: 70%;
     }
 }

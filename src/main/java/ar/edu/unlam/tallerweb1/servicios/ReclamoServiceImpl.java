@@ -23,5 +23,11 @@ public class ReclamoServiceImpl implements ReclamoService{
 		return repositorioReclamo.buscarReclamoPorIdPedido(idPedido);
 	}
 
+	@Override
+	public void actualizarReclamo(ReclamoModel reclamo) {
+		repositorioReclamo.actualizarReclamo(reclamo);
+		
+	}
+
 
 }

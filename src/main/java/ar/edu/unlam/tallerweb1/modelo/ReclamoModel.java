@@ -20,6 +20,9 @@ public class ReclamoModel {
 	
 	@Column(name = "detalle_reclamo")
 	private String detalle;
+	
+	@Column(name = "detalle_respuesta")
+	private String detalleRespuesta;
 
 	@OneToOne
 	@JoinColumn(name = "id_pedido")
@@ -37,8 +40,6 @@ public class ReclamoModel {
 	}
 
 
-
-
 	public Long getIdReclamo() {
 		return idReclamo;
 	}
@@ -48,7 +49,7 @@ public class ReclamoModel {
 		this.idReclamo = idReclamo;
 	}
 
-	
+
 	public String getDetalle() {
 		return detalle;
 	}
@@ -58,13 +59,26 @@ public class ReclamoModel {
 		this.detalle = detalle;
 	}
 
-	public PedidoModel getIdPedido() {
+
+	public String getDetalleRespuesta() {
+		return detalleRespuesta;
+	}
+
+
+	public void setDetalleRespuesta(String detalleRespuesta) {
+		this.detalleRespuesta = detalleRespuesta;
+	}
+
+
+	public PedidoModel getPedido() {
 		return pedido;
 	}
 
 
-	public void setIdPedido(PedidoModel idPedido) {
-		this.pedido = idPedido;
+	public void setPedido(PedidoModel pedido) {
+		this.pedido = pedido;
 	}
+
+
 
 }

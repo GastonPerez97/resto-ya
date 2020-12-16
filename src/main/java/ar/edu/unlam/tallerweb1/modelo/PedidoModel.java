@@ -35,6 +35,9 @@ public class PedidoModel {
 	@Column(name = "fecha_pedido")
 	private String fechaPedido;
 	
+	@Column(name = "fecha_finalizacion_pedido")
+	private String fechaFinalizacionPedido;
+	
 	@ManyToOne
 	@JoinColumn(name="id_cliente")
 	private ClienteModel clienteModel;
@@ -42,8 +45,9 @@ public class PedidoModel {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_estado_pedido")
     private EstadoPedidoModel estadoPedidoModel;
-	
-
+    
+    @Column(name = "nro_referencia_mp")
+	private Long nroReferenciaMP;
 
 	public List<PedidoComidaModel> getListaPedidosComidas() {
 		return listaPedidosComidas;
@@ -111,6 +115,29 @@ public class PedidoModel {
 	public void setFechaPedido(String string) {
 		this.fechaPedido = string;
 	}
+	
+	public EstadoPedidoModel getEstadoPedidoModel() {
+		return estadoPedidoModel;
+	}
 
+	public void setEstadoPedidoModel(EstadoPedidoModel estadoPedidoModel) {
+		this.estadoPedidoModel = estadoPedidoModel;
+	}
+
+	public Long getNroReferenciaMP() {
+		return nroReferenciaMP;
+	}
+
+	public void setNroReferenciaMP(Long nroReferenciaMP) {
+		this.nroReferenciaMP = nroReferenciaMP;
+	}
+
+	public String getFechaFinalizacionPedido() {
+		return fechaFinalizacionPedido;
+	}
+
+	public void setFechaFinalizacionPedido(String fechaFinalizacionPedido) {
+		this.fechaFinalizacionPedido = fechaFinalizacionPedido;
+	}
 	
 }
