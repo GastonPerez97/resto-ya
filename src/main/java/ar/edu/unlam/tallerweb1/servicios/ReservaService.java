@@ -20,4 +20,8 @@ public interface ReservaService {
 	List<FormularioHorarioReserva> getHorariosDisponiblesParaReservaDeMesa(FormularioGeneracionReserva formularioGeneracionReserva);
 
 	List<ReservaModel> getReservasDeCliente(Long idCliente);
+	
+	List<ReservaModel> buscarReservasPorRestauranteYEstado(Long idRestaurante, Long idEstadoReserva);
+	
+	void modificarEstadoReserva(Long idReserva, Long idEstadoReserva);
 }

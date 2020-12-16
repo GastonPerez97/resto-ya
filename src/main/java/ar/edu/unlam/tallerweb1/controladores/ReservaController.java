@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.EstadoReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioHorarioReserva;
 import ar.edu.unlam.tallerweb1.servicios.MesaService;
@@ -72,5 +73,68 @@ public class ReservaController {
 		formularioGeneracionReserva.setIdMesa(idMesa);
 				
 		return reservaService.getHorariosDisponiblesParaReservaDeMesa(formularioGeneracionReserva);
+	}
+	
+	@RequestMapping(path = "/restaurante/reservas", method = RequestMethod.GET)
+	public ModelAndView reservasPorResutauranteGet(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+				
+		modelAndView.addObject("titulo", "Reservas");
+		modelAndView.addObject("idRestaurante", idRestaurante);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.setViewName("formularioBusquedaReservas");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(path = "/restaurante/reservas", method = RequestMethod.POST)
+	public ModelAndView reservasPorResutaurantePost(@RequestParam("idRestaurante") Long idRestaurante, 
+													@RequestParam("idEstadoReserva") Long idEstadoReserva,
+													@RequestParam("fechaDesde") Date fechaDesde,
+													@RequestParam("fechaHasta") Date fechaHasta, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<ReservaModel> reservas = reservaService.buscarReservasPorRestauranteYEstado(idRestaurante, idEstadoReserva);
+		
+		modelAndView.addObject("titulo", "Reservas");
+		modelAndView.addObject("reservas", reservas);
+		modelAndView.addObject("idRestaurante", idRestaurante);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.setViewName("reservas");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(path = "/restaurante/reservasActuales", method = RequestMethod.POST)
+	public ModelAndView reservasPorResutauranteActualesPost(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<ReservaModel> reservas = reservaService.buscarReservasPorRestauranteYEstado(idRestaurante, EstadoReserva.PENDIENTE_DE_CONFIRMACION.getId());
+		
+		modelAndView.addObject("titulo", "Reservas");
+		modelAndView.addObject("reservas", reservas);
+		modelAndView.addObject("idRestaurante", idRestaurante);
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.setViewName("reservas");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(path = "/reserva/modificarEstado", method = RequestMethod.POST)
+	public ModelAndView modificarEstadoReserva(@RequestParam("idRestaurante") Long idRestaurante, 
+											   @RequestParam("idReserva") Long idReserva, 
+											   @RequestParam("idEstadoReserva") Long idEstadoReserva, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		reservaService.modificarEstadoReserva(idReserva, idEstadoReserva);
+		
+		List<ReservaModel> reservas = reservaService.buscarReservasPorRestauranteYEstado(idRestaurante, idEstadoReserva);
+
+		modelAndView.addObject("titulo", "Reservas");
+		modelAndView.addObject("reservas", reservas);
+		modelAndView.addObject("mensaje", "Reserva modificada exitosamente");
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.setViewName("reservas");
+		
+		return modelAndView;
 	}
 }

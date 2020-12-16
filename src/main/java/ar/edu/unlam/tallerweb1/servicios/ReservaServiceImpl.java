@@ -79,4 +79,14 @@ public class ReservaServiceImpl implements ReservaService {
 		return reservaRepository.getReservasByClienteOrderByFechaDescendiente(idCliente);
 	}
 
+	@Override
+	public List<ReservaModel> buscarReservasPorRestauranteYEstado(Long idRestaurante, Long idEstadoReserva) {
+		return reservaRepository.getReservasByIdRestauranteAndIdEstado(idRestaurante, idEstadoReserva);
+	}
+
+	@Override
+	public void modificarEstadoReserva(Long idReserva, Long idEstadoReserva) {
+		reservaRepository.updateEstadoReserva(idReserva, idEstadoReserva);
+	}
+
 }

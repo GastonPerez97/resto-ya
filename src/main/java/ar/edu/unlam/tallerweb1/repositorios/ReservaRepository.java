@@ -15,4 +15,8 @@ public interface ReservaRepository {
 	List<RestauranteHorarioModel> getHorariosDisponiblesParaReservaDeMesa(FormularioGeneracionReserva formularioGeneracionReserva);
 
 	List<ReservaModel> getReservasByClienteOrderByFechaDescendiente(Long idCliente);
+	
+	List<ReservaModel> getReservasByIdRestauranteAndIdEstado(Long idRestaurante, Long idEstadoReserva);
+	
+	void updateEstadoReserva(Long idReserva, Long idEstadoReserva);
 }

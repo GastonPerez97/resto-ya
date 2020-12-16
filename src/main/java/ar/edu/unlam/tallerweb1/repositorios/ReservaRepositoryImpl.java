@@ -20,6 +20,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
@@ -80,6 +81,22 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 				.add(Restrictions.eq("clienteModel.idCliente", idCliente))
 				.addOrder(Order.desc("fechaReserva"))
 				.list();
+	}
+
+	@Override
+	public List<ReservaModel> getReservasByIdRestauranteAndIdEstado(Long idRestaurante, Long idEstadoReserva) {
+		return sessionFactory.getCurrentSession().createCriteria(ReservaModel.class)
+				.add(Restrictions.eq("mesaModel.restaurante.idRestaurante", idRestaurante))
+				.add(Restrictions.eq("estadoReservaModel.idEstadoReserva", idEstadoReserva))
+				.addOrder(Order.desc("fechaReserva"))
+				.list();
+	}
+
+	@Override
+	public void updateEstadoReserva(Long idReserva, Long idEstadoReserva) {
+		ReservaModel reserva = sessionFactory.getCurrentSession().get(ReservaModel.class, idReserva);
+		reserva.setEstadoReservaModel(new EstadoReservaModel(idEstadoReserva));
+		sessionFactory.getCurrentSession().update(reserva);
 	}
 	
 }
