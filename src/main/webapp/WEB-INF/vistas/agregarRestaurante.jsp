@@ -39,13 +39,13 @@
 					<form:input path="horario" type="text" id="horario" class="form-control"/>
 				</div>
 				<div class="form-row mt-4">
-					<div class="form-group col-md-6 my-auto">
+					<div class="form-group col-md-7 my-auto">
 						<div class="custom-file">
-						    <input type="file" name="file" class="custom-file-input" id="imagen">
-						    <label class="custom-file-label" for="imagen">Elegir imagen...</label>
+						    <label for="imagen">Elegir imagen:</label>
+						    <input type="file" name="file" class="form-control-file" id="imagen">
 					  	</div>
 					</div>
-					<div class="form-group col-md-6 text-center my-auto">
+					<div class="form-group col-md-3 text-center my-auto">
 						<div class="custom-control custom-checkbox">
 							<form:checkbox path="disponible" class="custom-control-input" id="disponible"/>
 							<label class="custom-control-label" for="disponible">Disponible</label>

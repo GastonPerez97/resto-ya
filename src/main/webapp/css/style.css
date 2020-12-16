@@ -175,6 +175,21 @@ header nav {
     object-fit: cover;
 }
 
+.agregar-rest-btn {
+	color: #28a745 !important;
+	border: 1px solid #28a745;
+	transition: .15s;
+}
+
+.agregar-rest-btn:hover {
+	background-color: #28a745;
+	color: #FFF !important;
+}
+
+.agregar-rest-btn:hover input {
+	color: #FFF !important;
+}
+
 .volver-btn {
     width: 80%;
     margin: 0 auto;

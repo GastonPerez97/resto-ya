@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 
-    <h1 class="text-center h1 display-3 bebas mb-4 mt-2">
+    <h1 class="text-center h1 display-3 bebas my-4">
         <i class="fas fa-utensils mr-3"></i> Men&uacute de "${restaurante.nombre}"
     </h1>
 
@@ -31,26 +31,26 @@
 
                         <p class="card-text">
                             <c:if test="${COMIDA.promedioCalificaciones == 1}">
-                                <span class="card-text">Calificaci&oacute;n: </span>
+                                <span class="card-text mr-2">Calificaci&oacute;n:</span>
                                 <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 2}">
-                                <span class="card-text">Calificaci&oacute;n: </span>
+                                <span class="card-text mr-2">Calificaci&oacute;n: </span>
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
 
 
                             <c:if test="${COMIDA.promedioCalificaciones == 3}">
-                                <span class="card-text">Calificaci&oacute;n:</span>
+                                <span class="card-text mr-2">Calificaci&oacute;n:</span>
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 4}">
-                                <span class="card-text">Calificaci&oacute;n: </span>
+                                <span class="card-text mr-2">Calificaci&oacute;n: </span>
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
@@ -58,7 +58,7 @@
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 5}">
-                                <span class="card-text">Calificaci&oacute;n:</span>
+                                <span class="card-text mr-2">Calificaci&oacute;n:</span>
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                                 <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">

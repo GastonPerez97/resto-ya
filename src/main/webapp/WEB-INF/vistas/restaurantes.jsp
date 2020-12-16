@@ -6,7 +6,10 @@
     <section class="restaurantes">
         <div class="mx-auto mb-4" style="width: 75%;">
             <form action="agregarRestaurante" method="POST">
-                <input type="submit" class="float-right btn btn-outline-success" value="Agregar Restaurante">
+            	<div class="float-right rounded d-flex align-items-center agregar-rest-btn">
+	            	<i class="far fa-plus-square ml-3 mr-1"></i>
+	                <input type="submit" class="btn verde" value="Agregar Restaurante">
+            	</div>
             </form>
         </div>
 
@@ -76,8 +79,15 @@
                                         </c:if>
                                 </p>
                                 
+                                <form action="nueva-calificacion" class="form-inline" method="post">
+                                    <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
+                                    <div class="form-group">
+                                        <input type="submit" id="reserva-submit" value="Calificar" class="btn btn-outline-danger" />
+                                    </div>
+                                </form>
+                                
                                 <c:if test="${REST.disponible == false}">
-                                    <h2>NO DISPONIBLE</h2>
+                                    <h2 class="mt-3">NO DISPONIBLE</h2>
                                 </c:if>
                             </div>
                         </div>
@@ -107,16 +117,6 @@
                                     <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
                                     <div class="form-group">
                                         <input type="submit" id="reserva-submit" value="Agregar horario" class="float-right btn btn-outline-success" />
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="col-3">
-                                <br>
-                                <form action="nueva-calificacion" class="form-inline" method="post">
-                                    <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
-                                    <div class="form-group">
-                                        <input type="submit" id="reserva-submit" value="Calificar" class="float-right btn btn-outline-danger" />
                                     </div>
                                 </form>
                             </div>
