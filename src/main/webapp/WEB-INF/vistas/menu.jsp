@@ -32,38 +32,38 @@
                         <p class="card-text">
                             <c:if test="${COMIDA.promedioCalificaciones == 1}">
                                 <span class="card-text">Calificaci&oacute;n: </span>
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 2}">
                                 <span class="card-text">Calificaci&oacute;n: </span>
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
 
 
                             <c:if test="${COMIDA.promedioCalificaciones == 3}">
                                 <span class="card-text">Calificaci&oacute;n:</span>
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 4}">
                                 <span class="card-text">Calificaci&oacute;n: </span>
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
 
                             <c:if test="${COMIDA.promedioCalificaciones == 5}">
                                 <span class="card-text">Calificaci&oacute;n:</span>
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
+                                <img class="calification-icon" src="/proyecto-limpio-spring-master/img/calificaciones/tenedor.jpg">
                             </c:if>
                         </p>
 
@@ -73,21 +73,17 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-around">
+                <div class="d-flex justify-content-around align-items-center mb-3">
                     <a href="../editarComida?id=${COMIDA.idComida}"><i
-					class="far fa-edit restaurante-btn mb-3"></i></a> <a href="../eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i
-					class="far fa-trash-alt restaurante-btn mb-3"></i></a>
-                    <div class="col-3">
-                        <br>
-                        <form action="../nueva-calificacion-comida" class="form-inline" method="post">
-                            <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
-                            <div class="form-group">
-                                <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
-                            </div>
-                        </form>
-                    </div>
-
-
+						class="far fa-edit restaurante-btn"></i></a>
+					<a href="../eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i
+						class="far fa-trash-alt restaurante-btn"></i></a>
+                    <form action="../nueva-calificacion-comida" class="form-inline" method="post">
+                        <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
+                        <div class="form-group">
+                            <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
+                        </div>
+                    </form>
                 </div>
             </article>
         </c:forEach>

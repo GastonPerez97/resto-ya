@@ -3,8 +3,7 @@
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
             <div class="main-container">
-                <h1 class="text-center h1 display-3 bebas mb-4">Calificar Restaurante
-                </h1>
+                <h1 class="text-center h1 display-3 bebas mb-4">Calificar Restaurante</h1>
 
                 <section class="mx-auto col-lg-6" style="width: 80%;">
                     <div class="mb-4">
@@ -12,7 +11,7 @@
 					class="btn btn-outline-secondary">Volver</button></a>
                     </div>
                     <div class="text-center">
-                        <label for="nombreDeUsuario" class="h4 mb-3">Calific&aacute:</label>
+                        <label for="nombreDeUsuario" class="h4 mb-3 mr-2">Calific&aacute:</label>
                         <c:forEach items="${formularioCalificacion.valor}" var="CAL">
                         </c:forEach>
 

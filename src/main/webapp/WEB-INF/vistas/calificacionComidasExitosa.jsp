@@ -2,84 +2,88 @@
 
 <%@ include file="header.jsp"%>
 
-<h1 class="text-center h1 display-3 bebas mb-4">¡TU calificación ha
-	sido guardada!</h1>
+<div class="main-container">
+	<h1 class="text-center h1 display-3 bebas mb-4">¡TU calificación ha sido guardada!</h1>
 
-<section class="restaurantes">
-	<c:forEach items="${calificacion}" var="comida">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class="card mb-3 restaurante shadow">
-				<div class="row no-gutters">
-					<div class="col-md-8">
-						<div class="card-body">
-							<h2 class="card-title bebas">${comida.comidaModel.nombre}</h2>
-							<p class="card-text">
-								<span class="h4">Calificación N°: </span>${comida.idCalificacionComida}</p>
-
-							<c:if test="${comida.calificacionModel.idCalificacion == 1}">
-								<span class="h4">Calificación: </span>
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-							</c:if>
-
-							<c:if test="${comida.calificacionModel.idCalificacion == 2}">
-								<span class="h4">Calificación: </span>
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-							</c:if>
-
-
-							<c:if test="${comida.calificacionModel.idCalificacion == 3}">
-								<span class="h4">Calificación: </span>
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-							</c:if>
-
-							<c:if test="${comida.calificacionModel.idCalificacion == 4}">
-								<span class="h4">Calificación: </span>
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-							</c:if>
-
-							<c:if test="${comida.calificacionModel.idCalificacion == 5}">
-								<span class="h4">Calificación: </span>
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-								<img class="location-icon rounded"
-									src="img/calificaciones/tenedor.jpg">
-							</c:if>
-
-
-							<p class="card-text">
-								<span class="h4">Comentario: </span>${comida.comentario}</p>
-							<a href="./restaurantes"><button type="button"
-									class="btn btn-outline-secondary">Volver</button></a>
+	<section class="restaurantes">
+		<div class="mx-auto mb-4 d-flex justify-content-end" style="width: 80%;">
+        	<a href="./restaurantes" class="btn btn-outline-secondary">Volver</a>
+        </div>
+	
+		<c:forEach items="${calificacion}" var="comida">
+			<div class="d-flex justify-content-center align-items-center">
+				<div class="card mb-3 restaurante shadow">
+					<div class="row no-gutters">
+						<div class="col-md-8">
+							<div class="card-body">
+								<h2 class="card-title bebas">${comida.comidaModel.nombre}</h2>
+								<p class="card-text">
+									<span class="h4">Calificación N°: </span>${comida.idCalificacionComida}</p>
+	
+								<c:if test="${comida.calificacionModel.idCalificacion == 1}">
+									<span class="h4">Calificación: </span>
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+								</c:if>
+	
+								<c:if test="${comida.calificacionModel.idCalificacion == 2}">
+									<span class="h4">Calificación: </span>
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+								</c:if>
+	
+	
+								<c:if test="${comida.calificacionModel.idCalificacion == 3}">
+									<span class="h4">Calificación: </span>
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+								</c:if>
+	
+								<c:if test="${comida.calificacionModel.idCalificacion == 4}">
+									<span class="h4">Calificación: </span>
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+								</c:if>
+	
+								<c:if test="${comida.calificacionModel.idCalificacion == 5}">
+									<span class="h4">Calificación: </span>
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+									<img class="calification-icon"
+										src="img/calificaciones/tenedor.jpg">
+								</c:if>
+	
+	
+								<p class="card-text mt-2">
+									<span class="h4">Comentario: </span>${comida.comentario}</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="d-flex flex-column ml-3"></div>
-	</c:forEach>
-</section>
+			<div class="d-flex flex-column ml-3"></div>
+		</c:forEach>
+	</section>
+</div>
+
 
 <script>
 	$('#id-calificacion').attr('value', "1");

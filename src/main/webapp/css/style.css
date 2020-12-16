@@ -221,6 +221,10 @@ header nav {
     border: 2px solid #000;
 }
 
+.calification-icon {
+	width: 30px;
+}
+
 .img-calificacion-btn {
     border: none;
     font-size: 3em;

@@ -12,7 +12,7 @@
 
         <c:forEach items="${RESTAURANTES}" var="REST">
             <div class="d-flex justify-content-center align-items-center">
-                <div class="card mb-3 restaurante shadow <c:if test=" ${REST.disponible==false} ">no-disponible</c:if>">
+                <div class="card mb-3 restaurante shadow <c:if test="${REST.disponible == false}">no-disponible</c:if>">
                     <div class="row no-gutters">
                         <div class="col-md-4 text-center my-auto">
                             <c:if test="${not empty REST.imageName}">
@@ -39,46 +39,44 @@
                                 <p class="card-text">
                                     <span class="h4">Tel&eacutefono: </span>${REST.telefono}</p>
                                 <p class="card-text">
-                                    <%-- <span class="h4">Calificaci�n: </span>${REST.promedioCalificaciones}</p> --%>
-
                                         <c:if test="${REST.promedioCalificaciones == 1}">
                                             <span class="h4">Calificaci&oacute;n: </span>
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 2}">
                                             <span class="h4">Calificaci&oacute;n: </span>
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
 
                                         <c:if test="${REST.promedioCalificaciones == 3}">
                                             <span class="h4">Calificaci&oacute;n:</span>
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 4}">
                                             <span class="h4">Calificaci&oacute;n: </span>
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 5}">
                                             <span class="h4">Calificaci&oacute;n: </span>
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
-                                            <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
+                                            <img class="calification-icon" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
                                 </p>
+                                
                                 <c:if test="${REST.disponible == false}">
-
                                     <h2>NO DISPONIBLE</h2>
                                 </c:if>
                             </div>
