@@ -17,7 +17,7 @@
     <section class="comidas mx-auto">
         <c:forEach items="${COMIDAS}" var="COMIDA">
             <article class="card comida shadow d-flex flex-column justify-content-between">
-                <div class="<c:if test=" ${COMIDA.disponible==false} ">no-disponible</c:if>">
+                <div class="<c:if test="${COMIDA.disponible == false}">no-disponible</c:if>">
                     <c:if test="${not empty COMIDA.imageName}">
                         <img src="../img/comidas/${COMIDA.imageName}" class="card-img-top img-comida">
                     </c:if>
@@ -80,7 +80,7 @@
 						class="far fa-trash-alt restaurante-btn"></i></a>
                     <form action="../nueva-calificacion-comida" class="form-inline" method="post">
                         <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
-                        <div class="form-group">
+                        <div class="form-group <c:if test="${COMIDA.disponible == false}">no-disponible</c:if>">
                             <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
                         </div>
                     </form>
