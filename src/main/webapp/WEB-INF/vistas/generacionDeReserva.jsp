@@ -69,7 +69,7 @@
 								</form:select>
 						    </div>
 
-							<input type="submit" class="btn btn-dark" value="Reservar"/>
+							<input type="submit" class="btn btn-outline-danger" value="Reservar"/>
 					    </div>
 					</div>
 				</form:form>

@@ -24,11 +24,11 @@
                             </div>
 
                             <div class="form-group mt-5 text-center">
-                                <button type="submit" class="btn btn-primary mx-auto">Generar
+                                <button type="submit" class="btn btn-outline-success mx-auto">Generar
 					Reclamo</button>
 
                                 <a onclick="history.back()"><button type="button"
-						class="btn btn-secondary">Volver</button></a>
+						class="btn btn-outline-secondary">Volver</button></a>
                             </div>
                         </form:form>
                     </article>
@@ -38,8 +38,10 @@
             <c:when test="${not empty reclamo.detalle}">
 
                 <section class="comidas mx-auto">
-                    <h3 class="text-center h1 display-3 bebas mb-4">Ya se encuentra un reclamo generado, en breve nos estaremos comunicando contigo. </h3>
-                    <a class="nav-link" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
+                    <h3 class="text-center h1 display-4 bebas mb-4 mt-4">Ya se encuentra un reclamo generado, en breve nos estaremos comunicando contigo. </h3>
+                    <div class="mb-4">
+		    			<a href="./restaurantes"><button type="button" class="btn btn-outline-secondary">Volver</button></a>
+					</div>
                 </section>
 
 

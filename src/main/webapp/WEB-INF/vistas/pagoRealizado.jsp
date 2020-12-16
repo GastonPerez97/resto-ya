@@ -7,7 +7,7 @@
 	<p class="text-center bebas h1">El pedido se registro correctamente</p>
 	
 	<section class="comidas mx-auto">
-	    <a class="nav-link" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
+	    <a class="nav-link btn btn-outline-secondary" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
 	</section>
 </div>
 

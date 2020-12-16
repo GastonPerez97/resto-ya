@@ -18,7 +18,7 @@
                                 <form action="consultarPedidos" class="form-inline" method="post">
                                     <input type="hidden" value="${cli.idCliente}" name="idCliente" id="id-restaurante-input" />
                                     <div class="form-group">
-                                        <input type="submit" id="ver-pedidos-submit" value="verPedidos" class="float-right btn btn-dark">
+                                        <input type="submit" id="ver-pedidos-submit" value="Ver Pedidos" class="float-right btn btn-outline-primary">
                                     </div>
                                 </form>
                             </div>

@@ -16,7 +16,7 @@
 				<span>${estadoEliminar}</span>
 			</h4>
 			<a href="./usuarios"><button type="button"
-					class="btn btn-secondary">Volver</button></a>
+					class="btn btn-outline-secondary">Volver</button></a>
 			<br>
 		</c:if>
 		

@@ -1,12 +1,12 @@
 <%@ include file="header.jsp"%>
 
-    <h1 class="text-center h1 display-3 bebas mb-4">Listado de restaurantes:
+    <h1 class="text-center h1 display-3 bebas mb-4 mt-4">Listado de restaurantes:
     </h1>
 
     <section class="restaurantes">
         <div class="mx-auto mb-4" style="width: 75%;">
             <form action="agregarRestaurante" method="POST">
-                <input type="submit" class="float-right btn btn-dark" value="Agregar Restaurante">
+                <input type="submit" class="float-right btn btn-outline-success" value="Agregar Restaurante">
             </form>
         </div>
 
@@ -24,8 +24,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h2 class="card-title bebas">${REST.nombre}
-                                    <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-dark">Ver Men&uacute</a> <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-dark mr-2">Ver Pedidos</a>
+                                <h2 class="card-title"><span class="bebas">${REST.nombre} </span>
+                                    <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary">Ver Men&uacute</a> <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Pedidos</a>
                                 </h2>
                                 <p class="card-text">
                                     <span class="h4">Direcci&oacuten: </span>${REST.direccion}
@@ -42,26 +42,26 @@
                                     <%-- <span class="h4">Calificaci�n: </span>${REST.promedioCalificaciones}</p> --%>
 
                                         <c:if test="${REST.promedioCalificaciones == 1}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 2}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
 
                                         <c:if test="${REST.promedioCalificaciones == 3}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n:</span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 4}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
@@ -69,7 +69,7 @@
                                         </c:if>
 
                                         <c:if test="${REST.promedioCalificaciones == 5}">
-                                            <span class="h4">Calificaci�n: </span>
+                                            <span class="h4">Calificaci&oacute;n: </span>
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
                                             <img class="location-icon rounded" src="img/calificaciones/tenedor.jpg">
@@ -92,7 +92,7 @@
                                     <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
                                     <div class="form-group">
                                         <input type="date" name="fechaReserva" id="fecha-reserva-input" class="col-8 form-control" required="required" <c:if test="${REST.disponible == false}">disabled</c:if> /> <input type="submit" id="reserva-submit"
-                                            value="Reservar" class="float-right btn btn-dark" <c:if test="${REST.disponible == false}">disabled</c:if> />
+                                            value="Reservar" class="float-right btn btn-outline-danger" <c:if test="${REST.disponible == false}">disabled</c:if> />
                                     </div>
                                 </form>
                             </div>
@@ -100,7 +100,7 @@
                                 <form action="nueva-mesa" class="form-inline" method="post">
                                     <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
                                     <div class="form-group">
-                                        <input type="submit" id="reserva-submit" value="Agregar mesa" class="float-right btn btn-dark" />
+                                        <input type="submit" id="reserva-submit" value="Agregar mesa" class="float-right btn btn-outline-success" />
                                     </div>
                                 </form>
                             </div>
@@ -108,7 +108,7 @@
                                 <form action="nuevo-horario" class="form-inline" method="post">
                                     <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
                                     <div class="form-group">
-                                        <input type="submit" id="reserva-submit" value="Agregar horario" class="float-right btn btn-dark" />
+                                        <input type="submit" id="reserva-submit" value="Agregar horario" class="float-right btn btn-outline-success" />
                                     </div>
                                 </form>
                             </div>
@@ -118,7 +118,7 @@
                                 <form action="nueva-calificacion" class="form-inline" method="post">
                                     <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
                                     <div class="form-group">
-                                        <input type="submit" id="reserva-submit" value="Calificar" class="float-right btn btn-dark" />
+                                        <input type="submit" id="reserva-submit" value="Calificar" class="float-right btn btn-outline-danger" />
                                     </div>
                                 </form>
                             </div>

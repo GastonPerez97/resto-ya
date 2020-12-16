@@ -42,9 +42,9 @@
 						</form:select>
 				</div>
 				<div class="form-group mt-5 text-center">
-					<button type="submit" class="btn btn-outline-primary mx-auto">Agregar</button>
+					<button type="submit" class="btn btn-outline-success mx-auto">Agregar</button>
 	
-					<a href="./usuarios"><button type="button" class="btn btn-secondary">Volver</button></a>
+					<a href="./usuarios"><button type="button" class="btn btn-outline-secondary">Volver</button></a>
 				</div>
 			</form:form>
 		</article>

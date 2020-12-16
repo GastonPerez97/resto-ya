@@ -6,7 +6,7 @@
 	
 	<section class="mx-auto col-lg-6">
 		<div class="mb-4">
-		    <a href="./restaurante/menu?id=${comida.restaurante.idRestaurante}"><button type="button" class="btn btn-dark">Volver</button></a>
+		    <a href="./restaurante/menu?id=${comida.restaurante.idRestaurante}"><button type="button" class="btn btn-outline-secondary">Volver</button></a>
 		</div>
 	
 		<article>
@@ -55,7 +55,7 @@
 				</div>
 				
 				<div class="form-group mt-5 text-center">
-					<button type="submit" class="btn btn-dark mx-auto">Agregar Comida</button>
+					<button type="submit" class="btn btn-outline-success mx-auto">Agregar Comida</button>
 				</div>
 			</form:form>
 		</article>

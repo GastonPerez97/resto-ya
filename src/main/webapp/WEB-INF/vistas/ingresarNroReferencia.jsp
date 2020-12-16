@@ -12,7 +12,7 @@
 				<div class="form-group">
 					<input type="number" placeholder="Nro de Referencia" name="nroReferencia" class="form-control-lg col-6">
 				</div>
-				<input type="submit" value="Enviar" class="btn btn-dark mt-2" />
+				<input type="submit" value="Enviar" class="btn btn-outline-danger mt-2" />
 			</form>
 		</div>
 	</section>

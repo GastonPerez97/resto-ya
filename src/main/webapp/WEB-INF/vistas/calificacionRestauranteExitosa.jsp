@@ -71,7 +71,7 @@
 							<p class="card-text">
 								<span class="h4">Comentario: </span>${res.comentario}</p>
 							<a href="./restaurantes"><button type="button"
-									class="btn btn-dark">Volver</button></a>
+									class="btn btn-outline-secondary">Volver</button></a>
 						</div>
 					</div>
 				</div>

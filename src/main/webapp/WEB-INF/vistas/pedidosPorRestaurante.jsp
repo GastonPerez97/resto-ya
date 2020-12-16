@@ -2,7 +2,7 @@
 
     <h1 class="text-center h1 display-3 bebas my-4">Pedidos de "${nombreRestaurante}" </h1>
     <div class="mx-auto" style="width: 73%;">
-        <a class="btn btn-outline-dark mb-4" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
+        <a class="btn btn-outline-secondary mb-4" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
     </div>
 
     <section class="pedidos-container mx-auto">
@@ -22,10 +22,10 @@
                         <div class="d-flex justify-content-between">
                             <form action="detalle-pedido" method="post">
                                 <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                <input type="submit" id="reserva-submit" value="Ver Detalle" class="btn btn-dark mr-2 pedido-card-btn" />
+                                <input type="submit" id="reserva-submit" value="Ver Detalle" class="btn btn-outline-primary mr-2 pedido-card-btn" />
                             </form>
 
-                            <a href="verReclamo?id=${pedido.idPedido}" class="btn btn-dark pedido-card-btn">Ver Reclamo</a>
+                            <a href="verReclamo?id=${pedido.idPedido}" class="btn btn-outline-primary pedido-card-btn">Ver Reclamo</a>
                         </div>
 
                         <c:if test="${pedido.estadoPedidoModel.idEstadoPedido != 3}">
@@ -33,12 +33,12 @@
                                 <div class="d-flex justify-content-between">
                                     <form action="finalizar-pedido" method="post">
                                         <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                        <input type="submit" value="Finalizar Pedido" class="btn btn-dark mr-2 pedido-card-btn" />
+                                        <input type="submit" value="Finalizar Pedido" class="btn btn-outline-danger mr-2 pedido-card-btn" />
                                     </form>
 
                                     <form action="cancelar-pedido" method="post">
                                         <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-                                        <input type="submit" value="Cancelar Pedido" class="btn btn-dark pedido-card-btn" />
+                                        <input type="submit" value="Cancelar Pedido" class="btn btn-outline-danger pedido-card-btn" />
                                     </form>
                                 </div>
                             </c:if>

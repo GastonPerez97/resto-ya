@@ -14,18 +14,18 @@
 	                    <p><span class="h4"><b>Direccion: </b></span>${pedido.restaurante.direccion}</p>
 	                    <p><span class="h4"><b>Estado: </b></span>${pedido.estadoPedidoModel.nombreEstado}</p>
 	                </div>
-					<div class="d-flex justify-content-around">
+					<div class="d-flex justify-content-start">
 	                    <form action="detalle-pedido" class="form-inline" method="post">
 	                        <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="id-restaurante-input" />
-	                        <div class="form-group">
-	                            <input type="submit" id="reserva-submit" value="Ver detalle" class="float-right btn btn-dark" />
+	                        <div class="form-group mr-2">
+	                            <input type="submit" id="reserva-submit" value="Ver detalle" class="float-right btn btn-outline-primary" />
 	                        </div>
 	                    </form>
 	                    
 	                    <form action="generarReclamo" class="form-inline" method="post">
 	                        <input type="hidden" value="${pedido.idPedido}" name="idPedido" id="idPedido" />
 	                        <div class="form-group">
-	                            <input type="submit" id="reclamo-submit" value="Hacer un reclamo" class="float-right btn btn-dark" />
+	                            <input type="submit" id="reclamo-submit" value="Hacer un reclamo" class="float-right btn btn-outline-success" />
 	                        </div>
 	                    </form>
 					</div>
