@@ -24,7 +24,7 @@
 	</section>
 	<div class="text-center">
 		<form:form action="home" method="get">
-			<button class="btn btn-dark" type="submit">Volver a buscar</button>
+			<button class="btn btn-outline-secondary" type="submit">Volver a buscar</button>
 		</form:form>
 	</div>
 </div>

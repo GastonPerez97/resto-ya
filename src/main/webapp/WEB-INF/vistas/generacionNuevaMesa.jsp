@@ -24,7 +24,7 @@
 						<label class="h5 mr-2">Número de columna:</label>
 						<form:input path = "ubicacionColumna" type="number" class="form-control-lg col-2"/>
 					</div>
-					<input type="submit" class="float-right btn btn-dark" value="Guardar"/>
+					<input type="submit" class="float-right btn btn-outline-danger" value="Guardar"/>
 				</form:form>
 			</div>
 		</div>

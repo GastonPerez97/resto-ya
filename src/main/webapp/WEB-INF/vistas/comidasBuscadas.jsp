@@ -21,7 +21,7 @@
 		</c:forEach>
 	</section>
 	<div class="text-center">
-		<a class="btn btn-dark" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
+		<a class="btn btn-outline-secondary" href="/proyecto-limpio-spring-master/home">Volver a buscar</a>
 	</div>
 </div>
 

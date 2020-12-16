@@ -33,10 +33,10 @@
 				</div>
 	
 				<div class="form-group mt-5 text-center">
-					<button type="submit" class="btn btn-primary mx-auto">Editar</button>
+					<button type="submit" class="btn btn-outline-danger mx-auto">Editar</button>
 	
 					<a href="./usuarios"><button type="button"
-							class="btn btn-secondary">Volver</button></a>
+							class="btn btn-outline-secondary">Volver</button></a>
 				</div>
 			</form:form>
 		</article>

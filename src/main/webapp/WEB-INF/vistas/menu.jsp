@@ -6,9 +6,9 @@
 
     <div class="mb-4 volver-btn d-flex justify-content-between">
         <a href="../restaurantes"><button type="button"
-			class="btn btn-dark">Volver</button></a>
+			class="btn btn-outline-secondary">Volver</button></a>
         <a href="../agregarComida?idRestaurante=${restaurante.idRestaurante}">
-            <button type="button" class="btn btn-dark mr-3">
+            <button type="button" class="btn btn-outline-success mr-3">
 			<i class="far fa-plus-square mr-3"></i>Agregar Comida
 		</button>
         </a>
@@ -82,7 +82,7 @@
                         <form action="../nueva-calificacion-comida" class="form-inline" method="post">
                             <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
                             <div class="form-group">
-                                <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-dark" />
+                                <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
                             </div>
                         </form>
                     </div>
@@ -92,7 +92,7 @@
             </article>
         </c:forEach>
 
-        <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-primary btn-block">Realizar Pedido</a>
+        <a href="../hacerPedido?id=${restaurante.idRestaurante}" class="btn btn-outline-success btn-block mb-4">Realizar Pedido</a>
     </section>
 
     <%@ include file="footer.jsp"%>

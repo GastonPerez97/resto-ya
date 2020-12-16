@@ -44,11 +44,11 @@
                                         </div>
 
                                         <div class="form-group mt-5 text-center">
-                                            <button type="submit" class="btn btn-primary mx-auto">Actualizar
+                                            <button type="submit" class="btn btn-outline-primary mx-auto">Actualizar
 									Respuesta</button>
 
                                             <a href="./restaurantes"><button type="button"
-										class="btn btn-secondary">Volver</button></a>
+										class="btn btn-outline-secondary">Volver</button></a>
                                         </div>
                             </form:form>
                         </article>
@@ -90,11 +90,11 @@
                                         </div>
 
                                         <div class="form-group mt-5 text-center">
-                                            <button type="submit" class="btn btn-primary mx-auto">Enviar
+                                            <button type="submit" class="btn btn-outline-primary mx-auto">Enviar
 							Respuesta</button>
 
                                             <a href="./restaurantes"><button type="button"
-								class="btn btn-secondary">Volver</button></a>
+								class="btn btn-outline-secondary">Volver</button></a>
                                         </div>
                             </form:form>
                         </article>
@@ -106,7 +106,7 @@
 
                     <section class="comidas mx-auto">
                         <a href="./restaurantes"><button type="button"
-					class="btn btn-secondary">Volver</button></a>
+					class="btn btn-outline-secondary">Volver</button></a>
                     </section>
                 </c:when>
 

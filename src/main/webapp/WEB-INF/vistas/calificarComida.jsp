@@ -8,7 +8,7 @@ ${calificacionComida.comidaModel.idComida.valor}
 <section class="mx-auto col-lg-6" style="width: 80%;">
 	<div class="mb-4">
 		<a href="./restaurantes"><button type="button"
-				class="btn btn-outline-dark">Volver</button></a>
+				class="btn btn-outline-secondary">Volver</button></a>
 	</div>
 	<div class="text-center">
 		<label for="nombreDeUsuario" class="h4 mb-3">Calific&aacute:</label>

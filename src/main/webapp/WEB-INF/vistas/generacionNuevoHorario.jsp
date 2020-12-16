@@ -17,7 +17,7 @@
 							</c:forEach>
 						</form:select>
 					</div>
-					<input type="submit" class="float-right btn btn-dark" value="Guardar"/>
+					<input type="submit" class="float-right btn btn-outline-danger" value="Guardar"/>
 				</form:form>
 			</div>
 		</div>

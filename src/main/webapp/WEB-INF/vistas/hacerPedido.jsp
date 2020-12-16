@@ -36,7 +36,7 @@
             </c:forEach>
 
             <form:hidden path="pedidoSinFormato" id="hidden-cantidades" name="pedidoHidden" />
-            <input type="submit" id="boton-pago" value="Procesar Pedido" class="btn btn-primary btn-lg btn-block" />
+            <input type="submit" id="boton-pago" value="Procesar Pedido" class="btn btn-outline-success btn-block" />
         </form:form>
     </section>
 </div>

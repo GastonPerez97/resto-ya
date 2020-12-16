@@ -6,7 +6,7 @@
 	<h3 class="text-center h1 display-4 bebas mb-4">Nos estaremos contactando contigo en las proximas horas</h3>
 	
     <div class="text-center">
-    	<a class="btn btn-dark" href="/proyecto-limpio-spring-master/home">Volver al Inicio</a>
+    	<a class="btn btn-outline-secondary" href="/proyecto-limpio-spring-master/home">Volver al Inicio</a>
     </div>
 </div>
 

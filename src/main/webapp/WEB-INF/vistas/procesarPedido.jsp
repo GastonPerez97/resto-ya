@@ -33,9 +33,9 @@
                     <p class="h5">Podes pagar en efectivo o con Mercado Pago utilizando el boton de abajo.</p>
 
                     <div class="d-flex justify-content-around mt-4">
-                        <input type="submit" value="Pagar con Mercado Pago" class="btn btn-primary" />
+                        <input type="submit" value="Pagar con Mercado Pago" class="btn btn-outline-success" />
 
-                        <a href="/proyecto-limpio-spring-master/restaurantes" class="btn btn-dark">Volver a Restaurantes</a>
+                        <a href="/proyecto-limpio-spring-master/restaurantes" class="btn btn-outline-secondary">Volver a Restaurantes</a>
                     </div>
                 </form:form>
             </section>

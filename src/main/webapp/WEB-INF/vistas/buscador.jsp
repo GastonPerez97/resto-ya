@@ -33,7 +33,7 @@
 
             <div class="main-container">
                 <h1 class="text-center display-3 bebas mb-2 mt-5">
-                    <i class="fas fa-utensils mr-3"></i> �Busc&aacute tu comida o restaurante!
+                    <i class="fas fa-utensils mr-3"></i> Busc&aacute tu comida o restaurante!
                 </h1>
                 <hr class="colorgraph col-8 mx-auto">
                 <br>
@@ -51,7 +51,7 @@
                                     <form:input path="datoBuscado" type="text" placeholder="Ingresa el dato a buscar" class="form-control-lg col-12" />
                                 </div>
 
-                                <input type="submit" class="float-right btn btn-dark" value="Buscar" />
+                                <input type="submit" class="float-right btn btn-outline-danger" value="Buscar" />
                             </form:form>
                         </div>
                     </div>
