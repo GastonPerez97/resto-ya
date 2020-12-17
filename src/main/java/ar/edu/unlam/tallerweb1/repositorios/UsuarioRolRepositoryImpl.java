@@ -18,8 +18,10 @@ public class UsuarioRolRepositoryImpl implements UsuarioRolRepository {
 	private SessionFactory sessionFactory;
 	
 
-	public UsuarioRolModel buscarUsuarioRolPorId(Long id) {
-		return sessionFactory.getCurrentSession().get(UsuarioRolModel.class,id);
+	public List<UsuarioRolModel> buscarUsuarioRolPorId(Long id) {
+		return sessionFactory.getCurrentSession().createCriteria(UsuarioRolModel.class)
+				.add(Restrictions.eq("usuarioModel.idUsuario", id))
+				.list();
 	}
 
 

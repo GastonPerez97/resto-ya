@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRegistro;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
@@ -49,9 +50,7 @@ public class ClienteController {
 
 	@RequestMapping(path = "/registrate")
 	public ModelAndView registro() {
-
 		ModelMap model = new ModelMap();
-
 		FormularioRegistro formulario = new FormularioRegistro();
 
 		model.put("formularioRegistro", formulario);
@@ -83,11 +82,15 @@ public class ClienteController {
 
 	@RequestMapping(path = "/historicoPedidos")
 	public ModelAndView irAHistorico(HttpServletRequest request) {
-
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap model = new ModelMap();
 
 		model.put("clienteModel", clienteService.buscarClientes());
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("rol", request.getSession().getAttribute("ROL"));
 		model.put("titulo", "Listado de clientes");
 
 		return new ModelAndView("consultarHistorico", model);
@@ -96,11 +99,14 @@ public class ClienteController {
 	@RequestMapping(path = "/consultarPedidos", method = RequestMethod.POST)
 	public ModelAndView pedidos(@ModelAttribute("clienteModel") ClienteModel cliente,
 								HttpServletRequest request) {
-
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
-
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		modelo.put("titulo", "Historico de pedidos");
 
 		return new ModelAndView("pedidosPorCliente", modelo);
@@ -109,18 +115,28 @@ public class ClienteController {
 	
 	@RequestMapping(path = "/misPedidos", method = RequestMethod.GET)
 	public ModelAndView misPedidos(HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ClienteModel cliente = new ClienteModel((Long)request.getSession().getAttribute("id"));
 
 		ModelMap modelo = new ModelMap();
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 	}
 	
 	@RequestMapping(path = "/misReservas", method = RequestMethod.GET)
 	public ModelAndView misReservas(HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", reservaService.getReservasDeCliente((Long)request.getSession().getAttribute("id")));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("misReservas", modelo);
 	}

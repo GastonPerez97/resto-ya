@@ -8,11 +8,13 @@
     <div class="mb-4 volver-btn d-flex justify-content-between">
         <a href="../restaurantes"><button type="button"
 			class="btn btn-outline-secondary">Volver</button></a>
-        <a href="../agregarComida?idRestaurante=${restaurante.idRestaurante}">
-            <button type="button" class="btn btn-outline-success mr-3">
-			<i class="far fa-plus-square mr-3"></i>Agregar Comida
-		</button>
-        </a>
+        <c:if test="${rol == 1}">
+	        <a href="../agregarComida?idRestaurante=${restaurante.idRestaurante}">
+	            <button type="button" class="btn btn-outline-success mr-3">
+				<i class="far fa-plus-square mr-3"></i>Agregar Comida
+			</button>
+	        </a>
+        </c:if>
     </div>
 
     <section class="comidas mx-auto">
@@ -75,16 +77,20 @@
                 </div>
 
                 <div class="d-flex justify-content-around align-items-center mb-3">
-                    <a href="../editarComida?id=${COMIDA.idComida}"><i
-						class="far fa-edit restaurante-btn"></i></a>
-					<a href="../eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i
-						class="far fa-trash-alt restaurante-btn"></i></a>
-                    <form action="../nueva-calificacion-comida" class="form-inline" method="post">
-                        <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
-                        <div class="form-group <c:if test="${COMIDA.disponible == false}">no-disponible</c:if>">
-                            <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
-                        </div>
-                    </form>
+                    <c:if test="${rol == 1}">
+	                    <a href="../editarComida?id=${COMIDA.idComida}"><i
+							class="far fa-edit restaurante-btn"></i></a>
+						<a href="../eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i
+							class="far fa-trash-alt restaurante-btn"></i></a>
+					</c:if>
+					<c:if test="${rol == 2}">
+	                    <form action="../nueva-calificacion-comida" class="form-inline" method="post">
+	                        <input type="hidden" value="${COMIDA.idComida}" name="idComida" id="id-comida-input" />
+	                        <div class="form-group <c:if test="${COMIDA.disponible == false}">no-disponible</c:if>">
+	                            <input type="submit" id="calificacionComida-submit" value="Calificar" class="float-right btn btn-outline-danger" />
+	                        </div>
+	                    </form>
+                    </c:if>
                 </div>
             </article>
         </c:forEach>

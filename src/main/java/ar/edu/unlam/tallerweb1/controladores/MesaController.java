@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioNuevaMesa;
 import ar.edu.unlam.tallerweb1.servicios.MesaService;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -26,11 +27,16 @@ public class MesaController {
 
 	@RequestMapping(path = "/nueva-mesa", method = RequestMethod.POST)
 	public ModelAndView generarNuevaMesa(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("formularioNuevaMesa", new FormularioNuevaMesa());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.addObject("titulo", "Generar nueva mesa");
 		modelAndView.setViewName("generacionNuevaMesa");
 		
@@ -39,10 +45,15 @@ public class MesaController {
 
 	@RequestMapping(path = "/guardar-nueva-mesa", method = RequestMethod.POST)
 	public ModelAndView generarNuevaMesaPost(@ModelAttribute("formularioNuevaMesa") FormularioNuevaMesa formularioNuevaMesa, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.addObject("titulo", "Generar nueva mesa");
-		
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		MesaModel mesa = mesaService.procesarNuevaMesa(formularioNuevaMesa);
 		if (mesa.getIdMesa() != null) {
 			modelAndView.addObject("mesa", mesa);

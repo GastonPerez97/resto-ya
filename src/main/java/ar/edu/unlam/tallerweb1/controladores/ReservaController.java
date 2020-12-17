@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.enums.EstadoReserva;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioHorarioReserva;
 import ar.edu.unlam.tallerweb1.servicios.EstadoReservaService;
@@ -41,6 +42,10 @@ public class ReservaController {
 
 	@RequestMapping(path = "/reservar", method = RequestMethod.POST)
 	public ModelAndView reservar(@RequestParam("idRestaurante") Long idRestaurante, @RequestParam("fechaReserva") Date fechaReserva, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Reservar");
 
@@ -50,6 +55,7 @@ public class ReservaController {
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("mesas", mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante));
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.setViewName("generacionDeReserva");
 		
 		return modelAndView;
@@ -57,9 +63,14 @@ public class ReservaController {
 
 	@RequestMapping(path = "/confirmar-reserva", method = RequestMethod.POST)
 	public ModelAndView confirmarReserva(@ModelAttribute("formularioGeneracionReserva") FormularioGeneracionReserva formularioGeneracionReserva, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Reserva exitosa");
-		
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		formularioGeneracionReserva.setIdCliente((Long)request.getSession().getAttribute("id"));
 		
 		ReservaModel reserva = reservaService.procesarNuevaReserva(formularioGeneracionReserva);
@@ -82,12 +93,17 @@ public class ReservaController {
 	
 	@RequestMapping(path = "/restaurante/reservas", method = RequestMethod.GET)
 	public ModelAndView reservasPorResutauranteGet(@RequestParam("idRestaurante") Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("titulo", "Reservas");
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.setViewName("reservasDeRestaurante");
 		
 		return modelAndView;
@@ -98,6 +114,10 @@ public class ReservaController {
 													@RequestParam("idEstadoReserva") Long idEstadoReserva,
 													@RequestParam(name = "fechaDesde", required = false) Date fechaDesde,
 													@RequestParam(name = "fechaHasta", required = false) Date fechaHasta, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		List<ReservaModel> reservas = reservaService.buscarReservasPorRestauranteYEstadoYFechaDesdeHasta(idRestaurante, idEstadoReserva, fechaDesde, fechaHasta);
@@ -109,6 +129,8 @@ public class ReservaController {
 		modelAndView.addObject("fechaHasta", fechaHasta);		
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("reservasDeRestaurante");
 		
 		return modelAndView;
@@ -120,6 +142,10 @@ public class ReservaController {
 											   @RequestParam(name = "fechaDesde", required = false) Date fechaDesde,
 											   @RequestParam(name = "fechaHasta", required = false) Date fechaHasta, 
 											   @RequestParam("idEstadoReserva") Long idEstadoReserva, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		reservaService.modificarEstadoReserva(idReserva, idEstadoReserva);
 		
@@ -133,7 +159,32 @@ public class ReservaController {
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("mensaje", "Reserva modificada exitosamente");
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("reservasDeRestaurante");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(path = "/reserva/modificarMiReserva", method = RequestMethod.POST)
+	public ModelAndView modificarMiReserva(@RequestParam("idReserva") Long idReserva,
+											@RequestParam("idEstadoReserva") Long idEstadoReserva, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
+		ModelAndView modelAndView = new ModelAndView();
+		reservaService.modificarEstadoReserva(idReserva, idEstadoReserva);
+		
+		List<ReservaModel> reservas = reservaService.getReservasDeCliente((Long)request.getSession().getAttribute("id"));
+		
+		modelAndView.addObject("titulo", "Mis Reservas");
+		modelAndView.addObject("reservas", reservas);
+		modelAndView.addObject("mensaje", "Reserva modificada exitosamente");
+		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
+		modelAndView.setViewName("misReservas");
 		
 		return modelAndView;
 	}

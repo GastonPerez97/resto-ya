@@ -22,6 +22,7 @@ import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
@@ -54,6 +55,10 @@ public class PedidoController {
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
@@ -67,13 +72,18 @@ public class PedidoController {
 		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("hacerPedido", modelo);
 		
 	}
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, HttpServletRequest request) {		
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();	
 		
 		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
@@ -85,12 +95,17 @@ public class PedidoController {
 	    modelo.put("hora", pedido.getFechaPedido());
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	    modelo.put("titulo", "Procesar pedido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("procesarPedido", modelo);
 	}
 	
 	@RequestMapping(path="/pagar", method = RequestMethod.POST)
 	public ModelAndView pagarPedido(HttpServletRequest request) throws MPException {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
@@ -107,10 +122,15 @@ public class PedidoController {
 	
 	@RequestMapping("/pagoRealizado")
 	public ModelAndView pagoRealizado(HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago realizado");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
 		pedidoService.cambiarEstadoDePedido(idPedido, 2L);
 		request.getSession().removeAttribute("idPedido");
@@ -119,19 +139,29 @@ public class PedidoController {
 	
 	@RequestMapping("/pagoFallido")
 	public ModelAndView pagoFallido(HttpServletRequest request) {	
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago fallido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("pagoFallido", modelo);
 	}
 	
 	@RequestMapping("/pagoPendiente")
 	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago pendiente");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
 		pedidoService.guardarNroReferencia(idPedido, nroReferencia);
 		pedidoService.cambiarEstadoDePedido(idPedido, 1L);
@@ -154,12 +184,17 @@ public class PedidoController {
 	    modelo.put("total", total);
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	    modelo.put("titulo", "Detalle de pedido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("detallePedido", modelo);
 	}
 	
 	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)
 	public ModelAndView finalizarPedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap model = new ModelMap();
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		model.put("titulo", "Finalizar pedido");
@@ -181,6 +216,9 @@ public class PedidoController {
 	public ModelAndView ingresarNroReferencia(@RequestParam("idPedido") Long idPedido,
 											  @RequestParam("nroReferencia") Long nroReferencia,
 											  HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ModelMap model = new ModelMap();
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));

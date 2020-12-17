@@ -12,13 +12,12 @@ public class UsuarioRolServiceImpl implements UsuarioRolService {
 	
 	@Inject
 	private UsuarioRolRepository usuarioRolRepository;
-	/*
+	
 	@Override
 	public UsuarioRolModel buscarUsuarioRolPorId(Long id) {
-		return usuarioRolRepository.buscarUsuarioRolPorId(id);
+		return usuarioRolRepository.buscarUsuarioRolPorId(id).get(0);
 	}
 	
-	*/
 	@Override
 	public void guardarUsuarioRol(Long idUsuario, Long idRol) {
 		usuarioRolRepository.guardarUsuarioRol(idUsuario, idRol);

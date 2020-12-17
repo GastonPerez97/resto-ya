@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -40,11 +41,15 @@ public class ComidaController {
 		modelo.put("restaurante", restaurante);
 		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestaurante(restaurante));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("menu", modelo);
 	}
 	
 	@RequestMapping("/editarComida")
 	public ModelAndView editarComida(@RequestParam("id") Long id, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -53,14 +58,18 @@ public class ComidaController {
 		modelo.put("titulo", "Editar " + comida.getNombre());
 		modelo.put("comida", comida);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("editarComida", modelo);
 	}
 	
 	@RequestMapping(path = "/validar-editarComida", method = RequestMethod.POST)
 	public ModelAndView validarEdicionComida(
 			@ModelAttribute("comida") ComidaModel comida,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		comidaService.procesarEdicionComida(comida, file);
 		
@@ -69,6 +78,10 @@ public class ComidaController {
 	
 	@RequestMapping(path = "/agregarComida")
 	public ModelAndView agregarComida(@RequestParam Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
@@ -78,14 +91,18 @@ public class ComidaController {
 		modelo.put("titulo", "Agregar Comida");
 		modelo.put("comida", comida);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("agregarComida", modelo);
 	}
 	
 	@RequestMapping(path = "/validar-nuevaComida", method = RequestMethod.POST)
 	public ModelAndView validarNuevaComida(
 			@ModelAttribute("comida") ComidaModel comida,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		comidaService.procesarNuevaComida(comida, file);
 		
@@ -93,7 +110,10 @@ public class ComidaController {
 	}
 	
 	@RequestMapping("/eliminarComida")
-	public ModelAndView eliminarComida(@RequestParam("id") Long id) {
+	public ModelAndView eliminarComida(@RequestParam("id") Long id, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -112,6 +132,7 @@ public class ComidaController {
 		formulario.getCalificacionComida().setComidaModel(comida);
 		model.put("formularioCalificacionComida", formulario);
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("calificarComida", model);
 	}
 
