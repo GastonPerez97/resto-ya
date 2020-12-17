@@ -29,9 +29,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h2 class="card-title"><span class="bebas">${REST.nombre} </span>
-                                        <c:if test="${rol == 2}">
-                                        	<a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary">Ver Men&uacute</a>
-                                        </c:if>
+                                        <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary">Ver Men&uacute</a>
                                         <c:if test="${rol == 1}">
 	                                        <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Pedidos</a>
 	                                        <a href="restaurante/reservas?idRestaurante=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Reservas</a>
