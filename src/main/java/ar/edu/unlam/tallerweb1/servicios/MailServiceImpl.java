@@ -71,7 +71,7 @@ public class MailServiceImpl implements MailService {
 	
 	@Override
 	public String getMensajeRegistro(String nombreUsuario) {
-		return "Hola " + nombreUsuario + "!\n\nTe registraste correctamente en [Nombre-Empresa]. Disfruta de nuestro servicio!";
+		return "Hola " + nombreUsuario + "!\n\nTe registraste correctamente en RestoYa!. Disfruta de nuestro servicio!";
 	}
 	
 	@Override

@@ -102,7 +102,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <c:if test="${rol == 2}">
-	                                <div class="col-5 border-right">
+	                                <div class="col-5">
 	                                    <form action="reservar" class="form-inline" method="post">
 	                                        <input type="hidden" value="${REST.idRestaurante}" name="idRestaurante" id="id-restaurante-input" />
 	                                        <div class="form-group">
@@ -145,5 +145,21 @@
             </c:forEach>
         </section>
     </div>
+
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	if(dd<10){
+	  dd='0'+dd
+	} 
+	if(mm<10){
+	  mm='0'+mm
+	} 
+	
+	today = yyyy+'-'+mm+'-'+dd;
+	document.getElementById("fecha-reserva-input").setAttribute("min", today);
+</script>
 
     <%@ include file="footer.jsp"%>

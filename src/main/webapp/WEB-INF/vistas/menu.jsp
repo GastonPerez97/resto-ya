@@ -80,8 +80,6 @@
                     <c:if test="${rol == 1}">
 	                    <a href="../editarComida?id=${COMIDA.idComida}"><i
 							class="far fa-edit restaurante-btn"></i></a>
-						<a href="../eliminarComida?id=${COMIDA.idComida}" class="delete-btn-comida"><i
-							class="far fa-trash-alt restaurante-btn"></i></a>
 					</c:if>
 					<c:if test="${rol == 2}">
 	                    <form action="../nueva-calificacion-comida" class="form-inline" method="post">
