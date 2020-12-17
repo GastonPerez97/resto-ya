@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,4 +19,10 @@ public interface ReservaService {
 	ReservaModel getReservaByIdReserva(Long idReserva);
 
 	List<FormularioHorarioReserva> getHorariosDisponiblesParaReservaDeMesa(FormularioGeneracionReserva formularioGeneracionReserva);
+
+	List<ReservaModel> getReservasDeCliente(Long idCliente);
+	
+	List<ReservaModel> buscarReservasPorRestauranteYEstadoYFechaDesdeHasta(Long idRestaurante, Long idEstadoReserva, Date fechaDesde, Date fechaHasta);
+	
+	void modificarEstadoReserva(Long idReserva, Long idEstadoReserva);
 }

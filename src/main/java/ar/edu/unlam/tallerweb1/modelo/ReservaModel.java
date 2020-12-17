@@ -32,6 +32,10 @@ public class ReservaModel {
     @JoinColumn(name = "id_estado_reserva", nullable = false)
     private EstadoReservaModel estadoReservaModel;
     
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_restaurante", nullable = false)
+    private RestauranteModel restauranteModel;
+    
     public ReservaModel() {
     	
     }
@@ -86,6 +90,14 @@ public class ReservaModel {
 
 	public void setEstadoReservaModel(EstadoReservaModel estadoReservaModel) {
 		this.estadoReservaModel = estadoReservaModel;
+	}
+
+	public RestauranteModel getRestauranteModel() {
+		return restauranteModel;
+	}
+
+	public void setRestauranteModel(RestauranteModel restauranteModel) {
+		this.restauranteModel = restauranteModel;
 	}
 
 }

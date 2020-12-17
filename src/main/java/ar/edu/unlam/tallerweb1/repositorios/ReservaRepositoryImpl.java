@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.persistence.Query;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.hibernate.type.StandardBasicTypes;
@@ -19,7 +20,9 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
+import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
+import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
@@ -71,7 +74,30 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 
 		return lista;
 	}
-	
 
+	@Override
+	public List<ReservaModel> getReservasByClienteOrderByFechaDescendiente(Long idCliente) {
+		return sessionFactory.getCurrentSession().createCriteria(ReservaModel.class)
+				.add(Restrictions.eq("clienteModel.idCliente", idCliente))
+				.addOrder(Order.desc("fechaReserva"))
+				.list();
+	}
+
+	@Override
+	public List<ReservaModel> getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(Long idRestaurante, Long idEstadoReserva, Date fechaDesde, Date fechaHasta) {
+		return sessionFactory.getCurrentSession().createCriteria(ReservaModel.class)
+				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante))
+				.add(Restrictions.eq("estadoReservaModel.idEstadoReserva", idEstadoReserva))
+				.add(Restrictions.between("fechaReserva", fechaDesde, fechaHasta))
+				.addOrder(Order.desc("fechaReserva"))
+				.list();
+	}
+
+	@Override
+	public void updateEstadoReserva(Long idReserva, Long idEstadoReserva) {
+		ReservaModel reserva = sessionFactory.getCurrentSession().get(ReservaModel.class, idReserva);
+		reserva.setEstadoReservaModel(new EstadoReservaModel(idEstadoReserva));
+		sessionFactory.getCurrentSession().update(reserva);
+	}
 	
 }

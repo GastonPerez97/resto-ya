@@ -158,16 +158,6 @@ public class PedidoController {
 		return new ModelAndView("detallePedido", modelo);
 	}
 	
-	@RequestMapping(path = "/misPedidos", method = RequestMethod.GET)
-	public ModelAndView misPedidos(HttpServletRequest request) {
-		ClienteModel cliente = new ClienteModel((Long)request.getSession().getAttribute("id"));
-
-		ModelMap modelo = new ModelMap();
-		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
-
-		return new ModelAndView("pedidosPorCliente", modelo);
-	}
-	
 	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)
 	public ModelAndView finalizarPedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {
 		ModelMap model = new ModelMap();

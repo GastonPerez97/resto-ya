@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.enums.EstadoReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioHorarioReserva;
@@ -45,6 +47,8 @@ public class ReservaServiceImpl implements ReservaService {
 		reserva.setEstadoReservaModel(new EstadoReservaModel(EstadoReserva.PENDIENTE_DE_CONFIRMACION.getId()));
 		reserva.setRestauranteHorarioModel(restauranteHorarioService.getRestauranteHorarioById(formularioGeneracionReserva.getIdRestauranteHorario()));
 		reserva.setMesaModel(mesaService.getMesaById(formularioGeneracionReserva.getIdMesa()));
+		reserva.setClienteModel(new ClienteModel(formularioGeneracionReserva.getIdCliente()));
+		reserva.setRestauranteModel(new RestauranteModel(formularioGeneracionReserva.getIdRestaurante()));
 		
 		guardarReserva(reserva);
 		
@@ -70,6 +74,29 @@ public class ReservaServiceImpl implements ReservaService {
 		}
 		
 		return horariosDisponibles;
+	}
+
+	@Override
+	public List<ReservaModel> getReservasDeCliente(Long idCliente) {
+		return reservaRepository.getReservasByClienteOrderByFechaDescendiente(idCliente);
+	}
+
+	@Override
+	public List<ReservaModel> buscarReservasPorRestauranteYEstadoYFechaDesdeHasta(Long idRestaurante, Long idEstadoReserva, Date fechaDesde, Date fechaHasta) {
+		List<ReservaModel> reservas;
+		
+		if(fechaDesde == null || fechaHasta == null) {
+			Date hoy = new Date(System.currentTimeMillis());
+			reservas = reservaRepository.getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(idRestaurante, idEstadoReserva, hoy, hoy);
+		} else
+			reservas = reservaRepository.getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(idRestaurante, idEstadoReserva, fechaDesde, fechaHasta);
+		
+		return reservas;
+	}
+
+	@Override
+	public void modificarEstadoReserva(Long idReserva, Long idEstadoReserva) {
+		reservaRepository.updateEstadoReserva(idReserva, idEstadoReserva);
 	}
 
 }

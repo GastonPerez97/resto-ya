@@ -21,4 +21,21 @@ public class EstadoReservaModel {
     public EstadoReservaModel(Long idEstadoReserva) {
     	this.idEstadoReserva = idEstadoReserva;
     }
+
+	public Long getIdEstadoReserva() {
+		return idEstadoReserva;
+	}
+
+	public void setIdEstadoReserva(Long idEstadoReserva) {
+		this.idEstadoReserva = idEstadoReserva;
+	}
+
+	public String getNombreEstado() {
+		return nombreEstado;
+	}
+
+	public void setNombreEstado(String nombreEstado) {
+		this.nombreEstado = nombreEstado;
+	}
+    
 }
