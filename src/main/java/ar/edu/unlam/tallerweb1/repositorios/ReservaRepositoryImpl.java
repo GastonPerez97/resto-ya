@@ -84,10 +84,11 @@ public class ReservaRepositoryImpl implements ReservaRepository {
 	}
 
 	@Override
-	public List<ReservaModel> getReservasByIdRestauranteAndIdEstado(Long idRestaurante, Long idEstadoReserva) {
+	public List<ReservaModel> getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(Long idRestaurante, Long idEstadoReserva, Date fechaDesde, Date fechaHasta) {
 		return sessionFactory.getCurrentSession().createCriteria(ReservaModel.class)
-				.add(Restrictions.eq("mesaModel.restaurante.idRestaurante", idRestaurante))
+				.add(Restrictions.eq("restauranteModel.idRestaurante", idRestaurante))
 				.add(Restrictions.eq("estadoReservaModel.idEstadoReserva", idEstadoReserva))
+				.add(Restrictions.between("fechaReserva", fechaDesde, fechaHasta))
 				.addOrder(Order.desc("fechaReserva"))
 				.list();
 	}

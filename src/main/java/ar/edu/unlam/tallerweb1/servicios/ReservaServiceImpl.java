@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.EstadoReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.MesaModel;
 import ar.edu.unlam.tallerweb1.modelo.ReservaModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteHorarioModel;
+import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
 import ar.edu.unlam.tallerweb1.modelo.enums.EstadoReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioGeneracionReserva;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioHorarioReserva;
@@ -47,6 +48,7 @@ public class ReservaServiceImpl implements ReservaService {
 		reserva.setRestauranteHorarioModel(restauranteHorarioService.getRestauranteHorarioById(formularioGeneracionReserva.getIdRestauranteHorario()));
 		reserva.setMesaModel(mesaService.getMesaById(formularioGeneracionReserva.getIdMesa()));
 		reserva.setClienteModel(new ClienteModel(formularioGeneracionReserva.getIdCliente()));
+		reserva.setRestauranteModel(new RestauranteModel(formularioGeneracionReserva.getIdRestaurante()));
 		
 		guardarReserva(reserva);
 		
@@ -80,8 +82,16 @@ public class ReservaServiceImpl implements ReservaService {
 	}
 
 	@Override
-	public List<ReservaModel> buscarReservasPorRestauranteYEstado(Long idRestaurante, Long idEstadoReserva) {
-		return reservaRepository.getReservasByIdRestauranteAndIdEstado(idRestaurante, idEstadoReserva);
+	public List<ReservaModel> buscarReservasPorRestauranteYEstadoYFechaDesdeHasta(Long idRestaurante, Long idEstadoReserva, Date fechaDesde, Date fechaHasta) {
+		List<ReservaModel> reservas;
+		
+		if(fechaDesde == null || fechaHasta == null) {
+			Date hoy = new Date(System.currentTimeMillis());
+			reservas = reservaRepository.getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(idRestaurante, idEstadoReserva, hoy, hoy);
+		} else
+			reservas = reservaRepository.getReservasByIdRestauranteAndIdEstadoAndFechaDesdeHasta(idRestaurante, idEstadoReserva, fechaDesde, fechaHasta);
+		
+		return reservas;
 	}
 
 	@Override
