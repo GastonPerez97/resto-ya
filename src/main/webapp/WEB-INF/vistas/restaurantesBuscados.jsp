@@ -7,13 +7,13 @@
 	<section class="comidas mx-auto">
 		<c:forEach items="${RESTAURANTES}" var="RESTO">
 			<article class="card comida shadow">
+				<c:if test="${not empty RESTO.imageName}">
+			  		<img src="img/restaurantes/${RESTO.imageName}" style="height: 252px; object-fit: cover;" class="card-img-top">
+		        </c:if>
+		        <c:if test="${empty RESTO.imageName}">
+		      		<img src="img/restaurantes/defaultRestaurante.jpg" class="card-img-top">
+		        </c:if>
 				<div class="card-body">
-					<c:if test="${not empty RESTO.imageName}">
-				  		<img src="img/restaurantes/${RESTO.imageName}" class="card-img img-restaurante">
-			        </c:if>
-			        <c:if test="${empty RESTO.imageName}">
-			      		<img src="img/restaurantes/defaultRestaurante.jpg" class="card-img">
-			        </c:if>
 					<h2 class="card-title bebas">${RESTO.nombre}</h2>
 					<p class="card-text"><span class="h4">Direcci&oacuten: </span>${RESTO.direccion}</p>
 			        <p class="card-text"><span class="h4">Horario: </span>${RESTO.horario}</p>
@@ -24,7 +24,7 @@
 	</section>
 	<div class="text-center">
 		<form:form action="home" method="get">
-			<button class="btn btn-dark" type="submit">Volver a buscar</button>
+			<button class="btn btn-outline-secondary" type="submit">Volver a buscar</button>
 		</form:form>
 	</div>
 </div>

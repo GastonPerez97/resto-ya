@@ -2,9 +2,11 @@
 <%@ include file="header.jsp" %>
 
 
-<section class="comidas mx-auto">
+<section class="main-container">
 	<h3 class="text-center h1 display-3 bebas mb-4">En breve le notificaremos al cliente de tu respuesta </h3>
-	<a class="nav-link" href="/proyecto-limpio-spring-master/restaurantes">Volver</a>
+	<div class="text-center">
+		<a class="btn btn-outline-secondary" href="/proyecto-limpio-spring-master/restaurantes">Volver a Restaurantes</a>
+	</div>
 </section>
 
 <%@ include file="footer.jsp" %>

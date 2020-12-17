@@ -6,7 +6,7 @@
             <c:choose>
 
                 <c:when test="${not empty reclamo.detalleRespuesta && not empty reclamo.detalle}">
-                    <h1 class="text-center h1 display-3 bebas mb-4">Pedido "${reclamo.pedido.idPedido}"
+                    <h1 class="text-center h1 display-3 bebas mb-4">Pedido ${reclamo.pedido.idPedido}
                     </h1>
 
 
@@ -44,11 +44,10 @@
                                         </div>
 
                                         <div class="form-group mt-5 text-center">
-                                            <button type="submit" class="btn btn-primary mx-auto">Actualizar
+                                            <button type="submit" class="btn btn-outline-primary mx-auto">Actualizar
 									Respuesta</button>
 
-                                            <a href="./restaurantes"><button type="button"
-										class="btn btn-secondary">Volver</button></a>
+                                            <a onclick="history.back()" class="btn btn-outline-secondary text-center">Volver</a>
                                         </div>
                             </form:form>
                         </article>
@@ -90,11 +89,10 @@
                                         </div>
 
                                         <div class="form-group mt-5 text-center">
-                                            <button type="submit" class="btn btn-primary mx-auto">Enviar
+                                            <button type="submit" class="btn btn-outline-primary mx-auto">Enviar
 							Respuesta</button>
 
-                                            <a href="./restaurantes"><button type="button"
-								class="btn btn-secondary">Volver</button></a>
+                                            <a onclick="history.back()" class="btn btn-outline-secondary text-center">Volver</a>
                                         </div>
                             </form:form>
                         </article>
@@ -102,11 +100,10 @@
                 </c:when>
 
                 <c:when test="${empty reclamo.detalle}">
-                    <h2 class="text-center h1 display-4 bebas mb-4">No hay un reclamo en el pedido</h2>
+                    <h2 class="text-center h1 display-3 bebas mb-4">No hay un reclamo en el pedido</h2>
 
-                    <section class="comidas mx-auto">
-                        <a href="./restaurantes"><button type="button"
-					class="btn btn-secondary">Volver</button></a>
+                    <section class="text-center">
+                        <a onclick="history.back()" class="btn btn-outline-secondary">Volver</a>
                     </section>
                 </c:when>
 
