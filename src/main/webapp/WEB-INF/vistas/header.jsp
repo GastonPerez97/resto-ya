@@ -43,10 +43,12 @@
                             <li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/restaurantes">Restaurantes</a>
                             </li>
                             <c:if test="${rol == 1}">
-                            	<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/usuarios">Usuarios</a></li>
-                            </c:if>
-                            <c:if test="${rol == 1}">
-                            	<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/historicoPedidos">Clientes</a></li>
+					<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/usuarios">Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/historicoPedidos">Clientes</a></li>
+                        	</c:if>
+			   	<c:if test="${rol == 2}">
+					<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/misPedidos">Mis pedidos</a></li>
+					<li class="nav-item"><a class="nav-link text-light" href="/proyecto-limpio-spring-master/misReservas">Mis reservas</a></li>
                         	</c:if>
                         </ul>
 						<div>
