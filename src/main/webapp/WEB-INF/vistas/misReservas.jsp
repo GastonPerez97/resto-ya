@@ -1,6 +1,6 @@
 <%@ include file="header.jsp"%>
 
-    <h1 class="text-center h1 display-3 bebas mb-4">Hist�rico de pedidos
+    <h1 class="text-center h1 display-3 bebas mb-4">Historico de pedidos
     </h1>
 
     <section class="comidas mx-auto">
@@ -8,7 +8,7 @@
             <article class="card comida shadow">
 
                 <div class="card-body">
-                    <h3 class="card-title bebas">N�mero de pedido: ${reserva.numeroDeReserva}</h3>
+                    <h3 class="card-title bebas">Numero de pedido: ${reserva.numeroDeReserva}</h3>
                     <h3 class="card-title bebas">Restaurante: ${reserva.fechaReserva}</h3>
                     <h3 class="card-title bebas">
                         <form action="detalle-pedido" class="form-inline" method="post">
