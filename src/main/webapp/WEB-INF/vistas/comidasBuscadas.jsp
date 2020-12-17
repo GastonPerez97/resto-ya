@@ -16,6 +16,7 @@
 		  		    <h3 class="card-title bebas">${resultado.nombre}</h3>
 		  		    <h5>${resultado.tipo}</h5>
 		 			<p class="card-text">${resultado.descripcion}</p>
+		 			<h5 class="card-title mt-2"><b>Restaurante: </b>${resultado.restaurante.nombre}</h5>
 				</div>
 			</article>
 		</c:forEach>

@@ -124,6 +124,8 @@ public class ClienteController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("pedidoModel", clienteService.buscarPedidosClienteOrdenadosPorFecha(cliente));
 		modelo.put("rol", request.getSession().getAttribute("ROL"));
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Historico de pedidos");
 
 		return new ModelAndView("pedidosPorCliente", modelo);
 	}
@@ -137,6 +139,8 @@ public class ClienteController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("reservas", reservaService.getReservasDeCliente((Long)request.getSession().getAttribute("id")));
 		modelo.put("rol", request.getSession().getAttribute("ROL"));
+		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("titulo", "Mis Reservas");
 
 		return new ModelAndView("misReservas", modelo);
 	}
