@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.HorarioModel;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioRestauranteHorario;
@@ -50,6 +51,10 @@ public class RestauranteController {
 
 	@RequestMapping(path = "/agregarRestaurante", method = RequestMethod.POST)
 	public ModelAndView agregarRestaurante(HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 
 		RestauranteModel restaurante = new RestauranteModel();
@@ -64,7 +69,10 @@ public class RestauranteController {
 	@RequestMapping(path = "/validar-nuevoRestaurante", method = RequestMethod.POST)
 	public ModelAndView validarNuevoRestaurante(@ModelAttribute("restaurante") RestauranteModel restaurante,
 			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("titulo", "Lista de Restaurantes");
@@ -75,7 +83,10 @@ public class RestauranteController {
 
 	@RequestMapping("/editarRestaurante")
 	public ModelAndView editarRestaurante(@RequestParam("id") Long id, HttpServletRequest request) {
-
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 
 		ModelMap modelo = new ModelMap();
@@ -90,7 +101,10 @@ public class RestauranteController {
 	@RequestMapping(path = "/validar-editarRestaurante", method = RequestMethod.POST)
 	public ModelAndView validarEdicionRestaurante(@ModelAttribute("restaurante") RestauranteModel restaurante,
 			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
@@ -101,6 +115,10 @@ public class RestauranteController {
 
 	@RequestMapping("/eliminarRestaurante")
 	public ModelAndView eliminarRestaurante(@RequestParam("id") Long id, HttpServletRequest request) throws Exception {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
@@ -114,6 +132,10 @@ public class RestauranteController {
 	@RequestMapping(path = "/nuevo-horario", method = RequestMethod.POST)
 	public ModelAndView generarNuevoHorario(@RequestParam("idRestaurante") Long idRestaurante,
 			HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Generar nuevo horario");
 
@@ -130,6 +152,10 @@ public class RestauranteController {
 	public ModelAndView generarNuevoHorarioPost(
 			@ModelAttribute("formularioNuevoHorario") FormularioRestauranteHorario formularioRestauranteHorario,
 			HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Horario guardado");
 
@@ -144,6 +170,10 @@ public class RestauranteController {
 	@RequestMapping(path = "/nueva-calificacion", method = RequestMethod.POST)
 	public ModelAndView verACalificacion(@RequestParam("idRestaurante") Long idRestaurante,
 			HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap model = new ModelMap();
 		RestauranteModel restaurante = new RestauranteModel();
 		restaurante.setIdRestaurante(idRestaurante);
@@ -158,6 +188,10 @@ public class RestauranteController {
 	
 	@RequestMapping(path = "/pedidosPorRestaurante")
 	public ModelAndView pedidosPorRestaurante(@RequestParam("id") Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 

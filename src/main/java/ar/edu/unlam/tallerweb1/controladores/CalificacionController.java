@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.servicios.CalificacionService;
 
@@ -24,6 +25,10 @@ public class CalificacionController {
 	public ModelAndView guardarCalificacion(
 			@ModelAttribute("formularioCalificacion") FormularioCalificacionRestaurante formularioCalificacion,
 			HttpServletRequest request) throws Exception {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		servCalificacion.guardarCalificaciones(formularioCalificacion);
 		modelo.put("calificacion", servCalificacion.buscarCalificaciones());
@@ -32,10 +37,11 @@ public class CalificacionController {
 	}
 
 	@RequestMapping(path = "/guardado-calificacion-comida", method = RequestMethod.POST)
-	public ModelAndView guardarCalificacionComidas(
-
-			@ModelAttribute("formularioCalificacionComida") FormularioCalificacionComida formularioCalificacionComida,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView guardarCalificacionComidas(@ModelAttribute("formularioCalificacionComida") FormularioCalificacionComida formularioCalificacionComida, HttpServletRequest request) throws Exception {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		servCalificacion.guardarCalificacionesComidas(formularioCalificacionComida);
 		modelo.put("calificacion", servCalificacion.buscarCalificacionesComidas());
@@ -45,13 +51,10 @@ public class CalificacionController {
 
 	@RequestMapping(path = "/consultarCalificacionRestaurante", method = RequestMethod.POST)
 	public ModelAndView pedidos(@ModelAttribute("calificacionRestaurante") Long idRestaurante) {
-
 		ModelMap modelo = new ModelMap();
-
 		modelo.put("restaurante", servCalificacion.buscarCalificacionPorRestaurante(idRestaurante));
 
 		return new ModelAndView("calificacionPorRestaurante", modelo);
-
 	}
 
 }

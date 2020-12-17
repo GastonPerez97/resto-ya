@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
 import ar.edu.unlam.tallerweb1.servicios.LoginService;
+import ar.edu.unlam.tallerweb1.servicios.UsuarioRolService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,9 @@ public class ControladorLogin {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UsuarioRolService usuarioRolService;
 	
 	@Autowired
 	public ControladorLogin(LoginService servicioLogin){
@@ -42,7 +47,7 @@ public class ControladorLogin {
 		model.put("titulo", "Contacto");
 		UsuarioModel usuarioBuscado = loginService.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", "Admin");
+			request.getSession().setAttribute("ROL", usuarioRolService.buscarUsuarioRolPorId(usuarioBuscado.getIdUsuario()).getRolModel().getIdRol());
 			request.getSession().setAttribute("id", usuarioBuscado.getIdUsuario());
 			request.getSession().setAttribute("NOMBRE", usuarioBuscado.getNombreDeUsuario());
 			return new ModelAndView("redirect:/home");
@@ -64,13 +69,12 @@ public class ControladorLogin {
 
 	@RequestMapping("/logout")
 	public ModelAndView irAlogout(HttpServletRequest request) {
-		ModelMap modelo = new ModelMap();
 		request.getSession().removeAttribute("ROL");
 		request.getSession().removeAttribute("NOMBRE");
 		request.getSession().removeAttribute("EMAIL");
 		request.getSession().removeAttribute("id");
 		
-		return new ModelAndView("logout", modelo);
+		return new ModelAndView ("redirect:/login");
 	}
 	
 	

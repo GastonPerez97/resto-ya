@@ -6,7 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioRolModel;
 
 public interface UsuarioRolRepository {
 	
-	UsuarioRolModel buscarUsuarioRolPorId(Long id);
+	List<UsuarioRolModel> buscarUsuarioRolPorId(Long id);
 	
 	List<UsuarioRolModel> buscarRolesPorUsuario(Long idUsuario);
 

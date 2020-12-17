@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam; 
 import org.springframework.web.servlet.ModelAndView; 
 import ar.edu.unlam.tallerweb1.modelo.RolModel; 
-import ar.edu.unlam.tallerweb1.modelo.UsuarioModel; 
+import ar.edu.unlam.tallerweb1.modelo.UsuarioModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioAgregarUsuario; 
 import ar.edu.unlam.tallerweb1.servicios.RolService; 
 import ar.edu.unlam.tallerweb1.servicios.UsuarioRolService; 
@@ -28,11 +29,9 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
   
 	@RequestMapping("/usuarios") 
 	public ModelAndView usuarios(HttpServletRequest request) {
-  
-		String rol = request.getSession().getAttribute("ROL") != null ? (String)request.getSession().getAttribute("ROL") : "";
-  
-		if (!rol.equals("Admin")) 
-			return new ModelAndView ("redirect:/login");
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
   
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Lista de Usuarios"); 
@@ -44,7 +43,10 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
   
 	@RequestMapping(path = "/agregarUsuario", method = RequestMethod.POST) 
 	public ModelAndView agregarUsuario(HttpServletRequest request) { 
-  
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		FormularioAgregarUsuario formulario = new FormularioAgregarUsuario();
 		List<RolModel> listDeRoles = rolService.listarRolUsuario();
 	  
@@ -58,6 +60,10 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
   
 	@RequestMapping(path = "/validarRegistroUsuario", method = RequestMethod.POST) 
 	public ModelAndView validarRegistroUsuario(@ModelAttribute("formularioAgregarUsuario") FormularioAgregarUsuario formularioAgregarUsuario, HttpServletRequest request) { 
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		UsuarioModel usuario = formularioAgregarUsuario.getUsuario();
 		List<RolModel> listDeRoles = rolService.listarRolUsuario();
 		
@@ -77,7 +83,10 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 	  
 	@RequestMapping("/editarUsuario") 
 	public ModelAndView editarUsuario(@RequestParam("id") Long id, HttpServletRequest request) {
-  
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		UsuarioModel usuario = usuarioService.buscarUsuarioPorId(id);
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
@@ -88,6 +97,10 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 	  
 	@RequestMapping(path = "/validarEditarUsuario", method = RequestMethod.POST)
 	public ModelAndView validarEditarUsuario(@ModelAttribute("usuario") UsuarioModel usuario, HttpServletRequest request) { 
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Editar Usuario"); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
   
@@ -98,6 +111,10 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
   
 	@RequestMapping("/validarEliminarUsuario") 
 	public ModelAndView validarEliminarUsuario(@RequestParam("id") Long id, HttpServletRequest request) { 
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
   

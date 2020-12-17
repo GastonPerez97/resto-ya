@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.ComidaModel;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionComida;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioCalificacionRestaurante;
 import ar.edu.unlam.tallerweb1.servicios.RestauranteService;
@@ -45,6 +46,9 @@ public class ComidaController {
 	
 	@RequestMapping("/editarComida")
 	public ModelAndView editarComida(@RequestParam("id") Long id, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		
@@ -60,7 +64,10 @@ public class ComidaController {
 	@RequestMapping(path = "/validar-editarComida", method = RequestMethod.POST)
 	public ModelAndView validarEdicionComida(
 			@ModelAttribute("comida") ComidaModel comida,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		comidaService.procesarEdicionComida(comida, file);
 		
@@ -69,6 +76,10 @@ public class ComidaController {
 	
 	@RequestMapping(path = "/agregarComida")
 	public ModelAndView agregarComida(@RequestParam Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
@@ -85,7 +96,10 @@ public class ComidaController {
 	@RequestMapping(path = "/validar-nuevaComida", method = RequestMethod.POST)
 	public ModelAndView validarNuevaComida(
 			@ModelAttribute("comida") ComidaModel comida,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		comidaService.procesarNuevaComida(comida, file);
 		
@@ -93,7 +107,10 @@ public class ComidaController {
 	}
 	
 	@RequestMapping("/eliminarComida")
-	public ModelAndView eliminarComida(@RequestParam("id") Long id) {
+	public ModelAndView eliminarComida(@RequestParam("id") Long id, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ComidaModel comida = comidaService.consultarComidaPorId(id);
 		

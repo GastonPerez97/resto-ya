@@ -22,6 +22,7 @@ import ar.edu.unlam.tallerweb1.modelo.ClienteModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoComidaModel;
 import ar.edu.unlam.tallerweb1.modelo.PedidoModel;
 import ar.edu.unlam.tallerweb1.modelo.RestauranteModel;
+import ar.edu.unlam.tallerweb1.modelo.enums.Rol;
 import ar.edu.unlam.tallerweb1.modelo.form.FormularioPedido;
 import ar.edu.unlam.tallerweb1.servicios.ClienteService;
 import ar.edu.unlam.tallerweb1.servicios.ComidaService;
@@ -54,6 +55,10 @@ public class PedidoController {
 	
 	@RequestMapping("/hacerPedido")
 	public ModelAndView hacerPedido(@RequestParam("id")Long idRestaurante, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(idRestaurante);
 		
 		ModelMap modelo = new ModelMap();
@@ -74,6 +79,10 @@ public class PedidoController {
 
 	@RequestMapping(path="/procesarPedido", method=RequestMethod.POST)
 	public ModelAndView procesarPedidoPost(@ModelAttribute("formularioPedido") FormularioPedido formularioPedido, HttpServletRequest request) {		
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();	
 		
 		formularioPedido.setIdCliente((Long) request.getSession().getAttribute("id"));
@@ -91,6 +100,10 @@ public class PedidoController {
 	
 	@RequestMapping(path="/pagar", method = RequestMethod.POST)
 	public ModelAndView pagarPedido(HttpServletRequest request) throws MPException {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 
@@ -107,6 +120,10 @@ public class PedidoController {
 	
 	@RequestMapping("/pagoRealizado")
 	public ModelAndView pagoRealizado(HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago realizado");
@@ -119,6 +136,10 @@ public class PedidoController {
 	
 	@RequestMapping("/pagoFallido")
 	public ModelAndView pagoFallido(HttpServletRequest request) {	
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago fallido");
@@ -128,6 +149,10 @@ public class PedidoController {
 	
 	@RequestMapping("/pagoPendiente")
 	public ModelAndView pagoPendiente(@RequestParam("payment_id") Long nroReferencia, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.CLIENTE.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago pendiente");
@@ -160,6 +185,10 @@ public class PedidoController {
 	
 	@RequestMapping(path = "/finalizar-pedido", method = RequestMethod.POST)
 	public ModelAndView finalizarPedido(@RequestParam("idPedido") Long idPedido, HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
+		
 		ModelMap model = new ModelMap();
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		model.put("titulo", "Finalizar pedido");
@@ -181,6 +210,9 @@ public class PedidoController {
 	public ModelAndView ingresarNroReferencia(@RequestParam("idPedido") Long idPedido,
 											  @RequestParam("nroReferencia") Long nroReferencia,
 											  HttpServletRequest request) {
+		Long rol = (Long)request.getSession().getAttribute("ROL");
+		if (rol != Rol.ADMIN.getId()) 
+			return new ModelAndView ("redirect:/logout");
 		
 		ModelMap model = new ModelMap();
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
