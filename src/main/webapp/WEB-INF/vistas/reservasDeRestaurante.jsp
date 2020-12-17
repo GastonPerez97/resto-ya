@@ -1,11 +1,12 @@
 <%@ include file="header.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-    <h1 class="text-center h1 display-3 bebas mb-4">Reservas de ${restaurante.nombre}
-    </h1>
+
 
     <section class="comidas mx-auto">
     	
     	<div class="main-container">
+    	    <h1 class="text-center h1 display-3 bebas mb-4">Reservas de ${restaurante.nombre}</h1>
+    	    
     		<h2>Buscar reservas</h2>
             <form action="reservas" method="post">
 	             <input type="hidden" value="${restaurante.idRestaurante}" name="idRestaurante" id="idRestaurante" />
@@ -34,14 +35,16 @@
 	             </div>
             </form>
     	</div>
-    
-    	<div class="d-flex justify-content-between flex-wrap">
+   </section>
+   
+   <section class="main-container">
+    	<div class="d-flex justify-content-start flex-wrap">
 	        <c:forEach items="${reservas}" var="reserva">
 	            <article class="card comida shadow d-flex flex-column justify-content-between">
 	                <div class="card-body">
-	                    <h3 class="card-title bebas">N° de reserva: ${reserva.numeroDeReserva}</h3>
-	                    <h3 class="card-title bebas">Fecha: ${reserva.fechaReserva}</h3>
-	                    <h3 class="card-title bebas">Estado: ${reserva.estadoReservaModel.nombreEstado}</h3>
+	                    <h4 class="card-title"><b>N° de reserva: </b>${reserva.numeroDeReserva}</h4>
+	                    <h4 class="card-title"><b>Fecha: </b>${reserva.fechaReserva}</h4>
+	                    <h4 class="card-title"><b>Estado: </b>${reserva.estadoReservaModel.nombreEstado}</h4>
 	
 						<div class="row d-flex justify-content-around align-items-center">
 							<form action="../reserva/modificarEstado" class="form-inline" method="post">
@@ -69,6 +72,6 @@
 	            </article>
 	        </c:forEach>
         </div>
-    </section>
+   </section>
 
     <%@ include file="footer.jsp"%>
