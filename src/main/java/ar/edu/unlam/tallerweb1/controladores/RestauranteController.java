@@ -45,6 +45,7 @@ public class RestauranteController {
 		modelo.put("titulo", "Lista de Restaurantes");
 		modelo.put("RESTAURANTES", servRestaurante.buscarRestaurantes());
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("restaurantes", modelo);
 	}
@@ -62,6 +63,7 @@ public class RestauranteController {
 		modelo.put("titulo", "Agregar Restaurante");
 		modelo.put("restaurante", restaurante);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("agregarRestaurante", modelo);
 	}
@@ -77,6 +79,7 @@ public class RestauranteController {
 
 		modelo.put("titulo", "Lista de Restaurantes");
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return servRestaurante.procesarNuevoRestaurante(restaurante, file, modelo);
 	}
@@ -94,6 +97,7 @@ public class RestauranteController {
 		modelo.put("titulo", "Editar " + restaurante.getNombre());
 		modelo.put("restaurante", restaurante);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("editarRestaurante", modelo);
 	}
@@ -107,6 +111,7 @@ public class RestauranteController {
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		servRestaurante.procesarEdicionRestaurante(restaurante, file);
 
@@ -121,6 +126,7 @@ public class RestauranteController {
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		RestauranteModel restaurante = servRestaurante.buscarRestaurantePorId(id);
 
@@ -143,6 +149,8 @@ public class RestauranteController {
 		modelAndView.addObject("horarios", horarioService.getHorariosNoAsignadosARestaurante(idRestaurante));
 		modelAndView.addObject("formularioNuevoHorario", new FormularioRestauranteHorario());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("generacionNuevoHorario");
 
 		return modelAndView;
@@ -162,6 +170,7 @@ public class RestauranteController {
 		HorarioModel horario = restauranteHorarioService.procesarNuevoHorarioRestaurante(formularioRestauranteHorario);
 		modelAndView.addObject("horario", horario);
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.setViewName("nuevoHorarioExitoso");
 
 		return modelAndView;
@@ -182,6 +191,8 @@ public class RestauranteController {
 		model.put("titulo", "Nueva calificacion");
 		model.put("formularioCalificacion", formulario);
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("calificarRestaurante", model);
 	}
 
@@ -199,6 +210,7 @@ public class RestauranteController {
 		modelo.put("titulo", "Pedidos " + restaurante.getNombre());
 		modelo.put("nombreRestaurante", restaurante.getNombre());
 		modelo.put("pedidoModel", servRestaurante.buscarPedidosRestauranteOrdenadosPorFecha(idRestaurante));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("pedidosPorRestaurante", modelo);
 	}

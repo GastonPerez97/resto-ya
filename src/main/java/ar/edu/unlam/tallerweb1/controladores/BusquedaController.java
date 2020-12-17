@@ -26,6 +26,7 @@ public class BusquedaController {
 		modelo.put("formularioBusqueda", new FormularioBusqueda());
 		modelo.put("titulo", "Home");
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("buscador", modelo);
 	}
 
@@ -34,13 +35,14 @@ public class BusquedaController {
 		ModelMap modelo = new ModelMap();
 		ResultadoBusqueda resultadoBusqueda = busquedaService.buscar(busqueda);  
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		if (busqueda.getTipoBusquedaSeleccionada().equals(TipoBusqueda.COMIDA.ordinal())) {
 			modelo.put("resultadoBusqueda", resultadoBusqueda);
 			return new ModelAndView("comidasBuscadas", modelo);
 		} else {
 			modelo.put("RESTAURANTES", resultadoBusqueda.getListaRestaurantes());
-			return new ModelAndView("restaurantesBuscados", modelo);
+			return new ModelAndView("restaurantes", modelo);
 		}
 	}
 }

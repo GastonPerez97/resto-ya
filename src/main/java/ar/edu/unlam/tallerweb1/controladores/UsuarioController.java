@@ -37,6 +37,7 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		modelo.put("titulo", "Lista de Usuarios"); 
 		modelo.put("usuarios", usuarioService.listarUsuarios()); 
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
   
 		return new ModelAndView("usuarios", modelo); 
 	}
@@ -54,7 +55,8 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		modelo.put("titulo", "Agregar Usuario");
 		modelo.put("formularioAgregarUsuario", formulario);
 		modelo.put("listaDeRoles", listDeRoles); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-  
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("agregarUsuario", modelo); 
 	}
   
@@ -70,7 +72,8 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Agregar Usuario"); modelo.put("listaDeRoles", listDeRoles); 
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-  
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		if (usuarioService.validarRegistroUsuario(formularioAgregarUsuario) == false) { 
 			modelo.put("errorValidacion", "El nombre de usuario o email ya existe, contacte al administrador"); 
 			return new ModelAndView("agregarUsuario", modelo);
@@ -91,7 +94,8 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Editar " + usuario.getNombreDeUsuario());
 		modelo.put("usuario", usuario); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-  
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("editarUsuario", modelo); 
 	}
 	  
@@ -103,7 +107,8 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("titulo", "Editar Usuario"); modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-  
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		usuarioService.modificarUsuario(usuario); 
 		return new ModelAndView("redirect:/usuarios");
   
@@ -117,7 +122,8 @@ import ar.edu.unlam.tallerweb1.servicios.UsuarioService;
 		
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-  
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		if (usuarioService.validarEliminarUsuario(id) == true) {
 			modelo.put("estadoEliminar", "El usuario se elimino exitosamente");
 			usuarioService.eliminarUsuarioPorId(id); 

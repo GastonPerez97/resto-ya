@@ -41,6 +41,7 @@ public class ReclamoController {
 		modelo.put("reclamo", reclamo);
 		modelo.put("formularioGeneracionReclamo", formulario);
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+	    modelo.put("rol", request.getSession().getAttribute("ROL"));
 		
 		return new ModelAndView("generarReclamo", modelo);
 	}
@@ -55,7 +56,8 @@ public class ReclamoController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Reclamo generado");
-		
+	    modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		ReclamoModel reclamo = new ReclamoModel(formularioGeneracionReclamo.getReclamo().getDetalle(), formularioGeneracionReclamo.getPedido());
 		reclamoService.guardarReclamo(reclamo);
 		
@@ -71,7 +73,8 @@ public class ReclamoController {
 		modelo.put("titulo", "Ver Reclamo");
 		modelo.put("reclamo", reclamo);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-				  		
+	    modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("verReclamo", modelo);
 	}
 	
@@ -83,6 +86,7 @@ public class ReclamoController {
 		
 		ModelMap modelo = new ModelMap();	   
 		modelo.put("titulo", "Respuesta Generada");
+	    modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		reclamoService.actualizarReclamo(reclamo);
 		

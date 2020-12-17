@@ -55,6 +55,7 @@ public class ReservaController {
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("mesas", mesaService.getMesasDisponiblesParaReservaByRestaurante(idRestaurante));
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.setViewName("generacionDeReserva");
 		
 		return modelAndView;
@@ -68,7 +69,8 @@ public class ReservaController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("titulo", "Reserva exitosa");
-		
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		formularioGeneracionReserva.setIdCliente((Long)request.getSession().getAttribute("id"));
 		
 		ReservaModel reserva = reservaService.procesarNuevaReserva(formularioGeneracionReserva);
@@ -101,6 +103,7 @@ public class ReservaController {
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.setViewName("reservasDeRestaurante");
 		
 		return modelAndView;
@@ -126,6 +129,8 @@ public class ReservaController {
 		modelAndView.addObject("fechaHasta", fechaHasta);		
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("reservasDeRestaurante");
 		
 		return modelAndView;
@@ -154,6 +159,8 @@ public class ReservaController {
 		modelAndView.addObject("estados", estadoReservaService.buscarEstadosReserva());
 		modelAndView.addObject("mensaje", "Reserva modificada exitosamente");
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("reservasDeRestaurante");
 		
 		return modelAndView;
@@ -175,6 +182,8 @@ public class ReservaController {
 		modelAndView.addObject("reservas", reservas);
 		modelAndView.addObject("mensaje", "Reserva modificada exitosamente");
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		modelAndView.setViewName("misReservas");
 		
 		return modelAndView;

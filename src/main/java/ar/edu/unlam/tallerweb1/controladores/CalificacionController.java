@@ -32,6 +32,7 @@ public class CalificacionController {
 		ModelMap modelo = new ModelMap();
 		servCalificacion.guardarCalificaciones(formularioCalificacion);
 		modelo.put("calificacion", servCalificacion.buscarCalificaciones());
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("calificacionRestauranteExitosa", modelo);
 
 	}
@@ -45,14 +46,16 @@ public class CalificacionController {
 		ModelMap modelo = new ModelMap();
 		servCalificacion.guardarCalificacionesComidas(formularioCalificacionComida);
 		modelo.put("calificacion", servCalificacion.buscarCalificacionesComidas());
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("calificacionComidasExitosa", modelo);
 
 	}
 
 	@RequestMapping(path = "/consultarCalificacionRestaurante", method = RequestMethod.POST)
-	public ModelAndView pedidos(@ModelAttribute("calificacionRestaurante") Long idRestaurante) {
+	public ModelAndView pedidos(@ModelAttribute("calificacionRestaurante") Long idRestaurante, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		modelo.put("restaurante", servCalificacion.buscarCalificacionPorRestaurante(idRestaurante));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 
 		return new ModelAndView("calificacionPorRestaurante", modelo);
 	}

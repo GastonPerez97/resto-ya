@@ -41,6 +41,7 @@ public class ComidaController {
 		modelo.put("restaurante", restaurante);
 		modelo.put("COMIDAS", servRestaurante.buscarMenuPorRestaurante(restaurante));
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("menu", modelo);
 	}
 	
@@ -57,7 +58,8 @@ public class ComidaController {
 		modelo.put("titulo", "Editar " + comida.getNombre());
 		modelo.put("comida", comida);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("editarComida", modelo);
 	}
 	
@@ -89,7 +91,8 @@ public class ComidaController {
 		modelo.put("titulo", "Agregar Comida");
 		modelo.put("comida", comida);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("agregarComida", modelo);
 	}
 	
@@ -129,6 +132,7 @@ public class ComidaController {
 		formulario.getCalificacionComida().setComidaModel(comida);
 		model.put("formularioCalificacionComida", formulario);
 		model.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		model.put("rol", request.getSession().getAttribute("ROL"));
 		return new ModelAndView("calificarComida", model);
 	}
 

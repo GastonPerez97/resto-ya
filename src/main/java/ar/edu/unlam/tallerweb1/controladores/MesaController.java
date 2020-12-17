@@ -36,6 +36,7 @@ public class MesaController {
 		modelAndView.addObject("restaurante", restauranteService.buscarRestaurantePorId(idRestaurante));
 		modelAndView.addObject("formularioNuevaMesa", new FormularioNuevaMesa());
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
 		modelAndView.addObject("titulo", "Generar nueva mesa");
 		modelAndView.setViewName("generacionNuevaMesa");
 		
@@ -51,7 +52,8 @@ public class MesaController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelAndView.addObject("titulo", "Generar nueva mesa");
-		
+		modelAndView.addObject("rol", request.getSession().getAttribute("ROL"));
+
 		MesaModel mesa = mesaService.procesarNuevaMesa(formularioNuevaMesa);
 		if (mesa.getIdMesa() != null) {
 			modelAndView.addObject("mesa", mesa);

@@ -72,7 +72,8 @@ public class PedidoController {
 		modelo.put("COMIDAS", comidaService.buscarComidasDisponiblesDeRestaurante(idRestaurante));
 		modelo.put("formularioPedido", formulario);
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("hacerPedido", modelo);
 		
 	}
@@ -94,7 +95,8 @@ public class PedidoController {
 	    modelo.put("hora", pedido.getFechaPedido());
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	    modelo.put("titulo", "Procesar pedido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("procesarPedido", modelo);
 	}
 	
@@ -127,7 +129,8 @@ public class PedidoController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago realizado");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
 		pedidoService.cambiarEstadoDePedido(idPedido, 2L);
 		request.getSession().removeAttribute("idPedido");
@@ -143,7 +146,8 @@ public class PedidoController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago fallido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("pagoFallido", modelo);
 	}
 	
@@ -156,7 +160,8 @@ public class PedidoController {
 		ModelMap modelo = new ModelMap();
 		modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 		modelo.put("titulo", "Pago pendiente");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		Long idPedido = (Long) request.getSession().getAttribute("idPedido");
 		pedidoService.guardarNroReferencia(idPedido, nroReferencia);
 		pedidoService.cambiarEstadoDePedido(idPedido, 1L);
@@ -179,7 +184,8 @@ public class PedidoController {
 	    modelo.put("total", total);
 	    modelo.put("nombreUsuario", request.getSession().getAttribute("NOMBRE"));
 	    modelo.put("titulo", "Detalle de pedido");
-		
+		modelo.put("rol", request.getSession().getAttribute("ROL"));
+
 		return new ModelAndView("detallePedido", modelo);
 	}
 	
