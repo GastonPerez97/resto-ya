@@ -15,7 +15,7 @@
 
             <c:forEach items="${RESTAURANTES}" var="REST">
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="card mb-3 restaurante shadow <c:if test=" ${REST.disponible==f alse} ">no-disponible</c:if>">
+                    <div class="card mb-3 restaurante shadow <c:if test="${REST.disponible == false}">no-disponible</c:if>">
                         <div class="row no-gutters">
                             <div class="col-md-4 text-center my-auto">
                                 <c:if test="${not empty REST.imageName}">
@@ -30,7 +30,7 @@
                                     <h2 class="card-title"><span class="bebas">${REST.nombre} </span>
                                         <a href="restaurante/menu?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary">Ver Men&uacute</a>
                                         <a href="pedidosPorRestaurante?id=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Pedidos</a>
-                                        <a href="restaurante/reservas?idRestaurante=${REST.idRestaurante}" class="float-right btn btn-dark mr-2">Ver Reservas</a>
+                                        <a href="restaurante/reservas?idRestaurante=${REST.idRestaurante}" class="float-right btn btn-outline-primary mr-2">Ver Reservas</a>
                                     </h2>
                                     <p class="card-text">
                                         <span class="h4">Direcci&oacuten: </span>${REST.direccion}
